@@ -379,8 +379,8 @@ function HomePage({ setPage }) {
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0.3rem', maxWidth: 500, margin: '0 auto' }}>
             <button className="btn-jade" onClick={() => setPage('contact')}><span style={{ color: '#D4BC82', fontSize: '0.7rem', opacity: 0.65 }}>{'\u2606'}</span> Book a Visit</button>
-            <a href="tel:+1234567890" className="btn-jade"><GoldPhoneIcon size={11} /> Call Us</a>
-            <a href="mailto:info@healingsoulutions.com" className="btn-jade"><GoldEmailIcon size={11} /> Email Us</a>
+            <a href="tel:+15857472215" className="btn-jade"><GoldPhoneIcon size={11} /> Call Us</a>
+            <a href="mailto:info@healingsoulutions.care" className="btn-jade"><GoldEmailIcon size={11} /> Email Us</a>
             <button className="btn-jade" onClick={() => setPage('services')}><span style={{ color: '#D4BC82', fontSize: '0.7rem', opacity: 0.65 }}>{'\u2192'}</span> Learn More</button>
           </div>
         </div>
@@ -502,22 +502,17 @@ function ContactPage({ setPage }) {
   // ── Stripe State ──
   const stripeRef = useRef(null);
   const elementsRef = useRef(null);
-  const cardNumberRef = useRef(null);
-  const cardExpiryRef = useRef(null);
-  const cardCvcRef = useRef(null);
-  const cardNumMountRef = useRef(null);
-  const cardExpMountRef = useRef(null);
-  const cardCvcMountRef = useRef(null);
+  const paymentMountRef = useRef(null);
   const stripeMountedRef = useRef(false);
   const [stripeLoaded, setStripeLoaded] = useState(false);
   const [stripeFailed, setStripeFailed] = useState(false);
   const [stripeReady, setStripeReady] = useState(false);
   const [stripeError, setStripeError] = useState('');
-  const [cardNumComplete, setCardNumComplete] = useState(false);
-  const [cardExpComplete, setCardExpComplete] = useState(false);
-  const [cardCvcComplete, setCardCvcComplete] = useState(false);
+  const [paymentComplete, setPaymentComplete] = useState(false);
   const [cardHolderName, setCardHolderName] = useState('');
   const [detectedBrand, setDetectedBrand] = useState('');
+  const [setupClientSecret, setSetupClientSecret] = useState('');
+  const [setupCustomerId, setSetupCustomerId] = useState('');
   const [fallbackCardNum, setFallbackCardNum] = useState('');
   const [fallbackCardExp, setFallbackCardExp] = useState('');
   const [fallbackCardCvc, setFallbackCardCvc] = useState('');
@@ -527,7 +522,7 @@ function ContactPage({ setPage }) {
 
   var cardComplete = stripeFailed
     ? (fallbackCardNum.replace(/\D/g, '').length >= 15 && fallbackCardExp.replace(/\D/g, '').length >= 4 && fallbackCardCvc.replace(/\D/g, '').length >= 3)
-    : (cardNumComplete && cardExpComplete && cardCvcComplete);
+    : paymentComplete;
 
   // ── Patient helpers ──
   var emptyPatient = function () { return { id: Date.now(), fname: '', lname: '', services: [], medicalHistory: '', surgicalHistory: '', medications: '', allergies: '', clinicianNotes: '' }; };
@@ -563,50 +558,109 @@ function ContactPage({ setPage }) {
     document.head.appendChild(s);
   }, []);
 
-  // ── Initialize Stripe Elements ──
+  // ── Initialize Stripe ──
   useEffect(function () {
     if (!stripeLoaded || stripeRef.current) return;
     try {
       stripeRef.current = window.Stripe(STRIPE_PK);
-      elementsRef.current = stripeRef.current.elements({
-        fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap' }],
-      });
     } catch (e) {
       setStripeError('Payment initialization error: ' + e.message);
     }
   }, [stripeLoaded, STRIPE_PK]);
 
-  var stripeStyle = {
-    base: { color: '#FFFFFF', fontFamily: "'Outfit', sans-serif", fontSize: '14px', fontSmoothing: 'antialiased', '::placeholder': { color: 'rgba(255,255,255,0.4)' }, iconColor: '#D4BC82', lineHeight: '24px' },
-    invalid: { color: '#FF9B9B', iconColor: '#FF9B9B' },
-  };
-
-  // ── Mount Stripe Elements on step 3 ──
+  // ── Fetch SetupIntent and mount Payment Element on step 3 ──
   useEffect(function () {
-    if (step !== 3 || !stripeLoaded || !elementsRef.current || stripeMountedRef.current) return;
-    var tryMount = function () {
-      if (!cardNumMountRef.current || !cardExpMountRef.current || !cardCvcMountRef.current) return;
-      [cardNumberRef, cardExpiryRef, cardCvcRef].forEach(function (r) { if (r.current) { try { r.current.unmount(); } catch (e) { } try { r.current.destroy(); } catch (e) { } r.current = null; } });
-      var numEl = elementsRef.current.create('cardNumber', { style: stripeStyle, showIcon: true });
-      cardNumberRef.current = numEl;
-      numEl.on('change', function (ev) { setCardNumComplete(ev.complete); if (ev.brand && ev.brand !== 'unknown') setDetectedBrand(ev.brand); if (ev.error) setStripeError(ev.error.message); else setStripeError(''); });
-      numEl.mount(cardNumMountRef.current);
-      var expEl = elementsRef.current.create('cardExpiry', { style: stripeStyle });
-      cardExpiryRef.current = expEl;
-      expEl.on('change', function (ev) { setCardExpComplete(ev.complete); if (ev.error) setStripeError(ev.error.message); else setStripeError(''); });
-      expEl.mount(cardExpMountRef.current);
-      var cvcEl = elementsRef.current.create('cardCvc', { style: stripeStyle });
-      cardCvcRef.current = cvcEl;
-      cvcEl.on('change', function (ev) { setCardCvcComplete(ev.complete); if (ev.error) setStripeError(ev.error.message); else setStripeError(''); });
-      cvcEl.on('ready', function () { setStripeReady(true); });
-      cvcEl.mount(cardCvcMountRef.current);
-      stripeMountedRef.current = true;
-    };
-    var timer = setTimeout(tryMount, 120);
-    return function () { clearTimeout(timer); stripeMountedRef.current = false; [cardNumberRef, cardExpiryRef, cardCvcRef].forEach(function (r) { if (r.current) { try { r.current.unmount(); } catch (e) { } try { r.current.destroy(); } catch (e) { } r.current = null; } }); };
+    if (step !== 3 || !stripeLoaded || !stripeRef.current || stripeMountedRef.current) return;
+    var cancelled = false;
+
+    async function initPayment() {
+      try {
+        // Get SetupIntent from server
+        var setupUrl = '/api/charge-verification?email=' + encodeURIComponent(form.email || '') + '&name=' + encodeURIComponent((form.fname + ' ' + form.lname).trim());
+        var setupRes = await fetch(setupUrl);
+        if (!setupRes.ok) throw new Error('Could not initialize payment.');
+        var setupData = await setupRes.json();
+        if (cancelled) return;
+        
+        setSetupClientSecret(setupData.clientSecret);
+        setSetupCustomerId(setupData.customerId);
+
+        // Create Elements with clientSecret
+        var appearance = {
+          theme: 'night',
+          variables: {
+            colorPrimary: '#D4BC82',
+            colorBackground: 'rgba(255,255,255,0.08)',
+            colorText: '#FFFFFF',
+            colorDanger: '#FF9B9B',
+            fontFamily: "'Outfit', sans-serif",
+            borderRadius: '6px',
+          },
+          rules: {
+            '.Input': {
+              border: '1px solid rgba(255,255,255,0.15)',
+              backgroundColor: 'rgba(255,255,255,0.08)',
+            },
+            '.Input:focus': {
+              border: '1px solid rgba(212,188,130,0.5)',
+              boxShadow: '0 0 0 1px rgba(212,188,130,0.25)',
+            },
+            '.Label': {
+              color: 'rgba(255,255,255,0.6)',
+              fontSize: '12px',
+            },
+          },
+        };
+
+        elementsRef.current = stripeRef.current.elements({
+          clientSecret: setupData.clientSecret,
+          appearance: appearance,
+          fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Outfit:wght@400;500&display=swap' }],
+        });
+
+        // Wait for mount point
+        var tryMount = function () {
+          if (cancelled || !paymentMountRef.current) return;
+          var paymentElement = elementsRef.current.create('payment', {
+            layout: {
+              type: 'tabs',
+              defaultCollapsed: false,
+            },
+            wallets: {
+              applePay: 'auto',
+              googlePay: 'auto',
+            },
+          });
+          paymentElement.on('change', function (ev) {
+            setPaymentComplete(ev.complete);
+            if (ev.error) setStripeError(ev.error.message);
+            else setStripeError('');
+            // Detect brand from card
+            if (ev.value && ev.value.type === 'card') {
+              setDetectedBrand('card');
+            } else if (ev.value && ev.value.type) {
+              setDetectedBrand(ev.value.type);
+            }
+          });
+          paymentElement.on('ready', function () { setStripeReady(true); });
+          paymentElement.mount(paymentMountRef.current);
+          stripeMountedRef.current = true;
+        };
+        setTimeout(tryMount, 120);
+      } catch (e) {
+        if (!cancelled) {
+          setStripeError(e.message || 'Could not load payment form.');
+          setStripeFailed(true);
+          setStripeReady(true);
+        }
+      }
+    }
+
+    initPayment();
+    return function () { cancelled = true; stripeMountedRef.current = false; if (elementsRef.current) { try { elementsRef.current.getElement('payment').destroy(); } catch (e) {} elementsRef.current = null; } };
   }, [step, stripeLoaded]);
 
-  useEffect(function () { if (step !== 3) { setStripeReady(false); setCardNumComplete(false); setCardExpComplete(false); setCardCvcComplete(false); stripeMountedRef.current = false; setDetectedBrand(''); } }, [step]);
+  useEffect(function () { if (step !== 3) { setStripeReady(false); setPaymentComplete(false); stripeMountedRef.current = false; setDetectedBrand(''); setSetupClientSecret(''); } }, [step]);
 
   // ── Submit to IntakeQ (HIPAA-secure) ──
   var submitToIntakeQ = async function (cardBrandVal, cardLast4Val, pmId) {
@@ -636,7 +690,7 @@ function ContactPage({ setPage }) {
   // ── Stripe payment + card verification ──
   var handleStripePayment = async function () {
     if (!cardHolderName.trim()) { setStripeError('Please enter the name on card.'); return; }
-    if (!cardComplete) { setStripeError('Please complete all card fields.'); return; }
+    if (!cardComplete) { setStripeError('Please complete all payment fields.'); return; }
     setIsValidating(true); setStripeError('');
     if (stripeFailed) {
       var raw = fallbackCardNum.replace(/\D/g, '');
@@ -651,49 +705,44 @@ function ContactPage({ setPage }) {
       submitToIntakeQ(detectedBrand, raw.slice(-4), 'fallback');
       setIsValidating(false); setEmailStatus('sent'); goToStep(4); return;
     }
-    if (!stripeRef.current || !cardNumberRef.current) { setStripeError('Payment system not ready.'); setIsValidating(false); return; }
+    if (!stripeRef.current || !elementsRef.current || !setupClientSecret) { setStripeError('Payment system not ready. Please wait or refresh.'); setIsValidating(false); return; }
     try {
-      // Step 1: Get SetupIntent from server
-      var setupUrl = '/api/charge-verification?email=' + encodeURIComponent(form.email || '') + '&name=' + encodeURIComponent((form.fname + ' ' + form.lname).trim());
-      var setupRes = await fetch(setupUrl);
-      if (!setupRes.ok) {
-        var setupErr; try { setupErr = await setupRes.json(); } catch (e) { setupErr = { error: 'Server error.' }; }
-        setStripeError(setupErr.error || 'Could not start card setup.'); setIsValidating(false); return;
-      }
-      var setupData = await setupRes.json();
-
-      // Step 2: Confirm card with Stripe (handles 3D Secure automatically)
-      var confirmResult = await stripeRef.current.confirmCardSetup(setupData.clientSecret, {
-        payment_method: {
-          card: cardNumberRef.current,
-          billing_details: {
-            name: cardHolderName.trim(),
-            email: form.email || undefined,
-            phone: form.phone || undefined,
+      // Confirm the SetupIntent with Payment Element (handles 3D Secure, Apple Pay, Venmo automatically)
+      var confirmResult = await stripeRef.current.confirmSetup({
+        elements: elementsRef.current,
+        confirmParams: {
+          payment_method_data: {
+            billing_details: {
+              name: cardHolderName.trim(),
+              email: form.email || undefined,
+              phone: form.phone || undefined,
+            },
           },
         },
+        redirect: 'if_required',
       });
+
       if (confirmResult.error) {
         setStripeError(confirmResult.error.message); setIsValidating(false); return;
       }
 
-      // Step 3: Tell server to verify and get card details
+      // Tell server to verify and get payment method details
       var verifyRes = await fetch('/api/charge-verification', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           setupIntentId: confirmResult.setupIntent.id,
-          customerId: setupData.customerId,
+          customerId: setupCustomerId,
         }),
       });
       if (!verifyRes.ok) {
         var verifyErr; try { verifyErr = await verifyRes.json(); } catch (e) { verifyErr = { error: 'Verification error.' }; }
-        setStripeError(verifyErr.error || 'Card verification failed.'); setIsValidating(false); return;
+        setStripeError(verifyErr.error || 'Payment verification failed.'); setIsValidating(false); return;
       }
       var verifyData = await verifyRes.json();
 
       setCardBrand(verifyData.brand || '');
-      setCardInfo({ ...cardInfo, number: '****' + (verifyData.last4 || '****'), name: cardHolderName });
+      setCardInfo({ ...cardInfo, number: verifyData.last4 ? '****' + verifyData.last4 : (verifyData.brand || 'Payment method'), name: cardHolderName });
       submitToIntakeQ(verifyData.brand || '', verifyData.last4 || '', verifyData.paymentMethodId || '');
       setIsValidating(false); setEmailStatus('sent'); goToStep(4);
     } catch (e) {
@@ -831,7 +880,7 @@ function ContactPage({ setPage }) {
               {/* Contact info cards */}
               <div style={{ ...CS, display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '1rem' }}>
                 {[
-                  { icon: 'phone', t: 'Call Us', v: <a href="tel:+1234567890" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>(123) 456-7890</a> },
+                  { icon: 'phone', t: 'Call Us', v: <a href="tel:+15857472215" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>(585) 747-2215</a> },
                   { icon: 'email', t: 'Email Us', v: <a href="mailto:info@healingsoulutions.care" style={{ color: 'rgba(255,255,255,0.85)', textDecoration: 'none' }}>info@healingsoulutions.care</a> },
                   { icon: 'clock', t: 'Availability', v: 'Contact us for scheduling' },
                   { icon: 'pin', t: 'Service Area', v: 'New York Metropolitan Area' },
@@ -1017,41 +1066,43 @@ function ContactPage({ setPage }) {
             </div>
           )}
 
-          {/* ══════ STEP 3: Card on File (Stripe Elements) ══════ */}
+          {/* ══════ STEP 3: Payment Method (Stripe Payment Element) ══════ */}
           {step === 3 && (
             <div style={CS}>
-              <h2 style={{ ...TS, marginBottom: '0.25rem' }}>Card on File</h2>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.6rem', textAlign: 'center', marginBottom: '0.5rem', fontFamily: "'Outfit',sans-serif" }}>A card on file is required to complete your booking.</p>
-              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.48rem', textAlign: 'center', marginBottom: '1.25rem', fontFamily: "'Outfit',sans-serif" }}>A $0.01 verification charge will be applied to confirm your card. This will be refunded.</p>
+              <h2 style={{ ...TS, marginBottom: '0.25rem' }}>Payment Method</h2>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.6rem', textAlign: 'center', marginBottom: '0.5rem', fontFamily: "'Outfit',sans-serif" }}>A payment method on file is required to complete your booking.</p>
+              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.48rem', textAlign: 'center', marginBottom: '1.25rem', fontFamily: "'Outfit',sans-serif" }}>Pay with card, Apple Pay, Google Pay, or Venmo. A $0.01 verification charge may be applied and refunded.</p>
               {renderConsent({ key: 'financial', title: 'Financial Consent', text: CONSENT_FINANCIAL })}
               <div style={{ background: 'rgba(0,0,0,0.15)', borderRadius: '12px', padding: '1.25rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
                   <span style={{ fontSize: '0.85rem' }}>{'\uD83D\uDD12'}</span>
                   <span style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>{stripeFailed ? 'Secure Card Entry' : 'Secured by Stripe'}</span>
-                  {detectedBrand && <span style={{ marginLeft: 'auto', fontSize: '0.42rem', color: '#2E5A46', background: 'var(--gold-soft)', padding: '0.1rem 0.4rem', borderRadius: '4px', fontFamily: "'Outfit',sans-serif", fontWeight: 600, textTransform: 'capitalize' }}>{detectedBrand}</span>}
                 </div>
-                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Name on Card</label><input type="text" placeholder="Full name as shown on card" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} style={IS} /></div>
-                <div style={{ marginBottom: '1rem' }}>
-                  <label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Card Number</label>
-                  {stripeFailed ? <input type="text" inputMode="numeric" placeholder="1234 5678 9012 3456" value={fallbackCardNum} onChange={(e) => handleFallbackNum(e.target.value)} style={IS} autoComplete="cc-number" /> : <div ref={cardNumMountRef} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '6px', padding: '0.7rem 0.85rem', minHeight: '1.6rem' }} />}
-                </div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                  <div><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Expiration Date</label>{stripeFailed ? <input type="text" inputMode="numeric" placeholder="MM / YY" value={fallbackCardExp} onChange={(e) => handleFallbackExp(e.target.value)} style={IS} autoComplete="cc-exp" /> : <div ref={cardExpMountRef} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '6px', padding: '0.7rem 0.85rem', minHeight: '1.6rem' }} />}</div>
-                  <div><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Security Code (CVC)</label>{stripeFailed ? <input type="text" inputMode="numeric" placeholder={detectedBrand === 'amex' ? '1234' : '123'} value={fallbackCardCvc} onChange={(e) => handleFallbackCvc(e.target.value)} style={IS} autoComplete="cc-csc" /> : <div ref={cardCvcMountRef} style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '6px', padding: '0.7rem 0.85rem', minHeight: '1.6rem' }} />}</div>
-                </div>
-                {!stripeReady && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}><span style={{ display: 'inline-block', width: '0.55rem', height: '0.55rem', border: '1.5px solid rgba(255,255,255,0.15)', borderTop: '1.5px solid var(--gold-soft)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} /><p style={{ fontSize: '0.45rem', color: 'rgba(255,255,255,0.35)', fontFamily: "'Outfit',sans-serif" }}>Loading secure card form...</p></div>}
-                {cardComplete && cardHolderName.trim() && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.4rem 0.6rem', background: 'rgba(127,212,160,0.1)', borderRadius: '6px', marginBottom: '0.75rem' }}><span style={{ color: '#7FD4A0', fontSize: '0.5rem' }}>{'\u2713'}</span><p style={{ fontSize: '0.45rem', color: '#7FD4A0', fontFamily: "'Outfit',sans-serif" }}>All card details complete</p></div>}
+                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Name on Account</label><input type="text" placeholder="Full name" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} style={IS} /></div>
+                {stripeFailed ? (
+                  <>
+                    <div style={{ marginBottom: '1rem' }}>
+                      <label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Card Number</label>
+                      <input type="text" inputMode="numeric" placeholder="1234 5678 9012 3456" value={fallbackCardNum} onChange={(e) => handleFallbackNum(e.target.value)} style={IS} autoComplete="cc-number" />
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
+                      <div><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Expiration Date</label><input type="text" inputMode="numeric" placeholder="MM / YY" value={fallbackCardExp} onChange={(e) => handleFallbackExp(e.target.value)} style={IS} autoComplete="cc-exp" /></div>
+                      <div><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Security Code (CVC)</label><input type="text" inputMode="numeric" placeholder={detectedBrand === 'amex' ? '1234' : '123'} value={fallbackCardCvc} onChange={(e) => handleFallbackCvc(e.target.value)} style={IS} autoComplete="cc-csc" /></div>
+                    </div>
+                  </>
+                ) : (
+                  <div ref={paymentMountRef} style={{ marginBottom: '1rem', minHeight: '120px' }} />
+                )}
+                {!stripeReady && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}><span style={{ display: 'inline-block', width: '0.55rem', height: '0.55rem', border: '1.5px solid rgba(255,255,255,0.15)', borderTop: '1.5px solid var(--gold-soft)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} /><p style={{ fontSize: '0.45rem', color: 'rgba(255,255,255,0.35)', fontFamily: "'Outfit',sans-serif" }}>Loading payment options...</p></div>}
+                {cardComplete && cardHolderName.trim() && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.4rem 0.6rem', background: 'rgba(127,212,160,0.1)', borderRadius: '6px', marginBottom: '0.75rem' }}><span style={{ color: '#7FD4A0', fontSize: '0.5rem' }}>{'\u2713'}</span><p style={{ fontSize: '0.45rem', color: '#7FD4A0', fontFamily: "'Outfit',sans-serif" }}>Payment details complete</p></div>}
                 {stripeError && <div style={{ padding: '0.5rem 0.75rem', background: 'rgba(255,100,100,0.1)', border: '1px solid rgba(255,100,100,0.2)', borderRadius: '6px', marginBottom: '0.75rem' }}><p style={{ fontSize: '0.48rem', color: '#FF9B9B', fontFamily: "'Outfit',sans-serif" }}>{stripeError}</p></div>}
-                <p style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.3)', fontFamily: "'Outfit',sans-serif", lineHeight: 1.6, marginTop: '0.5rem' }}>Your card information is handled directly by Stripe and never touches our servers.</p>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', margin: '1rem 0' }}>
-                {[{ n: 'Visa', k: 'visa' }, { n: 'Mastercard', k: 'mastercard' }, { n: 'Amex', k: 'amex' }, { n: 'Discover', k: 'discover' }].map((c) => <span key={c.n} style={{ fontSize: '0.42rem', color: detectedBrand === c.k ? '#2E5A46' : 'rgba(255,255,255,0.3)', background: detectedBrand === c.k ? 'var(--gold-soft)' : 'transparent', padding: '0.15rem 0.4rem', borderRadius: '4px', fontFamily: "'Outfit',sans-serif", fontWeight: 600, border: '1px solid ' + (detectedBrand === c.k ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)') }}>{c.n}</span>)}
+                <p style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.3)', fontFamily: "'Outfit',sans-serif", lineHeight: 1.6, marginTop: '0.5rem' }}>Your payment information is handled directly by Stripe and never touches our servers.</p>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.25rem' }}>
                 <button onClick={() => goToStep(2)} style={backBtn}>Back</button>
                 <button onClick={handleStripePayment} disabled={!cardValid || isValidating} style={{ flex: 2, padding: '0.7rem', fontSize: '0.6rem', fontFamily: "'Outfit',sans-serif", fontWeight: 700, background: cardValid && !isValidating ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: cardValid && !isValidating ? '#2E5A46' : 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '8px', cursor: cardValid && !isValidating ? 'pointer' : 'not-allowed', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
                   {isValidating && <span style={{ display: 'inline-block', width: '0.6rem', height: '0.6rem', border: '2px solid rgba(46,90,70,0.3)', borderTop: '2px solid #2E5A46', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />}
-                  {isValidating ? 'Verifying Card...' : 'Verify & Complete Booking'}
+                  {isValidating ? 'Verifying...' : 'Verify & Complete Booking'}
                 </button>
               </div>
             </div>
