@@ -27,10 +27,6 @@ async function intakeqRequest(endpoint, method, body) {
   return text ? JSON.parse(text) : {};
 }
 
-/* ═══════════════════════════════════════
-   INTAKEQ HELPERS
-   ═══════════════════════════════════════ */
-
 function buildConsentSummary(consents) {
   var items = [];
   if (consents.treatment) items.push('Treatment Consent: AGREED');
@@ -42,56 +38,41 @@ function buildConsentSummary(consents) {
 
 function buildPatientNotes(data) {
   var sections = [];
-  var timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
-  sections.push('=== SUBMISSION TIMESTAMP ===');
-  sections.push('Submitted: ' + timestamp + ' ET');
-  sections.push('\n=== APPOINTMENT DETAILS ===');
+  sections.push('=== APPOINTMENT DETAILS ===');
   sections.push('Preferred Date: ' + (data.date || 'Not specified'));
   sections.push('Preferred Time: ' + (data.selTime || 'Not specified'));
   sections.push('Services Requested: ' + (data.services && data.services.length > 0 ? data.services.join(', ') : 'General Consultation'));
   if (data.address) sections.push('Service Address: ' + data.address);
   if (data.notes) sections.push('Patient Notes: ' + data.notes);
   sections.push('\n=== MEDICAL INFORMATION ===');
-  sections.push('Medical History: ' + (data.medicalHistory || 'None provided'));
-  sections.push('Surgical History: ' + (data.surgicalHistory || 'None provided'));
-  sections.push('Current Medications: ' + (data.medications || 'None provided'));
-  sections.push('Allergies: ' + (data.allergies || 'None provided'));
+  if (data.medicalHistory) sections.push('Medical History: ' + data.medicalHistory);
+  if (data.surgicalHistory) sections.push('Surgical History: ' + data.surgicalHistory);
+  if (data.medications) sections.push('Current Medications: ' + data.medications);
+  if (data.allergies) sections.push('Allergies: ' + data.allergies);
   if (data.clinicianNotes) sections.push('Notes for Clinician: ' + data.clinicianNotes);
   sections.push('\n=== CONSENT STATUS ===');
   sections.push(buildConsentSummary(data.consents || {}));
-  sections.push('Electronic Signature: ' + (data.signature ? 'PROVIDED - "' + data.signature + '"' : 'NOT PROVIDED'));
+  sections.push('Electronic Signature: ' + (data.signature ? 'PROVIDED' : 'NOT PROVIDED'));
   sections.push('Intake Acknowledgment: ' + (data.intakeAcknowledged ? 'ACKNOWLEDGED' : 'NOT ACKNOWLEDGED'));
-  if (data.intakeSignature) sections.push('Intake Signature: ' + data.intakeSignature);
-  sections.push('Consent Timestamp: ' + timestamp + ' ET');
-  sections.push('\n=== CONSENT DETAILS ===');
-  sections.push('Treatment Consent: ' + (data.consents && data.consents.treatment ? 'Patient agreed to Informed Consent for Treatment including risks, complications, assumption of risk, peptide therapy disclosure, limitation of liability, indemnification, release and waiver, emergency authorization, scope of practice, and dispute resolution.' : 'NOT AGREED'));
-  sections.push('HIPAA Privacy: ' + (data.consents && data.consents.hipaa ? 'Patient acknowledged HIPAA Notice of Privacy Practices including permitted uses and disclosures, authorization requirements, patient rights, minimum necessary standard, data security, and breach notification procedures.' : 'NOT AGREED'));
-  sections.push('Medical Release: ' + (data.consents && data.consents.medical ? 'Patient authorized release of medical history and health information for treatment purposes.' : 'NOT AGREED'));
-  sections.push('Financial Agreement: ' + (data.consents && data.consents.financial ? 'Patient agreed to Financial Agreement including payment terms, cancellation policy (24hr notice), no-show policy, and past due account terms.' : 'NOT AGREED'));
   sections.push('\n=== PAYMENT VERIFICATION ===');
   sections.push('Card Brand: ' + (data.cardBrand || 'N/A'));
   sections.push('Card Last 4: ' + (data.cardLast4 || 'N/A'));
-  sections.push('Cardholder Name: ' + (data.cardHolderName || 'N/A'));
   sections.push('Stripe Payment Method ID: ' + (data.stripePaymentMethodId || 'N/A'));
   if (data.additionalPatients && data.additionalPatients.length > 0) {
-    sections.push('\n=== ADDITIONAL PATIENTS (' + data.additionalPatients.length + ') ===');
+    sections.push('\n=== ADDITIONAL PATIENTS ===');
     data.additionalPatients.forEach(function(pt, idx) {
       sections.push('\n--- Patient ' + (idx + 2) + ' ---');
       sections.push('Name: ' + (pt.fname || '') + ' ' + (pt.lname || ''));
       sections.push('Services: ' + (pt.services && pt.services.length > 0 ? pt.services.join(', ') : 'Same as primary'));
-      sections.push('Medical History: ' + (pt.medicalHistory || 'None provided'));
-      sections.push('Surgical History: ' + (pt.surgicalHistory || 'None provided'));
-      sections.push('Medications: ' + (pt.medications || 'None provided'));
-      sections.push('Allergies: ' + (pt.allergies || 'None provided'));
+      if (pt.medicalHistory) sections.push('Medical History: ' + pt.medicalHistory);
+      if (pt.surgicalHistory) sections.push('Surgical History: ' + pt.surgicalHistory);
+      if (pt.medications) sections.push('Medications: ' + pt.medications);
+      if (pt.allergies) sections.push('Allergies: ' + pt.allergies);
       if (pt.clinicianNotes) sections.push('Clinician Notes: ' + pt.clinicianNotes);
     });
   }
   return sections.join('\n');
 }
-
-/* ═══════════════════════════════════════
-   EMAIL: BUSINESS NOTIFICATION
-   ═══════════════════════════════════════ */
 
 async function sendBusinessEmail(data) {
   var resendApiKey = process.env.RESEND_API_KEY;
@@ -166,10 +147,6 @@ async function sendBusinessEmail(data) {
   } catch (e) { console.error('Business email error:', e); }
 }
 
-/* ═══════════════════════════════════════
-   EMAIL: PATIENT CONFIRMATION
-   ═══════════════════════════════════════ */
-
 async function sendPatientConfirmationEmail(data) {
   var resendApiKey = process.env.RESEND_API_KEY;
   if (!resendApiKey || !data.email) { return; }
@@ -210,9 +187,7 @@ async function sendPatientConfirmationEmail(data) {
     + (data.consents && data.consents.hipaa ? '&#10003; HIPAA Privacy Notice<br/>' : '')
     + (data.consents && data.consents.medical ? '&#10003; Medical History Release<br/>' : '')
     + (data.consents && data.consents.financial ? '&#10003; Financial Agreement' : '')
-    + '</p>'
-    + '<p style="margin:4px 0;font-size:12px;color:#888;">Signed electronically by: ' + (data.signature || 'N/A') + '</p>'
-    + '</div>'
+    + '</p></div>'
     + '<p style="margin:4px 0;font-size:14px;"><b>Card on file:</b> ' + (data.cardBrand || '') + ' ****' + (data.cardLast4 || 'N/A') + '</p>'
     + '<hr style="border:none;border-top:1px solid #eee;margin:20px 0;"/>'
     + '<p style="font-size:14px;color:#555;">If you need to reschedule or have questions, please contact us:</p>'
@@ -239,10 +214,6 @@ async function sendPatientConfirmationEmail(data) {
     console.log('Patient confirmation email sent to: ' + data.email);
   } catch (e) { console.error('Patient email error:', e); }
 }
-
-/* ═══════════════════════════════════════
-   SMS: TWILIO NOTIFICATIONS
-   ═══════════════════════════════════════ */
 
 async function sendSMS(toPhone, message) {
   var accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -306,10 +277,6 @@ async function sendPatientSMS(data) {
   await sendSMS(data.phone, msg);
 }
 
-/* ═══════════════════════════════════════
-   MAIN HANDLER
-   ═══════════════════════════════════════ */
-
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -322,9 +289,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'First name, last name, and email are required.' });
     }
 
-    var timestamp = new Date().toISOString();
-
-    /* ── 1. INTAKEQ: Create/Update Client ── */
     var clientId;
     try {
       var existingClients = await intakeqRequest(
@@ -355,7 +319,6 @@ export default async function handler(req, res) {
       console.error('IntakeQ client create/update error:', clientError);
     }
 
-    /* ── 2. INTAKEQ: Submit Full Intake with ALL Consents ── */
     try {
       var intakePayload = {
         ClientId: clientId || undefined,
@@ -363,12 +326,12 @@ export default async function handler(req, res) {
         ClientEmail: data.email,
         ClientPhone: data.phone || '',
         Status: 'Submitted',
-        DateCreated: timestamp,
+        DateCreated: new Date().toISOString(),
         Questions: [],
       };
 
-      var addQ = function(text, answer, category) {
-        if (answer !== undefined && answer !== null && answer !== '') {
+      var addQuestion = function(text, answer, category) {
+        if (answer) {
           intakePayload.Questions.push({
             Text: text,
             Answer: String(answer),
@@ -377,77 +340,59 @@ export default async function handler(req, res) {
         }
       };
 
-      // Personal Information
-      addQ('First Name', data.fname, 'Personal Information');
-      addQ('Last Name', data.lname, 'Personal Information');
-      addQ('Email Address', data.email, 'Personal Information');
-      addQ('Phone Number', data.phone, 'Personal Information');
-      addQ('Street Address', data.address, 'Personal Information');
+      addQuestion('First Name', data.fname, 'Personal Information');
+      addQuestion('Last Name', data.lname, 'Personal Information');
+      addQuestion('Email Address', data.email, 'Personal Information');
+      addQuestion('Phone Number', data.phone, 'Personal Information');
+      addQuestion('Street Address', data.address, 'Personal Information');
+      addQuestion('Preferred Date', data.date, 'Appointment');
+      addQuestion('Preferred Time', data.selTime, 'Appointment');
+      addQuestion('Services Requested', data.services ? data.services.join(', ') : '', 'Appointment');
+      addQuestion('Additional Notes', data.notes, 'Appointment');
+      addQuestion('Medical History', data.medicalHistory, 'Medical History');
+      addQuestion('Surgical History', data.surgicalHistory, 'Medical History');
+      addQuestion('Current Medications', data.medications, 'Medications');
+      addQuestion('Known Allergies', data.allergies, 'Allergies');
+      addQuestion('Notes for Clinician', data.clinicianNotes, 'Clinical Notes');
+      addQuestion('Treatment Consent', data.consents && data.consents.treatment ? 'Agreed' : 'Not Agreed', 'Consents');
+      addQuestion('HIPAA Privacy Consent', data.consents && data.consents.hipaa ? 'Agreed' : 'Not Agreed', 'Consents');
+      addQuestion('Medical Release Consent', data.consents && data.consents.medical ? 'Agreed' : 'Not Agreed', 'Consents');
+      addQuestion('Financial Agreement', data.consents && data.consents.financial ? 'Agreed' : 'Not Agreed', 'Consents');
+      addQuestion('Electronic Signature', data.signature ? 'Provided' : 'Not Provided', 'Consents');
+      addQuestion('Intake Acknowledgment', data.intakeAcknowledged ? 'Acknowledged' : 'Not Acknowledged', 'Consents');
+      addQuestion('Card Brand', data.cardBrand, 'Payment');
+      addQuestion('Card Last 4 Digits', data.cardLast4, 'Payment');
+      addQuestion('Stripe Payment Method ID', data.stripePaymentMethodId, 'Payment');
+      addQuestion('Cardholder Name', data.cardHolderName, 'Payment');
+      addQuestion('Signature - Electronic', data.signature, 'Signatures');
+      addQuestion('Signature - Intake', data.intakeSignature, 'Signatures');
+      addQuestion('Consent Timestamp', new Date().toISOString(), 'Signatures');
+      addQuestion('Treatment Consent - Full Record', data.consents && data.consents.treatment ? 'AGREED - Informed Consent for Treatment including nature of services, risks and complications, assumption of risk, peptide therapy non-FDA disclosure, limitation of liability, indemnification, release and waiver, patient responsibilities, emergency authorization, scope of practice, dispute resolution. Per NY PHL Section 2805-d. Signed by: ' + (data.signature || 'N/A') : 'NOT AGREED', 'Consent Records');
+      addQuestion('HIPAA Privacy - Full Record', data.consents && data.consents.hipaa ? 'ACKNOWLEDGED - HIPAA Notice of Privacy Practices per 45 CFR Parts 160/164 including permitted uses/disclosures, authorization requirements, patient rights, minimum necessary standard, data security. Signed by: ' + (data.signature || 'N/A') : 'NOT ACKNOWLEDGED', 'Consent Records');
+      addQuestion('Medical Release - Full Record', data.consents && data.consents.medical ? 'AUTHORIZED - Release of medical history and health information for treatment and care coordination. Signed by: ' + (data.signature || 'N/A') : 'NOT AUTHORIZED', 'Consent Records');
+      addQuestion('Financial Agreement - Full Record', data.consents && data.consents.financial ? 'AGREED - Payment at time of service, 24-hour cancellation policy, no-show fees, past due account terms. Signed by: ' + (data.signature || 'N/A') : 'NOT AGREED', 'Consent Records');
 
-      // Appointment
-      addQ('Preferred Date', data.date, 'Appointment');
-      addQ('Preferred Time', data.selTime, 'Appointment');
-      addQ('Services Requested', data.services ? data.services.join(', ') : 'General Consultation', 'Appointment');
-      addQ('Additional Notes', data.notes, 'Appointment');
-
-      // Medical History
-      addQ('Medical History', data.medicalHistory || 'None provided', 'Medical History');
-      addQ('Surgical History', data.surgicalHistory || 'None provided', 'Medical History');
-      addQ('Current Medications', data.medications || 'None provided', 'Medications');
-      addQ('Known Allergies', data.allergies || 'None provided', 'Allergies');
-      addQ('Notes for Clinician', data.clinicianNotes, 'Clinical Notes');
-
-      // Consents - Status
-      addQ('Treatment Consent', data.consents && data.consents.treatment ? 'AGREED' : 'Not Agreed', 'Consents');
-      addQ('HIPAA Privacy Consent', data.consents && data.consents.hipaa ? 'AGREED' : 'Not Agreed', 'Consents');
-      addQ('Medical Release Consent', data.consents && data.consents.medical ? 'AGREED' : 'Not Agreed', 'Consents');
-      addQ('Financial Agreement', data.consents && data.consents.financial ? 'AGREED' : 'Not Agreed', 'Consents');
-
-      // Consents - Full Details
-      addQ('Treatment Consent Details', data.consents && data.consents.treatment ? 'Patient consented to: Informed Consent for Treatment including nature of services, risks and complications (pain, bruising, infection, allergic reactions, etc.), assumption of risk, peptide therapy/non-FDA approved disclosure, limitation of liability, indemnification, release and waiver, no guarantee of results, patient responsibilities, emergency authorization, scope of practice and team-based care, and dispute resolution. Consent given per NY PHL Section 2805-d.' : 'NOT CONSENTED', 'Consent Details');
-      addQ('HIPAA Consent Details', data.consents && data.consents.hipaa ? 'Patient acknowledged: HIPAA Notice of Privacy Practices per 45 CFR Parts 160/164 including permitted uses and disclosures (treatment, payment, operations), authorization requirements (psychotherapy notes, marketing, HIV info per NY PHL Article 27-F, substance abuse per 42 CFR Part 2, mental health per NY MHL Section 33.13, genetic info per GINA), patient rights (access, amendment, accounting, restrictions, confidential communications, breach notification), minimum necessary standard, and data security measures.' : 'NOT ACKNOWLEDGED', 'Consent Details');
-      addQ('Medical Release Details', data.consents && data.consents.medical ? 'Patient authorized: Release and exchange of medical history, health information, treatment records, and related documentation for purposes of treatment, care coordination, and clinical decision-making.' : 'NOT AUTHORIZED', 'Consent Details');
-      addQ('Financial Agreement Details', data.consents && data.consents.financial ? 'Patient agreed to: Financial Agreement including payment at time of service, accepted payment methods, pricing subject to change with 30 days notice, 24-hour cancellation policy, no-show fees, past due account terms (60 days to collections), and billing dispute procedures (30 days written notice).' : 'NOT AGREED', 'Consent Details');
-
-      // Signatures
-      addQ('Electronic Signature', data.signature || 'Not Provided', 'Signatures');
-      addQ('Intake Acknowledgment', data.intakeAcknowledged ? 'ACKNOWLEDGED' : 'Not Acknowledged', 'Signatures');
-      addQ('Intake Signature', data.intakeSignature || '', 'Signatures');
-      addQ('Consent Timestamp', timestamp, 'Signatures');
-
-      // Payment
-      addQ('Card Brand', data.cardBrand, 'Payment');
-      addQ('Card Last 4 Digits', data.cardLast4, 'Payment');
-      addQ('Cardholder Name', data.cardHolderName, 'Payment');
-      addQ('Stripe Payment Method ID', data.stripePaymentMethodId, 'Payment');
-
-      // Additional Patients
       if (data.additionalPatients && data.additionalPatients.length > 0) {
-        addQ('Total Additional Patients', String(data.additionalPatients.length), 'Additional Patients');
         data.additionalPatients.forEach(function(pt, idx) {
           var prefix = 'Additional Patient ' + (idx + 2);
-          addQ(prefix + ' - First Name', pt.fname, 'Additional Patients');
-          addQ(prefix + ' - Last Name', pt.lname, 'Additional Patients');
-          addQ(prefix + ' - Services', pt.services ? pt.services.join(', ') : 'Same as primary', 'Additional Patients');
-          addQ(prefix + ' - Medical History', pt.medicalHistory || 'None provided', 'Additional Patients');
-          addQ(prefix + ' - Surgical History', pt.surgicalHistory || 'None provided', 'Additional Patients');
-          addQ(prefix + ' - Medications', pt.medications || 'None provided', 'Additional Patients');
-          addQ(prefix + ' - Allergies', pt.allergies || 'None provided', 'Additional Patients');
-          addQ(prefix + ' - Clinician Notes', pt.clinicianNotes, 'Additional Patients');
+          addQuestion(prefix + ' - First Name', pt.fname, 'Additional Patients');
+          addQuestion(prefix + ' - Last Name', pt.lname, 'Additional Patients');
+          addQuestion(prefix + ' - Services', pt.services ? pt.services.join(', ') : '', 'Additional Patients');
+          addQuestion(prefix + ' - Medical History', pt.medicalHistory, 'Additional Patients');
+          addQuestion(prefix + ' - Surgical History', pt.surgicalHistory, 'Additional Patients');
+          addQuestion(prefix + ' - Medications', pt.medications, 'Additional Patients');
+          addQuestion(prefix + ' - Allergies', pt.allergies, 'Additional Patients');
+          addQuestion(prefix + ' - Clinician Notes', pt.clinicianNotes, 'Additional Patients');
         });
       }
 
       await intakeqRequest('/intakes', 'POST', intakePayload);
-      console.log('IntakeQ intake submitted with all consents');
     } catch (intakeError) {
       console.error('IntakeQ intake submission error:', intakeError);
     }
 
-    /* ── 3. EMAILS ── */
     try { await sendBusinessEmail(data); } catch (e) { console.error('Business email failed:', e); }
     try { await sendPatientConfirmationEmail(data); } catch (e) { console.error('Patient email failed:', e); }
-
-    /* ── 4. SMS NOTIFICATIONS ── */
     try { await sendBusinessSMS(data); } catch (e) { console.error('Business SMS failed:', e); }
     try { await sendPatientSMS(data); } catch (e) { console.error('Patient SMS failed:', e); }
 
