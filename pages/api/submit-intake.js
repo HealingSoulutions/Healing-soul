@@ -401,10 +401,12 @@ export default async function handler(req, res) {
     return res.status(200).json({
       success: true,
       clientId: clientId || null,
+      intakeqWorked: clientId ? true : false,
       message: 'Intake submitted successfully to HIPAA-secure server.',
     });
-  } catch (error) {
-    console.error('Submit intake error:', error);
+ } catch (clientError) {
+      console.error('IntakeQ client create/update error:', clientError.message || clientError);
+    }
     return res.status(500).json({ error: 'Failed to submit intake. Please contact us directly.' });
   }
 }
