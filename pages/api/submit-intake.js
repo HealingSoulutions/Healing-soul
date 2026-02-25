@@ -29,51 +29,82 @@ async function intakeqRequest(endpoint, method, body) {
 
 function buildConsentSummary(consents) {
   var items = [];
-  if (consents.treatment) items.push('Treatment Consent: AGREED');
+  if (consents.treatment) items.push('Trpeatment Consent: AGREED');
   if (consents.hipaa) items.push('HIPAA Privacy: AGREED');
   if (consents.medical) items.push('Medical History Release: AGREED');
   if (consents.financial) items.push('Financial Agreement: AGREED');
   return items.join('\n');
 }
 
-function buildPatientNotes(data) {
-  var sections = [];
-  sections.push('=== APPOINTMENT DETAILS ===');
-  sections.push('Preferred Date: ' + (data.date || 'Not specified'));
-  sections.push('Preferred Time: ' + (data.selTime || 'Not specified'));
-  sections.push('Services Requested: ' + (data.services && data.services.length > 0 ? data.services.join(', ') : 'General Consultation'));
-  if (data.address) sections.push('Service Address: ' + data.address);
-  if (data.notes) sections.push('Patient Notes: ' + data.notes);
-  sections.push('\n=== MEDICAL INFORMATION ===');
-  if (data.medicalHistory) sections.push('Medical History: ' + data.medicalHistory);
-  if (data.surgicalHistory) sections.push('Surgical History: ' + data.surgicalHistory);
-  if (data.medications) sections.push('Current Medications: ' + data.medications);
-  if (data.allergies) sections.push('Allergies: ' + data.allergies);
-  if (data.clinicianNotes) sections.push('Notes for Clinician: ' + data.clinicianNotes);
-  sections.push('\n=== CONSENT STATUS ===');
-  sections.push(buildConsentSummary(data.consents || {}));
-  sections.push('Electronic Signature: ' + (data.signature ? 'PROVIDED' : 'NOT PROVIDED'));
-  sections.push('Intake Acknowledgment: ' + (data.intakeAcknowledged ? 'ACKNOWLEDGED' : 'NOT ACKNOWLEDGED'));
-  sections.push('\n=== PAYMENT VERIFICATION ===');
-  sections.push('Card Brand: ' + (data.cardBrand || 'N/A'));
-  sections.push('Card Last 4: ' + (data.cardLast4 || 'N/A'));
-  sections.push('Stripe Payment Method ID: ' + (data.stripePaymentMethodId || 'N/A'));
+function buildFullPatientRecord(data) {
+  var timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+  var s = [];
+
+  s.push('=== HEALING SOULUTIONS - PATIENT INTAKE ===');
+  s.push('Submitted: ' + timestamp + ' ET');
+
+  s.push('\n--- PATIENT INFORMATION ---');
+  s.push('Name: ' + (data.fname || '') + ' ' + (data.lname || ''));
+  s.push('Email: ' + (data.email || 'N/A'));
+  s.push('Phone: ' + (data.phone || 'N/A'));
+  s.push('Address: ' + (data.address || 'N/A'));
+
+  s.push('\n--- APPOINTMENT DETAILS ---');
+  s.push('Preferred Date: ' + (data.date || 'Not specified'));
+  s.push('Preferred Time: ' + (data.selTime || 'Not specified'));
+  s.push('Services Requested: ' + (data.services && data.services.length > 0 ? data.services.join(', ') : 'General Consultation'));
+  if (data.notes) s.push('Patient Notes: ' + data.notes);
+
+  s.push('\n--- MEDICAL INFORMATION ---');
+  s.push('Medical History: ' + (data.medicalHistory || 'None provided'));
+  s.push('Surgical History: ' + (data.surgicalHistory || 'None provided'));
+  s.push('Current Medications: ' + (data.medications || 'None provided'));
+  s.push('Allergies: ' + (data.allergies || 'None provided'));
+  if (data.clinicianNotes) s.push('Notes for Clinician: ' + data.clinicianNotes);
+
+  s.push('\n--- CONSENT STATUS ---');
+  var c = data.consents || {};
+  s.push('Treatment Consent: ' + (c.treatment ? 'AGREED' : 'NOT AGREED'));
+  s.push('HIPAA Privacy Notice: ' + (c.hipaa ? 'AGREED' : 'NOT AGREED'));
+  s.push('Medical History Release: ' + (c.medical ? 'AGREED' : 'NOT AGREED'));
+  s.push('Financial Agreement: ' + (c.financial ? 'AGREED' : 'NOT AGREED'));
+
+  s.push('\n--- CONSENT DETAILS ---');
+  if (c.treatment) s.push('TREATMENT: Patient consented to Informed Consent for Treatment including nature of services, risks and complications, assumption of risk, peptide therapy non-FDA disclosure, limitation of liability, indemnification, release and waiver, patient responsibilities, emergency authorization, scope of practice, dispute resolution. Per NY PHL Section 2805-d.');
+  if (c.hipaa) s.push('HIPAA: Patient acknowledged Notice of Privacy Practices per 45 CFR Parts 160/164 including permitted uses/disclosures, authorization requirements, patient rights, minimum necessary standard, data security.');
+  if (c.medical) s.push('MEDICAL RELEASE: Patient authorized release of medical history and health information for treatment and care coordination.');
+  if (c.financial) s.push('FINANCIAL: Patient agreed to Financial Agreement including payment at time of service, 24-hour cancellation policy, no-show fees, past due account terms.');
+
+  s.push('\n--- SIGNATURES ---');
+  s.push('Electronic Signature: ' + (data.signature || 'NOT PROVIDED'));
+  if (data.intakeSignature) s.push('Intake Signature: ' + data.intakeSignature);
+  s.push('Intake Acknowledged: ' + (data.intakeAcknowledged ? 'YES' : 'NO'));
+  s.push('Signed At: ' + timestamp + ' ET');
+
+  s.push('\n--- PAYMENT VERIFICATION ---');
+  s.push('Card Brand: ' + (data.cardBrand || 'N/A'));
+  s.push('Card Last 4: ' + (data.cardLast4 || 'N/A'));
+  s.push('Cardholder Name: ' + (data.cardHolderName || 'N/A'));
+  s.push('Stripe Payment Method ID: ' + (data.stripePaymentMethodId || 'N/A'));
+
   if (data.additionalPatients && data.additionalPatients.length > 0) {
-    sections.push('\n=== ADDITIONAL PATIENTS ===');
+    s.push('\n--- ADDITIONAL PATIENTS (' + data.additionalPatients.length + ') ---');
     data.additionalPatients.forEach(function(pt, idx) {
-      sections.push('\n--- Patient ' + (idx + 2) + ' ---');
-      sections.push('Name: ' + (pt.fname || '') + ' ' + (pt.lname || ''));
-      sections.push('Services: ' + (pt.services && pt.services.length > 0 ? pt.services.join(', ') : 'Same as primary'));
-      if (pt.medicalHistory) sections.push('Medical History: ' + pt.medicalHistory);
-      if (pt.surgicalHistory) sections.push('Surgical History: ' + pt.surgicalHistory);
-      if (pt.medications) sections.push('Medications: ' + pt.medications);
-      if (pt.allergies) sections.push('Allergies: ' + pt.allergies);
-      if (pt.clinicianNotes) sections.push('Clinician Notes: ' + pt.clinicianNotes);
+      s.push('\nPatient ' + (idx + 2) + ':');
+      s.push('Name: ' + (pt.fname || '') + ' ' + (pt.lname || ''));
+      s.push('Services: ' + (pt.services && pt.services.length > 0 ? pt.services.join(', ') : 'Same as primary'));
+      s.push('Medical History: ' + (pt.medicalHistory || 'None provided'));
+      s.push('Surgical History: ' + (pt.surgicalHistory || 'None provided'));
+      s.push('Medications: ' + (pt.medications || 'None provided'));
+      s.push('Allergies: ' + (pt.allergies || 'None provided'));
+      if (pt.clinicianNotes) s.push('Clinician Notes: ' + pt.clinicianNotes);
     });
   }
-  return sections.join('\n');
-}
 
+  s.push('\n=== END OF INTAKE RECORD ===');
+
+  return s.join('\n');
+}
 async function sendBusinessEmail(data) {
   var resendApiKey = process.env.RESEND_API_KEY;
   if (!resendApiKey) { return; }
