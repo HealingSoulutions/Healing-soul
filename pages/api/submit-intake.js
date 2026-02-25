@@ -71,7 +71,46 @@ function buildPatientNotes(data) {
   }
   return sections.join('\n');
 }
-
+async function sendNotificationEmail(data) {
+  var resendApiKey = process.env.RESEND_API_KEY;
+  if (!resendApiKey) { return; }
+  var patientName = ((data.fname || '') + ' ' + (data.lname || '')).trim() || 'New Patient';
+  var consentCheck = function(val) { return val ? 'YES' : 'NO'; };
+  var c = data.consents || {};
+  var emailBody = '<div style="font-family:Arial;max-width:600px;margin:0 auto;">'
+    + '<div style="background:#2E5A46;padding:20px;text-align:center;"><h1 style="color:#D4BC82;margin:0;">New Patient Intake</h1></div>'
+    + '<div style="padding:20px;">'
+    + '<h3>Patient: ' + patientName + '</h3>'
+    + '<p><b>Email:</b> ' + (data.email || 'N/A') + '</p>'
+    + '<p><b>Phone:</b> ' + (data.phone || 'N/A') + '</p>'
+    + '<p><b>Address:</b> ' + (data.address || 'N/A') + '</p>'
+    + '<p><b>Date:</b> ' + (data.date || 'TBD') + '</p>'
+    + '<p><b>Time:</b> ' + (data.selTime || 'TBD') + '</p>'
+    + '<p><b>Services:</b> ' + (data.services && data.services.length > 0 ? data.services.join(', ') : 'General Consultation') + '</p>'
+    + '<p><b>Medical History:</b> ' + (data.medicalHistory || 'None') + '</p>'
+    + '<p><b>Surgical History:</b> ' + (data.surgicalHistory || 'None') + '</p>'
+    + '<p><b>Medications:</b> ' + (data.medications || 'None') + '</p>'
+    + '<p><b>Allergies:</b> ' + (data.allergies || 'None') + '</p>'
+    + '<p><b>Clinician Notes:</b> ' + (data.clinicianNotes || 'None') + '</p>'
+    + '<h3>Consents</h3>'
+    + '<p>Treatment: ' + consentCheck(c.treatment) + ' | HIPAA: ' + consentCheck(c.hipaa) + ' | Medical: ' + consentCheck(c.medical) + ' | Financial: ' + consentCheck(c.financial) + '</p>'
+    + '<p>Signature: ' + (data.signature ? 'PROVIDED' : 'NO') + ' | Intake Acknowledged: ' + (data.intakeAcknowledged ? 'YES' : 'NO') + '</p>'
+    + '<h3>Payment</h3>'
+    + '<p>Card: ' + (data.cardBrand || 'N/A') + ' ****' + (data.cardLast4 || 'N/A') + '</p>'
+    + '</div></div>';
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + resendApiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: 'Healing Soulutions <bookings@healingsoulutions.care>',
+        to: ['info@healingsoulutions.care'],
+        subject: 'New Intake: ' + patientName + ' - ' + (data.date || 'Date TBD'),
+        html: emailBody,
+      }),
+    });
+  } catch (e) { console.error('Email error:', e); }
+}
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -178,7 +217,7 @@ export default async function handler(req, res) {
     } catch (intakeError) {
       console.error('IntakeQ intake submission error:', intakeError);
     }
-
+try { await sendNotificationEmail(data); } catch (e) { console.error('Email failed:', e); }
     console.log('[Booking] ' + data.fname + ' ' + data.lname + ' (' + data.email + ') - Services: ' + (data.services ? data.services.join(', ') : 'General'));
 
     return res.status(200).json({
