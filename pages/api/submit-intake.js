@@ -315,8 +315,9 @@ export default async function handler(req, res) {
         var newClient = await intakeqRequest('/clients', 'POST', clientPayload);
         clientId = newClient.ClientId || newClient.Id;
       }
-    } catch (clientError) {
-      console.error('IntakeQ client create/update error:', clientError);
+   } catch (clientError) {
+      console.error('IntakeQ error:', clientError.message);
+      clientId = 'ERROR: ' + clientError.message;
     }
 
     try {
@@ -398,9 +399,10 @@ export default async function handler(req, res) {
 
     console.log('[Booking] ' + data.fname + ' ' + data.lname + ' (' + data.email + ') - Services: ' + (data.services ? data.services.join(', ') : 'General'));
 
-    return res.status(200).json({
+   return res.status(200).json({
       success: true,
       clientId: clientId || null,
+      intakeqSaved: clientId ? true : false,
       message: 'Intake submitted successfully to HIPAA-secure server.',
     });
   } catch (error) {
