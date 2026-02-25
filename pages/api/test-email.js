@@ -1,37 +1,37 @@
 export default async function handler(req, res) {
   var apiKey = process.env.INTAKEQ_API_KEY;
-
-  var longNotes = '=== HEALING SOULUTIONS - PATIENT INTAKE ===\n'
-    + 'Submitted: ' + new Date().toISOString() + '\n\n'
-    + '--- PATIENT INFORMATION ---\n'
-    + 'Name: LongNotes Test\n'
-    + 'Email: longtest@test.com\n\n'
-    + '--- CONSENTS ---\n'
-    + 'Treatment Consent: AGREED\n'
-    + 'HIPAA Privacy: AGREED\n'
-    + 'Signature: LongNotes Test\n';
+  var results = {};
 
   try {
-    var createRes = await fetch('https://intakeq.com/api/v1/clients', {
+    var r1 = await fetch('https://intakeq.com/api/v1/clients', {
       method: 'POST',
       headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        FirstName: 'LongNotes',
-        LastName: 'Test',
-        Email: 'longtest@test.com',
+        FirstName: 'NotesTest',
+        LastName: 'Today',
+        Email: 'notestest@test.com',
         Phone: '5551234567',
-        Tags: ['Website Booking', 'Online Intake'],
-        Notes: longNotes,
       }),
     });
-    var createText = await createRes.text();
+    var t1 = await r1.text();
+    results.create = { status: r1.status, body: t1.substring(0, 200) };
 
-    return res.status(200).json({
-      status: createRes.status,
-      ok: createRes.ok,
-      body: createText.substring(0, 300),
+    var clientData = JSON.parse(t1);
+    var clientId = clientData.ClientId || clientData.Id;
+
+    var r2 = await fetch('https://intakeq.com/api/v1/clients', {
+      method: 'PUT',
+      headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ClientId: clientId,
+        Notes: 'TEST NOTES - Can you see this in IntakeQ?',
+      }),
     });
+    var t2 = await r2.text();
+    results.update = { status: r2.status, body: t2.substring(0, 200) };
   } catch (e) {
-    return res.status(500).json({ error: e.message });
+    results.error = e.message;
   }
+
+  return res.status(200).json(results);
 }
