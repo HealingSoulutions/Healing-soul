@@ -2,25 +2,22 @@ export default async function handler(req, res) {
   var apiKey = process.env.INTAKEQ_API_KEY;
 
   try {
-    var intakePayload = {
-      ClientName: 'Test Patient',
-      ClientEmail: 'test@healingsoulutions.care',
-      ClientPhone: '0000000000',
-      Status: 'Submitted',
-      DateCreated: new Date().toISOString(),
-      Questions: [
-        { Text: 'First Name', Answer: 'Test', Category: 'Personal Information' },
-        { Text: 'Last Name', Answer: 'Patient', Category: 'Personal Information' },
-      ],
+    var clientPayload = {
+      FirstName: 'TestClaude',
+      LastName: 'DebugPatient',
+      Email: 'testdebug@healingsoulutions.care',
+      Phone: '0000000000',
+      Tags: ['Test', 'Debug'],
+      Notes: 'This is a test client created for debugging.',
     };
 
-    var response = await fetch('https://intakeq.com/api/v1/intakes', {
+    var response = await fetch('https://intakeq.com/api/v1/clients', {
       method: 'POST',
       headers: {
         'X-Auth-Key': apiKey,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(intakePayload),
+      body: JSON.stringify(clientPayload),
     });
 
     var text = await response.text();
