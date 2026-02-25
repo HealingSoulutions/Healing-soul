@@ -3,41 +3,31 @@ export default async function handler(req, res) {
   var results = {};
 
   try {
-    var r1 = await fetch('https://intakeq.com/api/v1/clients', {
+    var searchRes = await fetch('https://intakeq.com/api/v1/clients?search=' + encodeURIComponent('newtest@test.com'), {
+      method: 'GET',
+      headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
+    });
+    var searchText = await searchRes.text();
+    results.search = { status: searchRes.status, body: searchText.substring(0, 200) };
+
+    var clientPayload = {
+      FirstName: 'RealFlow',
+      LastName: 'Test',
+      Email: 'newtest@test.com',
+      Phone: '5551234567',
+      Address: '123 Test St',
+      DateOfBirth: null,
+      Tags: ['Website Booking', 'Online Intake'],
+      Notes: 'Test notes - short version',
+    };
+
+    var createRes = await fetch('https://intakeq.com/api/v1/clients', {
       method: 'POST',
       headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        FirstName: 'FullTest',
-        LastName: 'Booking',
-        Email: 'fulltest@healingsoulutions.care',
-        Phone: '5551234567',
-        Notes: 'Test booking with consents and signatures',
-      }),
+      body: JSON.stringify(clientPayload),
     });
-    var t1 = await r1.text();
-    results.client = { status: r1.status, ok: r1.ok, body: t1.substring(0, 300) };
-
-    var clientData = t1 ? JSON.parse(t1) : {};
-    var clientId = clientData.ClientId || clientData.Id;
-
-    var r2 = await fetch('https://intakeq.com/api/v1/intakes', {
-      method: 'POST',
-      headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ClientId: clientId,
-        ClientName: 'FullTest Booking',
-        ClientEmail: 'fulltest@healingsoulutions.care',
-        Status: 'Submitted',
-        DateCreated: new Date().toISOString(),
-        Questions: [
-          { Text: 'First Name', Answer: 'FullTest', Category: 'Personal Information' },
-          { Text: 'Treatment Consent', Answer: 'Agreed', Category: 'Consents' },
-          { Text: 'Electronic Signature', Answer: 'FullTest Booking', Category: 'Signatures' },
-        ],
-      }),
-    });
-    var t2 = await r2.text();
-    results.intake = { status: r2.status, ok: r2.ok, body: t2.substring(0, 300) };
+    var createText = await createRes.text();
+    results.create = { status: createRes.status, ok: createRes.ok, body: createText.substring(0, 300) };
   } catch (e) {
     results.error = e.message;
   }
