@@ -15,8 +15,4 @@ export default async function handler(req, res) {
     hasSpaces: apiKey !== apiKey.trim()
   });
 }
-```
 
-Commit it, wait for deploy, then visit:
-```
-https://healing-soul-git-main-berit-trans-projects.vercel.app/api/test-email
