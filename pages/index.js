@@ -499,6 +499,7 @@ function ContactPage({ setPage }) {
   const [intakeDrawing, setIntakeDrawing] = useState(false);
   const [intakeDrawPoints, setIntakeDrawPoints] = useState([]);
   const [consentTimestamps, setConsentTimestamps] = useState({});
+  const [submitError, setSubmitError] = useState('');
   const intakeCanvasRef = useRef(null);
   const consentDrawRef = useRef(null);
 
@@ -532,57 +533,48 @@ function ContactPage({ setPage }) {
   var addPatient = function () { setAdditionalPatients(function (prev) { return [...prev, emptyPatient()]; }); };
   var removePatient = function (id) { setAdditionalPatients(function (prev) { return prev.filter(function (p) { return p.id !== id; }); }); };
 
-  /* â”€â”€ Signature image capture helpers â”€â”€ */
-  var renderTypedSig = function (text, fontFamily) {
+  // Render typed text as a PNG image
+  var textToPng = function (text, font) {
     try {
       var c = document.createElement('canvas'); c.width = 500; c.height = 120;
-      var ctx = c.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 500, 120);
-      ctx.font = 'italic 32px ' + (fontFamily || '"Cormorant Garamond", Georgia, serif');
+      var ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, 500, 120);
+      ctx.font = font || 'italic 32px "Cormorant Garamond", Georgia, serif';
       ctx.fillStyle = '#2E5A46'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(text, 250, 60);
-      return c.toDataURL('image/png');
+      ctx.fillText(text, 250, 60); return c.toDataURL('image/png');
     } catch (e) { return null; }
   };
 
-  var captureIntakeSignatureImage = function () {
-    // Drawn on canvas
+  // Capture intake signature (Step 1) as PNG
+  var getIntakeSigImage = function () {
     if (intakeCanvasRef.current && intakeSignature === 'drawn_intake_sig') {
       try { return intakeCanvasRef.current.toDataURL('image/png'); } catch (e) {}
     }
-    // Typed
-    if (intakeSignature && intakeSignature !== 'drawn_intake_sig') {
-      return renderTypedSig(intakeSignature);
-    }
+    if (intakeSignature && intakeSignature !== 'drawn_intake_sig') return textToPng(intakeSignature);
     return null;
   };
 
-  var captureConsentSignatureImage = function () {
-    // Drawn SVG â†’ canvas
+  // Capture consent signature (Step 2) as PNG
+  var getConsentSigImage = function () {
     if (signature === 'drawn-signature' && drawPoints.length > 1 && consentDrawRef.current) {
       try {
         var c = document.createElement('canvas'); c.width = 500; c.height = 120;
-        var ctx = c.getContext('2d'); ctx.fillStyle = '#ffffff'; ctx.fillRect(0, 0, 500, 120);
+        var ctx = c.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, 500, 120);
         ctx.strokeStyle = '#2E5A46'; ctx.lineWidth = 2; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
         var box = consentDrawRef.current.getBoundingClientRect();
         var sx = 500 / (box.width || 1); var sy = 120 / (box.height || 1);
         ctx.beginPath();
         drawPoints.forEach(function (p, i) { if (i === 0) ctx.moveTo(p.x * sx, p.y * sy); else ctx.lineTo(p.x * sx, p.y * sy); });
-        ctx.stroke();
-        return c.toDataURL('image/png');
+        ctx.stroke(); return c.toDataURL('image/png');
       } catch (e) {}
     }
-    // Typed
-    if (signature && signature !== 'drawn-signature') {
-      return renderTypedSig(signature, 'Georgia, serif');
-    }
+    if (signature && signature !== 'drawn-signature') return textToPng(signature, 'italic 28px Georgia, serif');
     return null;
   };
 
+  // Track when each consent is checked
   var handleConsentChange = function (key, checked) {
-    setConsents(function (prev) { var next = {}; for (var k in prev) next[k] = prev[k]; next[key] = checked; return next; });
-    if (checked) {
-      setConsentTimestamps(function (prev) { var next = {}; for (var k in prev) next[k] = prev[k]; next[key] = new Date().toISOString(); return next; });
-    }
+    setConsents(function (prev) { var n = {}; for (var k in prev) n[k] = prev[k]; n[key] = checked; return n; });
+    if (checked) setConsentTimestamps(function (prev) { var n = {}; for (var k in prev) n[k] = prev[k]; n[key] = new Date().toISOString(); return n; });
   };
   var updatePatient = function (id, field, val) { setAdditionalPatients(function (prev) { return prev.map(function (p) { if (p.id === id) { var u = { ...p }; u[field] = val; return u; } return p; }); }); };
   var toggleService = function (currentServices, title) {
@@ -721,62 +713,51 @@ function ContactPage({ setPage }) {
   // â”€â”€ Submit to IntakeQ (HIPAA-secure) â”€â”€
   var submitToIntakeQ = async function (cardBrandVal, cardLast4Val, pmId) {
     try {
-      // Capture signature images right before sending
-      var consentSigImg = captureConsentSignatureImage();
-      var intakeSigImg = captureIntakeSignatureImage();
-
-      console.log('[Submit] Sending to /api/submit-intake...', {
-        consentSig: consentSigImg ? 'captured' : 'none',
-        intakeSig: intakeSigImg ? 'captured' : 'none',
-        consents: consents,
-      });
+      setSubmitError('');
+      var consentSigImg = getConsentSigImage();
+      var intakeSigImg = getIntakeSigImage();
 
       var resp = await fetch('/api/submit-intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          // Patient info
           fname: form.fname, lname: form.lname, email: form.email,
           phone: form.phone, address: form.address,
-          // Appointment
           date: form.date, selTime: selTime,
           services: form.services, notes: form.notes,
-          // Medical history
-          medicalHistory: form.medicalHistory,
-          surgicalHistory: form.surgicalHistory,
-          medications: form.medications,
-          allergies: form.allergies,
+          medicalHistory: form.medicalHistory, surgicalHistory: form.surgicalHistory,
+          medications: form.medications, allergies: form.allergies,
           clinicianNotes: form.clinicianNotes,
-          // Consents (boolean flags)
-          consents: consents,
-          consentTimestamps: consentTimestamps,
-          // Consent e-signature (Step 2)
+          consents: consents, consentTimestamps: consentTimestamps,
           signature: signature,
           signatureType: signature === 'drawn-signature' ? 'drawn' : (signature ? 'typed' : 'none'),
           signatureImageData: consentSigImg || null,
-          // Intake acknowledgment signature (Step 1)
-          intakeAcknowledged: intakeAcknowledged,
-          intakeSignature: intakeSignature,
+          intakeAcknowledged: intakeAcknowledged, intakeSignature: intakeSignature,
           intakeSignatureType: intakeSignature === 'drawn_intake_sig' ? 'drawn' : (intakeSignature ? 'typed' : 'none'),
           intakeSignatureImageData: intakeSigImg || null,
-          // Payment
-          cardHolderName: cardHolderName,
-          cardBrand: cardBrandVal || '',
-          cardLast4: cardLast4Val || '',
-          stripePaymentMethodId: pmId || '',
-          // Additional patients
+          cardHolderName: cardHolderName, cardBrand: cardBrandVal || '',
+          cardLast4: cardLast4Val || '', stripePaymentMethodId: pmId || '',
           additionalPatients: additionalPatients,
         }),
       });
 
-      var result = await resp.json().catch(function () { return {}; });
+      var result = {};
+      try { result = await resp.json(); } catch (e) {}
+
       if (!resp.ok) {
-        console.error('[Submit] API error ' + resp.status + ':', result);
-      } else {
-        console.log('[Submit] Success:', result);
+        console.error('IntakeQ submit failed:', resp.status, result);
+        setSubmitError('Record may not have saved. Please call (585) 747-2215 to confirm. (Error: ' + (result.error || resp.status) + ')');
+        if (result.log) console.log('Server log:', result.log);
+        return false;
       }
+
+      console.log('IntakeQ submit success:', result);
+      if (result.log) console.log('Server log:', result.log);
+      return true;
     } catch (e) {
-      console.error('[Submit] Network error:', e);
+      console.error('IntakeQ submit network error:', e);
+      setSubmitError('Could not reach server. Please call (585) 747-2215 to confirm your booking.');
+      return false;
     }
   };
 
@@ -795,7 +776,7 @@ function ContactPage({ setPage }) {
       if (yy < cy || (yy === cy && mm < cm)) { setStripeError('Card is expired.'); setIsValidating(false); return; }
       setCardBrand(detectedBrand);
       setCardInfo({ ...cardInfo, number: '****' + raw.slice(-4), name: cardHolderName });
-      submitToIntakeQ(detectedBrand, raw.slice(-4), 'fallback');
+      await submitToIntakeQ(detectedBrand, raw.slice(-4), 'fallback');
       setIsValidating(false); setEmailStatus('sent'); goToStep(4); return;
     }
     if (!stripeRef.current || !elementsRef.current || !setupClientSecret) { setStripeError('Payment system not ready. Please wait or refresh.'); setIsValidating(false); return; }
@@ -836,7 +817,7 @@ function ContactPage({ setPage }) {
 
       setCardBrand(verifyData.brand || '');
       setCardInfo({ ...cardInfo, number: verifyData.last4 ? '****' + verifyData.last4 : (verifyData.brand || 'Payment method'), name: cardHolderName });
-      submitToIntakeQ(verifyData.brand || '', verifyData.last4 || '', verifyData.paymentMethodId || '');
+      await submitToIntakeQ(verifyData.brand || '', verifyData.last4 || '', verifyData.paymentMethodId || '');
       setIsValidating(false); setEmailStatus('sent'); goToStep(4);
     } catch (e) {
       setStripeError(e.message === 'Failed to fetch' ? 'Could not reach payment server.' : 'Payment error: ' + (e.message || 'Please try again.'));
@@ -1208,6 +1189,7 @@ function ContactPage({ setPage }) {
               <h2 style={{ ...TS, fontSize: '0.75rem' }}>Booking Confirmed!</h2>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.65rem', lineHeight: 1.7, textAlign: 'center', maxWidth: 400, margin: '0 auto 1.5rem', fontFamily: "'Outfit',sans-serif" }}>Your appointment has been successfully booked.</p>
               {emailStatus === 'sent' && <div style={{ padding: '0.5rem 1rem', background: 'rgba(127,212,160,0.15)', borderRadius: '8px', marginBottom: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.52rem', color: '#7FD4A0', fontFamily: "'Outfit',sans-serif" }}>{'\u2713'} Confirmation emails sent successfully</p></div>}
+              {submitError && <div style={{ padding: '0.75rem 1rem', background: 'rgba(255,100,100,0.15)', border: '1px solid rgba(255,100,100,0.3)', borderRadius: '8px', marginBottom: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.52rem', color: '#FF9B9B', fontFamily: "'Outfit',sans-serif", lineHeight: 1.5 }}>{'\u26A0'} {submitError}</p></div>}
               <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '12px', padding: '1.25rem' }}>
                 <h3 style={{ fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.55rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Booking Details</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem' }}>
