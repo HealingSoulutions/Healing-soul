@@ -1,356 +1,484 @@
 /*
  * pages/api/submit-intake.js
  *
- * Uses the exact same direct-fetch pattern as test-email.js
- * which is PROVEN to work with IntakeQ.
+ * Complete rewrite. Uses EXACT same direct fetch pattern as test-email.js.
+ * Zero empty catch blocks. Every error is logged and returned.
  */
 
-var RESEND_KEY = process.env.RESEND_API_KEY;
-
-/* ── Build the full text record ── */
-
-function buildRecord(data) {
-  var ts = new Date();
-  var eastern = ts.toLocaleString('en-US', { timeZone: 'America/New_York' });
-  var cTs = data.consentTimestamps || {};
-  var c = data.consents || {};
-  var L = [];
-
-  L.push('========================================');
-  L.push('WEBSITE INTAKE — ' + eastern + ' ET');
-  L.push('========================================');
-  L.push('');
-  L.push('PATIENT: ' + data.fname + ' ' + data.lname);
-  L.push('Email: ' + data.email);
-  L.push('Phone: ' + (data.phone || 'N/A'));
-  L.push('Address: ' + (data.address || 'N/A'));
-  L.push('');
-  L.push('APPOINTMENT');
-  L.push('Date: ' + (data.date || 'TBD'));
-  L.push('Time: ' + (data.selTime || 'TBD'));
-  L.push('Services: ' + (data.services && data.services.length ? data.services.join(', ') : 'General'));
-  if (data.notes) L.push('Notes: ' + data.notes);
-  L.push('');
-  L.push('MEDICAL HISTORY');
-  L.push('Medical: ' + (data.medicalHistory || 'None'));
-  L.push('Surgical: ' + (data.surgicalHistory || 'None'));
-  L.push('Medications: ' + (data.medications || 'None'));
-  L.push('Allergies: ' + (data.allergies || 'None'));
-  if (data.clinicianNotes) L.push('Clinician Notes: ' + data.clinicianNotes);
-  L.push('');
-  L.push('CONSENTS');
-  L.push('Treatment: ' + (c.treatment ? 'AGREED' : 'NO') + (cTs.treatment ? ' @ ' + cTs.treatment : ''));
-  L.push('HIPAA: ' + (c.hipaa ? 'AGREED' : 'NO') + (cTs.hipaa ? ' @ ' + cTs.hipaa : ''));
-  L.push('Medical Release: ' + (c.medical ? 'AGREED' : 'NO') + (cTs.medical ? ' @ ' + cTs.medical : ''));
-  L.push('Financial: ' + (c.financial ? 'AGREED' : 'NO') + (cTs.financial ? ' @ ' + cTs.financial : ''));
-  L.push('');
-  L.push('SIGNATURES');
-  var sl = data.signature || 'NONE';
-  if (sl === 'drawn-signature') sl = 'DRAWN (image attached)';
-  L.push('Consent Sig: ' + sl + ' (' + (data.signatureType || 'N/A') + ')');
-  L.push('Intake Ack: ' + (data.intakeAcknowledged ? 'YES' : 'NO'));
-  var il = data.intakeSignature || 'NONE';
-  if (il === 'drawn_intake_sig') il = 'DRAWN (image attached)';
-  L.push('Intake Sig: ' + il + ' (' + (data.intakeSignatureType || 'N/A') + ')');
-  L.push('');
-  L.push('PAYMENT');
-  L.push('Card: ' + (data.cardBrand || 'N/A') + ' ****' + (data.cardLast4 || 'N/A'));
-  L.push('Cardholder: ' + (data.cardHolderName || 'N/A'));
-
-  if (data.additionalPatients && data.additionalPatients.length) {
-    L.push('');
-    L.push('ADDITIONAL PATIENTS (' + data.additionalPatients.length + ')');
-    data.additionalPatients.forEach(function (pt, i) {
-      L.push('  #' + (i + 2) + ': ' + (pt.fname || '') + ' ' + (pt.lname || ''));
-      L.push('  Services: ' + (pt.services && pt.services.length ? pt.services.join(', ') : 'Same'));
-      L.push('  Medical: ' + (pt.medicalHistory || 'None'));
-      L.push('  Surgical: ' + (pt.surgicalHistory || 'None'));
-      L.push('  Meds: ' + (pt.medications || 'None'));
-      L.push('  Allergies: ' + (pt.allergies || 'None'));
-      if (pt.clinicianNotes) L.push('  Notes: ' + pt.clinicianNotes);
-    });
-  }
-
-  L.push('');
-  L.push('Submitted: ' + ts.toISOString());
-  L.push('========================================');
-  return L.join('\n');
-}
-
-/* ════════════════════════════════════════════════
-   HANDLER
-   ════════════════════════════════════════════════ */
-
 export default async function handler(req, res) {
+  /* ── GET = debug endpoint ── */
   if (req.method === 'GET') {
-    return res.status(200).json({ lastResult: global._lastIntakeResult || null });
+    return res.status(200).json({ lastResult: global._lastIQ || null });
   }
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   var apiKey = process.env.INTAKEQ_API_KEY;
+  var resendKey = process.env.RESEND_API_KEY;
   var log = [];
+  function L(m) { log.push(m); console.log('[IQ] ' + m); }
+
+  var data = req.body || {};
+  if (!data.fname || !data.lname || !data.email) {
+    return res.status(400).json({ error: 'Name and email required.', log: log });
+  }
+
   var clientId = null;
+  var iqOk = false;
+  var bizOk = false;
+  var patOk = false;
 
-  function L(msg) { log.push('[' + new Date().toISOString() + '] ' + msg); console.log('[IntakeQ] ' + msg); }
+  var now = new Date();
+  var eastern = now.toLocaleString('en-US', { timeZone: 'America/New_York' });
+  var con = data.consents || {};
+  var cts = data.consentTimestamps || {};
 
-  try {
-    var data = req.body;
-    if (!data.fname || !data.lname || !data.email) {
-      return res.status(400).json({ error: 'Name and email required.' });
-    }
+  L('START: ' + data.fname + ' ' + data.lname + ' <' + data.email + '>');
 
-    if (!apiKey) {
-      L('ERROR: INTAKEQ_API_KEY env var is not set!');
-      return res.status(500).json({ error: 'IntakeQ not configured.', log: log });
-    }
-    L('API key present: ' + apiKey.substring(0, 4) + '...');
+  /* ════════════════════════════════════════════════
+     BUILD TEXT RECORD for IntakeQ AdditionalInformation
+     ════════════════════════════════════════════════ */
+  var R = [];
+  R.push('============================================');
+  R.push('INTAKE FORM — ' + eastern + ' ET');
+  R.push('============================================');
+  R.push('');
+  R.push('PATIENT INFORMATION');
+  R.push('Name: ' + data.fname + ' ' + data.lname);
+  R.push('Email: ' + data.email);
+  R.push('Phone: ' + (data.phone || 'N/A'));
+  R.push('Address: ' + (data.address || 'N/A'));
+  R.push('');
+  R.push('APPOINTMENT');
+  R.push('Date: ' + (data.date || 'TBD'));
+  R.push('Time: ' + (data.selTime || 'TBD'));
+  R.push('Services: ' + (data.services && data.services.length ? data.services.join(', ') : 'General'));
+  if (data.notes) R.push('Notes: ' + data.notes);
+  R.push('');
+  R.push('MEDICAL HISTORY');
+  R.push('Medical History: ' + (data.medicalHistory || 'None reported'));
+  R.push('Surgical History: ' + (data.surgicalHistory || 'None reported'));
+  R.push('Current Medications: ' + (data.medications || 'None reported'));
+  R.push('Known Allergies: ' + (data.allergies || 'None reported'));
+  if (data.clinicianNotes) R.push('Clinician Notes: ' + data.clinicianNotes);
+  R.push('');
+  R.push('CONSENTS');
+  R.push('Treatment Consent: ' + (con.treatment ? 'AGREED' : 'NOT AGREED') + (cts.treatment ? ' [' + cts.treatment + ']' : ''));
+  R.push('  Informed Consent for Treatment: risks, complications, assumption of risk, peptide therapy, limitation of liability, indemnification, release/waiver, emergency authorization, scope of practice, dispute resolution');
+  R.push('HIPAA Privacy: ' + (con.hipaa ? 'AGREED' : 'NOT AGREED') + (cts.hipaa ? ' [' + cts.hipaa + ']' : ''));
+  R.push('  HIPAA Notice per 45 CFR Parts 160/164: uses/disclosures, authorization, patient rights, minimum necessary standard, data security, breach notification');
+  R.push('Medical Release: ' + (con.medical ? 'AGREED' : 'NOT AGREED') + (cts.medical ? ' [' + cts.medical + ']' : ''));
+  R.push('  Authorization to collect, review, maintain, request, obtain, disclose medical information');
+  R.push('Financial Agreement: ' + (con.financial ? 'AGREED' : 'NOT AGREED') + (cts.financial ? ' [' + cts.financial + ']' : ''));
+  R.push('  Payment terms, 24-hour cancellation, no-show fees, past due terms');
+  R.push('');
+  R.push('SIGNATURES');
+  var sigTxt = data.signature || 'NOT PROVIDED';
+  if (sigTxt === 'drawn-signature') sigTxt = 'DRAWN (image file attached)';
+  R.push('Consent Signature: ' + sigTxt + ' (type: ' + (data.signatureType || 'N/A') + ')');
+  R.push('Intake Acknowledged: ' + (data.intakeAcknowledged ? 'YES' : 'NO'));
+  var iSigTxt = data.intakeSignature || 'NOT PROVIDED';
+  if (iSigTxt === 'drawn_intake_sig') iSigTxt = 'DRAWN (image file attached)';
+  R.push('Intake Signature: ' + iSigTxt + ' (type: ' + (data.intakeSignatureType || 'N/A') + ')');
+  R.push('');
+  R.push('PAYMENT');
+  R.push('Card: ' + (data.cardBrand || 'N/A') + ' ****' + (data.cardLast4 || 'N/A'));
+  R.push('Cardholder: ' + (data.cardHolderName || 'N/A'));
 
-    var record = buildRecord(data);
-
-    /* ──────────────────────────────────────────────
-       STEP 1: Search for existing client
-       Using IncludeProfile=true to get ClientId
-       (same direct fetch pattern as test-email.js)
-       ────────────────────────────────────────────── */
-    var searchUrl = 'https://intakeq.com/api/v1/clients?search='
-      + encodeURIComponent(data.email) + '&IncludeProfile=true';
-    L('Searching: GET ' + searchUrl);
-
-    var searchRes = await fetch(searchUrl, {
-      method: 'GET',
-      headers: { 'X-Auth-Key': apiKey },
+  if (data.additionalPatients && data.additionalPatients.length) {
+    R.push('');
+    R.push('ADDITIONAL PATIENTS (' + data.additionalPatients.length + ')');
+    data.additionalPatients.forEach(function (pt, i) {
+      R.push('');
+      R.push('-- Patient ' + (i + 2) + ': ' + (pt.fname || '') + ' ' + (pt.lname || '') + ' --');
+      R.push('Services: ' + (pt.services && pt.services.length ? pt.services.join(', ') : 'Same'));
+      R.push('Medical: ' + (pt.medicalHistory || 'None'));
+      R.push('Surgical: ' + (pt.surgicalHistory || 'None'));
+      R.push('Medications: ' + (pt.medications || 'None'));
+      R.push('Allergies: ' + (pt.allergies || 'None'));
+      if (pt.clinicianNotes) R.push('Clinician Notes: ' + pt.clinicianNotes);
     });
-    var searchText = await searchRes.text();
-    L('Search response: ' + searchRes.status + ' — ' + searchText.substring(0, 300));
+  }
 
-    var existingClients = [];
-    try { existingClients = searchText ? JSON.parse(searchText) : []; } catch (e) { L('Search parse error: ' + e.message); }
+  R.push('');
+  R.push('UTC: ' + now.toISOString());
+  R.push('============================================');
+  var fullRecord = R.join('\n');
 
-    /* ──────────────────────────────────────────────
-       STEP 2: Create or update client
-       Exact same pattern as test-email.js
-       ────────────────────────────────────────────── */
-    var clientPayload = {
-      FirstName: data.fname,
-      LastName: data.lname,
-      Name: data.fname + ' ' + data.lname,
-      Email: data.email,
-      Phone: data.phone || '',
-      Address: data.address || '',
-      AdditionalInformation: record,
-    };
+  /* ════════════════════════════════════════════════
+     INTAKEQ: Search → Create/Update client
+     ════════════════════════════════════════════════ */
+  if (!apiKey) {
+    L('ERROR: INTAKEQ_API_KEY not set!');
+  } else {
+    L('API key: ' + apiKey.substring(0, 6) + '...');
 
-    if (Array.isArray(existingClients) && existingClients.length > 0) {
-      /* ── EXISTING CLIENT → PUT (same as test-email.js) ── */
-      clientId = existingClients[0].ClientId || existingClients[0].ClientNumber;
-      L('Found existing client: ' + clientId);
-
-      // Append to existing notes
-      var prevNotes = existingClients[0].AdditionalInformation || '';
-      if (prevNotes) {
-        clientPayload.AdditionalInformation = prevNotes + '\n\n' + record;
-      }
-      clientPayload.ClientId = clientId;
-
-      L('Updating: PUT /clients with ClientId=' + clientId);
-      var putRes = await fetch('https://intakeq.com/api/v1/clients', {
-        method: 'PUT',
-        headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify(clientPayload),
+    // STEP 1: SEARCH with IncludeProfile=true (required to get ClientId)
+    try {
+      var searchUrl = 'https://intakeq.com/api/v1/clients?search=' + encodeURIComponent(data.email) + '&IncludeProfile=true';
+      L('SEARCH: GET ' + searchUrl);
+      var sRes = await fetch(searchUrl, {
+        method: 'GET',
+        headers: { 'X-Auth-Key': apiKey },
       });
-      var putText = await putRes.text();
-      L('PUT response: ' + putRes.status + ' — ' + putText.substring(0, 300));
+      var sBody = await sRes.text();
+      L('SEARCH HTTP ' + sRes.status + ': ' + sBody.substring(0, 200));
 
-      if (!putRes.ok) {
-        L('PUT FAILED! Status=' + putRes.status);
-        global._lastIntakeResult = { time: new Date().toISOString(), log: log, error: 'PUT failed' };
-        return res.status(500).json({ error: 'Failed to update patient record in IntakeQ.', log: log });
-      }
-    } else {
-      /* ── NEW CLIENT → POST ── */
-      L('No existing client found. Creating new: POST /clients');
-      var postRes = await fetch('https://intakeq.com/api/v1/clients', {
-        method: 'POST',
-        headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
-        body: JSON.stringify(clientPayload),
-      });
-      var postText = await postRes.text();
-      L('POST response: ' + postRes.status + ' — ' + postText.substring(0, 300));
+      var clients = [];
+      try { clients = sBody ? JSON.parse(sBody) : []; } catch (pe) { L('Parse error: ' + pe.message); }
 
-      if (!postRes.ok) {
-        L('POST FAILED! Status=' + postRes.status);
-        global._lastIntakeResult = { time: new Date().toISOString(), log: log, error: 'POST failed' };
-        return res.status(500).json({ error: 'Failed to create patient record in IntakeQ.', log: log });
-      }
+      // STEP 2: CREATE OR UPDATE — same direct fetch as test-email.js
+      if (Array.isArray(clients) && clients.length > 0) {
+        // EXISTING → POST with ClientId to update
+        clientId = clients[0].ClientId || clients[0].ClientNumber;
+        L('EXISTING client: ' + clientId);
 
-      try {
-        var created = postText ? JSON.parse(postText) : {};
-        clientId = created.ClientId || created.ClientNumber || created.Id;
-        L('New client created: ' + clientId);
-      } catch (e) {
-        L('Could not parse new client response: ' + e.message);
-      }
-    }
+        var prevNotes = clients[0].AdditionalInformation || '';
+        var merged = prevNotes ? prevNotes + '\n\n' + fullRecord : fullRecord;
 
-    L('CLIENT SAVED SUCCESSFULLY. ID=' + clientId);
-
-    /* ──────────────────────────────────────────────
-       STEP 3: Upload signature images as files
-       ────────────────────────────────────────────── */
-    var sigUploaded = false;
-    if (clientId && data.signatureImageData) {
-      try {
-        var raw64 = data.signatureImageData;
-        if (raw64.indexOf(',') !== -1) raw64 = raw64.split(',')[1];
-        var buf = Buffer.from(raw64, 'base64');
-        var bnd = '---Sig' + Date.now();
-        var body = Buffer.concat([
-          Buffer.from('--' + bnd + '\r\nContent-Disposition: form-data; name="file"; filename="consent-sig.png"\r\nContent-Type: image/png\r\n\r\n'),
-          buf,
-          Buffer.from('\r\n--' + bnd + '--\r\n'),
-        ]);
-        var fRes = await fetch('https://intakeq.com/api/v1/files/' + clientId, {
-          method: 'POST',
-          headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'multipart/form-data; boundary=' + bnd },
-          body: body,
-        });
-        L('Consent sig upload: ' + fRes.status);
-        sigUploaded = fRes.ok;
-      } catch (e) { L('Sig upload error: ' + e.message); }
-    }
-
-    var intakeSigUploaded = false;
-    if (clientId && data.intakeSignatureImageData) {
-      try {
-        var raw64b = data.intakeSignatureImageData;
-        if (raw64b.indexOf(',') !== -1) raw64b = raw64b.split(',')[1];
-        var buf2 = Buffer.from(raw64b, 'base64');
-        var bnd2 = '---ISig' + Date.now();
-        var body2 = Buffer.concat([
-          Buffer.from('--' + bnd2 + '\r\nContent-Disposition: form-data; name="file"; filename="intake-sig.png"\r\nContent-Type: image/png\r\n\r\n'),
-          buf2,
-          Buffer.from('\r\n--' + bnd2 + '--\r\n'),
-        ]);
-        var fRes2 = await fetch('https://intakeq.com/api/v1/files/' + clientId, {
-          method: 'POST',
-          headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'multipart/form-data; boundary=' + bnd2 },
-          body: body2,
-        });
-        L('Intake sig upload: ' + fRes2.status);
-        intakeSigUploaded = fRes2.ok;
-      } catch (e) { L('Intake sig upload error: ' + e.message); }
-    }
-
-    /* ──────────────────────────────────────────────
-       STEP 4: Tag the client
-       ────────────────────────────────────────────── */
-    if (clientId) {
-      try {
-        await fetch('https://intakeq.com/api/v1/clientTags', {
+        L('UPDATE: POST /clients with ClientId=' + clientId);
+        var uRes = await fetch('https://intakeq.com/api/v1/clients', {
           method: 'POST',
           headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ClientId: clientId, Tag: 'Website Booking' }),
-        });
-        await fetch('https://intakeq.com/api/v1/clientTags', {
-          method: 'POST',
-          headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ClientId: clientId, Tag: 'Online Intake' }),
-        });
-        L('Tags applied');
-      } catch (e) { L('Tagging error: ' + e.message); }
-    }
-
-    /* ──────────────────────────────────────────────
-       STEP 5: Business notification email
-       ────────────────────────────────────────────── */
-    if (RESEND_KEY) {
-      try {
-        var con = data.consents || {};
-        var ck = function (v) { return v ? '&#10003;' : '&#10007;'; };
-        var html =
-          '<div style="font-family:Arial;max-width:600px;margin:0 auto">'
-          + '<div style="background:#2E5A46;padding:20px;text-align:center"><h1 style="color:#D4BC82;margin:0">New Patient Intake</h1></div>'
-          + '<div style="padding:20px">'
-          + '<p><b>' + data.fname + ' ' + data.lname + '</b></p>'
-          + '<p>Email: ' + data.email + ' | Phone: ' + (data.phone || 'N/A') + '</p>'
-          + '<p>Date: ' + (data.date || 'TBD') + ' at ' + (data.selTime || 'TBD') + '</p>'
-          + '<p>Services: ' + (data.services && data.services.length ? data.services.join(', ') : 'General') + '</p>'
-          + '<hr style="margin:12px 0">'
-          + '<p><b>Medical:</b> ' + (data.medicalHistory || 'None') + '</p>'
-          + '<p><b>Surgical:</b> ' + (data.surgicalHistory || 'None') + '</p>'
-          + '<p><b>Medications:</b> ' + (data.medications || 'None') + '</p>'
-          + '<p><b>Allergies:</b> ' + (data.allergies || 'None') + '</p>'
-          + '<hr style="margin:12px 0">'
-          + '<p>' + ck(con.treatment) + ' Treatment ' + ck(con.hipaa) + ' HIPAA ' + ck(con.medical) + ' Medical ' + ck(con.financial) + ' Financial</p>'
-          + '<p>Sig: ' + (data.signature === 'drawn-signature' ? 'Drawn' : (data.signature || 'N/A')) + ' | Card: ' + (data.cardBrand || '') + ' ****' + (data.cardLast4 || 'N/A') + '</p>'
-          + '<p style="font-size:11px;color:#999">IntakeQ ID: ' + (clientId || 'N/A') + ' | Saved: YES | SigFiles: ' + (sigUploaded || intakeSigUploaded) + '</p>'
-          + '</div></div>';
-
-        await fetch('https://api.resend.com/emails', {
-          method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + RESEND_KEY, 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            from: 'Healing Soulutions <bookings@healingsoulutions.care>',
-            to: ['info@healingsoulutions.care'],
-            subject: 'New Intake: ' + data.fname + ' ' + data.lname,
-            html: html, reply_to: data.email,
+            ClientId: clientId,
+            FirstName: data.fname,
+            LastName: data.lname,
+            Email: data.email,
+            Phone: data.phone || '',
+            Address: data.address || '',
+            AdditionalInformation: merged,
           }),
         });
-        L('Business email sent');
-      } catch (e) { L('Business email error: ' + e.message); }
+        var uBody = await uRes.text();
+        L('UPDATE HTTP ' + uRes.status + ': ' + uBody.substring(0, 200));
+        iqOk = uRes.ok;
+      } else {
+        // NEW → POST
+        L('CREATE: POST /clients (new)');
+        var cRes = await fetch('https://intakeq.com/api/v1/clients', {
+          method: 'POST',
+          headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            FirstName: data.fname,
+            LastName: data.lname,
+            Name: data.fname + ' ' + data.lname,
+            Email: data.email,
+            Phone: data.phone || '',
+            Address: data.address || '',
+            AdditionalInformation: fullRecord,
+          }),
+        });
+        var cBody = await cRes.text();
+        L('POST HTTP ' + cRes.status + ': ' + cBody.substring(0, 200));
+        iqOk = cRes.ok;
+        if (cRes.ok && cBody) {
+          try {
+            var cd = JSON.parse(cBody);
+            clientId = cd.ClientId || cd.ClientNumber || cd.Id;
+            L('Created ID=' + clientId);
+          } catch (pe2) { L('Parse new client: ' + pe2.message); }
+        }
+      }
+
+      // STEP 3: UPLOAD SIGNATURE FILES
+      if (clientId && data.signatureImageData) {
+        try {
+          var raw1 = data.signatureImageData;
+          if (raw1.indexOf(',') > -1) raw1 = raw1.split(',')[1];
+          var buf1 = Buffer.from(raw1, 'base64');
+          var b1 = '---SIG' + Date.now();
+          var payload1 = Buffer.concat([
+            Buffer.from('--' + b1 + '\r\nContent-Disposition: form-data; name="file"; filename="consent-signature.png"\r\nContent-Type: image/png\r\n\r\n'),
+            buf1,
+            Buffer.from('\r\n--' + b1 + '--\r\n'),
+          ]);
+          var f1 = await fetch('https://intakeq.com/api/v1/files/' + clientId, {
+            method: 'POST',
+            headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'multipart/form-data; boundary=' + b1 },
+            body: payload1,
+          });
+          L('Consent sig file: HTTP ' + f1.status);
+        } catch (se1) { L('Sig upload err: ' + se1.message); }
+      }
+
+      if (clientId && data.intakeSignatureImageData) {
+        try {
+          var raw2 = data.intakeSignatureImageData;
+          if (raw2.indexOf(',') > -1) raw2 = raw2.split(',')[1];
+          var buf2 = Buffer.from(raw2, 'base64');
+          var b2 = '---ISIG' + Date.now();
+          var payload2 = Buffer.concat([
+            Buffer.from('--' + b2 + '\r\nContent-Disposition: form-data; name="file"; filename="intake-signature.png"\r\nContent-Type: image/png\r\n\r\n'),
+            buf2,
+            Buffer.from('\r\n--' + b2 + '--\r\n'),
+          ]);
+          var f2 = await fetch('https://intakeq.com/api/v1/files/' + clientId, {
+            method: 'POST',
+            headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'multipart/form-data; boundary=' + b2 },
+            body: payload2,
+          });
+          L('Intake sig file: HTTP ' + f2.status);
+        } catch (se2) { L('ISig upload err: ' + se2.message); }
+      }
+
+      // STEP 4: TAGS
+      if (clientId) {
+        try {
+          await fetch('https://intakeq.com/api/v1/clientTags', {
+            method: 'POST',
+            headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ClientId: clientId, Tag: 'Website Booking' }),
+          });
+          await fetch('https://intakeq.com/api/v1/clientTags', {
+            method: 'POST',
+            headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ClientId: clientId, Tag: 'Online Intake' }),
+          });
+          L('Tags applied');
+        } catch (te) { L('Tag err: ' + te.message); }
+      }
+    } catch (iqErr) {
+      L('INTAKEQ ERROR: ' + iqErr.message);
+    }
+  }
+
+  /* ════════════════════════════════════════════════
+     BUSINESS EMAIL — FULL patient info, medical,
+     consents with descriptions, signatures
+     ════════════════════════════════════════════════ */
+  if (!resendKey) {
+    L('RESEND_API_KEY not set — no emails');
+  } else {
+    // Helper for consent status
+    var chk = function (v) {
+      return v
+        ? '<span style="color:#2E5A46;font-weight:bold">&#10003; AGREED</span>'
+        : '<span style="color:#cc3333;font-weight:bold">&#10007; Not agreed</span>';
+    };
+
+    try {
+      L('Sending business email...');
+
+      var bh = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:640px;margin:0 auto;border:1px solid #ddd;border-radius:8px;overflow:hidden">';
+
+      // Header
+      bh += '<div style="background:#2E5A46;padding:24px;text-align:center">';
+      bh += '<h1 style="color:#D4BC82;margin:0;font-size:22px">New Patient Intake</h1>';
+      bh += '<p style="color:rgba(255,255,255,0.6);margin:6px 0 0;font-size:12px">' + eastern + ' ET</p>';
+      bh += '</div>';
+
+      bh += '<div style="padding:20px">';
+
+      // Patient Info
+      bh += '<h2 style="color:#2E5A46;font-size:16px;border-bottom:2px solid #D4BC82;padding-bottom:6px">Patient Information</h2>';
+      bh += '<table style="width:100%;font-size:14px;border-collapse:collapse">';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold;width:140px">Name:</td><td style="padding:5px 8px">' + data.fname + ' ' + data.lname + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Email:</td><td style="padding:5px 8px"><a href="mailto:' + data.email + '">' + data.email + '</a></td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Phone:</td><td style="padding:5px 8px">' + (data.phone || 'N/A') + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Address:</td><td style="padding:5px 8px">' + (data.address || 'N/A') + '</td></tr>';
+      bh += '</table>';
+
+      // Appointment
+      bh += '<h2 style="color:#2E5A46;font-size:16px;border-bottom:2px solid #D4BC82;padding-bottom:6px;margin-top:20px">Appointment</h2>';
+      bh += '<table style="width:100%;font-size:14px;border-collapse:collapse">';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold;width:140px">Date:</td><td style="padding:5px 8px">' + (data.date || 'TBD') + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Time:</td><td style="padding:5px 8px">' + (data.selTime || 'TBD') + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Services:</td><td style="padding:5px 8px">' + (data.services && data.services.length ? data.services.join(', ') : 'General Consultation') + '</td></tr>';
+      if (data.notes) bh += '<tr><td style="padding:5px 8px;font-weight:bold">Notes:</td><td style="padding:5px 8px">' + data.notes + '</td></tr>';
+      bh += '</table>';
+
+      // Medical History
+      bh += '<h2 style="color:#2E5A46;font-size:16px;border-bottom:2px solid #D4BC82;padding-bottom:6px;margin-top:20px">Medical History</h2>';
+      bh += '<table style="width:100%;font-size:14px;border-collapse:collapse">';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold;width:140px">Medical:</td><td style="padding:5px 8px">' + (data.medicalHistory || 'None reported') + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Surgical:</td><td style="padding:5px 8px">' + (data.surgicalHistory || 'None reported') + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Medications:</td><td style="padding:5px 8px">' + (data.medications || 'None reported') + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Allergies:</td><td style="padding:5px 8px">' + (data.allergies || 'None reported') + '</td></tr>';
+      if (data.clinicianNotes) bh += '<tr><td style="padding:5px 8px;font-weight:bold">Clinician Notes:</td><td style="padding:5px 8px">' + data.clinicianNotes + '</td></tr>';
+      bh += '</table>';
+
+      // Consents — full detail
+      bh += '<h2 style="color:#2E5A46;font-size:16px;border-bottom:2px solid #D4BC82;padding-bottom:6px;margin-top:20px">Consent Forms</h2>';
+      bh += '<table style="width:100%;font-size:14px;border-collapse:collapse">';
+      bh += '<tr style="border-bottom:1px solid #eee"><td style="padding:8px"><b>Treatment Consent</b><br><span style="font-size:11px;color:#777">Informed Consent: risks, complications, indemnification, emergency authorization, scope of practice, dispute resolution</span></td><td style="padding:8px;text-align:center;width:90px">' + chk(con.treatment) + '</td></tr>';
+      bh += '<tr style="border-bottom:1px solid #eee"><td style="padding:8px"><b>HIPAA Privacy</b><br><span style="font-size:11px;color:#777">Notice per 45 CFR Parts 160/164: uses/disclosures, patient rights, data security, breach notification</span></td><td style="padding:8px;text-align:center">' + chk(con.hipaa) + '</td></tr>';
+      bh += '<tr style="border-bottom:1px solid #eee"><td style="padding:8px"><b>Medical History Release</b><br><span style="font-size:11px;color:#777">Authorization to collect, review, obtain, disclose medical records for treatment</span></td><td style="padding:8px;text-align:center">' + chk(con.medical) + '</td></tr>';
+      bh += '<tr style="border-bottom:1px solid #eee"><td style="padding:8px"><b>Financial Agreement</b><br><span style="font-size:11px;color:#777">Payment terms, 24-hour cancellation, no-show fees, past due terms</span></td><td style="padding:8px;text-align:center">' + chk(con.financial) + '</td></tr>';
+      bh += '</table>';
+
+      // Signatures
+      bh += '<h2 style="color:#2E5A46;font-size:16px;border-bottom:2px solid #D4BC82;padding-bottom:6px;margin-top:20px">Signatures</h2>';
+      bh += '<table style="width:100%;font-size:14px;border-collapse:collapse">';
+      var conSigDisplay = data.signature || 'Not provided';
+      if (conSigDisplay === 'drawn-signature') conSigDisplay = '<em>Drawn signature (image on file)</em>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold;width:180px">Consent E-Signature:</td><td style="padding:5px 8px">' + conSigDisplay + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Signature Type:</td><td style="padding:5px 8px">' + (data.signatureType || 'N/A') + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Intake Acknowledged:</td><td style="padding:5px 8px">' + (data.intakeAcknowledged ? 'Yes' : 'No') + '</td></tr>';
+      var iSigDisplay = data.intakeSignature || 'Not provided';
+      if (iSigDisplay === 'drawn_intake_sig') iSigDisplay = '<em>Drawn signature (image on file)</em>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Intake Signature:</td><td style="padding:5px 8px">' + iSigDisplay + '</td></tr>';
+      bh += '<tr><td style="padding:5px 8px;font-weight:bold">Intake Sig Type:</td><td style="padding:5px 8px">' + (data.intakeSignatureType || 'N/A') + '</td></tr>';
+      bh += '</table>';
+
+      // Payment
+      bh += '<h2 style="color:#2E5A46;font-size:16px;border-bottom:2px solid #D4BC82;padding-bottom:6px;margin-top:20px">Payment</h2>';
+      bh += '<p style="font-size:14px">Card: ' + (data.cardBrand || 'N/A') + ' ****' + (data.cardLast4 || 'N/A') + ' &nbsp;|&nbsp; Cardholder: ' + (data.cardHolderName || 'N/A') + '</p>';
+
+      // Additional patients
+      if (data.additionalPatients && data.additionalPatients.length) {
+        bh += '<h2 style="color:#2E5A46;font-size:16px;border-bottom:2px solid #D4BC82;padding-bottom:6px;margin-top:20px">Additional Patients (' + data.additionalPatients.length + ')</h2>';
+        data.additionalPatients.forEach(function (pt, i) {
+          bh += '<div style="background:#f7f7f7;padding:12px;margin:8px 0;border-radius:6px">';
+          bh += '<p style="font-weight:bold;margin:0 0 4px">Patient ' + (i + 2) + ': ' + (pt.fname || '') + ' ' + (pt.lname || '') + '</p>';
+          bh += '<p style="margin:2px 0;font-size:13px">Services: ' + (pt.services && pt.services.length ? pt.services.join(', ') : 'Same') + '</p>';
+          bh += '<p style="margin:2px 0;font-size:13px">Medical: ' + (pt.medicalHistory || 'None') + ' | Surgical: ' + (pt.surgicalHistory || 'None') + '</p>';
+          bh += '<p style="margin:2px 0;font-size:13px">Medications: ' + (pt.medications || 'None') + ' | Allergies: ' + (pt.allergies || 'None') + '</p>';
+          bh += '</div>';
+        });
+      }
+
+      // Footer
+      bh += '<div style="margin-top:16px;padding:10px;background:#f5f5f5;border-radius:6px;font-size:11px;color:#999">';
+      bh += 'IntakeQ ID: ' + (clientId || 'N/A') + ' | Saved: ' + (iqOk ? 'YES' : 'FAILED') + ' | ' + now.toISOString();
+      bh += '</div>';
+      bh += '</div></div>';
+
+      var bRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + resendKey, 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          from: 'Healing Soulutions <bookings@healingsoulutions.care>',
+          to: ['info@healingsoulutions.care'],
+          subject: 'New Intake: ' + data.fname + ' ' + data.lname + ' — ' + (data.date || 'TBD'),
+          html: bh,
+          reply_to: data.email,
+        }),
+      });
+      var bResBody = await bRes.text();
+      L('BIZ EMAIL: HTTP ' + bRes.status + ' — ' + bResBody.substring(0, 200));
+      bizOk = bRes.ok;
+      if (!bRes.ok) L('BIZ EMAIL FAILED: ' + bResBody);
+    } catch (be) {
+      L('BIZ EMAIL ERROR: ' + be.message);
     }
 
-    /* ──────────────────────────────────────────────
-       STEP 6: Patient confirmation email
-       ────────────────────────────────────────────── */
-    if (RESEND_KEY && data.email) {
+    /* ════════════════════════════════════════════════
+       PATIENT CONFIRMATION EMAIL — includes medical,
+       consents, signatures
+       ════════════════════════════════════════════════ */
+    if (data.email) {
       try {
-        var phtml =
-          '<div style="font-family:Arial;max-width:600px;margin:0 auto">'
-          + '<div style="background:#2E5A46;padding:20px;text-align:center"><h1 style="color:#D4BC82;margin:0">Booking Confirmed</h1>'
-          + '<p style="color:rgba(255,255,255,0.7);font-size:13px;margin:4px 0 0">Healing Soulutions</p></div>'
-          + '<div style="padding:20px">'
-          + '<p>Dear ' + data.fname + ',</p>'
-          + '<p style="color:#555">Thank you for booking. We\'ll confirm within 24 hours.</p>'
-          + '<div style="background:#f9f9f9;border-left:4px solid #2E5A46;padding:16px;margin:16px 0;border-radius:8px">'
-          + '<p><b>Date:</b> ' + (data.date || 'TBD') + '</p>'
-          + '<p><b>Time:</b> ' + (data.selTime || 'TBD') + '</p>'
-          + '<p><b>Services:</b> ' + (data.services && data.services.length ? data.services.join(', ') : 'General') + '</p></div>'
-          + '<div style="background:#FFF8E7;border:1px solid #D4BC82;padding:14px;margin:16px 0;border-radius:8px">'
-          + '<p style="margin:0;color:#555">&#10003; All consents signed &amp; securely stored (HIPAA)</p></div>'
-          + '<p style="color:#555">Questions? info@healingsoulutions.care or (585) 747-2215</p>'
-          + '</div></div>';
+        L('Sending patient email to ' + data.email + '...');
+        var ckp = function (v) { return v ? '&#10003;' : '&#10007;'; };
 
-        await fetch('https://api.resend.com/emails', {
+        var ph = '<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;border:1px solid #ddd;border-radius:8px;overflow:hidden">';
+
+        // Header
+        ph += '<div style="background:#2E5A46;padding:24px;text-align:center">';
+        ph += '<h1 style="color:#D4BC82;margin:0;font-size:22px">Booking Confirmed</h1>';
+        ph += '<p style="color:rgba(255,255,255,0.7);margin:6px 0 0;font-size:13px">Healing Soulutions</p>';
+        ph += '</div>';
+
+        ph += '<div style="padding:20px">';
+        ph += '<p style="font-size:16px;color:#333">Dear ' + data.fname + ',</p>';
+        ph += '<p style="color:#555;line-height:1.6">Thank you for completing your intake. Our team will contact you within 24 hours to confirm your appointment.</p>';
+
+        // Appointment
+        ph += '<div style="background:#f9f9f9;border-left:4px solid #2E5A46;padding:16px;margin:16px 0;border-radius:8px">';
+        ph += '<h3 style="color:#2E5A46;margin:0 0 10px;font-size:15px">Appointment Details</h3>';
+        ph += '<p style="margin:4px 0"><b>Date:</b> ' + (data.date || 'TBD') + '</p>';
+        ph += '<p style="margin:4px 0"><b>Time:</b> ' + (data.selTime || 'TBD') + '</p>';
+        ph += '<p style="margin:4px 0"><b>Services:</b> ' + (data.services && data.services.length ? data.services.join(', ') : 'General Consultation') + '</p>';
+        ph += '</div>';
+
+        // Medical info on file
+        ph += '<div style="background:#f9f9f9;padding:16px;margin:16px 0;border-radius:8px">';
+        ph += '<h3 style="color:#2E5A46;margin:0 0 10px;font-size:15px">Your Medical Information on File</h3>';
+        ph += '<p style="margin:4px 0"><b>Medical History:</b> ' + (data.medicalHistory || 'None reported') + '</p>';
+        ph += '<p style="margin:4px 0"><b>Surgical History:</b> ' + (data.surgicalHistory || 'None reported') + '</p>';
+        ph += '<p style="margin:4px 0"><b>Medications:</b> ' + (data.medications || 'None reported') + '</p>';
+        ph += '<p style="margin:4px 0"><b>Allergies:</b> ' + (data.allergies || 'None reported') + '</p>';
+        ph += '</div>';
+
+        // Consents signed
+        ph += '<div style="background:#f9f9f9;padding:16px;margin:16px 0;border-radius:8px">';
+        ph += '<h3 style="color:#2E5A46;margin:0 0 10px;font-size:15px">Consent Forms Signed</h3>';
+        ph += '<p style="margin:4px 0">' + ckp(con.treatment) + ' Informed Consent for Treatment</p>';
+        ph += '<p style="margin:4px 0">' + ckp(con.hipaa) + ' HIPAA Notice of Privacy Practices</p>';
+        ph += '<p style="margin:4px 0">' + ckp(con.medical) + ' Medical History Authorization &amp; Release</p>';
+        ph += '<p style="margin:4px 0">' + ckp(con.financial) + ' Financial Agreement</p>';
+        ph += '</div>';
+
+        // Signature summary
+        ph += '<div style="background:#f9f9f9;padding:16px;margin:16px 0;border-radius:8px">';
+        ph += '<h3 style="color:#2E5A46;margin:0 0 10px;font-size:15px">Signatures</h3>';
+        var pSigDisplay = data.signature || 'Not provided';
+        if (pSigDisplay === 'drawn-signature') pSigDisplay = 'Drawn signature on file';
+        ph += '<p style="margin:4px 0"><b>Consent E-Signature:</b> ' + pSigDisplay + '</p>';
+        ph += '<p style="margin:4px 0"><b>Intake Acknowledgment:</b> ' + (data.intakeAcknowledged ? 'Acknowledged and signed' : 'Not acknowledged') + '</p>';
+        ph += '</div>';
+
+        // HIPAA secure box
+        ph += '<div style="background:#FFF8E7;border:1px solid #D4BC82;padding:14px;margin:16px 0;border-radius:8px">';
+        ph += '<p style="margin:0;color:#555;font-size:14px">&#10003; All consent forms signed and securely stored</p>';
+        ph += '<p style="margin:4px 0 0;color:#999;font-size:12px">Records stored on HIPAA-compliant server</p>';
+        ph += '</div>';
+
+        // Payment
+        ph += '<p style="font-size:13px;color:#999;margin:16px 0">Card on file: ' + (data.cardBrand || '') + ' ****' + (data.cardLast4 || 'N/A') + '</p>';
+
+        // Contact
+        ph += '<hr style="border:none;border-top:1px solid #eee;margin:20px 0">';
+        ph += '<p style="color:#555;font-size:14px">Questions? Email <a href="mailto:info@healingsoulutions.care" style="color:#2E5A46">info@healingsoulutions.care</a> or call <a href="tel:5857472215" style="color:#2E5A46">(585) 747-2215</a></p>';
+        ph += '</div>';
+
+        // Footer
+        ph += '<div style="background:#2E5A46;padding:12px;text-align:center;font-size:11px;color:rgba(255,255,255,0.5)">Healing Soulutions | Concierge Nursing Care</div>';
+        ph += '</div>';
+
+        var pRes = await fetch('https://api.resend.com/emails', {
           method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + RESEND_KEY, 'Content-Type': 'application/json' },
+          headers: { 'Authorization': 'Bearer ' + resendKey, 'Content-Type': 'application/json' },
           body: JSON.stringify({
             from: 'Healing Soulutions <bookings@healingsoulutions.care>',
             to: [data.email],
-            subject: 'Booking Confirmed - Healing Soulutions',
-            html: phtml, reply_to: 'info@healingsoulutions.care',
+            subject: 'Booking Confirmed — Healing Soulutions',
+            html: ph,
+            reply_to: 'info@healingsoulutions.care',
           }),
         });
-        L('Patient email sent');
-      } catch (e) { L('Patient email error: ' + e.message); }
+        var pResBody = await pRes.text();
+        L('PATIENT EMAIL: HTTP ' + pRes.status + ' — ' + pResBody.substring(0, 200));
+        patOk = pRes.ok;
+        if (!pRes.ok) L('PATIENT EMAIL FAILED: ' + pResBody);
+      } catch (pe) {
+        L('PATIENT EMAIL ERROR: ' + pe.message);
+      }
     }
+  }
 
-    L('DONE');
-    global._lastIntakeResult = { time: new Date().toISOString(), clientId: clientId, log: log };
+  /* ════════════════════════════════════════════════
+     RESPONSE
+     ════════════════════════════════════════════════ */
+  L('DONE — IQ:' + iqOk + ' BizEmail:' + bizOk + ' PatientEmail:' + patOk);
+  global._lastIQ = { ts: now.toISOString(), clientId: clientId, iqOk: iqOk, bizOk: bizOk, patOk: patOk, log: log };
 
-    return res.status(200).json({
-      success: true,
+  // Return 500 if IntakeQ save failed (when API key was set)
+  if (apiKey && !iqOk) {
+    return res.status(500).json({
+      error: 'IntakeQ save failed.',
+      iqOk: false, bizOk: bizOk, patOk: patOk,
       clientId: clientId,
-      message: 'Saved to IntakeQ.',
       log: log,
     });
-
-  } catch (err) {
-    L('CRITICAL ERROR: ' + err.message);
-    console.error(err);
-    global._lastIntakeResult = { time: new Date().toISOString(), error: err.message, log: log };
-    return res.status(500).json({ error: err.message, log: log });
   }
+
+  return res.status(200).json({
+    success: true,
+    iqOk: iqOk, bizOk: bizOk, patOk: patOk,
+    clientId: clientId,
+    log: log,
+  });
 }
