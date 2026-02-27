@@ -75,22 +75,22 @@ export default async function handler(req, res) {
     results.push({ test: '4. IntakeQ CREATE CLIENT', pass: false, detail: 'SKIPPED — no API key' });
   }
 
-  /* ── TEST 5: IntakeQ update client (PUT - same as test-email.js) ── */
+  /* ── TEST 5: IntakeQ update client (POST with ClientId) ── */
   if (apiKey && testClientId) {
     try {
       var uRes = await fetch('https://intakeq.com/api/v1/clients', {
-        method: 'PUT',
+        method: 'POST',
         headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ClientId: testClientId,
           FirstName: 'DiagTest',
           LastName: 'AutoCheck',
-          AdditionalInformation: 'DIAGNOSTIC TEST — ' + new Date().toISOString() + '\n\nUPDATED via PUT — this proves updates work.\nMedical History: Updated\nAll Consents: AGREED',
+          AdditionalInformation: 'DIAGNOSTIC TEST — ' + new Date().toISOString() + '\n\nUPDATED via POST with ClientId — this proves updates work.\nMedical History: Updated\nAll Consents: AGREED',
         }),
       });
       var uText = await uRes.text();
       results.push({
-        test: '5. IntakeQ UPDATE CLIENT (PUT /clients — same as test-email.js)',
+        test: '5. IntakeQ UPDATE CLIENT (POST /clients with ClientId)',
         pass: uRes.ok,
         httpStatus: uRes.status,
         responsePreview: uText.substring(0, 300),
