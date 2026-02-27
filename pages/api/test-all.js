@@ -85,6 +85,7 @@ export default async function handler(req, res) {
           ClientId: testClientId,
           FirstName: 'DiagTest',
           LastName: 'AutoCheck',
+          Email: 'diag-' + Date.now() + '@test.healingsoulutions.care',
           AdditionalInformation: 'DIAGNOSTIC TEST — ' + new Date().toISOString() + '\n\nUPDATED via POST with ClientId — this proves updates work.\nMedical History: Updated\nAll Consents: AGREED',
         }),
       });
