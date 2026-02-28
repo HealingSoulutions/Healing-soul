@@ -341,10 +341,10 @@ function HomePage({ setPage }) {
         <div className="hero-content">
           <div className="hero-text-panel">
             <h1 style={{ textAlign: 'center', fontSize: 'clamp(1.2rem,2.2vw,1.8rem)', marginTop: '0.5rem' }}>
-              <em style={{ fontWeight: 700, fontStyle: 'italic' }}>We bring healing to you..</em>
+              <em style={{ fontWeight: 700, fontStyle: 'italic' }}>We bring healing to youâ€¦</em>
             </h1>
             <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: '0.75rem' }}>
-              Experienced, compassionate care that comes to you. Healing means more than treating illness; it means nurturing the whole person with dignity, expertise, and heart.
+              Experienced, compassionate care that comes to you. Healing means more than treating symptoms â€” it means nurturing the whole person with dignity, expertise, and heart.
             </p>
             <div style={{ margin: '1rem 0 0.5rem' }}><LotusIcon size={60} /></div>
             <div style={{ width: 40, height: 1.5, background: 'var(--gold-soft)', margin: '0 auto' }} />
@@ -476,11 +476,17 @@ function ContactPage({ setPage }) {
   const [step, setStep] = useState(1);
   const [selTime, setSelTime] = useState(null);
   const [form, setForm] = useState({
-    fname: '', lname: '', email: '', phone: '', address: '', date: '',
-    services: [], notes: '', medicalHistory: '', surgicalHistory: '',
-    medications: '', allergies: '', clinicianNotes: '',
+    fname: '', lname: '', email: '', phone: '',
+    address1: '', address2: '', city: '', state: '', country: 'United States', zipCode: '',
+    date: '', services: [], notes: '',
+    medicalSurgicalHistory: '', medications: '', allergies: '',
+    ivReactions: '', clinicianNotes: '',
   });
   const [consents, setConsents] = useState({ treatment: false, hipaa: false, financial: false, medical: false });
+  const [consentSigs, setConsentSigs] = useState({ treatment: '', hipaa: '', medical: '', financial: '' });
+  const [consentSigModes, setConsentSigModes] = useState({ treatment: 'type', hipaa: 'type', medical: 'type', financial: 'type' });
+  const [consentDrawPoints, setConsentDrawPoints] = useState({ treatment: [], hipaa: [], medical: [], financial: [] });
+  const [consentDrawing, setConsentDrawing] = useState({ treatment: false, hipaa: false, medical: false, financial: false });
   const [signature, setSignature] = useState('');
   const [sigMode, setSigMode] = useState('type');
   const [cardInfo, setCardInfo] = useState({ name: '', number: '', exp: '', cvc: '' });
@@ -498,10 +504,6 @@ function ContactPage({ setPage }) {
   const [intakeSigMode, setIntakeSigMode] = useState('type');
   const [intakeDrawing, setIntakeDrawing] = useState(false);
   const [intakeDrawPoints, setIntakeDrawPoints] = useState([]);
-  const [consentTimestamps, setConsentTimestamps] = useState({});
-  const [submitError, setSubmitError] = useState('');
-  const intakeCanvasRef = useRef(null);
-  const consentDrawRef = useRef(null);
 
   // â”€â”€ Stripe State â”€â”€
   const stripeRef = useRef(null);
@@ -529,51 +531,9 @@ function ContactPage({ setPage }) {
     : paymentComplete;
 
   // â”€â”€ Patient helpers â”€â”€
-  var emptyPatient = function () { return { id: Date.now(), fname: '', lname: '', services: [], medicalHistory: '', surgicalHistory: '', medications: '', allergies: '', clinicianNotes: '' }; };
+  var emptyPatient = function () { return { id: Date.now(), fname: '', lname: '', services: [], address1: '', address2: '', city: '', state: '', country: 'United States', zipCode: '', medicalSurgicalHistory: '', medications: '', allergies: '', ivReactions: '', clinicianNotes: '' }; };
   var addPatient = function () { setAdditionalPatients(function (prev) { return [...prev, emptyPatient()]; }); };
   var removePatient = function (id) { setAdditionalPatients(function (prev) { return prev.filter(function (p) { return p.id !== id; }); }); };
-
-  /* â”€â”€ Signature capture helpers â”€â”€ */
-  var textToImage = function (text, font) {
-    try {
-      var cv = document.createElement('canvas'); cv.width = 500; cv.height = 120;
-      var ctx = cv.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, 500, 120);
-      ctx.font = font || 'italic 32px Georgia, serif';
-      ctx.fillStyle = '#2E5A46'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText(text, 250, 60); return cv.toDataURL('image/png');
-    } catch (e) { return null; }
-  };
-  var captureConsentSig = function () {
-    if (signature === 'drawn-signature' && drawPoints.length > 1) {
-      try {
-        var cv = document.createElement('canvas'); cv.width = 500; cv.height = 120;
-        var ctx = cv.getContext('2d'); ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, 500, 120);
-        ctx.strokeStyle = '#2E5A46'; ctx.lineWidth = 2; ctx.lineCap = 'round';
-        var el = consentDrawRef.current; if (!el) return textToImage('drawn');
-        var box = el.getBoundingClientRect(); var sx = 500 / (box.width || 1); var sy = 120 / (box.height || 1);
-        ctx.beginPath();
-        drawPoints.forEach(function (p, i) { if (i === 0) ctx.moveTo(p.x * sx, p.y * sy); else ctx.lineTo(p.x * sx, p.y * sy); });
-        ctx.stroke(); return cv.toDataURL('image/png');
-      } catch (e) { return null; }
-    }
-    if (signature && signature !== 'drawn-signature') return textToImage(signature);
-    return null;
-  };
-  var captureIntakeSig = function () {
-    if (intakeCanvasRef.current && intakeSignature === 'drawn_intake_sig') {
-      try { return intakeCanvasRef.current.toDataURL('image/png'); } catch (e) { return null; }
-    }
-    if (intakeSignature && intakeSignature !== 'drawn_intake_sig') return textToImage(intakeSignature);
-    return null;
-  };
-
-  /* â”€â”€ Track consent timestamps for HIPAA audit â”€â”€ */
-  var handleConsentChange = function (key, checked) {
-    setConsents(function (prev) { var n = Object.assign({}, prev); n[key] = checked; return n; });
-    if (checked) {
-      setConsentTimestamps(function (prev) { var n = Object.assign({}, prev); n[key] = new Date().toISOString(); return n; });
-    }
-  };
   var updatePatient = function (id, field, val) { setAdditionalPatients(function (prev) { return prev.map(function (p) { if (p.id === id) { var u = { ...p }; u[field] = val; return u; } return p; }); }); };
   var toggleService = function (currentServices, title) {
     if (currentServices.indexOf(title) >= 0) return currentServices.filter(function (s) { return s !== title; });
@@ -710,51 +670,89 @@ function ContactPage({ setPage }) {
 
   // â”€â”€ Submit to IntakeQ (HIPAA-secure) â”€â”€
   var submitToIntakeQ = async function (cardBrandVal, cardLast4Val, pmId) {
-    setSubmitError('');
+    // Capture consent signature images
+    var consentSigImages = {};
+    ['treatment', 'hipaa', 'medical', 'financial'].forEach(function (key) {
+      if (consentSigs[key]) {
+        if (consentSigModes[key] === 'draw') {
+          // Try to capture canvas image
+          var canvasEl = document.querySelector('[data-consent-canvas="' + key + '"]');
+          if (canvasEl) {
+            try { consentSigImages[key] = { type: 'drawn', image: canvasEl.toDataURL('image/png') }; } catch (e) { consentSigImages[key] = { type: 'drawn', image: null }; }
+          }
+        } else {
+          consentSigImages[key] = { type: 'typed', text: consentSigs[key] };
+        }
+      }
+    });
+    // Capture intake signature image
+    var intakeSigImage = null;
+    if (intakeSignature) {
+      if (intakeSigMode === 'draw') {
+        var intakeCanvas = document.querySelector('[data-sig-canvas="intake"]');
+        if (intakeCanvas) {
+          try { intakeSigImage = { type: 'drawn', image: intakeCanvas.toDataURL('image/png') }; } catch (e) { intakeSigImage = { type: 'drawn', image: null }; }
+        }
+      } else {
+        intakeSigImage = { type: 'typed', text: intakeSignature };
+      }
+    }
+    // Capture consent form (step 2) overall signature image
+    var consentFormSigImage = null;
+    if (signature) {
+      if (sigMode === 'draw' && drawPoints.length > 0) {
+        // SVG-based drawing â€” render to temporary canvas for image capture
+        try {
+          var tmpCanvas = document.createElement('canvas');
+          tmpCanvas.width = 500; tmpCanvas.height = 120;
+          var tmpCtx = tmpCanvas.getContext('2d');
+          tmpCtx.fillStyle = '#FFFFFF'; tmpCtx.fillRect(0, 0, 500, 120);
+          tmpCtx.strokeStyle = '#2E5A46'; tmpCtx.lineWidth = 2; tmpCtx.lineCap = 'round'; tmpCtx.lineJoin = 'round';
+          if (drawPoints.length > 1) { tmpCtx.beginPath(); tmpCtx.moveTo(drawPoints[0].x * (500 / 300), drawPoints[0].y); for (var dp = 1; dp < drawPoints.length; dp++) { tmpCtx.lineTo(drawPoints[dp].x * (500 / 300), drawPoints[dp].y); } tmpCtx.stroke(); }
+          consentFormSigImage = { type: 'drawn', image: tmpCanvas.toDataURL('image/png') };
+        } catch (e) { consentFormSigImage = { type: 'drawn', image: null }; }
+      } else {
+        consentFormSigImage = { type: 'typed', text: signature };
+      }
+    }
+    var fullAddress = [form.address1, form.address2, form.city, form.state, form.zipCode, form.country].filter(Boolean).join(', ');
     try {
-      var consentSigImg = captureConsentSig();
-      var intakeSigImg = captureIntakeSig();
-
-      var response = await fetch('/api/submit-intake', {
+      await fetch('/api/submit-intake', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           fname: form.fname, lname: form.lname, email: form.email, phone: form.phone,
-          address: form.address, date: form.date, selTime: selTime,
+          address: fullAddress,
+          address1: form.address1, address2: form.address2, city: form.city,
+          state: form.state, country: form.country, zipCode: form.zipCode,
+          date: form.date, selTime: selTime,
           services: form.services, notes: form.notes,
-          medicalHistory: form.medicalHistory, surgicalHistory: form.surgicalHistory,
+          medicalSurgicalHistory: form.medicalSurgicalHistory,
           medications: form.medications, allergies: form.allergies,
-          clinicianNotes: form.clinicianNotes,
-          consents: consents, consentTimestamps: consentTimestamps,
-          signature: signature,
-          signatureType: signature === 'drawn-signature' ? 'drawn' : (signature ? 'typed' : 'none'),
-          signatureImageData: consentSigImg,
+          ivReactions: form.ivReactions, clinicianNotes: form.clinicianNotes,
+          consents: consents, signature: signature,
+          consentSignatures: consentSigImages,
+          consentFormSignature: consentFormSigImage,
           intakeAcknowledged: intakeAcknowledged, intakeSignature: intakeSignature,
-          intakeSignatureType: intakeSignature === 'drawn_intake_sig' ? 'drawn' : (intakeSignature ? 'typed' : 'none'),
-          intakeSignatureImageData: intakeSigImg,
+          intakeSignatureImage: intakeSigImage,
           cardHolderName: cardHolderName, cardBrand: cardBrandVal || '',
           cardLast4: cardLast4Val || '', stripePaymentMethodId: pmId || '',
-          additionalPatients: additionalPatients,
+          additionalPatients: additionalPatients.map(function (pt) {
+            var ptAddr = [pt.address1, pt.address2, pt.city, pt.state, pt.zipCode, pt.country].filter(Boolean).join(', ');
+            return {
+              fname: pt.fname, lname: pt.lname, services: pt.services,
+              address: ptAddr,
+              address1: pt.address1, address2: pt.address2, city: pt.city,
+              state: pt.state, country: pt.country, zipCode: pt.zipCode,
+              medicalSurgicalHistory: pt.medicalSurgicalHistory,
+              medications: pt.medications, allergies: pt.allergies,
+              ivReactions: pt.ivReactions, clinicianNotes: pt.clinicianNotes,
+            };
+          }),
         }),
       });
-
-      var result = {};
-      try { result = await response.json(); } catch (e) {}
-
-      if (result.log) console.log('Server log:', result.log);
-
-      if (!response.ok) {
-        console.error('Submit failed:', response.status, result);
-        setSubmitError('Your booking may not have saved. Please call (585) 747-2215 to confirm. Error: ' + (result.error || response.status));
-        return false;
-      }
-
-      console.log('Submit OK:', result);
-      return true;
     } catch (e) {
-      console.error('Submit error:', e);
-      setSubmitError('Could not reach the server. Please call (585) 747-2215 to confirm your booking.');
-      return false;
+      console.error('IntakeQ submit error:', e);
     }
   };
 
@@ -773,7 +771,7 @@ function ContactPage({ setPage }) {
       if (yy < cy || (yy === cy && mm < cm)) { setStripeError('Card is expired.'); setIsValidating(false); return; }
       setCardBrand(detectedBrand);
       setCardInfo({ ...cardInfo, number: '****' + raw.slice(-4), name: cardHolderName });
-      await submitToIntakeQ(detectedBrand, raw.slice(-4), 'fallback');
+      submitToIntakeQ(detectedBrand, raw.slice(-4), 'fallback');
       setIsValidating(false); setEmailStatus('sent'); goToStep(4); return;
     }
     if (!stripeRef.current || !elementsRef.current || !setupClientSecret) { setStripeError('Payment system not ready. Please wait or refresh.'); setIsValidating(false); return; }
@@ -814,7 +812,7 @@ function ContactPage({ setPage }) {
 
       setCardBrand(verifyData.brand || '');
       setCardInfo({ ...cardInfo, number: verifyData.last4 ? '****' + verifyData.last4 : (verifyData.brand || 'Payment method'), name: cardHolderName });
-      await submitToIntakeQ(verifyData.brand || '', verifyData.last4 || '', verifyData.paymentMethodId || '');
+      submitToIntakeQ(verifyData.brand || '', verifyData.last4 || '', verifyData.paymentMethodId || '');
       setIsValidating(false); setEmailStatus('sent'); goToStep(4);
     } catch (e) {
       setStripeError(e.message === 'Failed to fetch' ? 'Could not reach payment server.' : 'Payment error: ' + (e.message || 'Please try again.'));
@@ -826,8 +824,8 @@ function ContactPage({ setPage }) {
   var stepTitles = { 1: 'Appointment Information', 2: 'Consent Forms', 3: 'Card on File', 4: 'Confirmation' };
   useEffect(function () { setStepAnnouncement('Step ' + step + ' of 4: ' + stepTitles[step]); if (stepHeadingRef.current) stepHeadingRef.current.focus(); }, [step]);
 
-  var allConsentsChecked = consents.treatment && consents.hipaa && consents.medical && signature.length > 0;
-  var cardValid = cardHolderName.trim().length > 0 && cardComplete && consents.financial;
+  var allConsentsChecked = consents.treatment && consents.hipaa && consents.medical && signature.length > 0 && consentSigs.treatment && consentSigs.hipaa && consentSigs.medical;
+  var cardValid = cardHolderName.trim().length > 0 && cardComplete && consents.financial && consentSigs.financial;
 
   var TS = { fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.68rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', textAlign: 'center', marginBottom: '0.3rem' };
   var LS = { color: 'rgba(255,255,255,0.85)', fontFamily: "'Outfit',sans-serif", fontSize: '0.7rem', fontWeight: 500 };
@@ -897,6 +895,11 @@ function ContactPage({ setPage }) {
   // â”€â”€ Consent renderer â”€â”€
   var renderConsent = function (cf) {
     var paragraphs = cf.text.split('\n\n').filter(function (p) { return p.trim(); });
+    var csKey = cf.key;
+    var csMode = consentSigModes[csKey] || 'type';
+    var csSig = consentSigs[csKey] || '';
+    var csPoints = consentDrawPoints[csKey] || [];
+    var csIsDrawing = consentDrawing[csKey] || false;
     return (
       <div key={cf.key} style={{ marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '1.5rem' }}>
         <h3 style={{ fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{cf.title}</h3>
@@ -907,10 +910,39 @@ function ContactPage({ setPage }) {
             return <p key={i} style={{ fontSize: '0.5rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', fontFamily: "'Outfit',sans-serif", marginBottom: '0.6rem' }}>{para}</p>;
           })}
         </div>
-        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-          <input type="checkbox" checked={consents[cf.key]} onChange={(e) => handleConsentChange(cf.key, e.target.checked)} style={{ marginTop: '0.15rem', accentColor: '#7FD4A0' }} />
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '0.75rem' }}>
+          <input type="checkbox" checked={consents[cf.key]} onChange={(e) => setConsents({ ...consents, [cf.key]: e.target.checked })} style={{ marginTop: '0.15rem', accentColor: '#7FD4A0' }} />
           <label style={{ fontSize: '0.58rem', color: 'rgba(255,255,255,0.8)', fontFamily: "'Outfit',sans-serif", lineHeight: 1.5 }}>I have read, understand, and agree to the {cf.title}</label>
         </div>
+        {consents[cf.key] && (
+          <div style={{ background: 'rgba(0,0,0,0.1)', borderRadius: '8px', padding: '0.85rem', marginTop: '0.5rem' }}>
+            <label style={{ ...LS, marginBottom: '0.4rem', display: 'block', fontSize: '0.52rem' }}>Signature for {cf.title} <span style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.35)' }}>(required)</span></label>
+            <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
+              <button onClick={() => setConsentSigModes({ ...consentSigModes, [csKey]: 'type' })} style={{ padding: '0.3rem 0.6rem', fontSize: '0.45rem', fontFamily: "'Outfit',sans-serif", fontWeight: 600, background: csMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)', color: csMode === 'type' ? '#2E5A46' : 'rgba(255,255,255,0.6)', border: '1px solid ' + (csMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)'), borderRadius: '6px', cursor: 'pointer' }}>Type</button>
+              <button onClick={() => setConsentSigModes({ ...consentSigModes, [csKey]: 'draw' })} style={{ padding: '0.3rem 0.6rem', fontSize: '0.45rem', fontFamily: "'Outfit',sans-serif", fontWeight: 600, background: csMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)', color: csMode === 'draw' ? '#2E5A46' : 'rgba(255,255,255,0.6)', border: '1px solid ' + (csMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)'), borderRadius: '6px', cursor: 'pointer' }}>Draw</button>
+            </div>
+            {csMode === 'type' ? (
+              <div>
+                <input type="text" placeholder="Type your full legal name" value={csSig === 'drawn_' + csKey ? '' : csSig} onChange={(e) => setConsentSigs({ ...consentSigs, [csKey]: e.target.value })} style={{ ...IS, fontFamily: "'Cormorant Garamond',serif", fontSize: '1rem', fontStyle: 'italic', fontWeight: 500 }} />
+                {csSig && csSig !== 'drawn_' + csKey && (<div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: '6px', padding: '0.6rem', textAlign: 'center', marginTop: '0.4rem' }}><p style={{ fontSize: '0.4rem', color: '#999', marginBottom: '0.2rem', fontFamily: "'Outfit',sans-serif" }}>Signature Preview</p><p style={{ fontFamily: 'Georgia,serif', fontSize: '1rem', color: '#2E5A46', fontStyle: 'italic' }}>{csSig}</p></div>)}
+              </div>
+            ) : (
+              <div style={{ position: 'relative' }}>
+                <canvas data-consent-canvas={csKey} width={500} height={120} style={{ width: '100%', height: '70px', background: 'rgba(0,0,0,0.15)', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.15)', cursor: 'crosshair' }}
+                  onMouseDown={(e) => { setConsentDrawing({ ...consentDrawing, [csKey]: true }); var r = e.target.getBoundingClientRect(); setConsentDrawPoints({ ...consentDrawPoints, [csKey]: [{ x: e.clientX - r.left, y: e.clientY - r.top }] }); }}
+                  onMouseMove={(e) => { if (!consentDrawing[csKey]) return; var r = e.target.getBoundingClientRect(); var np = [...(consentDrawPoints[csKey] || []), { x: e.clientX - r.left, y: e.clientY - r.top }]; setConsentDrawPoints({ ...consentDrawPoints, [csKey]: np }); var ctx = e.target.getContext('2d'); ctx.strokeStyle = '#D4BC82'; ctx.lineWidth = 2; ctx.lineCap = 'round'; if (np.length >= 2) { ctx.beginPath(); ctx.moveTo(np[np.length - 2].x * (500 / e.target.offsetWidth), np[np.length - 2].y * (120 / e.target.offsetHeight)); ctx.lineTo(np[np.length - 1].x * (500 / e.target.offsetWidth), np[np.length - 1].y * (120 / e.target.offsetHeight)); ctx.stroke(); } }}
+                  onMouseUp={() => { setConsentDrawing({ ...consentDrawing, [csKey]: false }); if ((consentDrawPoints[csKey] || []).length > 2) setConsentSigs({ ...consentSigs, [csKey]: 'drawn_' + csKey }); }}
+                  onMouseLeave={() => setConsentDrawing({ ...consentDrawing, [csKey]: false })}
+                  onTouchStart={(e) => { e.preventDefault(); var t = e.touches[0]; var r = e.target.getBoundingClientRect(); setConsentDrawing({ ...consentDrawing, [csKey]: true }); setConsentDrawPoints({ ...consentDrawPoints, [csKey]: [{ x: t.clientX - r.left, y: t.clientY - r.top }] }); }}
+                  onTouchMove={(e) => { e.preventDefault(); if (!consentDrawing[csKey]) return; var t = e.touches[0]; var r = e.target.getBoundingClientRect(); var np = [...(consentDrawPoints[csKey] || []), { x: t.clientX - r.left, y: t.clientY - r.top }]; setConsentDrawPoints({ ...consentDrawPoints, [csKey]: np }); var ctx = e.target.getContext('2d'); ctx.strokeStyle = '#D4BC82'; ctx.lineWidth = 2; ctx.lineCap = 'round'; if (np.length >= 2) { ctx.beginPath(); ctx.moveTo(np[np.length - 2].x * (500 / e.target.offsetWidth), np[np.length - 2].y * (120 / e.target.offsetHeight)); ctx.lineTo(np[np.length - 1].x * (500 / e.target.offsetWidth), np[np.length - 1].y * (120 / e.target.offsetHeight)); ctx.stroke(); } }}
+                  onTouchEnd={() => { setConsentDrawing({ ...consentDrawing, [csKey]: false }); if ((consentDrawPoints[csKey] || []).length > 2) setConsentSigs({ ...consentSigs, [csKey]: 'drawn_' + csKey }); }}
+                />
+                <button onClick={(e) => { setConsentDrawPoints({ ...consentDrawPoints, [csKey]: [] }); setConsentSigs({ ...consentSigs, [csKey]: '' }); var c = e.target.closest('div').querySelector('canvas'); if (c) { var ctx = c.getContext('2d'); ctx.clearRect(0, 0, 500, 120); } }} style={{ position: 'absolute', top: '0.3rem', right: '0.3rem', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '4px', color: 'rgba(255,255,255,0.5)', fontSize: '0.38rem', padding: '0.15rem 0.35rem', cursor: 'pointer', fontFamily: "'Outfit',sans-serif" }}>Clear</button>
+              </div>
+            )}
+            {csSig && <p style={{ fontFamily: "'Outfit',sans-serif", fontSize: '0.4rem', color: '#7FD4A0', marginTop: '0.25rem', display: 'flex', alignItems: 'center', gap: '0.2rem' }}><span>{'\u2713'}</span> Signature captured</p>}
+          </div>
+        )}
       </div>
     );
   };
@@ -996,13 +1028,22 @@ function ContactPage({ setPage }) {
                     <div className="form-group"><label style={LS}>Email</label><input type="email" placeholder="Email address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} style={IS} /></div>
                     <div className="form-group"><label style={LS}>Phone</label><input type="tel" placeholder="Phone number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} style={IS} /></div>
                   </div>
-                  <div className="form-row"><div className="form-group full"><label style={LS}>Address</label><input type="text" placeholder="Street address" value={form.address} onChange={(e) => setForm({ ...form, address: e.target.value })} style={IS} /></div></div>
+                  <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 1</label><input type="text" placeholder="Street address" value={form.address1} onChange={(e) => setForm({ ...form, address1: e.target.value })} style={IS} /></div></div>
+                  <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 2</label><input type="text" placeholder="Apt, suite, unit, etc. (optional)" value={form.address2} onChange={(e) => setForm({ ...form, address2: e.target.value })} style={IS} /></div></div>
+                  <div className="form-row">
+                    <div className="form-group"><label style={LS}>City</label><input type="text" placeholder="City" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} style={IS} /></div>
+                    <div className="form-group"><label style={LS}>State</label><input type="text" placeholder="State" value={form.state} onChange={(e) => setForm({ ...form, state: e.target.value })} style={IS} /></div>
+                  </div>
+                  <div className="form-row">
+                    <div className="form-group"><label style={LS}>Country</label><input type="text" placeholder="Country" value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} style={IS} /></div>
+                    <div className="form-group"><label style={LS}>Zip Code</label><input type="text" placeholder="Zip code" value={form.zipCode} onChange={(e) => setForm({ ...form, zipCode: e.target.value })} style={IS} /></div>
+                  </div>
                   <div className="form-row"><div className="form-group full"><label style={LS}>Additional Notes</label><textarea placeholder="Any additional notes..." value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} style={{ ...IS, minHeight: '60px', resize: 'vertical' }} /></div></div>
 
                   {/* Medical info */}
                   <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                     <h3 style={{ fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Medical Information</h3>
-                    {[{ id: 'medicalHistory', l: 'Medical History', p: 'List any medical conditions...' }, { id: 'surgicalHistory', l: 'Surgical History', p: 'List any past surgeries...' }, { id: 'medications', l: 'Current Medications', p: 'List all current medications...' }, { id: 'allergies', l: 'Allergies', p: 'List any known allergies...' }, { id: 'clinicianNotes', l: 'Additional Notes for Clinician', p: 'Any additional information...' }].map((f) => (
+                    {[{ id: 'medicalSurgicalHistory', l: 'Medical / Surgical History', p: 'List any medical conditions and past surgeries...' }, { id: 'medications', l: 'Current Medications', p: 'List all current medications...' }, { id: 'allergies', l: 'Allergies', p: 'List any known allergies...' }, { id: 'ivReactions', l: 'Previous IV Therapy Reactions', p: 'List any previous reactions to IV therapy...' }, { id: 'clinicianNotes', l: 'Additional Notes for Clinician', p: 'Any additional information...' }].map((f) => (
                       <div key={f.id} className="form-row"><div className="form-group full"><label style={LS}>{f.l}</label><textarea placeholder={f.p} value={form[f.id]} onChange={(e) => setForm({ ...form, [f.id]: e.target.value })} style={medIS} /></div></div>
                     ))}
                   </div>
@@ -1025,11 +1066,21 @@ function ContactPage({ setPage }) {
                         <div className="form-group"><label style={LS}>First Name</label><input type="text" placeholder="First name" value={pt.fname} onChange={(e) => updatePatient(pt.id, 'fname', e.target.value)} style={IS} /></div>
                         <div className="form-group"><label style={LS}>Last Name</label><input type="text" placeholder="Last name" value={pt.lname} onChange={(e) => updatePatient(pt.id, 'lname', e.target.value)} style={IS} /></div>
                       </div>
+                      <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 1</label><input type="text" placeholder="Street address" value={pt.address1} onChange={(e) => updatePatient(pt.id, 'address1', e.target.value)} style={IS} /></div></div>
+                      <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 2</label><input type="text" placeholder="Apt, suite, unit, etc. (optional)" value={pt.address2} onChange={(e) => updatePatient(pt.id, 'address2', e.target.value)} style={IS} /></div></div>
+                      <div className="form-row">
+                        <div className="form-group"><label style={LS}>City</label><input type="text" placeholder="City" value={pt.city} onChange={(e) => updatePatient(pt.id, 'city', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>State</label><input type="text" placeholder="State" value={pt.state} onChange={(e) => updatePatient(pt.id, 'state', e.target.value)} style={IS} /></div>
+                      </div>
+                      <div className="form-row">
+                        <div className="form-group"><label style={LS}>Country</label><input type="text" placeholder="Country" value={pt.country} onChange={(e) => updatePatient(pt.id, 'country', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>Zip Code</label><input type="text" placeholder="Zip code" value={pt.zipCode} onChange={(e) => updatePatient(pt.id, 'zipCode', e.target.value)} style={IS} /></div>
+                      </div>
                       <div style={{ marginTop: '0.5rem' }}>
                         <label style={{ ...LS, marginBottom: '0.4rem', display: 'block' }}>Services Needed</label>
                         {renderServicePicker(pt.services, (title) => updatePatient(pt.id, 'services', toggleService(pt.services, title)))}
                       </div>
-                      {[{ id: 'medicalHistory', l: 'Medical History', p: 'List any medical conditions...' }, { id: 'surgicalHistory', l: 'Surgical History', p: 'List any past surgeries...' }, { id: 'medications', l: 'Current Medications', p: 'List all current medications...' }, { id: 'allergies', l: 'Allergies', p: 'List any known allergies...' }, { id: 'clinicianNotes', l: 'Notes for Clinician', p: 'Any additional information...' }].map((f) => (
+                      {[{ id: 'medicalSurgicalHistory', l: 'Medical / Surgical History', p: 'List any medical conditions and past surgeries...' }, { id: 'medications', l: 'Current Medications', p: 'List all current medications...' }, { id: 'allergies', l: 'Allergies', p: 'List any known allergies...' }, { id: 'ivReactions', l: 'Previous IV Therapy Reactions', p: 'List any previous reactions to IV therapy...' }, { id: 'clinicianNotes', l: 'Notes for Clinician', p: 'Any additional information...' }].map((f) => (
                         <div key={f.id} className="form-row"><div className="form-group full"><label style={LS}>{f.l}</label><textarea placeholder={f.p} value={pt[f.id]} onChange={(e) => updatePatient(pt.id, f.id, e.target.value)} style={medIS} /></div></div>
                       ))}
                     </div>
@@ -1072,7 +1123,7 @@ function ContactPage({ setPage }) {
                       <input type="text" placeholder="Type your full legal name" value={intakeSignature} onChange={(e) => setIntakeSignature(e.target.value)} style={{ ...IS, fontFamily: "'Cormorant Garamond',serif", fontSize: '1.1rem', fontStyle: 'italic', fontWeight: 500 }} />
                     ) : (
                       <div style={{ position: 'relative' }}>
-                        <canvas ref={intakeCanvasRef} width={500} height={120} style={{ width: '100%', height: '80px', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', cursor: 'crosshair' }}
+                        <canvas data-sig-canvas="intake" width={500} height={120} style={{ width: '100%', height: '80px', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', cursor: 'crosshair' }}
                           onMouseDown={(e) => { setIntakeDrawing(true); var r = e.target.getBoundingClientRect(); setIntakeDrawPoints([{ x: e.clientX - r.left, y: e.clientY - r.top }]); }}
                           onMouseMove={(e) => { if (!intakeDrawing) return; var r = e.target.getBoundingClientRect(); var np = [...intakeDrawPoints, { x: e.clientX - r.left, y: e.clientY - r.top }]; setIntakeDrawPoints(np); var ctx = e.target.getContext('2d'); ctx.strokeStyle = '#D4BC82'; ctx.lineWidth = 2; ctx.lineCap = 'round'; if (np.length >= 2) { ctx.beginPath(); ctx.moveTo(np[np.length - 2].x * (500 / e.target.offsetWidth), np[np.length - 2].y * (120 / e.target.offsetHeight)); ctx.lineTo(np[np.length - 1].x * (500 / e.target.offsetWidth), np[np.length - 1].y * (120 / e.target.offsetHeight)); ctx.stroke(); } }}
                           onMouseUp={() => { setIntakeDrawing(false); if (intakeDrawPoints.length > 2) setIntakeSignature('drawn_intake_sig'); }}
@@ -1112,7 +1163,7 @@ function ContactPage({ setPage }) {
                   </div>
                 ) : (
                   <div>
-                    <div ref={consentDrawRef} style={{ background: 'rgba(255,255,255,0.95)', borderRadius: '8px', height: '120px', position: 'relative', cursor: 'crosshair', touchAction: 'none' }}
+                    <div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: '8px', height: '120px', position: 'relative', cursor: 'crosshair', touchAction: 'none' }}
                       onPointerDown={(e) => { e.preventDefault(); e.currentTarget.setPointerCapture(e.pointerId); setIsDrawing(true); var r = e.currentTarget.getBoundingClientRect(); setDrawPoints([{ x: e.clientX - r.left, y: e.clientY - r.top }]); }}
                       onPointerMove={(e) => { if (!isDrawing) return; e.preventDefault(); var r = e.currentTarget.getBoundingClientRect(); setDrawPoints((p) => [...p, { x: e.clientX - r.left, y: e.clientY - r.top }]); }}
                       onPointerUp={(e) => { setIsDrawing(false); e.currentTarget.releasePointerCapture(e.pointerId); if (drawPoints.length > 3) setSignature('drawn-signature'); }}
@@ -1127,7 +1178,8 @@ function ContactPage({ setPage }) {
               <div style={{ marginTop: '1.25rem', padding: '0.75rem', background: 'rgba(0,0,0,0.15)', borderRadius: '8px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.3rem' }}>
                   {consentForms.map((cf) => (<div key={cf.key} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.55rem', color: consents[cf.key] ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{consents[cf.key] ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.45rem', color: consents[cf.key] ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Outfit',sans-serif" }}>{cf.title}</span></div>))}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.55rem', color: signature ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{signature ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.45rem', color: signature ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Outfit',sans-serif" }}>E-Signature</span></div>
+                  {consentForms.map((cf) => (<div key={cf.key + '-sig'} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.55rem', color: consentSigs[cf.key] ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{consentSigs[cf.key] ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.45rem', color: consentSigs[cf.key] ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Outfit',sans-serif" }}>{cf.title} Signature</span></div>))}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.55rem', color: signature ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{signature ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.45rem', color: signature ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Outfit',sans-serif" }}>Overall E-Signature</span></div>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
@@ -1144,21 +1196,21 @@ function ContactPage({ setPage }) {
               <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.6rem', textAlign: 'center', marginBottom: '0.5rem', fontFamily: "'Outfit',sans-serif" }}>A payment method on file is required to complete your booking.</p>
               <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.48rem', textAlign: 'center', marginBottom: '1.25rem', fontFamily: "'Outfit',sans-serif" }}>Pay with card, Apple Pay, Google Pay, or Venmo. A $0.01 verification charge may be applied and refunded.</p>
               {renderConsent({ key: 'financial', title: 'Financial Consent', text: CONSENT_FINANCIAL })}
-              <div style={{ background: 'rgba(0,0,0,0.15)', borderRadius: '12px', padding: '1.25rem' }}>
+              <div style={{ background: 'rgba(46,90,70,0.95)', borderRadius: '12px', padding: '1.25rem', border: '1px solid rgba(212,188,130,0.15)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
                   <span style={{ fontSize: '0.85rem' }}>{'\uD83D\uDD12'}</span>
-                  <span style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>{stripeFailed ? 'Secure Card Entry' : 'Secured by Stripe'}</span>
+                  <span style={{ fontSize: '0.48rem', color: 'var(--gold-soft)', fontFamily: "'Outfit',sans-serif" }}>{stripeFailed ? 'Secure Card Entry' : 'Secured by Stripe'}</span>
                 </div>
-                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Name on Account</label><input type="text" placeholder="Full name" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} style={IS} /></div>
+                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Name on Account</label><input type="text" placeholder="Full name" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} style={{ ...IS, color: '#D4BC82' }} /></div>
                 {stripeFailed ? (
                   <>
                     <div style={{ marginBottom: '1rem' }}>
-                      <label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Card Number</label>
-                      <input type="text" inputMode="numeric" placeholder="1234 5678 9012 3456" value={fallbackCardNum} onChange={(e) => handleFallbackNum(e.target.value)} style={IS} autoComplete="cc-number" />
+                      <label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Card Number</label>
+                      <input type="text" inputMode="numeric" placeholder="1234 5678 9012 3456" value={fallbackCardNum} onChange={(e) => handleFallbackNum(e.target.value)} style={{ ...IS, color: '#D4BC82' }} autoComplete="cc-number" />
                     </div>
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginBottom: '1rem' }}>
-                      <div><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Expiration Date</label><input type="text" inputMode="numeric" placeholder="MM / YY" value={fallbackCardExp} onChange={(e) => handleFallbackExp(e.target.value)} style={IS} autoComplete="cc-exp" /></div>
-                      <div><label style={{ display: 'block', color: 'rgba(255,255,255,0.6)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Security Code (CVC)</label><input type="text" inputMode="numeric" placeholder={detectedBrand === 'amex' ? '1234' : '123'} value={fallbackCardCvc} onChange={(e) => handleFallbackCvc(e.target.value)} style={IS} autoComplete="cc-csc" /></div>
+                      <div><label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Expiration Date</label><input type="text" inputMode="numeric" placeholder="MM / YY" value={fallbackCardExp} onChange={(e) => handleFallbackExp(e.target.value)} style={{ ...IS, color: '#D4BC82' }} autoComplete="cc-exp" /></div>
+                      <div><label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Security Code (CVC)</label><input type="text" inputMode="numeric" placeholder={detectedBrand === 'amex' ? '1234' : '123'} value={fallbackCardCvc} onChange={(e) => handleFallbackCvc(e.target.value)} style={{ ...IS, color: '#D4BC82' }} autoComplete="cc-csc" /></div>
                     </div>
                   </>
                 ) : (
@@ -1167,7 +1219,7 @@ function ContactPage({ setPage }) {
                 {!stripeReady && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}><span style={{ display: 'inline-block', width: '0.55rem', height: '0.55rem', border: '1.5px solid rgba(255,255,255,0.15)', borderTop: '1.5px solid var(--gold-soft)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} /><p style={{ fontSize: '0.45rem', color: 'rgba(255,255,255,0.35)', fontFamily: "'Outfit',sans-serif" }}>Loading payment options...</p></div>}
                 {cardComplete && cardHolderName.trim() && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.4rem 0.6rem', background: 'rgba(127,212,160,0.1)', borderRadius: '6px', marginBottom: '0.75rem' }}><span style={{ color: '#7FD4A0', fontSize: '0.5rem' }}>{'\u2713'}</span><p style={{ fontSize: '0.45rem', color: '#7FD4A0', fontFamily: "'Outfit',sans-serif" }}>Payment details complete</p></div>}
                 {stripeError && <div style={{ padding: '0.5rem 0.75rem', background: 'rgba(255,100,100,0.1)', border: '1px solid rgba(255,100,100,0.2)', borderRadius: '6px', marginBottom: '0.75rem' }}><p style={{ fontSize: '0.48rem', color: '#FF9B9B', fontFamily: "'Outfit',sans-serif" }}>{stripeError}</p></div>}
-                <p style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.3)', fontFamily: "'Outfit',sans-serif", lineHeight: 1.6, marginTop: '0.5rem' }}>Your payment information is handled directly by Stripe and never touches our servers.</p>
+                <p style={{ fontSize: '0.42rem', color: 'var(--gold-soft)', fontFamily: "'Outfit',sans-serif", lineHeight: 1.6, marginTop: '0.5rem', opacity: 0.7 }}>Your payment information is handled directly by Stripe and never touches our servers.</p>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.25rem' }}>
                 <button onClick={() => goToStep(2)} style={backBtn}>Back</button>
@@ -1186,7 +1238,6 @@ function ContactPage({ setPage }) {
               <h2 style={{ ...TS, fontSize: '0.75rem' }}>Booking Confirmed!</h2>
               <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.65rem', lineHeight: 1.7, textAlign: 'center', maxWidth: 400, margin: '0 auto 1.5rem', fontFamily: "'Outfit',sans-serif" }}>Your appointment has been successfully booked.</p>
               {emailStatus === 'sent' && <div style={{ padding: '0.5rem 1rem', background: 'rgba(127,212,160,0.15)', borderRadius: '8px', marginBottom: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.52rem', color: '#7FD4A0', fontFamily: "'Outfit',sans-serif" }}>{'\u2713'} Confirmation emails sent successfully</p></div>}
-              {submitError && <div style={{ padding: '0.75rem 1rem', background: 'rgba(255,80,80,0.15)', border: '1px solid rgba(255,80,80,0.3)', borderRadius: '8px', marginBottom: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.52rem', color: '#FF9B9B', fontFamily: "'Outfit',sans-serif", lineHeight: 1.5 }}>{'\u26A0'} {submitError}</p></div>}
               <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '12px', padding: '1.25rem' }}>
                 <h3 style={{ fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.55rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Booking Details</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem' }}>
@@ -1201,14 +1252,28 @@ function ContactPage({ setPage }) {
                     <div key={item.l}><p style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Outfit',sans-serif" }}>{item.l}</p><p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Outfit',sans-serif" }}>{item.v || '\u2014'}</p></div>
                   ))}
                 </div>
-                {form.address && <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}><p style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Outfit',sans-serif" }}>Address</p><p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Outfit',sans-serif" }}>{form.address}</p></div>}
+                {form.address1 && <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}><p style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Outfit',sans-serif" }}>Address</p><p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Outfit',sans-serif" }}>{[form.address1, form.address2].filter(Boolean).join(', ')}</p>{(form.city || form.state || form.zipCode) && <p style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Outfit',sans-serif" }}>{[form.city, form.state, form.zipCode].filter(Boolean).join(', ')}</p>}{form.country && <p style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Outfit',sans-serif" }}>{form.country}</p>}</div>}
                 {additionalPatients.length > 0 && (
                   <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
                     <p style={{ fontSize: '0.42rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Outfit',sans-serif", marginBottom: '0.4rem' }}>Additional Patients ({additionalPatients.length})</p>
                     {additionalPatients.map((pt, idx) => {
                       const ptName = (pt.fname + ' ' + pt.lname).trim() || 'Patient ' + (idx + 2);
                       const ptService = pt.services && pt.services.length > 0 ? pt.services.map(formatServiceLabel).join(', ') : 'Same as primary';
-                      return <div key={pt.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.2rem' }}><p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Outfit',sans-serif" }}>{ptName}</p><p style={{ fontSize: '0.5rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>{ptService}</p></div>;
+                      const ptAddr = [pt.address1, pt.address2, pt.city, pt.state, pt.zipCode, pt.country].filter(Boolean).join(', ');
+                      return (
+                        <div key={pt.id} style={{ background: 'rgba(0,0,0,0.1)', borderRadius: '8px', padding: '0.6rem', marginBottom: '0.4rem' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.2rem' }}>
+                            <p style={{ fontSize: '0.6rem', color: 'var(--gold-soft)', fontFamily: "'Outfit',sans-serif", fontWeight: 600 }}>{ptName}</p>
+                          </div>
+                          <p style={{ fontSize: '0.5rem', color: 'rgba(255,255,255,0.6)', fontFamily: "'Outfit',sans-serif" }}>Services: {ptService}</p>
+                          {ptAddr && <p style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>Address: {ptAddr}</p>}
+                          {pt.medicalSurgicalHistory && <p style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>Medical/Surgical: {pt.medicalSurgicalHistory}</p>}
+                          {pt.medications && <p style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>Medications: {pt.medications}</p>}
+                          {pt.allergies && <p style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>Allergies: {pt.allergies}</p>}
+                          {pt.ivReactions && <p style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>IV Reactions: {pt.ivReactions}</p>}
+                          {pt.clinicianNotes && <p style={{ fontSize: '0.48rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Outfit',sans-serif" }}>Clinician Notes: {pt.clinicianNotes}</p>}
+                        </div>
+                      );
                     })}
                   </div>
                 )}
