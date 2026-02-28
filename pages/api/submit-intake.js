@@ -52,7 +52,7 @@ function formatAddress(d) {
   if (d.address2) parts.push(d.address2);
   var cityLine = [d.city, d.stateProvince || d.state, d.postalCode || d.zipCode].filter(Boolean).join(', ');
   if (cityLine) parts.push(cityLine);
-  if (d.country && d.country !== 'United States') parts.push(d.country);
+  if (d.country) parts.push(d.country);
   return parts.join(', ') || (d.address || 'Not specified');
 }
 
@@ -86,8 +86,11 @@ function buildPatientNotes(data) {
 
   s.push('\n=== CONSENT STATUS ===');
   s.push(buildConsentSummary(data.consents || {}));
-  s.push('E-Signature: ' + (data.signature ? 'PROVIDED' : 'NOT PROVIDED'));
+  s.push('E-Signature: ' + (data.signature === 'drawn-signature' ? 'DRAWN SIGNATURE ON FILE' : (data.signature ? 'Typed: ' + data.signature : 'NOT PROVIDED')));
   s.push('Intake Acknowledgment: ' + (data.intakeAcknowledged ? 'ACKNOWLEDGED' : 'NOT ACKNOWLEDGED'));
+  if (data.intakeSignatureImage) {
+    s.push('Intake Signature: ' + (data.intakeSignatureImage.type === 'typed' ? 'Typed — ' + data.intakeSignatureImage.text : 'Drawn — image attached'));
+  }
 
   if (data.consentFormSignature) {
     s.push('\n=== CONSENT SIGNATURE ===');
@@ -160,8 +163,13 @@ function buildBusinessEmailHtml(data) {
   var cSig = data.consentFormSignature;
   var sigDesc = cSig ? (cSig.type === 'typed' ? 'Typed: ' + cSig.text : 'Drawn signature (image in IntakeQ files)') : 'Not provided';
   h += ptSection('Consent Signature', sigDesc);
-  h += ptSection('Overall E-Signature', data.signature ? 'Provided' : 'Not provided');
+  var eSigDesc = data.signature === 'drawn-signature' ? 'Drawn signature on file' : (data.signature ? 'Typed: ' + data.signature : 'Not provided');
+  h += ptSection('E-Signature', eSigDesc);
   h += ptSection('Intake Acknowledgment', data.intakeAcknowledged ? 'Acknowledged' : 'Not acknowledged');
+  if (data.intakeSignatureImage) {
+    var intSigDesc = data.intakeSignatureImage.type === 'typed' ? 'Typed: ' + data.intakeSignatureImage.text : 'Drawn signature (image in IntakeQ files)';
+    h += ptSection('Intake Signature', intSigDesc);
+  }
   h += '</div>';
 
   h += '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;margin-bottom:16px;">';
@@ -201,28 +209,43 @@ function buildPatientEmailHtml(data) {
   h += '<div style="text-align:center;margin-bottom:20px;"><h1 style="color:#D4BC82;font-size:22px;margin:0;">Booking Confirmation</h1><p style="color:rgba(255,255,255,0.6);font-size:13px;">Healing Soulutions</p></div>';
 
   h += '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;margin-bottom:16px;">';
-  h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Your Appointment</h2>';
+  h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Your Information</h2>';
   h += ptSection('Patient', (data.fname || '') + ' ' + (data.lname || ''));
-  h += ptSection('Date', data.date || 'TBD');
-  h += ptSection('Time', data.selTime || 'TBD');
-  h += ptSection('Services', data.services && data.services.length > 0 ? data.services.join(', ') : 'General Consultation');
+  h += ptSection('Date of Birth', data.dob);
+  h += ptSection('Email', data.email);
+  h += ptSection('Phone', data.phone);
   h += ptSection('Address', addr);
   h += '</div>';
 
   h += '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;margin-bottom:16px;">';
-  h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Medical Info on File</h2>';
+  h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Your Appointment</h2>';
+  h += ptSection('Date', data.date || 'TBD');
+  h += ptSection('Time', data.selTime || 'TBD');
+  h += ptSection('Services', data.services && data.services.length > 0 ? data.services.join(', ') : 'General Consultation');
+  if (data.notes) h += ptSection('Notes', data.notes);
+  h += '</div>';
+
+  h += '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;margin-bottom:16px;">';
+  h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Medical Information on File</h2>';
   h += ptSection('Medical/Surgical History', data.medicalSurgicalHistory);
   h += ptSection('Medications', data.medications);
   h += ptSection('Allergies', data.allergies);
   h += ptSection('Previous IV Reactions', data.ivReactions);
+  h += ptSection('Clinician Notes', data.clinicianNotes);
   h += '</div>';
 
   h += '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;margin-bottom:16px;">';
   h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Consent Forms</h2>';
-  h += '<p>✅ Treatment Consent — Signed</p>';
-  h += '<p>✅ HIPAA Privacy — Signed</p>';
-  h += '<p>✅ Medical Release — Signed</p>';
-  h += '<p>✅ Financial Agreement — Signed</p>';
+  var cl2 = { treatment: 'Treatment Consent', hipaa: 'HIPAA Privacy', medical: 'Medical Release', financial: 'Financial Agreement' };
+  ['treatment', 'hipaa', 'medical', 'financial'].forEach(function (k) {
+    var agreed = data.consents && data.consents[k];
+    h += '<p>' + (agreed ? '✅' : '❌') + ' <strong style="color:#D4BC82;">' + cl2[k] + ':</strong> ' + (agreed ? 'AGREED' : 'NOT AGREED') + '</p>';
+  });
+  var cSig2 = data.consentFormSignature;
+  var sigDesc2 = cSig2 ? (cSig2.type === 'typed' ? 'Typed: ' + cSig2.text : 'Drawn signature on file') : 'Not provided';
+  h += ptSection('Consent Signature', sigDesc2);
+  h += ptSection('E-Signature', data.signature ? 'Provided' : 'Not provided');
+  h += ptSection('Intake Acknowledgment', data.intakeAcknowledged ? 'Acknowledged & Signed' : 'Not acknowledged');
   h += '</div>';
 
   if (data.additionalPatients && data.additionalPatients.length > 0) {
@@ -278,6 +301,7 @@ export default async function handler(req, res) {
       var clientPayload = {
         FirstName: data.fname, LastName: data.lname, Email: data.email,
         Phone: data.phone || '', Address: formatAddress(data),
+        DateOfBirth: data.dob || '',
         Notes: buildPatientNotes(data),
       };
       if (Array.isArray(existingClients) && existingClients.length > 0) {
@@ -297,6 +321,8 @@ export default async function handler(req, res) {
     // ── 2. Submit intake questions ──
     try {
       var payload = {
+        QuestionnaireId: '69a277ecc252c3dd4d1aa452',
+        PractitionerId: '699328a73f048c95babc42b6',
         ClientId: clientId || undefined,
         ClientName: data.fname + ' ' + data.lname,
         ClientEmail: data.email,
@@ -340,8 +366,11 @@ export default async function handler(req, res) {
         addQ('Consent Forms Signature', data.consentFormSignature.type === 'typed' ? 'Typed: ' + data.consentFormSignature.text : 'Drawn (image in Files)', 'Consent Signatures');
       }
 
-      addQ('E-Signature', data.signature ? 'Provided' : 'Not Provided', 'Consents');
+      addQ('E-Signature', data.signature === 'drawn-signature' ? 'Drawn signature on file' : (data.signature || 'Not Provided'), 'Consents');
       addQ('Intake Acknowledgment', data.intakeAcknowledged ? 'Acknowledged' : 'Not Acknowledged', 'Consents');
+      if (data.intakeSignatureImage) {
+        addQ('Intake Acknowledgment Signature', data.intakeSignatureImage.type === 'typed' ? 'Typed: ' + data.intakeSignatureImage.text : 'Drawn (image in Files)', 'Consents');
+      }
       addQ('Card Brand', data.cardBrand, 'Payment');
       addQ('Card Last 4', data.cardLast4, 'Payment');
       addQ('Stripe ID', data.stripePaymentMethodId, 'Payment');
