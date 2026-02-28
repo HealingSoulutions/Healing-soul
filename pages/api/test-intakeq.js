@@ -1,28 +1,42 @@
+var https = require('https');
+
+function iq(path, method, body) {
+  return new Promise(function(resolve) {
+    var opts = {
+      hostname: 'intakeq.com',
+      path: '/api/v1' + path,
+      method: method || 'GET',
+      headers: { 'X-Auth-Key': process.env.INTAKEQ_API_KEY, 'Content-Type': 'application/json' }
+    };
+    var req = https.request(opts, function(resp) {
+      var data = '';
+      resp.on('data', function(chunk) { data += chunk; });
+      resp.on('end', function() {
+        var json = null;
+        try { json = JSON.parse(data); } catch (e) {}
+        resolve({ s: resp.statusCode, ok: resp.statusCode >= 200 && resp.statusCode < 300, d: json || data });
+      });
+    });
+    req.on('error', function(e) { resolve({ s: 0, ok: false, d: e.message }); });
+    if (body) { req.write(JSON.stringify(body)); }
+    req.end();
+  });
+}
+
 module.exports = async function handler(req, res) {
   try {
-    var KEY = process.env.INTAKEQ_API_KEY;
-    var BASE = 'https://intakeq.com/api/v1';
     var PRAC = '699328a73f048c95babc42b6';
     var QID = '69a277ecc252c3dd4d1aa452';
     var out = {};
-
-    async function call(path, method, body) {
-      var opts = { method: method || 'GET', headers: { 'X-Auth-Key': KEY, 'Content-Type': 'application/json' } };
-      if (body) { opts.body = JSON.stringify(body); }
-      var r = await fetch(BASE + path, opts);
-      var t = await r.text();
-      try { return { s: r.status, ok: r.ok, d: JSON.parse(t) }; } catch (e) { return { s: r.status, ok: r.ok, d: t }; }
-    }
-
     var uid = Date.now();
     var em = 'diag-' + uid + '@healingsoulutions.care';
 
-    var c = await call('/clients', 'POST', { FirstName: 'DiagTest', LastName: 'Run' + uid, Email: em, PractitionerId: PRAC });
+    var c = await iq('/clients', 'POST', { FirstName: 'DiagTest', LastName: 'Run' + uid, Email: em, PractitionerId: PRAC });
     var cid = c.ok ? (c.d.ClientId || c.d.Id) : null;
     out.client = { status: c.s, id: cid, email: em };
 
     if (cid) {
-      var i = await call('/intakes/send', 'POST', {
+      var i = await iq('/intakes/send', 'POST', {
         QuestionnaireId: QID,
         PractitionerId: PRAC,
         ClientId: cid,
@@ -61,7 +75,7 @@ module.exports = async function handler(req, res) {
       out.intake = { status: i.s, ok: i.ok, id: iid, intakeStatus: i.d ? i.d.Status : null, url: i.d ? i.d.Url : null, filled: filled, total: qs.length, answers: ansArr };
 
       if (iid) {
-        var rb = await call('/intakes/' + iid);
+        var rb = await iq('/intakes/' + iid);
         var q3 = rb.d && rb.d.Questions ? rb.d.Questions : [];
         var f3 = 0;
         var a3 = [];
@@ -71,12 +85,12 @@ module.exports = async function handler(req, res) {
         }
         out.readback = { status: rb.s, intakeStatus: rb.d ? rb.d.Status : null, filled: f3, total: q3.length, answers: a3 };
 
-        var mc = await call('/intakes/' + iid, 'POST', { Id: iid, Status: 'Completed' });
+        var mc = await iq('/intakes/' + iid, 'POST', { Id: iid, Status: 'Completed' });
         out.markComplete = { status: mc.s, ok: mc.ok, response: mc.d };
       }
     }
 
-    out.SUMMARY = { clientId: cid, intakeId: out.intake ? out.intake.id : 'NONE', answersSent: out.intake ? out.intake.filled : 0, answersReadBack: out.readback ? out.readback.filled : 'N/A', completeStatus: out.markComplete ? out.markComplete.status : 'N/A', CHECK: 'Look in IntakeQ dashboard for DiagTest entry' };
+    out.SUMMARY = { clientId: cid, intakeId: out.intake ? out.intake.id : 'NONE', answersSent: out.intake ? out.intake.filled : 0, answersReadBack: out.readback ? out.readback.filled : 'N/A', completeStatus: out.markComplete ? out.markComplete.status : 'N/A' };
     return res.status(200).json(out);
   } catch (err) {
     return res.status(200).json({ CRASHED: true, error: err.message, stack: err.stack });
