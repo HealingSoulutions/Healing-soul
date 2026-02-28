@@ -341,10 +341,10 @@ function HomePage({ setPage }) {
         <div className="hero-content">
           <div className="hero-text-panel">
             <h1 style={{ textAlign: 'center', fontSize: 'clamp(1.2rem,2.2vw,1.8rem)', marginTop: '0.5rem' }}>
-              <em style={{ fontWeight: 700, fontStyle: 'italic' }}>We bring healing to youâ€¦</em>
+              <em style={{ fontWeight: 700, fontStyle: 'italic' }}>We bring healing to you..</em>
             </h1>
             <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: '0.75rem' }}>
-              Experienced, compassionate care that comes to you. Healing means more than treating symptoms â€” it means nurturing the whole person with dignity, expertise, and heart.
+              Experienced, compassionate care that comes to you. Healing means more than treating illnesses; it means nurturing the whole person with dignity, expertise, and heart.
             </p>
             <div style={{ margin: '1rem 0 0.5rem' }}><LotusIcon size={60} /></div>
             <div style={{ width: 40, height: 1.5, background: 'var(--gold-soft)', margin: '0 auto' }} />
