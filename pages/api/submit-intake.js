@@ -309,9 +309,11 @@ export default async function handler(req, res) {
         clientPayload.ClientId = clientId;
         clientPayload.Email = data.email;
         await intakeqRequest('/clients', 'POST', clientPayload);
+        console.log('[IntakeQ] Client updated:', clientId);
       } else {
         var newClient = await intakeqRequest('/clients', 'POST', clientPayload);
         clientId = newClient.ClientId || newClient.Id;
+        console.log('[IntakeQ] Client created:', clientId);
       }
     } catch (e) {
       console.error('Client error:', e);
@@ -392,9 +394,11 @@ export default async function handler(req, res) {
         });
       }
 
-      await intakeqRequest('/intakes', 'POST', payload);
+      console.log('[IntakeQ] Submitting intake with', payload.Questions.length, 'questions for client', clientId);
+      await intakeqRequest('/intakes/send', 'POST', payload);
+      console.log('[IntakeQ] Intake submitted successfully');
     } catch (e) {
-      console.error('Intake error:', e);
+      console.error('Intake error:', e.message);
       errors.push('intake: ' + e.message);
     }
 
