@@ -1,74 +1,82 @@
+import https from 'https';
+
 const INTAKEQ_API_BASE = 'https://intakeq.com/api/v1';
 
-async function intakeqRequest(endpoint, method, body) {
-  const apiKey = process.env.INTAKEQ_API_KEY;
-  if (!apiKey) throw new Error('IntakeQ API key is not configured.');
+function intakeqRequest(endpoint, method, body) {
+  return new Promise(function(resolve, reject) {
+    var apiKey = process.env.INTAKEQ_API_KEY;
+    if (!apiKey) { reject(new Error('IntakeQ API key is not configured.')); return; }
 
-  const response = await fetch(`${INTAKEQ_API_BASE}${endpoint}`, {
-    method,
-    headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' },
-    body: body ? JSON.stringify(body) : undefined,
+    var opts = {
+      hostname: 'intakeq.com',
+      path: '/api/v1' + endpoint,
+      method: method || 'GET',
+      headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' }
+    };
+
+    var req = https.request(opts, function(resp) {
+      var data = '';
+      resp.on('data', function(chunk) { data += chunk; });
+      resp.on('end', function() {
+        if (resp.statusCode < 200 || resp.statusCode >= 300) {
+          console.error('[IntakeQ] API error [' + resp.statusCode + ']:', data);
+          reject(new Error('IntakeQ API error: ' + resp.statusCode));
+          return;
+        }
+        var json = null;
+        try { json = JSON.parse(data); } catch (e) {}
+        resolve(json || {});
+      });
+    });
+
+    req.on('error', function(e) {
+      console.error('[IntakeQ] Request error:', e.message);
+      reject(e);
+    });
+
+    if (body) { req.write(JSON.stringify(body)); }
+    req.end();
   });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error(`IntakeQ API error [${response.status}]:`, errorText);
-    throw new Error(`IntakeQ API error: ${response.status}`);
-  }
-
-  const text = await response.text();
-  return text ? JSON.parse(text) : {};
 }
 
-async function uploadBase64Image(clientId, fileName, base64Data) {
-  var apiKey = process.env.INTAKEQ_API_KEY;
-  if (!apiKey || !clientId || !base64Data) return false;
-  try {
-    var raw = base64Data.replace(/^data:image\/\w+;base64,/, '');
-    var binaryStr = Buffer.from(raw, 'base64');
+function uploadFileToIntakeQ(clientId, fileName, contentBuffer, contentType) {
+  return new Promise(function(resolve) {
+    var apiKey = process.env.INTAKEQ_API_KEY;
+    if (!apiKey || !clientId || !contentBuffer) { resolve(false); return; }
+
     var boundary = '----FormBoundary' + Date.now();
-    var header = '--' + boundary + '\r\nContent-Disposition: form-data; name="file"; filename="' + fileName + '"\r\nContent-Type: image/png\r\n\r\n';
+    var header = '--' + boundary + '\r\nContent-Disposition: form-data; name="file"; filename="' + fileName + '"\r\nContent-Type: ' + contentType + '\r\n\r\n';
     var footer = '\r\n--' + boundary + '--\r\n';
-    var headerBuf = Buffer.from(header, 'utf-8');
-    var footerBuf = Buffer.from(footer, 'utf-8');
-    var fullBody = Buffer.concat([headerBuf, binaryStr, footerBuf]);
+    var fullBody = Buffer.concat([Buffer.from(header, 'utf-8'), contentBuffer, Buffer.from(footer, 'utf-8')]);
 
-    var resp = await fetch(INTAKEQ_API_BASE + '/files/' + clientId, {
+    var opts = {
+      hostname: 'intakeq.com',
+      path: '/api/v1/files/' + clientId,
       method: 'POST',
-      headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'multipart/form-data; boundary=' + boundary },
-      body: fullBody,
-    });
-    console.log('[Upload] ' + fileName + ': ' + resp.status);
-    return resp.ok;
-  } catch (e) {
-    console.error('[Upload] Error for ' + fileName + ':', e.message);
-    return false;
-  }
-}
+      headers: {
+        'X-Auth-Key': apiKey,
+        'Content-Type': 'multipart/form-data; boundary=' + boundary,
+        'Content-Length': fullBody.length
+      }
+    };
 
-async function uploadTextFile(clientId, fileName, textContent) {
-  var apiKey = process.env.INTAKEQ_API_KEY;
-  if (!apiKey || !clientId || !textContent) return false;
-  try {
-    var boundary = '----FormBoundary' + Date.now();
-    var contentBuf = Buffer.from(textContent, 'utf-8');
-    var header = '--' + boundary + '\r\nContent-Disposition: form-data; name="file"; filename="' + fileName + '"\r\nContent-Type: text/plain\r\n\r\n';
-    var footer = '\r\n--' + boundary + '--\r\n';
-    var headerBuf = Buffer.from(header, 'utf-8');
-    var footerBuf = Buffer.from(footer, 'utf-8');
-    var fullBody = Buffer.concat([headerBuf, contentBuf, footerBuf]);
-
-    var resp = await fetch(INTAKEQ_API_BASE + '/files/' + clientId, {
-      method: 'POST',
-      headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'multipart/form-data; boundary=' + boundary },
-      body: fullBody,
+    var req = https.request(opts, function(resp) {
+      var data = '';
+      resp.on('data', function(chunk) { data += chunk; });
+      resp.on('end', function() {
+        console.log('[Upload] ' + fileName + ': ' + resp.statusCode);
+        resolve(resp.statusCode >= 200 && resp.statusCode < 300);
+      });
     });
-    console.log('[Upload] ' + fileName + ': ' + resp.status);
-    return resp.ok;
-  } catch (e) {
-    console.error('[Upload] Error for ' + fileName + ':', e.message);
-    return false;
-  }
+
+    req.on('error', function(e) {
+      console.error('[Upload] Error for ' + fileName + ':', e.message);
+      resolve(false);
+    });
+
+    req.write(fullBody);
+    req.end();
+  });
 }
 
 function formatAddress(d) {
@@ -79,15 +87,6 @@ function formatAddress(d) {
   if (cityLine) parts.push(cityLine);
   if (d.country) parts.push(d.country);
   return parts.join(', ') || (d.address || 'Not specified');
-}
-
-function buildConsentSummary(consents) {
-  var items = [];
-  if (consents.treatment) items.push('Treatment Consent: AGREED');
-  if (consents.hipaa) items.push('HIPAA Privacy: AGREED');
-  if (consents.medical) items.push('Medical History Release: AGREED');
-  if (consents.financial) items.push('Financial Agreement: AGREED');
-  return items.join('\n');
 }
 
 function buildIntakeDocument(data) {
@@ -406,6 +405,7 @@ export default async function handler(req, res) {
 
     // ── 1. Create/update client in IntakeQ ──
     try {
+      console.log('[IntakeQ] Step 1: Searching for client:', data.email);
       var existingClients = await intakeqRequest('/clients?search=' + encodeURIComponent(data.email) + '&IncludeProfile=true', 'GET');
       var clientPayload = {
         FirstName: data.fname,
@@ -427,41 +427,53 @@ export default async function handler(req, res) {
         await intakeqRequest('/clients', 'POST', clientPayload);
         console.log('[IntakeQ] Client updated:', clientId);
       } else {
+        console.log('[IntakeQ] Creating new client');
         var newClient = await intakeqRequest('/clients', 'POST', clientPayload);
         clientId = newClient.ClientId || newClient.Id;
         console.log('[IntakeQ] Client created:', clientId);
       }
     } catch (e) {
-      console.error('Client error:', e);
+      console.error('[IntakeQ] Client error:', e.message);
       errors.push('client: ' + e.message);
     }
 
     // ── 2. Upload complete intake document to IntakeQ Files ──
     if (clientId) {
       try {
+        console.log('[IntakeQ] Step 2: Uploading intake document for client', clientId);
         var intakeDoc = buildIntakeDocument(data);
         var dateStr = new Date().toISOString().slice(0, 10);
         var fileName = 'Intake_' + data.fname + '_' + data.lname + '_' + dateStr + '.txt';
-        var uploaded = await uploadTextFile(clientId, fileName, intakeDoc);
+        var uploaded = await uploadFileToIntakeQ(clientId, fileName, Buffer.from(intakeDoc, 'utf-8'), 'text/plain');
         if (uploaded) {
-          console.log('[IntakeQ] Intake document uploaded to Files:', fileName);
+          console.log('[IntakeQ] Intake document uploaded:', fileName);
         } else {
-          console.error('[IntakeQ] Intake document upload returned not ok');
-          errors.push('intake_doc: upload failed');
+          console.error('[IntakeQ] Intake document upload failed');
+          errors.push('intake_doc: upload returned not ok');
         }
       } catch (e) {
-        console.error('Intake doc upload error:', e.message);
+        console.error('[IntakeQ] Intake doc error:', e.message);
         errors.push('intake_doc: ' + e.message);
       }
+    } else {
+      console.error('[IntakeQ] Skipping file uploads — no clientId');
     }
 
-    // ── 3. Upload consent signature images to IntakeQ Files ──
+    // ── 3. Upload signature images to IntakeQ Files ──
     if (clientId) {
       if (data.consentFormSignature && data.consentFormSignature.type === 'drawn' && data.consentFormSignature.image) {
-        try { await uploadBase64Image(clientId, 'Consent_Forms_Signature.png', data.consentFormSignature.image); } catch (e) { console.error('Consent sig upload:', e.message); }
+        try {
+          console.log('[IntakeQ] Step 3a: Uploading consent signature');
+          var raw = data.consentFormSignature.image.replace(/^data:image\/\w+;base64,/, '');
+          await uploadFileToIntakeQ(clientId, 'Consent_Forms_Signature.png', Buffer.from(raw, 'base64'), 'image/png');
+        } catch (e) { console.error('[IntakeQ] Consent sig error:', e.message); }
       }
       if (data.intakeSignatureImage && data.intakeSignatureImage.type === 'drawn' && data.intakeSignatureImage.image) {
-        try { await uploadBase64Image(clientId, 'Intake_Acknowledgment_Sig.png', data.intakeSignatureImage.image); } catch (e) { console.error('Intake sig upload:', e.message); }
+        try {
+          console.log('[IntakeQ] Step 3b: Uploading intake signature');
+          var raw2 = data.intakeSignatureImage.image.replace(/^data:image\/\w+;base64,/, '');
+          await uploadFileToIntakeQ(clientId, 'Intake_Acknowledgment_Sig.png', Buffer.from(raw2, 'base64'), 'image/png');
+        } catch (e) { console.error('[IntakeQ] Intake sig error:', e.message); }
       }
     }
 
@@ -469,6 +481,7 @@ export default async function handler(req, res) {
     try {
       var rk = process.env.RESEND_API_KEY;
       if (rk) {
+        console.log('[Email] Step 4: Sending business email');
         await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: { 'Authorization': 'Bearer ' + rk, 'Content-Type': 'application/json' },
@@ -482,7 +495,7 @@ export default async function handler(req, res) {
         console.log('[Email] Business notification sent');
       }
     } catch (e) {
-      console.error('Business email error:', e);
+      console.error('[Email] Business email error:', e.message);
       errors.push('businessEmail: ' + e.message);
     }
 
@@ -490,6 +503,7 @@ export default async function handler(req, res) {
     try {
       var rk2 = process.env.RESEND_API_KEY;
       if (rk2 && data.email) {
+        console.log('[Email] Step 5: Sending patient email to', data.email);
         await fetch('https://api.resend.com/emails', {
           method: 'POST',
           headers: { 'Authorization': 'Bearer ' + rk2, 'Content-Type': 'application/json' },
@@ -500,15 +514,15 @@ export default async function handler(req, res) {
             html: buildPatientEmailHtml(data),
           }),
         });
-        console.log('[Email] Patient confirmation sent to ' + data.email);
+        console.log('[Email] Patient confirmation sent');
       }
     } catch (e) {
-      console.error('Patient email error:', e);
+      console.error('[Email] Patient email error:', e.message);
       errors.push('patientEmail: ' + e.message);
     }
 
-    console.log('[Booking] ' + data.fname + ' ' + data.lname + ' (' + data.email + ')');
-    if (errors.length > 0) console.warn('[Booking] Partial errors:', errors.join('; '));
+    console.log('[Booking] Complete: ' + data.fname + ' ' + data.lname + ' (' + data.email + ') clientId=' + clientId);
+    if (errors.length > 0) console.warn('[Booking] Errors:', errors.join('; '));
 
     return res.status(200).json({
       success: true,
@@ -517,7 +531,7 @@ export default async function handler(req, res) {
       message: 'Intake submitted successfully to HIPAA-secure server.',
     });
   } catch (error) {
-    console.error('Submit intake error:', error);
+    console.error('[Booking] Fatal error:', error);
     return res.status(500).json({ error: 'Failed to submit intake. Please contact us directly.' });
   }
 }
