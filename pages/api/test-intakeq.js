@@ -1,119 +1,140 @@
 import https from 'https';
 
-function intakeqRequest(endpoint, method, body) {
-  return new Promise(function(resolve, reject) {
-    var apiKey = process.env.INTAKEQ_API_KEY;
-    if (!apiKey) { reject(new Error('No API key')); return; }
-    var opts = {
-      hostname: 'intakeq.com',
-      path: '/api/v1' + endpoint,
-      method: method || 'GET',
-      headers: { 'X-Auth-Key': apiKey, 'Content-Type': 'application/json' }
-    };
-    var req = https.request(opts, function(resp) {
-      var data = '';
-      resp.on('data', function(chunk) { data += chunk; });
-      resp.on('end', function() {
-        var json = null;
-        try { json = JSON.parse(data); } catch (e) {}
-        if (resp.statusCode < 200 || resp.statusCode >= 300) {
-          reject(new Error('Status ' + resp.statusCode + ': ' + (typeof json === 'object' ? JSON.stringify(json) : data.substring(0, 200))));
-          return;
-        }
-        resolve(json || {});
-      });
-    });
-    req.on('error', function(e) { reject(e); });
-    if (body) { req.write(JSON.stringify(body)); }
-    req.end();
-  });
-}
-
-function uploadFileToIntakeQ(clientId, fileName, contentBuffer, contentType) {
-  return new Promise(function(resolve, reject) {
-    var apiKey = process.env.INTAKEQ_API_KEY;
-    if (!apiKey || !clientId) { reject(new Error('Missing apiKey or clientId')); return; }
-    var boundary = '----FormBoundary' + Date.now();
-    var header = '--' + boundary + '\r\nContent-Disposition: form-data; name="file"; filename="' + fileName + '"\r\nContent-Type: ' + contentType + '\r\n\r\n';
-    var footer = '\r\n--' + boundary + '--\r\n';
-    var fullBody = Buffer.concat([Buffer.from(header, 'utf-8'), contentBuffer, Buffer.from(footer, 'utf-8')]);
-    var opts = {
-      hostname: 'intakeq.com',
-      path: '/api/v1/files/' + clientId,
-      method: 'POST',
-      headers: {
-        'X-Auth-Key': apiKey,
-        'Content-Type': 'multipart/form-data; boundary=' + boundary,
-        'Content-Length': fullBody.length
-      }
-    };
-    var req = https.request(opts, function(resp) {
-      var data = '';
-      resp.on('data', function(chunk) { data += chunk; });
-      resp.on('end', function() {
-        resolve({ status: resp.statusCode, ok: resp.statusCode >= 200 && resp.statusCode < 300, body: data });
-      });
-    });
-    req.on('error', function(e) { reject(e); });
-    req.write(fullBody);
-    req.end();
-  });
-}
-
 export default async function handler(req, res) {
   var out = {};
   var uid = Date.now();
 
-  // Step 1: Create client (EXACTLY like submit-intake does)
+  // Build fake booking data that looks exactly like what the frontend sends
+  var bookingData = {
+    fname: 'LiveTest',
+    lname: 'Booking' + uid,
+    email: 'livetest-' + uid + '@healingsoulutions.care',
+    phone: '+15857472215',
+    dob: '1990-01-15',
+    address1: '789 Live Test Blvd',
+    address2: '',
+    city: 'Rochester',
+    stateProvince: 'NY',
+    country: 'US',
+    postalCode: '14620',
+    date: '2026-03-10',
+    selTime: '2:00 PM',
+    services: ['IV Hydration Therapy'],
+    notes: 'LIVE ENDPOINT TEST - please ignore',
+    medicalSurgicalHistory: 'TEST: Appendectomy 2010',
+    medications: 'TEST: Lisinopril 10mg',
+    allergies: 'TEST: Penicillin',
+    ivReactions: 'TEST: None',
+    clinicianNotes: 'Automated live test',
+    consents: { treatment: true, hipaa: true, medical: true, financial: true },
+    consentFormSignature: { type: 'typed', text: 'LiveTest Booking' },
+    intakeSignatureImage: { type: 'typed', text: 'LiveTest Booking' },
+    signature: 'LiveTest Booking',
+    intakeAcknowledged: true,
+    cardBrand: 'Visa',
+    cardLast4: '4242',
+    cardHolderName: 'LiveTest Booking',
+    stripePaymentMethodId: 'pm_test_live',
+    additionalPatients: []
+  };
+
+  out.testData = { fname: bookingData.fname, lname: bookingData.lname, email: bookingData.email };
+
+  // POST to the live submit-intake endpoint
   try {
-    var email = 'simtest-' + uid + '@healingsoulutions.care';
-    out.step1_search = 'Searching for ' + email;
-    var existing = await intakeqRequest('/clients?search=' + encodeURIComponent(email) + '&IncludeProfile=true', 'GET');
-    out.step1_searchResult = { found: Array.isArray(existing) ? existing.length : 'not array', raw: existing };
+    var postBody = JSON.stringify(bookingData);
+    var result = await new Promise(function(resolve, reject) {
+      var opts = {
+        hostname: 'healingsoulutions.care',
+        path: '/api/submit-intake',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Content-Length': Buffer.byteLength(postBody)
+        }
+      };
 
-    var clientPayload = {
-      FirstName: 'SimTest',
-      LastName: 'Booking' + uid,
-      Email: email,
-      Phone: '+15857472215',
-      DateOfBirth: '1990-01-01',
-      Address: '123 Test St',
-      City: 'Rochester',
-      State: 'NY',
-      ZipCode: '14620',
-      Country: 'US',
-      PractitionerId: '699328a73f048c95babc42b6',
-    };
+      var req2 = https.request(opts, function(resp) {
+        var data = '';
+        resp.on('data', function(chunk) { data += chunk; });
+        resp.on('end', function() {
+          var json = null;
+          try { json = JSON.parse(data); } catch (e) {}
+          resolve({ status: resp.statusCode, headers: resp.headers, body: json || data });
+        });
+      });
 
-    out.step1_creating = 'Creating client with payload';
-    var newClient = await intakeqRequest('/clients', 'POST', clientPayload);
-    var clientId = newClient.ClientId || newClient.Id || null;
-    out.step1_result = { clientId: clientId, response: newClient };
+      req2.on('error', function(e) { reject(e); });
+      req2.write(postBody);
+      req2.end();
+    });
+
+    out.submitIntakeResponse = result;
   } catch (e) {
-    out.step1_ERROR = e.message;
+    out.submitIntakeError = e.message;
   }
 
-  // Step 2: Upload intake document (EXACTLY like submit-intake does)
-  var clientId = out.step1_result ? out.step1_result.clientId : null;
-  if (clientId) {
-    try {
-      var doc = 'TEST INTAKE DOCUMENT\nName: SimTest Booking\nDate: ' + new Date().toISOString() + '\nThis is a simulated intake.';
-      var fileName = 'Intake_SimTest_Booking_' + new Date().toISOString().slice(0, 10) + '.txt';
-      out.step2_uploading = 'Uploading ' + fileName + ' to client ' + clientId;
-      var uploadResult = await uploadFileToIntakeQ(clientId, fileName, Buffer.from(doc, 'utf-8'), 'text/plain');
-      out.step2_result = uploadResult;
-    } catch (e) {
-      out.step2_ERROR = e.message;
-    }
-  } else {
-    out.step2_SKIPPED = 'No clientId from step 1';
+  // Now check IntakeQ directly to see if client was created
+  try {
+    var checkResult = await new Promise(function(resolve, reject) {
+      var opts = {
+        hostname: 'intakeq.com',
+        path: '/api/v1/clients?search=' + encodeURIComponent(bookingData.email) + '&IncludeProfile=true',
+        method: 'GET',
+        headers: { 'X-Auth-Key': process.env.INTAKEQ_API_KEY, 'Content-Type': 'application/json' }
+      };
+      var req3 = https.request(opts, function(resp) {
+        var data = '';
+        resp.on('data', function(chunk) { data += chunk; });
+        resp.on('end', function() {
+          var json = null;
+          try { json = JSON.parse(data); } catch (e) {}
+          resolve({ status: resp.statusCode, data: json || data });
+        });
+      });
+      req3.on('error', function(e) { reject(e); });
+      req3.end();
+    });
+
+    out.intakeqVerification = {
+      clientFoundInIntakeQ: Array.isArray(checkResult.data) && checkResult.data.length > 0,
+      searchResult: checkResult
+    };
+  } catch (e) {
+    out.intakeqVerificationError = e.message;
   }
+
+  // Count total clients
+  try {
+    var countResult = await new Promise(function(resolve, reject) {
+      var opts = {
+        hostname: 'intakeq.com',
+        path: '/api/v1/clients',
+        method: 'GET',
+        headers: { 'X-Auth-Key': process.env.INTAKEQ_API_KEY, 'Content-Type': 'application/json' }
+      };
+      var req4 = https.request(opts, function(resp) {
+        var data = '';
+        resp.on('data', function(chunk) { data += chunk; });
+        resp.on('end', function() {
+          var json = null;
+          try { json = JSON.parse(data); } catch (e) {}
+          resolve(Array.isArray(json) ? json.length : 'unknown');
+        });
+      });
+      req4.on('error', function(e) { reject(e); });
+      req4.end();
+    });
+    out.totalClientsNow = countResult;
+  } catch (e) {}
 
   out.SUMMARY = {
-    clientCreated: !!clientId,
-    clientId: clientId,
-    fileUploaded: out.step2_result ? out.step2_result.ok : false,
-    CHECK: 'Is clientId a number > 26? If yes, check IntakeQ Clients for SimTest Booking'
+    submitStatus: out.submitIntakeResponse ? out.submitIntakeResponse.status : 'FAILED',
+    version: out.submitIntakeResponse && out.submitIntakeResponse.body ? out.submitIntakeResponse.body.version : 'unknown',
+    clientId: out.submitIntakeResponse && out.submitIntakeResponse.body ? out.submitIntakeResponse.body.clientId : null,
+    errors: out.submitIntakeResponse && out.submitIntakeResponse.body ? out.submitIntakeResponse.body.errors : 'unknown',
+    clientFoundInIntakeQ: out.intakeqVerification ? out.intakeqVerification.clientFoundInIntakeQ : false,
+    totalClients: out.totalClientsNow
   };
 
   return res.status(200).json(out);
