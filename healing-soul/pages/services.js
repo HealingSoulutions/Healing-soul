@@ -15,7 +15,7 @@ function ServicesContent() {
         <div style={{ padding: '8rem 3rem 0.75rem', textAlign: 'center', background: 'transparent', maxWidth: 800, margin: '0 auto' }}>
           <div style={{ background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '1.5rem', boxSizing: 'border-box', width: '100%' }}>
             <h1 style={{ color: 'var(--gold-soft)', fontSize: '0.75rem', fontWeight: 500, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: "'Outfit',sans-serif" }}>Our Services</h1>
-            <div style={{ margin: '0.5rem 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '3.12rem', width: 'auto', display: 'inline-block' }} /></div>
+            <div style={{ margin: '0.5rem 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '3.9rem', width: 'auto', display: 'inline-block' }} /></div>
             <div style={{ width: 25, height: 0.75, background: 'var(--gold-soft)', margin: '0 auto' }} />
           </div>
         </div>
