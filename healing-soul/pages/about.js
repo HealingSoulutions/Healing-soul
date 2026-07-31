@@ -38,9 +38,9 @@ export default function About() {
 
           <div style={CARD}>
             <span style={EY}>Our Care Team</span>
-            <h2 style={{ ...H, marginTop: '0.5rem' }}>Meet your clinicians</h2>
-            <p style={P}><strong style={{ color: 'rgba(255,255,255,0.95)' }}>Kristina Castro, Nurse Practitioner in Family Health</strong> — [PLACEHOLDER: add credentials (e.g., FNP-BC), years of experience, specialties, and a short bio here.]</p>
-            <p style={{ ...P, fontSize: '0.72rem', color: 'rgba(255,255,255,0.55)' }}>Healing Soulutions is a trade name used under license from BT RPN PLLC and Kristina Castro, Nurse Practitioner in Family Health, PLLC. All clinical care is provided by these licensed professional entities.</p>
+            <h2 style={{ ...H, marginTop: '0.5rem' }}>Licensed, experienced clinicians</h2>
+            <p style={P}>Every visit is provided by licensed Registered Nurses (RNs) and Nurse Practitioners (NPs), held to New York&apos;s professional standards of care. Registered Nurses provide care under the order or standing order of a Nurse Practitioner or physician.</p>
+            <p style={{ ...P, fontSize: '0.72rem', color: 'rgba(255,255,255,0.55)' }}>All clinical care is provided by licensed professional entities. Full clinician profiles are available on request.</p>
           </div>
 
           <div style={CARD}>

@@ -59,10 +59,10 @@ export const timeSlots = [
    CONSENT TEXTS
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-export const CONSENT_TREATMENT = `INFORMED CONSENT FOR TREATMENT - BT RPN PLLC, providing services under the licensed name Healing Soulutions
+export const CONSENT_TREATMENT = `INFORMED CONSENT FOR TREATMENT - BT RPN PLLC & Kristina Castro, Nurse Practitioner in Family Health, PLLC, providing services under the licensed name Healing Soulutions
 Effective Date: August 1, 2026
 
-I voluntarily consent to healthcare services from BT RPN PLLC, which provide services under the licensed name Healing Soulutions (the "Practice"), including nursing assessments, IV hydration and vitamin/nutrient infusion therapy, injections and injection/infusion assistance, wound care, post-operative and post-anesthesia nursing care, nurse escort services, medication administration and medication education, health screenings, phlebotomy and specimen collection (including respiratory swabs and urine specimens), diagnostic laboratory testing and result interpretation, medically supervised weight management, telehealth consultations, personalized care planning, supplement and nutraceutical protocols, and related wellness services.
+I voluntarily consent to healthcare services from BT RPN PLLC and Kristina Castro, Nurse Practitioner in Family Health, PLLC, which provide services under the licensed name Healing Soulutions (the "Practice"), including nursing assessments, IV hydration and vitamin/nutrient infusion therapy, injections and injection/infusion assistance, wound care, post-operative and post-anesthesia nursing care, nurse escort services, medication administration and medication education, health screenings, phlebotomy and specimen collection (including respiratory swabs and urine specimens), diagnostic laboratory testing and result interpretation, medically supervised weight management, telehealth consultations, personalized care planning, supplement and nutraceutical protocols, and related wellness services.
 
 NATURE OF SERVICES: Mobile, concierge, in-home, and/or telehealth services provided by licensed Registered Nurses (RNs) and Nurse Practitioners (NPs) in accordance with New York Education Law Article 139. Services are provided in non-traditional settings including private residences, hotels, offices, and other locations designated by the patient. I understand that mobile and in-home healthcare delivery may present limitations not present in traditional clinical settings, including but not limited to access to emergency equipment, sterile environments, on-site laboratory services, and immediate physician backup.
 
@@ -100,7 +100,7 @@ VOLUNTARY CONSENT: This consent is given pursuant to NY PHL Section 2805-d. I ha
 
 ACKNOWLEDGMENT: By signing below, I certify that I am at least 18 years of age (or the legal guardian of the patient), that I have the legal capacity to enter into this agreement, that I have read and fully understand all terms and conditions set forth herein, and that I voluntarily consent to treatment and agree to all terms of this Informed Consent.`;
 
-export const CONSENT_HIPAA = `NOTICE OF PRIVACY PRACTICES - BT RPN PLLC, providing services under the licensed name Healing Soulutions
+export const CONSENT_HIPAA = `NOTICE OF PRIVACY PRACTICES - BT RPN PLLC & Kristina Castro, Nurse Practitioner in Family Health, PLLC, providing services under the licensed name Healing Soulutions
 Effective Date: August 1, 2026
 
 This notice is required by the Health Insurance Portability and Accountability Act of 1996 (HIPAA), the Health Information Technology for Economic and Clinical Health Act (HITECH), 45 CFR Parts 160 and 164, and applicable New York State law to inform you of how your Protected Health Information (PHI) may be used and disclosed, and your rights regarding your PHI.
@@ -125,7 +125,7 @@ CHANGES TO THIS NOTICE: The Practice reserves the right to change this notice an
 
 ACKNOWLEDGMENT: By signing below, I acknowledge that I have received, read, and understand this Notice of Privacy Practices. I understand my rights regarding my Protected Health Information and how it may be used and disclosed by the Practice.`;
 
-export const CONSENT_MEDICAL = `MEDICAL HISTORY & RELEASE AUTHORIZATION - BT RPN PLLC, providing services under the licensed name Healing Soulutions
+export const CONSENT_MEDICAL = `MEDICAL HISTORY & RELEASE AUTHORIZATION - BT RPN PLLC & Kristina Castro, Nurse Practitioner in Family Health, PLLC, providing services under the licensed name Healing Soulutions
 Effective Date: August 1, 2026
 
 I hereby authorize the Practice to: (a) collect, review, and maintain my complete medical history and health information; (b) request and obtain medical records from prior and current healthcare providers, hospitals, laboratories, pharmacies, and other healthcare entities; (c) disclose my medical information to treating providers, consulting specialists, laboratories, pharmacies, and other healthcare professionals involved in my care; (d) use my medical information for treatment, payment, and healthcare operations as described in the Notice of Privacy Practices; and (e) order, obtain, and review laboratory testing and clinical monitoring reasonably necessary to safely provide prescription therapies, including medically supervised weight management and other prescription therapies.
@@ -142,7 +142,7 @@ DURATION AND REVOCATION: This authorization shall remain in effect for the durat
 
 ACKNOWLEDGMENT: By signing below, I certify that I am at least 18 years of age (or the legal guardian of the patient), that I have read and fully understand this Medical History and Release Authorization, and that I voluntarily authorize the uses and disclosures described herein.`;
 
-export const CONSENT_FINANCIAL = `FINANCIAL AGREEMENT - BT RPN PLLC, providing services under the licensed name Healing Soulutions
+export const CONSENT_FINANCIAL = `FINANCIAL AGREEMENT - BT RPN PLLC & Kristina Castro, Nurse Practitioner in Family Health, PLLC, providing services under the licensed name Healing Soulutions
 Effective Date: August 1, 2026
 
 PAYMENT TERMS: Payment is due in full at the time of service unless other arrangements have been made in writing in advance. The Practice accepts major credit cards, debit cards, and other approved payment methods. A detailed invoice will be provided upon request.
@@ -151,7 +151,7 @@ GOOD FAITH ESTIMATE: Pursuant to the No Surprises Act (Public Law 116-260), you 
 
 INSURANCE: The Practice is an out-of-network provider. The patient is solely responsible for all deductibles, copayments, coinsurance, and any services not covered by their insurance plan. The Practice does not guarantee insurance reimbursement and is not responsible for claim denials, underpayments, or disputes with insurance carriers. The patient is responsible for understanding their insurance benefits and coverage prior to receiving services.
 
-CREDIT CARD ON FILE & PAYMENT AUTHORIZATION: I authorize BT RPN PLLC to securely store my payment card information using PCI-compliant processing. I explicitly authorize the Practice to charge this card for: (1) Time of Service: All copays, deductibles, or service fees due on the date of care. (2) Late Cancellations/No-Shows: Fees associated with failing to cancel within 24 hours, as per the Cancellation Policy. (3) Outstanding Balances: Any remaining balance after insurance adjudication (if applicable). The Practice agrees to notify me via email or text message at least 48 hours prior to charging my card for any post-service outstanding balance exceeding $50.00.
+CREDIT CARD ON FILE & PAYMENT AUTHORIZATION: I authorize BT RPN PLLC and Kristina Castro, Nurse Practitioner in Family Health, PLLC to securely store my payment card information using PCI-compliant processing. I explicitly authorize the Practice to charge this card for: (1) Time of Service: All copays, deductibles, or service fees due on the date of care. (2) Late Cancellations/No-Shows: Fees associated with failing to cancel within 24 hours, as per the Cancellation Policy. (3) Outstanding Balances: Any remaining balance after insurance adjudication (if applicable). The Practice agrees to notify me via email or text message at least 48 hours prior to charging my card for any post-service outstanding balance exceeding $50.00.
 
 PRICING AND FEES: Service pricing is subject to change with 30 days advance notice. Prescription medications, compounded medications, injectable therapies, specialty supplies, and additional materials may incur separate charges beyond the base service fee. Travel fees may apply for locations outside the standard service area. Emergency or after-hours service requests may be subject to additional surcharges.
 
@@ -168,3 +168,4 @@ ACKNOWLEDGMENT: By signing below, I certify that I am at least 18 years of age (
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ICONS
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
