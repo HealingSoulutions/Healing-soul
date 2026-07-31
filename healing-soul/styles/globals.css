@@ -298,3 +298,14 @@ footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.4); 
 
 .footer-link { color: rgba(255,255,255,0.45); font-size: 0.62rem; text-decoration: none; letter-spacing: 0.04em; font-family: 'Outfit', sans-serif; transition: color 0.3s; }
 .footer-link:hover { color: var(--gold-soft); }
+
+/* === Home hero GIF background (home page only) === */
+.hero-gif {
+  position: absolute; inset: 0; z-index: 0;
+  background: #013C1C url('/waves.gif') center center / cover no-repeat;
+  filter: hue-rotate(-78deg) saturate(0.85) brightness(0.9);
+}
+.hero-gif-tint {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(1,60,28,0.70) 0%, rgba(1,60,28,0.42) 45%, rgba(1,60,28,0.62) 100%);
+}
