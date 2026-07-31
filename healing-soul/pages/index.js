@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
-import SceneBackground from '../components/SceneBackground';
 import { GoldPhoneIcon, GoldEmailIcon } from '../components/icons';
 
 function HomeContent() {
@@ -9,7 +8,8 @@ function HomeContent() {
   return (
     <>
       <section className="hero">
-        <SceneBackground />
+        <div className="hero-gif" aria-hidden="true" />
+        <div className="hero-gif-tint" aria-hidden="true" />
         <div className="hero-content">
           <div className="hero-text-panel">
             <img src={"/wordmark.png"} alt="Healing Soulutions — Concierge Nursing" style={{ display: 'block', width: 'min(437px, 99%)', height: 'auto', margin: '0 auto 1rem' }} />
