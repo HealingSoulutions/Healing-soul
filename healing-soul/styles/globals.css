@@ -40,6 +40,12 @@ h1, h2, h3, h4, h5 { font-family: 'Cormorant Garamond', serif; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  /* Stop the auto-playing waves background; show a calm static emerald instead (WCAG 2.2.2 / 2.3) */
+  .hero-gif {
+    background-image: none !important;
+    background: radial-gradient(120% 90% at 50% 0%, #0b4629 0%, #083c22 45%, #013C1C 100%) !important;
+    filter: none !important;
+  }
 }
 
 /* ── Navigation ── */
@@ -276,7 +282,7 @@ footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.4); 
 .footer-compact { display: flex; justify-content: space-between; align-items: center; }
 .footer-compact .logo { font-size: 0.85rem; }
 .footer-legal {
-  text-align: center; font-size: 0.45rem; color: rgba(255,255,255,0.2);
+  text-align: center; font-size: 0.68rem; color: rgba(255,255,255,0.72);
   letter-spacing: 0.1em; margin-top: 0.5rem;
 }
 
@@ -296,7 +302,8 @@ footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.4); 
   .footer-compact { flex-direction: column; gap: 0.75rem; text-align: center; }
 }
 
-.footer-link { color: rgba(255,255,255,0.45); font-size: 0.62rem; text-decoration: none; letter-spacing: 0.04em; font-family: 'Outfit', sans-serif; transition: color 0.3s; }
+.footer-link { color: rgba(255,255,255,0.85); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.04em; font-family: 'Outfit', sans-serif; transition: color 0.3s; }
+.footer-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .footer-link:hover { color: var(--gold-soft); }
 
 /* === Home hero GIF background (home page only) === */
