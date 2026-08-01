@@ -16,7 +16,7 @@ function ServicesContent() {
           <div style={{ background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '1.5rem', boxSizing: 'border-box', width: '100%' }}>
             <div style={{ margin: '0.5rem 0 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '8.57rem', width: 'auto', display: 'inline-block' }} /></div>
             <div style={{ width: 40, height: 1.5, background: 'var(--gold-soft)', margin: '0.5rem auto 0.7rem' }} />
-            <h1 style={{ color: 'var(--jade-mist)', fontSize: '1.05rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: "'Outfit',sans-serif", margin: '1.1rem 0 0' }}>Our Services</h1>
+            <h1 style={{ color: 'var(--gold-soft)', fontSize: '1.05rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: "'Outfit',sans-serif", margin: '1.1rem 0 0' }}>Our Services</h1>
           </div>
         </div>
         <div style={{ padding: '0.5rem 3rem 3rem', maxWidth: 800, margin: '0 auto' }}>
@@ -24,7 +24,7 @@ function ServicesContent() {
             <div key={cat.id} style={{ marginBottom: '0.75rem' }}>
               <div className="svc-card">
                 <div className="svc-card-header" role="button" tabIndex={0} aria-expanded={openCat === cat.id} onClick={() => setOpenCat(openCat === cat.id ? null : cat.id)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenCat(openCat === cat.id ? null : cat.id); } }}>
-                  <h3 style={{ fontFamily: "'Outfit',sans-serif", fontSize: '0.78rem', fontWeight: 500, color: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <h3 style={{ fontFamily: "'Varela Round', sans-serif", fontSize: '0.92rem', fontWeight: 400, color: 'var(--jade-whisper)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span style={{ color: 'var(--gold-soft)', fontSize: '0.9rem' }}>{cat.icon}</span>{cat.title}
                   </h3>
                   <span style={{ color: 'var(--gold-soft)', transition: 'transform 0.4s', transform: openCat === cat.id ? 'rotate(180deg)' : 'none' }}>{'\u25BC'}</span>
