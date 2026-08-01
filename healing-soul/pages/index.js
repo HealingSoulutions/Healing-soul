@@ -16,7 +16,7 @@ function HomeContent() {
             <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '0.4rem auto 1rem', opacity: 0.9 }} />
             <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: 0, fontFamily: "'Varela Round', sans-serif", fontSize: '1.02rem', lineHeight: 1.72, maxWidth: 460, color: '#D9AC63', fontWeight: 400, textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
               Expert nursing care, wherever you&rsquo;re most comfortable — your home, your office, anywhere you call yours.{' '}
-              <em style={{ fontStyle: 'italic' }}>Delivered with warmth and discretion, so you can simply focus on feeling well.</em>
+              <em style={{ fontStyle: 'italic' }}>Our focus is on your wellness, health and vitality, so you can be fully present: for yourself, your purpose, and the people who matter most.</em>
             </p>
             <div style={{ marginTop: '1.5rem' }}>
               <p style={{ textAlign: 'left', fontStyle: 'italic', color: 'var(--jade-mist)', fontSize: '0.88rem', letterSpacing: '0.02em', margin: '0 0 0.2rem' }}>
