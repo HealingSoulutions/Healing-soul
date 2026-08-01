@@ -236,8 +236,11 @@ nav {
 }
 .svc-card-header:hover { background: rgba(255,255,255,0.05); }
 .svc-tag {
-  display: inline-flex; align-items: center; padding: 0 0.4rem;
-  color: var(--gold-soft); font-size: 0.6rem; font-weight: 500;
+  display: inline-flex; align-items: center; padding: 0.15rem 0.6rem;
+  color: var(--gold-soft); font-size: 0.66rem; font-weight: 500;
+  font-family: 'Varela Round', sans-serif;
+  background: rgba(219,170,100,0.10); border: 1px solid rgba(219,170,100,0.22);
+  border-radius: 999px;
 }
 
 /* ── Time Slots & Forms ── */
