@@ -3,9 +3,9 @@ import Link from 'next/link';
 import SceneBackground from '../components/SceneBackground';
 
 const CARD = { background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '14px', padding: '1.75rem 1.9rem', marginBottom: '1.25rem' };
-const H = { fontFamily: "'Cormorant Garamond',serif", color: 'var(--gold-soft)', fontSize: '1.35rem', fontWeight: 600, marginBottom: '0.6rem' };
-const P = { fontFamily: "'Outfit',sans-serif", fontSize: '0.82rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', marginBottom: '0.6rem' };
-const EY = { fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.2em', color: 'var(--gold-soft)', textTransform: 'uppercase', fontFamily: "'Outfit',sans-serif" };
+const H = { fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '1.15rem', fontWeight: 400, marginBottom: '0.6rem' };
+const P = { fontFamily: "'Varela Round',sans-serif", fontSize: '0.82rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', marginBottom: '0.6rem' };
+const EY = { fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.2em', color: 'var(--gold-soft)', textTransform: 'uppercase', fontFamily: "'Varela Round',sans-serif" };
 
 const FAQS = [
   ['What areas do you serve?', 'Healing Soulutions provides mobile and concierge nursing across the New York metropolitan area. Contact us to confirm availability at your location.'],
@@ -26,14 +26,13 @@ export default function About() {
       <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
         <SceneBackground />
         <div style={{ position: 'relative', zIndex: 10, maxWidth: 780, margin: '0 auto', padding: '7rem 1.5rem 4rem' }}>
-          <div style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
-            <img src="/emblem.png" alt="" aria-hidden="true" style={{ height: '4.2rem', width: 'auto', display: 'inline-block', marginBottom: '0.5rem' }} />
-            <h1 style={{ ...H, fontSize: '1.7rem', color: 'var(--gold-soft)' }}>About Healing Soulutions</h1>
-          </div>
-
-          <div style={CARD}>
-            <p style={P}>Healing Soulutions is a concierge and mobile nursing practice that brings experienced, compassionate care directly to you — at home, at your hotel, or wherever you feel most comfortable. We believe healing means more than treating illness; it means nurturing the whole person with dignity, expertise, and heart.</p>
-            <p style={P}>From IV therapy and injections to in-home and post-operative nursing, at-home lab draws, medication education, telehealth, and medically guided wellness, our care is personalized to your goals and delivered by licensed professionals.</p>
+          <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '2rem 2.5rem', marginBottom: '1.25rem', textAlign: 'center' }}>
+            <h1 style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '1rem', fontWeight: 700, letterSpacing: '0.28em', color: 'var(--gold-soft)', textTransform: 'uppercase', margin: '0 0 0.8rem' }}>About</h1>
+            <img src="/wordmark.png" alt="Healing Soulutions — Concierge Nursing" style={{ width: 'min(400px, 92%)', height: 'auto', display: 'inline-block' }} />
+            <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '0.9rem auto 1.1rem', opacity: 0.9 }} />
+            <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '1rem', lineHeight: 1.72, color: '#D9AC63', marginBottom: '0.9rem', maxWidth: 520, marginLeft: 'auto', marginRight: 'auto', textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>Healing Soulutions is a concierge and mobile nursing practice that brings experienced, compassionate care directly to you — at home, at your hotel, or wherever you feel most comfortable. We believe healing means more than treating illness; it means nurturing the whole person with dignity, expertise, and heart.</p>
+            <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '1rem', lineHeight: 1.72, color: '#D9AC63', margin: 0, maxWidth: 520, marginLeft: 'auto', marginRight: 'auto', textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>From IV therapy and injections to in-home and post-operative nursing, at-home lab draws, medication education, telehealth, and medically guided wellness, our care is personalized to your goals and delivered by licensed professionals.</p>
+            <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '1.2rem auto 0', opacity: 0.9 }} />
           </div>
 
           <div style={CARD}>
@@ -59,7 +58,7 @@ export default function About() {
             <h2 style={{ ...H, marginTop: '0.5rem' }}>Frequently asked questions</h2>
             {FAQS.map(([q, a], i) => (
               <div key={i} style={{ borderTop: i ? '1px solid rgba(255,255,255,0.08)' : 'none', paddingTop: i ? '0.85rem' : 0, marginTop: i ? '0.85rem' : 0 }}>
-                <h3 style={{ fontFamily: "'Outfit',sans-serif", color: 'rgba(255,255,255,0.95)', fontSize: '0.82rem', fontWeight: 600, marginBottom: '0.35rem' }}>{q}</h3>
+                <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'rgba(255,255,255,0.95)', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.35rem' }}>{q}</h3>
                 <p style={{ ...P, marginBottom: 0 }}>{a}</p>
               </div>
             ))}
