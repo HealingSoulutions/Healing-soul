@@ -35,6 +35,14 @@ export default function About() {
             <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '1.2rem auto 0', opacity: 0.9 }} />
           </div>
 
+          <div style={{ textAlign: 'center', padding: '0.5rem 1rem 1.75rem' }}>
+            <span style={EY}>Our Mission</span>
+            <h2 style={{ ...H, marginTop: '0.5rem' }}>Care that meets you where you are</h2>
+            <p style={{ ...P, maxWidth: 580, margin: '0 auto 0.9rem' }}>Healing Soulutions began with a simple conviction: that skilled, compassionate nursing care should meet you where you are — in the comfort of your home, surrounded by the people and things that bring you peace. Too often, healing is something that happens in waiting rooms and hallways. We believe it happens best where you feel most like yourself.</p>
+            <p style={{ ...P, maxWidth: 580, margin: '0 auto 0.9rem' }}>Our mission is to bring expert care to your door, and to treat every person not as a patient or a case, but as a whole human being — with dignity, warmth, and genuine attention. We walk alongside you through recovery, wellness, and everything in between, so you can focus on living fully.</p>
+            <p style={{ ...P, maxWidth: 580, margin: '0 auto', fontStyle: 'italic', color: 'var(--gold-soft)' }}>This is care as it should be: expert, unhurried, and deeply personal. This is the Healing Soulutions experience.</p>
+          </div>
+
           <div style={CARD}>
             <span style={EY}>Our Care Team</span>
             <h2 style={{ ...H, marginTop: '0.5rem' }}>Licensed, experienced clinicians</h2>
