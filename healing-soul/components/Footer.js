@@ -10,6 +10,7 @@ export default function Footer() {
           <Link href="/book" className="footer-link">Book a Visit</Link>
           <Link href="/privacy" className="footer-link">Privacy Policy</Link>
           <Link href="/terms" className="footer-link">Terms of Use</Link>
+          <Link href="/accessibility" className="footer-link">Accessibility</Link>
         </div>
         <div className="footer-legal">&copy; 2026 Healing Soulutions. All rights reserved.</div>
       </div>
