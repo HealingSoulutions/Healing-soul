@@ -13,42 +13,24 @@ function HomeContent() {
         <div className="hero-content">
           <div className="hero-text-panel">
             <img src={"/wordmark.png"} alt="Healing Soulutions — Concierge Nursing" style={{ display: 'block', width: 'min(437px, 99%)', height: 'auto', margin: '0 auto 1rem' }} />
-            <h1 style={{ textAlign: 'center', fontSize: 'clamp(0.82rem,1.51vw,1.23rem)', marginTop: '0.5rem' }}>
-              <em style={{ fontWeight: 700, fontStyle: 'italic' }}>We bring healing to you..</em>
-            </h1>
-            <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: '0.75rem' }}>
-              Experienced, compassionate care that comes to you. Healing means more than treating illness; it means nurturing the whole person with dignity, expertise, and heart.
+            <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '0.4rem auto 1rem', opacity: 0.9 }} />
+            <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: 0, fontFamily: "'Varela Round', sans-serif", fontSize: '1.02rem', lineHeight: 1.72, maxWidth: 460, color: '#D9AC63', fontWeight: 400, textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
+              Our experience spans a wide range of clinical settings in New York and abroad — bringing expert nursing care to your home, your office, or where you&rsquo;re most comfortable, with genuine warmth and attentiveness.{' '}
+              <em style={{ fontStyle: 'italic' }}>Our focus is your health and vitality, so that you can be fully present: for yourself, your purpose, and for the people who matter the most.</em>
             </p>
-            <div style={{ width: 40, height: 1.5, background: 'var(--gold-soft)', margin: '0 auto' }} />
+            <div style={{ marginTop: '1.5rem' }}>
+              <p style={{ textAlign: 'left', fontStyle: 'italic', color: 'var(--jade-mist)', fontSize: '0.88rem', letterSpacing: '0.02em', margin: '0 0 0.2rem' }}>
+                <span style={{ color: '#DBAA64', fontStyle: 'normal', fontWeight: 700 }}>&mdash;</span> The Healing Soulutions experience
+              </p>
+              <h1 style={{ textAlign: 'left', fontSize: '0.88rem', margin: 0 }}>
+                <em style={{ fontWeight: 700, fontStyle: 'italic', color: '#D9AC63' }}>Healing. Experience. Compassion.</em>
+              </h1>
+            </div>
           </div>
         </div>
       </section>
       <section className="services-home">
         <div className="sec-header">
-          <div className="sec-eyebrow">
-            <span className="eline" />
-            <span style={{ fontSize: '0.65rem', fontWeight: 700, letterSpacing: '0.15em', color: 'var(--gold-soft)', textTransform: 'uppercase' }}>Our Services</span>
-            <span className="eline" />
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '0.3rem 0.8rem', marginBottom: '0.3rem' }}>
-            {['IV Therapy & Wellness Drips', 'Injection & Infusion Assistance', 'In-Home & In-Hospital Nursing', 'At-Home Blood Draw & Lab Testing'].map((s) => (
-              <span key={s} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                <span className="svc-dot" /><span className="service-item" onClick={() => router.push('/services')}>{s}</span>
-              </span>
-            ))}
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', width: '100%', margin: '0.3rem 0' }}>
-            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-              <span className="svc-dot" /><span className="service-item" onClick={() => router.push('/services')}>Medication Education</span>
-            </span>
-          </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center', gap: '0.3rem 0.8rem', marginBottom: '0.75rem' }}>
-            {['Concierge Post-Op Care', 'Nursing Advocate', 'Weight Management', 'Supplement Protocols', 'Personalized Care Plans', 'Telehealth Services'].map((s) => (
-              <span key={s} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}>
-                <span className="svc-dot" /><span className="service-item" onClick={() => router.push('/services')}>{s}</span>
-              </span>
-            ))}
-          </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0.3rem', maxWidth: 500, margin: '0 auto' }}>
             <button className="btn-jade" onClick={() => router.push('/book')}><span style={{ color: '#DBAA64', fontSize: '0.7rem', opacity: 0.65 }}>{'\u2606'}</span> Book a Visit</button>
             <a href="tel:+15857472215" className="btn-jade"><GoldPhoneIcon size={11} /> Call Us</a>
