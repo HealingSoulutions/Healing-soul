@@ -19,10 +19,10 @@ function HomeContent() {
               <em style={{ fontStyle: 'italic' }}>Our focus is on your wellness, health and vitality, so you can be fully present: for yourself, your purpose, and the people who matter most.</em>
             </p>
             <div style={{ marginTop: '1.5rem' }}>
-              <p style={{ textAlign: 'left', fontStyle: 'italic', color: 'var(--jade-mist)', fontSize: '0.88rem', letterSpacing: '0.02em', margin: '0 0 0.2rem' }}>
+              <p style={{ textAlign: 'center', fontStyle: 'italic', color: 'var(--jade-mist)', fontSize: '0.88rem', letterSpacing: '0.02em', margin: '0 0 0.2rem' }}>
                 <span style={{ color: '#DBAA64', fontStyle: 'normal', fontWeight: 700 }}>&mdash;</span> The Healing Soulutions experience
               </p>
-              <h1 style={{ textAlign: 'left', fontSize: '0.88rem', margin: 0 }}>
+              <h1 style={{ textAlign: 'center', fontSize: '0.88rem', margin: 0, fontFamily: "'Varela Round', sans-serif" }}>
                 <em style={{ fontWeight: 700, fontStyle: 'italic', color: '#D9AC63' }}>Healing. Experience. Compassion.</em>
               </h1>
             </div>
@@ -32,10 +32,10 @@ function HomeContent() {
       <section className="services-home">
         <div className="sec-header">
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0.3rem', maxWidth: 500, margin: '0 auto' }}>
-            <button className="btn-jade" onClick={() => router.push('/book')}><span style={{ color: '#DBAA64', fontSize: '0.7rem', opacity: 0.65 }}>{'\u2606'}</span> Book a Visit</button>
-            <a href="tel:+15857472215" className="btn-jade"><GoldPhoneIcon size={11} /> Call Us</a>
-            <a href="mailto:info@healingsoulutions.care" className="btn-jade"><GoldEmailIcon size={11} /> Email Us</a>
-            <button className="btn-jade" onClick={() => router.push('/services')}><span style={{ color: '#DBAA64', fontSize: '0.7rem', opacity: 0.65 }}>{'\u2192'}</span> Learn More</button>
+            <button className="btn-jade" onClick={() => router.push('/book')}><span style={{ color: '#DBAA64', fontSize: '0.88rem' }}>{'\u2606'}</span> Book a Visit</button>
+            <a href="tel:+15857472215" className="btn-jade"><GoldPhoneIcon size={14} /> Call Us</a>
+            <a href="mailto:info@healingsoulutions.care" className="btn-jade"><GoldEmailIcon size={14} /> Email Us</a>
+            <button className="btn-jade" onClick={() => router.push('/services')}><span style={{ color: '#DBAA64', fontSize: '0.88rem' }}>{'\u2192'}</span> Learn More</button>
           </div>
         </div>
       </section>
@@ -49,6 +49,14 @@ function HomeContent() {
           ))}
         </div>
       </div>
+      <section aria-label="Client testimonial" style={{ background: '#02240f', padding: '1.6rem 1.5rem', textAlign: 'center' }}>
+        <p style={{ fontFamily: "'Varela Round', sans-serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--jade-soft)', fontSize: '0.88rem', lineHeight: 1.65, maxWidth: 540, margin: '0 auto' }}>
+          <span style={{ color: 'var(--gold-soft)', fontSize: '1.5em', lineHeight: 0, verticalAlign: '-0.35em' }}>&ldquo;</span>
+          Their medical expertise, preparation, and human compassion were exceptional &mdash; Healing Soulutions made a significant difference in my recovery, and the whole team is top-notch.
+          <span style={{ color: 'var(--gold-soft)', fontSize: '1.5em', lineHeight: 0, verticalAlign: '-0.55em' }}>&rdquo;</span>
+        </p>
+        <p style={{ fontFamily: "'Varela Round', sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', letterSpacing: '0.08em', marginTop: '0.9rem', textTransform: 'uppercase' }}>&mdash; Healing Soulutions client</p>
+      </section>
     </>
   );
 }
