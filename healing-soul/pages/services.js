@@ -23,7 +23,7 @@ function ServicesContent() {
           {serviceCategories.map((cat) => (
             <div key={cat.id} style={{ marginBottom: '0.75rem' }}>
               <div className="svc-card">
-                <div className="svc-card-header" onClick={() => setOpenCat(openCat === cat.id ? null : cat.id)}>
+                <div className="svc-card-header" role="button" tabIndex={0} aria-expanded={openCat === cat.id} onClick={() => setOpenCat(openCat === cat.id ? null : cat.id)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenCat(openCat === cat.id ? null : cat.id); } }}>
                   <h3 style={{ fontFamily: "'Outfit',sans-serif", fontSize: '0.78rem', fontWeight: 500, color: 'rgba(255,255,255,0.9)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     <span style={{ color: 'var(--gold-soft)', fontSize: '0.9rem' }}>{cat.icon}</span>{cat.title}
                   </h3>
@@ -41,7 +41,7 @@ function ServicesContent() {
                   )}
                   {(cat.displayServices || cat.services).map((s) => (
                     <div key={s.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '0.5rem 0.75rem' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => setOpenSvc(openSvc === s.id ? null : s.id)}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} role="button" tabIndex={0} aria-expanded={openSvc === s.id} aria-label={s.title} onClick={() => setOpenSvc(openSvc === s.id ? null : s.id)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenSvc(openSvc === s.id ? null : s.id); } }}>
                         <span style={{ fontFamily: "'Outfit',sans-serif", fontSize: '0.72rem', color: 'var(--gold-soft)' }}>{s.title}</span>
                         <span style={{ fontSize: '0.8rem', color: 'var(--gold-soft)', transition: 'transform 0.3s', transform: openSvc === s.id ? 'rotate(180deg)' : 'none' }}>{'\u25BE'}</span>
                       </div>

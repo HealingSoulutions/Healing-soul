@@ -450,7 +450,7 @@ function BookContent() {
           })}
         </div>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
-          <input type="checkbox" checked={consents[cf.key]} onChange={(e) => setConsents({ ...consents, [cf.key]: e.target.checked })} style={{ marginTop: '0.15rem', accentColor: '#7FD4A0' }} />
+          <input type="checkbox" aria-label={`I have read, understand, and agree to the ${cf.title}`} checked={consents[cf.key]} onChange={(e) => setConsents({ ...consents, [cf.key]: e.target.checked })} style={{ marginTop: '0.15rem', accentColor: '#7FD4A0' }} />
           <label style={{ fontSize: '0.58rem', color: 'rgba(255,255,255,0.8)', fontFamily: "'Outfit',sans-serif", lineHeight: 1.5 }}>I have read, understand, and agree to the {cf.title}</label>
         </div>
       </div>
@@ -509,7 +509,7 @@ function BookContent() {
               <div style={CS}>
                 <h2 style={TS}>Schedule Your Appointment</h2>
                 <p style={{ ...LS, textAlign: 'center', marginBottom: '1rem' }}>Select a preferred date and time below.</p>
-                <div className="form-row"><div className="form-group"><label style={LS}>Preferred Date</label><input type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} style={IS} /></div></div>
+                <div className="form-row"><div className="form-group"><label style={LS}>Preferred Date</label><input aria-label="Preferred Date" type="date" value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} style={IS} /></div></div>
                 <div style={{ marginBottom: '1rem' }}>
                   <label style={{ ...LS, marginBottom: '0.4rem', display: 'block' }}>Services Needed</label>
                   {form.services.length > 0 && (
@@ -532,39 +532,39 @@ function BookContent() {
                   <h2 style={TS}>Your Information</h2>
                   <p style={{ fontSize: '0.45rem', color: 'rgba(255,180,50,0.6)', fontFamily: "'Outfit',sans-serif", textAlign: 'center', marginBottom: '0.75rem' }}>Fields marked with * are required</p>
                   <div className="form-row" style={{ marginTop: '0.5rem' }}>
-                    <div className="form-group"><label style={LS}>First Name *</label><input type="text" placeholder="First name" value={form.fname} onChange={(e) => setForm({ ...form, fname: e.target.value })} style={IS} required /></div>
-                    <div className="form-group"><label style={LS}>Last Name *</label><input type="text" placeholder="Last name" value={form.lname} onChange={(e) => setForm({ ...form, lname: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>First Name *</label><input aria-label="First Name" type="text" placeholder="First name" value={form.fname} onChange={(e) => setForm({ ...form, fname: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>Last Name *</label><input aria-label="Last Name" type="text" placeholder="Last name" value={form.lname} onChange={(e) => setForm({ ...form, lname: e.target.value })} style={IS} required /></div>
                   </div>
                   <div className="form-row">
-                    <div className="form-group"><label style={LS}>Date of Birth *</label><input type="date" value={form.dob} onChange={(e) => setForm({ ...form, dob: e.target.value })} style={IS} required /></div>
-                    <div className="form-group"><label style={LS}>Email *</label><input type="email" placeholder="Email address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>Date of Birth *</label><input aria-label="Date of Birth" type="date" value={form.dob} onChange={(e) => setForm({ ...form, dob: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>Email *</label><input aria-label="Email" type="email" placeholder="Email address" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} style={IS} required /></div>
                   </div>
                   <div className="form-row">
                     <div className="form-group" style={{ flex: '0 0 auto', width: '100px' }}>
                       <label style={LS}>Code *</label>
-                      <select value={form.phoneCode} onChange={(e) => setForm({ ...form, phoneCode: e.target.value })} style={{ ...IS, appearance: 'auto', cursor: 'pointer' }}>
+                      <select aria-label="Code" value={form.phoneCode} onChange={(e) => setForm({ ...form, phoneCode: e.target.value })} style={{ ...IS, appearance: 'auto', cursor: 'pointer' }}>
                         {phoneCodes.map(function (c) { return <option key={c} value={c}>{c}</option>; })}
                       </select>
                     </div>
-                    <div className="form-group" style={{ flex: 1 }}><label style={LS}>Phone *</label><input type="tel" placeholder="Phone number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} style={IS} required /></div>
+                    <div className="form-group" style={{ flex: 1 }}><label style={LS}>Phone *</label><input aria-label="Phone" type="tel" placeholder="Phone number" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} style={IS} required /></div>
                   </div>
-                  <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 1 *</label><input type="text" placeholder="Street address" value={form.address1} onChange={(e) => setForm({ ...form, address1: e.target.value })} style={IS} required /></div></div>
-                  <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 2</label><input type="text" placeholder="Apt, suite, unit, etc. (optional)" value={form.address2} onChange={(e) => setForm({ ...form, address2: e.target.value })} style={IS} /></div></div>
+                  <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 1 *</label><input aria-label="Address Line 1" type="text" placeholder="Street address" value={form.address1} onChange={(e) => setForm({ ...form, address1: e.target.value })} style={IS} required /></div></div>
+                  <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 2</label><input aria-label="Address Line 2" type="text" placeholder="Apt, suite, unit, etc. (optional)" value={form.address2} onChange={(e) => setForm({ ...form, address2: e.target.value })} style={IS} /></div></div>
                   <div className="form-row">
-                    <div className="form-group"><label style={LS}>City *</label><input type="text" placeholder="City" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} style={IS} required /></div>
-                    <div className="form-group"><label style={LS}>State / Province / Region *</label><input type="text" placeholder="State, province, or region" value={form.stateProvince} onChange={(e) => setForm({ ...form, stateProvince: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>City *</label><input aria-label="City" type="text" placeholder="City" value={form.city} onChange={(e) => setForm({ ...form, city: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>State / Province / Region *</label><input aria-label="State / Province / Region" type="text" placeholder="State, province, or region" value={form.stateProvince} onChange={(e) => setForm({ ...form, stateProvince: e.target.value })} style={IS} required /></div>
                   </div>
                   <div className="form-row">
-                    <div className="form-group"><label style={LS}>Country *</label><input type="text" placeholder="Country" value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} style={IS} required /></div>
-                    <div className="form-group"><label style={LS}>Postal / Zip Code *</label><input type="text" placeholder="Postal or zip code" value={form.postalCode} onChange={(e) => setForm({ ...form, postalCode: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>Country *</label><input aria-label="Country" type="text" placeholder="Country" value={form.country} onChange={(e) => setForm({ ...form, country: e.target.value })} style={IS} required /></div>
+                    <div className="form-group"><label style={LS}>Postal / Zip Code *</label><input aria-label="Postal / Zip Code" type="text" placeholder="Postal or zip code" value={form.postalCode} onChange={(e) => setForm({ ...form, postalCode: e.target.value })} style={IS} required /></div>
                   </div>
-                  <div className="form-row"><div className="form-group full"><label style={LS}>Additional Notes</label><textarea placeholder="Any additional notes..." value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} style={{ ...IS, minHeight: '60px', resize: 'vertical' }} /></div></div>
+                  <div className="form-row"><div className="form-group full"><label style={LS}>Additional Notes</label><textarea aria-label="Additional Notes" placeholder="Any additional notes..." value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} style={{ ...IS, minHeight: '60px', resize: 'vertical' }} /></div></div>
 
                   {/* Medical info */}
                   <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                     <h3 style={{ fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Medical Information</h3>
                     {[{ id: 'medicalSurgicalHistory', l: 'Medical / Surgical History', p: 'List any medical conditions and past surgeries...' }, { id: 'medications', l: 'Current Medications', p: 'List all current medications...' }, { id: 'allergies', l: 'Allergies', p: 'List any known allergies...' }, { id: 'ivReactions', l: 'Previous IV Therapy Reactions', p: 'List any previous reactions to IV therapy...' }, { id: 'clinicianNotes', l: 'Additional Notes for Clinician', p: 'Any additional information...' }].map((f) => (
-                      <div key={f.id} className="form-row"><div className="form-group full"><label style={LS}>{f.l}</label><textarea placeholder={f.p} value={form[f.id]} onChange={(e) => setForm({ ...form, [f.id]: e.target.value })} style={medIS} /></div></div>
+                      <div key={f.id} className="form-row"><div className="form-group full"><label style={LS}>{f.l}</label><textarea aria-label="{f.l}" placeholder={f.p} value={form[f.id]} onChange={(e) => setForm({ ...form, [f.id]: e.target.value })} style={medIS} /></div></div>
                     ))}
                   </div>
                 </div>
@@ -583,37 +583,37 @@ function BookContent() {
                         <button onClick={() => removePatient(pt.id)} style={{ background: 'rgba(255,100,100,0.12)', border: '1px solid rgba(255,100,100,0.3)', color: '#FF9B9B', cursor: 'pointer', fontSize: '0.45rem', fontFamily: "'Outfit',sans-serif", fontWeight: 600, padding: '0.25rem 0.6rem', borderRadius: '5px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>{'\u2715'} Remove</button>
                       </div>
                       <div className="form-row">
-                        <div className="form-group"><label style={LS}>First Name</label><input type="text" placeholder="First name" value={pt.fname} onChange={(e) => updatePatient(pt.id, 'fname', e.target.value)} style={IS} /></div>
-                        <div className="form-group"><label style={LS}>Last Name</label><input type="text" placeholder="Last name" value={pt.lname} onChange={(e) => updatePatient(pt.id, 'lname', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>First Name</label><input aria-label="First Name" type="text" placeholder="First name" value={pt.fname} onChange={(e) => updatePatient(pt.id, 'fname', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>Last Name</label><input aria-label="Last Name" type="text" placeholder="Last name" value={pt.lname} onChange={(e) => updatePatient(pt.id, 'lname', e.target.value)} style={IS} /></div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group"><label style={LS}>Date of Birth</label><input type="date" value={pt.dob || ''} onChange={(e) => updatePatient(pt.id, 'dob', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>Date of Birth</label><input aria-label="Date of Birth" type="date" value={pt.dob || ''} onChange={(e) => updatePatient(pt.id, 'dob', e.target.value)} style={IS} /></div>
                         <div className="form-group">
                           <label style={LS}>Phone</label>
                           <div style={{ display: 'flex', gap: '0.3rem' }}>
-                            <select value={pt.phoneCode || '+1'} onChange={(e) => updatePatient(pt.id, 'phoneCode', e.target.value)} style={{ ...IS, width: '80px', flex: '0 0 80px', appearance: 'auto', cursor: 'pointer' }}>
+                            <select aria-label="Phone" value={pt.phoneCode || '+1'} onChange={(e) => updatePatient(pt.id, 'phoneCode', e.target.value)} style={{ ...IS, width: '80px', flex: '0 0 80px', appearance: 'auto', cursor: 'pointer' }}>
                               {phoneCodes.map(function (c) { return <option key={c} value={c}>{c}</option>; })}
                             </select>
                             <input type="tel" placeholder="Phone number" value={pt.phone || ''} onChange={(e) => updatePatient(pt.id, 'phone', e.target.value)} style={{ ...IS, flex: 1 }} />
                           </div>
                         </div>
                       </div>
-                      <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 1</label><input type="text" placeholder="Street address" value={pt.address1} onChange={(e) => updatePatient(pt.id, 'address1', e.target.value)} style={IS} /></div></div>
-                      <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 2</label><input type="text" placeholder="Apt, suite, unit, etc. (optional)" value={pt.address2} onChange={(e) => updatePatient(pt.id, 'address2', e.target.value)} style={IS} /></div></div>
+                      <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 1</label><input aria-label="Address Line 1" type="text" placeholder="Street address" value={pt.address1} onChange={(e) => updatePatient(pt.id, 'address1', e.target.value)} style={IS} /></div></div>
+                      <div className="form-row"><div className="form-group full"><label style={LS}>Address Line 2</label><input aria-label="Address Line 2" type="text" placeholder="Apt, suite, unit, etc. (optional)" value={pt.address2} onChange={(e) => updatePatient(pt.id, 'address2', e.target.value)} style={IS} /></div></div>
                       <div className="form-row">
-                        <div className="form-group"><label style={LS}>City</label><input type="text" placeholder="City" value={pt.city} onChange={(e) => updatePatient(pt.id, 'city', e.target.value)} style={IS} /></div>
-                        <div className="form-group"><label style={LS}>State / Province / Region</label><input type="text" placeholder="State, province, or region" value={pt.stateProvince} onChange={(e) => updatePatient(pt.id, 'stateProvince', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>City</label><input aria-label="City" type="text" placeholder="City" value={pt.city} onChange={(e) => updatePatient(pt.id, 'city', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>State / Province / Region</label><input aria-label="State / Province / Region" type="text" placeholder="State, province, or region" value={pt.stateProvince} onChange={(e) => updatePatient(pt.id, 'stateProvince', e.target.value)} style={IS} /></div>
                       </div>
                       <div className="form-row">
-                        <div className="form-group"><label style={LS}>Country</label><input type="text" placeholder="Country" value={pt.country} onChange={(e) => updatePatient(pt.id, 'country', e.target.value)} style={IS} /></div>
-                        <div className="form-group"><label style={LS}>Postal / Zip Code</label><input type="text" placeholder="Postal or zip code" value={pt.postalCode} onChange={(e) => updatePatient(pt.id, 'postalCode', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>Country</label><input aria-label="Country" type="text" placeholder="Country" value={pt.country} onChange={(e) => updatePatient(pt.id, 'country', e.target.value)} style={IS} /></div>
+                        <div className="form-group"><label style={LS}>Postal / Zip Code</label><input aria-label="Postal / Zip Code" type="text" placeholder="Postal or zip code" value={pt.postalCode} onChange={(e) => updatePatient(pt.id, 'postalCode', e.target.value)} style={IS} /></div>
                       </div>
                       <div style={{ marginTop: '0.5rem' }}>
                         <label style={{ ...LS, marginBottom: '0.4rem', display: 'block' }}>Services Needed</label>
                         {renderServicePicker(pt.services, (title) => updatePatient(pt.id, 'services', toggleService(pt.services, title)))}
                       </div>
                       {[{ id: 'medicalSurgicalHistory', l: 'Medical / Surgical History', p: 'List any medical conditions and past surgeries...' }, { id: 'medications', l: 'Current Medications', p: 'List all current medications...' }, { id: 'allergies', l: 'Allergies', p: 'List any known allergies...' }, { id: 'ivReactions', l: 'Previous IV Therapy Reactions', p: 'List any previous reactions to IV therapy...' }, { id: 'clinicianNotes', l: 'Notes for Clinician', p: 'Any additional information...' }].map((f) => (
-                        <div key={f.id} className="form-row"><div className="form-group full"><label style={LS}>{f.l}</label><textarea placeholder={f.p} value={pt[f.id]} onChange={(e) => updatePatient(pt.id, f.id, e.target.value)} style={medIS} /></div></div>
+                        <div key={f.id} className="form-row"><div className="form-group full"><label style={LS}>{f.l}</label><textarea aria-label="{f.l}" placeholder={f.p} value={pt[f.id]} onChange={(e) => updatePatient(pt.id, f.id, e.target.value)} style={medIS} /></div></div>
                       ))}
                     </div>
                   ))}
@@ -652,7 +652,7 @@ function BookContent() {
                       <button onClick={() => setIntakeSigMode('draw')} style={{ padding: '0.35rem 0.75rem', fontSize: '0.5rem', fontFamily: "'Outfit',sans-serif", fontWeight: 600, background: intakeSigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)', color: intakeSigMode === 'draw' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: '1px solid ' + (intakeSigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)'), borderRadius: '6px', cursor: 'pointer' }}>Draw</button>
                     </div>
                     {intakeSigMode === 'type' ? (
-                      <input type="text" placeholder="Type your full legal name" value={intakeSignature} onChange={(e) => setIntakeSignature(e.target.value)} style={{ ...IS, fontFamily: "'Cormorant Garamond',serif", fontSize: '1.1rem', fontStyle: 'italic', fontWeight: 500 }} />
+                      <input aria-label="I acknowledge and certify that all information provided in this intake form is complete, accurate, and truthful. I understand and accept the terms outlined above, including the limitations of liability for incomplete or inaccurate information." type="text" placeholder="Type your full legal name" value={intakeSignature} onChange={(e) => setIntakeSignature(e.target.value)} style={{ ...IS, fontFamily: "'Cormorant Garamond',serif", fontSize: '1.1rem', fontStyle: 'italic', fontWeight: 500 }} />
                     ) : (
                       <div style={{ position: 'relative' }}>
                         <canvas data-sig-canvas="intake" width={500} height={120} style={{ width: '100%', height: '80px', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.15)', cursor: 'crosshair' }}
@@ -738,7 +738,7 @@ function BookContent() {
                   <span style={{ fontSize: '0.85rem' }}>{'\uD83D\uDD12'}</span>
                   <span style={{ fontSize: '0.48rem', color: 'var(--gold-soft)', fontFamily: "'Outfit',sans-serif" }}>{stripeFailed ? 'Payment follow-up' : 'Secured by Stripe'}</span>
                 </div>
-                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Name on Account</label><input type="text" placeholder="Full name" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} className="cc-field" style={{ ...IS, color: '#DBAA64' }} autoComplete="cc-name" /></div>
+                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.5rem', marginBottom: '0.35rem', fontFamily: "'Outfit',sans-serif" }}>Name on Account</label><input aria-label="Name on Account" type="text" placeholder="Full name" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} className="cc-field" style={{ ...IS, color: '#DBAA64' }} autoComplete="cc-name" /></div>
                 {stripeFailed ? (
                   <div style={{ padding: '0.85rem', background: 'rgba(255,180,50,0.08)', border: '1px solid rgba(255,180,50,0.2)', borderRadius: '8px', marginBottom: '1rem' }}>
                     <p style={{ fontSize: '0.52rem', color: '#FFB432', fontFamily: "'Outfit',sans-serif", lineHeight: 1.6, marginBottom: '0.4rem', fontWeight: 600 }}>Secure payment is temporarily unavailable.</p>
