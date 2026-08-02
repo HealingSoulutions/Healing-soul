@@ -44,12 +44,12 @@ function HomeContent() {
       <section aria-labelledby="wwd-heading" style={{ background: '#013C1C', padding: '2.5rem 1.5rem 3rem' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
           <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.22em', color: 'var(--gold-soft)', textTransform: 'uppercase' }}>What We Do</span>
-          <h2 id="wwd-heading" style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '1.15rem', fontWeight: 700, color: 'var(--jade-whisper)', margin: '0.5rem 0 1.6rem' }}>Hospital-grade care, delivered to you</h2>
+          <h2 id="wwd-heading" style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.95rem', fontWeight: 400, color: 'var(--jade-whisper)', margin: '0.5rem 0 1.6rem' }}>Hospital-grade care, delivered to you</h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '0.9rem' }}>
             {[
               ['✦', 'IV & Infusion Therapy', 'Hydration, vitamin, and NAD+ drips delivered in your home or office.'],
               ['❖', 'In-Home & Post-Op Nursing', 'Skilled bedside care, wound care, and recovery support after surgery.'],
-              ['⚕', 'Diagnostics & Lab Draws', 'At-home blood draws and lab testing, with results reviewed by a clinician.'],
+              ['⚕', 'Diagnostics & Lab Draws', 'At-home blood draws with lab interpretation, urine tests, and rapid or PCR swabs for flu, COVID-19, and RSV.'],
               ['✧', 'Wellness & Care Plans', 'Medically guided wellness, medication education, and personalized care plans.'],
             ].map(([icon, title, blurb]) => (
               <Link key={title} href="/services" style={{ textDecoration: 'none', display: 'block', textAlign: 'left', background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.2rem 1.25rem' }}>
@@ -67,13 +67,8 @@ function HomeContent() {
       <section aria-labelledby="area-heading" style={{ background: '#02240f', padding: '2.5rem 1.5rem' }}>
         <div style={{ maxWidth: 820, margin: '0 auto', textAlign: 'center' }}>
           <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.22em', color: 'var(--gold-soft)', textTransform: 'uppercase' }}>Service Area</span>
-          <h2 id="area-heading" style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '1.15rem', fontWeight: 700, color: 'var(--jade-whisper)', margin: '0.5rem 0 0.9rem' }}>Serving Manhattan &amp; the New York metro area</h2>
+          <h2 id="area-heading" style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.95rem', fontWeight: 400, color: 'var(--jade-whisper)', margin: '0.5rem 0 0.9rem' }}>Serving Manhattan &amp; the New York metro area</h2>
           <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.85rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', maxWidth: 620, margin: '0 auto 1.1rem' }}>Concierge and mobile nursing across Manhattan — from the Upper East and West Sides to Midtown, Chelsea, Tribeca, and beyond. Care in the surrounding New York metropolitan area is available on request.</p>
-          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
-            {['Upper East Side', 'Upper West Side', 'Midtown', 'Chelsea', 'Tribeca', 'SoHo', 'Greenwich Village'].map((a) => (
-              <span key={a} style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.68rem', color: 'var(--gold-soft)', background: 'rgba(219,170,100,0.10)', border: '1px solid rgba(219,170,100,0.22)', borderRadius: '999px', padding: '0.3rem 0.85rem' }}>{a}</span>
-            ))}
-          </div>
           <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.72rem', color: 'var(--jade-soft)', marginTop: '1rem' }}>Outside Manhattan? <Link href="/contact" style={{ color: 'var(--gold-soft)' }}>Contact us</Link> and we&rsquo;ll confirm.</p>
         </div>
       </section>
