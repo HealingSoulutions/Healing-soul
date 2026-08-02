@@ -11,8 +11,8 @@ const EY = { fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.2em', color:
 const FAQS = [
   ['What areas do you serve?', 'Healing Soulutions provides mobile and concierge nursing across the New York metropolitan area. Contact us to confirm availability at your location.'],
   ['Who provides my care?', 'Care is delivered by licensed Registered Nurses (RNs) and Nurse Practitioners (NPs). Registered Nurses provide care under the order or standing order of a Nurse Practitioner or physician, consistent with New York scope-of-practice law.'],
-  ['Do you offer telehealth?', 'Yes. Virtual consultations with a Nurse Practitioner are available where clinically appropriate. Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
-  ['How does payment work? Do you take insurance?', 'Healing Soulutions is an out-of-network provider; payment is due at the time of service. We accept major cards through a secure, PCI-compliant processor and can provide a Good Faith Estimate on request under the No Surprises Act.'],
+  ['Do you offer telehealth?', 'Yes. Virtual consultations with a Nurse Practitioner are available where clinically appropriate, for clients located in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
+  ['How does payment work? Do you take insurance?', 'Healing Soulutions is an out-of-network provider; payment is due at the time of service. We accept major cards through a secure, PCI-compliant processor and, as required by the No Surprises Act, we provide a Good Faith Estimate of expected charges before your scheduled visit.'],
   ['What should I expect when booking?', 'You choose your services, complete a secure intake and consent, and select a date and time. Our team follows up within 24 hours to confirm the details of your visit.'],
   ['What is your cancellation policy?', 'We ask for at least 24 hours notice to cancel or reschedule. Full details are in the Financial Agreement presented during booking.'],
 ];
