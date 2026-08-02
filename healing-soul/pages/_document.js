@@ -32,13 +32,9 @@ export default function Document() {
         <meta property="og:site_name" content="Healing Soulutions" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
-        <meta property="og:image" content={SITE + '/og-image.png'} />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
 
-        {/* Twitter */}
+        {/* Twitter (per-page image/title/description come from the Seo component) */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:image" content={SITE + '/og-image.png'} />
 
         {/* Local business structured data */}
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(LD) }} />
