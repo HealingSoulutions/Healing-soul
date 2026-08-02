@@ -82,14 +82,6 @@ function HomeContent() {
           ))}
         </div>
       </div>
-      <section aria-label="Client testimonial" style={{ background: '#02240f', padding: '1.6rem 1.5rem', textAlign: 'center' }}>
-        <p style={{ fontFamily: "'Varela Round', sans-serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--jade-soft)', fontSize: '0.88rem', lineHeight: 1.65, maxWidth: 540, margin: '0 auto' }}>
-          <span style={{ color: 'var(--gold-soft)', fontSize: '1.5em', lineHeight: 0, verticalAlign: '-0.35em' }}>&ldquo;</span>
-          Their medical expertise, preparation, and human compassion were exceptional &mdash; Healing Soulutions made a significant difference in my recovery, and the whole team is top-notch.
-          <span style={{ color: 'var(--gold-soft)', fontSize: '1.5em', lineHeight: 0, verticalAlign: '-0.55em' }}>&rdquo;</span>
-        </p>
-        <p style={{ fontFamily: "'Varela Round', sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', letterSpacing: '0.08em', marginTop: '0.9rem', textTransform: 'uppercase' }}>&mdash; Healing Soulutions client</p>
-      </section>
     </>
   );
 }
