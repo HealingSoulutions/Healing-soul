@@ -79,6 +79,7 @@ export default function Services() {
   return (
     <>
       <Seo title="Our Services — Healing Soulutions Concierge Nursing" description="Explore Healing Soulutions services: IV and infusion therapy, in-home and post-op nursing, at-home diagnostics and lab draws, medication education, telehealth, and medically guided wellness — delivered in your home." />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@type': 'MedicalBusiness', name: 'Healing Soulutions', url: 'https://healingsoulutions.care', hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Concierge Nursing Services', itemListElement: serviceCategories.map((cat) => ({ '@type': 'OfferCatalog', name: cat.title, itemListElement: (cat.displayServices || cat.services).map((s) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: s.title, description: s.desc } })) })) } }) }} />
       <ServicesContent />
     </>
   );
