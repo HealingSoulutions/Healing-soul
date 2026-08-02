@@ -1,9 +1,14 @@
 import '../styles/globals.css';
-import { Analytics } from '@vercel/analytics/react';
+import Script from 'next/script';
+import { useRouter } from 'next/router';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 
 export default function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  // Vercel Web Analytics via the hosted script — cookieless, no PII, and no npm dependency.
+  // Kept off the /book intake flow so nothing runs on the page where health info is entered.
+  const analyticsOn = !router.pathname.startsWith('/book');
   return (
     <>
       <Nav />
@@ -11,8 +16,7 @@ export default function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </main>
       <Footer />
-      {/* Privacy-safe: cookieless, no PII, and disabled on the /book intake flow (no PHI pages tracked). */}
-      <Analytics beforeSend={(event) => (event.url.includes('/book') ? null : event)} />
+      {analyticsOn && <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />}
     </>
   );
 }
