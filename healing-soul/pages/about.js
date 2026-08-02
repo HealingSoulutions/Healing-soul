@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Seo from '../components/Seo';
 import Link from 'next/link';
 import SceneBackground from '../components/SceneBackground';
 
@@ -19,10 +20,7 @@ const FAQS = [
 export default function About() {
   return (
     <>
-      <Head>
-        <title>About & FAQ — Healing Soulutions Concierge Nursing</title>
-        <meta name="description" content="Learn about Healing Soulutions concierge and mobile nursing — our care team of licensed RNs and Nurse Practitioners, how in-home visits work, and answers to common questions about services, telehealth, and payment." />
-      </Head>
+      <Seo title="About & FAQ — Healing Soulutions Concierge Nursing" description="Learn about Healing Soulutions concierge and mobile nursing — our care team of licensed RNs and Nurse Practitioners, how in-home visits work, and answers to common questions about services, telehealth, and payment." />
       <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
         <SceneBackground />
         <div style={{ position: 'relative', zIndex: 10, maxWidth: 780, margin: '0 auto', padding: '7rem 1.5rem 4rem' }}>
