@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Nav() {
   const [mo, setMo] = useState(false);
-  const links = [['Home', '/'], ['Services', '/services'], ['About', '/about'], ['Contact', 'mailto:info@healingsoulutions.care'], ['Book a Visit', '/book']];
+  const links = [['Home', '/'], ['Services', '/services'], ['About', '/about'], ['Contact', '/contact'], ['Book a Visit', '/book']];
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>
