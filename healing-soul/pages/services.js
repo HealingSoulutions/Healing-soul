@@ -16,7 +16,7 @@ function ServicesContent() {
           <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.5rem', boxSizing: 'border-box', width: '100%' }}>
             <div style={{ margin: '0.5rem 0 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '8.57rem', width: 'auto', display: 'inline-block' }} /></div>
             <div style={{ width: 40, height: 1.5, background: 'var(--gold-soft)', margin: '0.5rem auto 0.7rem' }} />
-            <h1 style={{ color: 'var(--gold-soft)', fontSize: '1.05rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: "'Outfit',sans-serif", margin: '1.1rem 0 0' }}>Our Services</h1>
+            <h1 style={{ color: 'var(--gold-soft)', fontSize: '1.05rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: "'Varela Round',sans-serif", margin: '1.1rem 0 0' }}>Our Services</h1>
             <p style={{ fontFamily: "'Varela Round', sans-serif", color: 'rgba(255,255,255,0.82)', fontSize: '0.82rem', lineHeight: 1.65, maxWidth: 430, margin: '0.7rem auto 0' }}>Expert in-home and mobile nursing care, tailored to you — tap any category below to explore what we offer.</p>
           </div>
         </div>
