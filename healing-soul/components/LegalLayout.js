@@ -1,13 +1,11 @@
 import Head from 'next/head';
+import Seo from './Seo';
 import SceneBackground from './SceneBackground';
 
 export default function LegalLayout({ title, description, effective, children }) {
   return (
     <>
-      <Head>
-        <title>{title} — Healing Soulutions</title>
-        <meta name="description" content={description} />
-      </Head>
+      <Seo title={`${title} — Healing Soulutions`} description={description} />
       <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
         <SceneBackground />
         <div style={{ position: 'relative', zIndex: 10, maxWidth: 780, margin: '0 auto', padding: '7rem 1.5rem 4rem' }}>
