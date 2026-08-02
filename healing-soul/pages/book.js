@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Seo from '../components/Seo';
 import { useRouter } from 'next/router';
 import SceneBackground from '../components/SceneBackground';
 import { GoldPhoneIcon, GoldEmailIcon, GoldClockIcon, GoldPinIcon } from '../components/icons';
@@ -831,10 +832,7 @@ function BookContent() {
 export default function Book() {
   return (
     <>
-      <Head>
-        <title>Book a Visit — Healing Soulutions Concierge Nursing</title>
-        <meta name="description" content="Schedule a concierge nursing visit with Healing Soulutions. Choose your services, complete secure intake and consent, and book your appointment across the New York metro area." />
-      </Head>
+      <Seo title="Book a Visit — Healing Soulutions Concierge Nursing" description="Schedule a concierge nursing visit with Healing Soulutions. Choose your services, complete secure intake and consent, and book your appointment across the New York metro area." />
       <BookContent />
     </>
   );
