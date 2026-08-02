@@ -14,9 +14,11 @@ function HomeContent() {
           <div className="hero-text-panel">
             <img src={"/wordmark.png"} alt="Healing Soulutions — Concierge Nursing" style={{ display: 'block', width: 'min(437px, 99%)', height: 'auto', margin: '0 auto 1rem' }} />
             <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '0.4rem auto 1rem', opacity: 0.9 }} />
-            <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: 0, fontFamily: "'Varela Round', sans-serif", fontSize: '1.02rem', lineHeight: 1.72, maxWidth: 460, color: '#D9AC63', fontWeight: 400, textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
-              Expert nursing care, wherever you&rsquo;re most comfortable — your home, your office, anywhere you call yours.{' '}
-              <em style={{ fontStyle: 'italic' }}>Our focus is on your wellness, health and vitality, so you can be fully present: for yourself, your purpose, and the people who matter most.</em>
+            <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: 0, fontFamily: "'Varela Round', sans-serif", fontSize: '0.92rem', lineHeight: 1.72, maxWidth: 470, color: '#D9AC63', fontWeight: 400, textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
+              Healing Soulutions was founded on a simple belief: trusted, personalized care is something only the human touch can provide. Technology and AI can automate much of medicine &mdash; but never human trust, compassion, and empathy, nor the skill of a nurse at your side. As nurses, we work alongside you: listening, guiding, and advocating, to build a relationship that genuinely enriches your life. Every plan is shaped uniquely around you, because we want you involved, invested, and curious &mdash; an active partner in your own care.
+            </p>
+            <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: '0.9rem', fontFamily: "'Varela Round', sans-serif", fontSize: '0.92rem', lineHeight: 1.72, maxWidth: 470, color: '#D9AC63', fontWeight: 400, fontStyle: 'italic', textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
+              With your wellness at the center, our purpose is simple: that you feel your best. Present and happy in your life &mdash; for yourself, your family, your friends, and your work.
             </p>
             <div style={{ marginTop: '1.5rem' }}>
               <p style={{ textAlign: 'center', fontStyle: 'italic', color: 'var(--jade-mist)', fontSize: '0.88rem', letterSpacing: '0.02em', margin: '0 0 0.2rem' }}>
