@@ -72,6 +72,15 @@ export default function About() {
             ))}
           </div>
 
+          <div style={{ ...CARD, textAlign: 'center' }}>
+            <p style={{ fontFamily: "'Varela Round',sans-serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--jade-soft)', fontSize: '0.88rem', lineHeight: 1.65, maxWidth: 540, margin: '0 auto' }}>
+              <span style={{ color: 'var(--gold-soft)', fontSize: '1.5em', lineHeight: 0, verticalAlign: '-0.35em' }}>&ldquo;</span>
+              Their medical expertise, preparation, and human compassion were exceptional &mdash; Healing Soulutions made a significant difference in my recovery, and the whole team is top-notch.
+              <span style={{ color: 'var(--gold-soft)', fontSize: '1.5em', lineHeight: 0, verticalAlign: '-0.55em' }}>&rdquo;</span>
+            </p>
+            <p style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', letterSpacing: '0.08em', marginTop: '0.9rem', textTransform: 'uppercase', marginBottom: 0 }}>&mdash; Healing Soulutions client</p>
+          </div>
+
           <p style={{ ...P, fontSize: '0.7rem', color: 'rgba(255,255,255,0.5)', textAlign: 'center' }}>Questions? Call <a href="tel:+15857472215" style={{ color: 'var(--gold-soft)' }}>(585) 747-2215</a> or email <a href="mailto:info@healingsoulutions.care" style={{ color: 'var(--gold-soft)' }}>info@healingsoulutions.care</a>.</p>
         </div>
       </div>
