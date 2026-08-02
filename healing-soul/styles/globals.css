@@ -210,13 +210,13 @@ nav {
 .service-item:hover { color: var(--gold-soft); }
 .btn-jade {
   padding: 0.3rem 0; font-size: 0.5rem; font-weight: 600;
-  background: rgba(255,255,255,0.1); color: var(--gold-soft);
-  border: 1px solid rgba(255,255,255,0.15); border-radius: 6px;
+  background: #02240f; color: var(--gold-soft);
+  border: 1px solid rgba(219,170,100,0.35); border-radius: 6px;
   cursor: pointer; transition: all 0.3s; text-decoration: none;
   display: flex; align-items: center; justify-content: center; gap: 0.3rem;
   font-family: 'Outfit', sans-serif;
 }
-.btn-jade:hover { background: rgba(255,255,255,0.25); color: #F1CE86; }
+.btn-jade:hover { background: #013C1C; color: #F1CE86; border-color: rgba(219,170,100,0.6); }
 
 .trust-ribbon {
   padding: 1.25rem 3rem; background: #013C1C;
@@ -225,8 +225,9 @@ nav {
 
 /* ── Service Cards ── */
 .svc-card {
-  background: rgba(18,70,47,0.86); backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+  background: rgba(8,44,26,0.9); backdrop-filter: blur(24px);
+  border: 1.5px solid rgba(219,170,100,0.7); border-radius: 12px;
+  box-shadow: 0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28);
   overflow: hidden; transition: all 0.3s; box-sizing: border-box; width: 100%;
 }
 .svc-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
