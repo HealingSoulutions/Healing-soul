@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Seo from '../components/Seo';
+import AmbientSound from '../components/AmbientSound';
 import { GoldPhoneIcon, GoldEmailIcon } from '../components/icons';
 
 function HomeContent() {
@@ -8,7 +9,11 @@ function HomeContent() {
   return (
     <>
       <section className="hero">
-        <div className="hero-gif" aria-hidden="true" />
+        <div className="hero-fallback" aria-hidden="true" />
+        <video className="hero-video" autoPlay muted loop playsInline poster="/waves-poster.jpg" aria-hidden="true">
+          <source src="/waves.webm" type="video/webm" />
+          <source src="/waves.mp4" type="video/mp4" />
+        </video>
         <div className="hero-gif-tint" aria-hidden="true" />
         <div className="hero-content">
           <div className="hero-text-panel">
@@ -64,7 +69,7 @@ function HomeContent() {
       </section>
       <div className="trust-ribbon">
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem 0' }}>
-          {['Licensed RNs & NPs', 'HIPAA Compliant', 'Fully Insured', 'Same-Day Availability'].map((t, i) => (
+          {['Licensed RNs & NPs', 'HIPAA Compliant', 'Fully Insured', 'Same-Day When Available'].map((t, i) => (
             <span key={t} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
               {i > 0 && <span style={{ width: 3, height: 3, background: 'var(--gold-soft)', borderRadius: '50%', margin: '0 0.5rem' }} />}
               <span style={{ fontSize: '0.65rem', color: 'var(--jade-mist)', fontWeight: 500, letterSpacing: '0.04em' }}>{t}</span>
@@ -94,6 +99,7 @@ export default function Home() {
     <>
       <Seo title="Healing Soulutions — Concierge & Mobile Nursing | New York Metro" description="Healing Soulutions brings concierge and mobile nursing care to you across the New York metropolitan area — IV therapy, in-home and post-op nursing, at-home lab draws, and wellness services delivered by licensed RNs and Nurse Practitioners." />
       <HomeContent />
+      <AmbientSound />
     </>
   );
 }
