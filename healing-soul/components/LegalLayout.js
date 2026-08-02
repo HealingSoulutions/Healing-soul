@@ -11,7 +11,7 @@ export default function LegalLayout({ title, description, effective, children })
       <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
         <SceneBackground />
         <div style={{ position: 'relative', zIndex: 10, maxWidth: 780, margin: '0 auto', padding: '7rem 1.5rem 4rem' }}>
-          <div style={{ background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '14px', padding: '2rem 2.1rem' }}>
+          <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '2rem 2.1rem' }}>
             <h1 style={{ fontFamily: "'Varela Round',serif", color: 'var(--gold-soft)', fontSize: '1.7rem', fontWeight: 600, marginBottom: '0.3rem' }}>{title}</h1>
             {effective && <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', marginBottom: '1.25rem' }}>Effective Date: {effective}</p>}
             {children}
