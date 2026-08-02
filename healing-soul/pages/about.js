@@ -45,7 +45,7 @@ export default function About() {
               <img src="/berit.jpg" alt="Berit Tran, Registered Nurse and founder of Healing Soulutions" style={{ width: 140, height: 140, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--gold-soft)', boxShadow: '0 0 0 5px rgba(219,170,100,0.15)' }} />
               <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '1.05rem', fontWeight: 700, margin: '0.8rem 0 0.15rem' }}>Berit Tran, BSN, RN</h3>
               <div style={{ ...EY, marginBottom: '0.7rem' }}>Clinician &amp; Wellness Nurse Consultant</div>
-              <p style={{ ...P, maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>Berit brings over fifteen years of acute-care, perioperative, and emergency nursing across New York&apos;s leading hospitals — from a Level I emergency department to surgical recovery and COVID-19 ICU surge care. Through Healing Soulutions, she brings that hospital-grade expertise into the home, with the calm, discretion, and heart that exceptional care deserves.</p>
+              <p style={{ ...P, maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>Berit brings over fifteen years of acute-care, perioperative, and emergency nursing across New York&apos;s leading hospitals — from the emergency department to surgical recovery and COVID-19 ICU surge care. Through Healing Soulutions, she brings that hospital-grade expertise into the home, with the calm, discretion, and heart that exceptional care deserves.</p>
               <p style={{ ...P, fontSize: '0.7rem', color: 'rgba(255,255,255,0.6)', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', marginBottom: 0 }}>BSN &middot; Licensed RN (New York) &middot; ACLS &middot; PALS &middot; BLS &middot; English, Vietnamese, Norwegian &amp; Swedish</p>
             </div>
 
@@ -57,7 +57,6 @@ export default function About() {
               <p style={{ ...P, fontSize: '0.7rem', color: 'rgba(255,255,255,0.6)', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', marginBottom: 0 }}>MSN / FNP &mdash; College of Mount Saint Vincent &middot; ANCC Board Certified (FNP-BC) &middot; Licensed NP (NY &amp; CT) &middot; RN (NY, NJ &amp; CT) &middot; TNCC &middot; ENPC &middot; ACLS &middot; PALS &middot; BLS</p>
             </div>
 
-            <p style={{ ...P, fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', marginTop: '1.6rem', marginBottom: 0 }}>Every visit is provided by licensed clinicians held to New York&apos;s professional standards of care. Registered Nurses provide care under the order or standing order of a Nurse Practitioner or physician.</p>
           </div>
 
           <div style={CARD}>
