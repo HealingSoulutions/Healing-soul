@@ -43,7 +43,7 @@ export const serviceCategories = [
       { id: 9, title: 'Weight Management', desc: 'Medically guided weight management with personalized nutrition and lifestyle counseling.', tags: ['Nutrition', 'Lifestyle', 'Metabolic Health', 'Coaching'] },
       { id: 4, title: 'Medication Education', desc: 'Comprehensive medication teaching and management to ensure safe, effective use of your prescriptions.', tags: ['Medication Review', 'Drug Interactions', 'Patient Education'] },
       { id: 10, title: 'Personalized Care Plans', desc: 'Comprehensive, individualized care plans developed by our nurse practitioners.', tags: ['Assessment', 'Care Planning', 'Wellness Goals', 'Follow-Up'] },
-      { id: 55, title: 'Supplement Protocols', desc: 'Personalized supplement and nutraceutical protocols developed by a Nurse Practitioner based on your health goals, history, and lab results. Educational and wellness-focused; not intended to diagnose, treat, cure, or prevent any disease.', tags: ['Nutraceuticals', 'Personalized', 'Vitamins & Minerals', 'Wellness'] },
+      { id: 55, title: 'Supplement Protocols', desc: 'Supplement and nutraceutical protocols tailored uniquely for you by our nursing team, based on your health goals, history, and lab results. Educational and wellness-focused; not intended to diagnose, treat, cure, or prevent any disease.', tags: ['Nutraceuticals', 'Personalized', 'Vitamins & Minerals', 'Wellness'] },
       { id: 5, title: 'Telehealth Services', desc: 'Virtual consultations with our nurse practitioners from the comfort of your home.', tags: ['Virtual Visit', 'Remote Monitoring', 'Follow-Up', 'Consultation'] },
     ],
   },
