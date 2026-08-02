@@ -8,12 +8,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 17.5px; }
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Varela Round', sans-serif;
   background: var(--ivory);
   color: var(--ink);
   font-weight: 400;
 }
-h1, h2, h3, h4, h5 { font-family: 'Cormorant Garamond', serif; }
+h1, h2, h3, h4, h5 { font-family: 'Varela Round', serif; }
 
 .skip-link {
   position: absolute; top: -100%; left: 50%; transform: translateX(-50%);
@@ -56,12 +56,12 @@ nav {
   border-bottom: 1px solid rgba(255,255,255,0.08); transition: all 0.5s;
 }
 .logo {
-  font-family: 'Cormorant Garamond', serif; font-size: 1.65rem;
+  font-family: 'Varela Round', serif; font-size: 1.65rem;
   font-weight: 500; color: rgba(255,255,255,0.9); cursor: pointer; line-height: 1;
 }
 .logo b { color: var(--gold-soft); font-weight: 600; }
 .logo-sub {
-  font-family: 'Outfit', sans-serif; font-size: 0.52rem; font-weight: 600;
+  font-family: 'Varela Round', sans-serif; font-size: 0.52rem; font-weight: 600;
   letter-spacing: 0.15em; display: block; margin-top: 0.15rem;
 }
 .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
@@ -69,7 +69,7 @@ nav {
 .nav-links button.nav-btn {
   text-decoration: none; color: rgba(255,255,255,0.6); font-size: 0.7rem;
   font-weight: 500; transition: all 0.3s; background: none; border: none;
-  cursor: pointer; font-family: 'Outfit', sans-serif; letter-spacing: 0.04em;
+  cursor: pointer; font-family: 'Varela Round', sans-serif; letter-spacing: 0.04em;
 }
 .nav-links a:hover,
 .nav-links button.nav-btn:hover { color: rgba(255,255,255,1); }
@@ -214,7 +214,7 @@ nav {
   border: 1px solid rgba(219,170,100,0.35); border-radius: 6px;
   cursor: pointer; transition: all 0.3s; text-decoration: none;
   display: flex; align-items: center; justify-content: center; gap: 0.3rem;
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Varela Round', sans-serif;
 }
 .btn-jade:hover { background: #013C1C; color: #F1CE86; border-color: rgba(219,170,100,0.6); }
 
@@ -249,7 +249,7 @@ nav {
   display: flex; align-items: center; justify-content: center;
   padding: 0.45rem 0.2rem; text-align: center;
   border: 1px solid rgba(255,255,255,0.15); border-radius: 6px;
-  font-family: 'Outfit', sans-serif; font-size: 0.6rem; cursor: pointer;
+  font-family: 'Varela Round', sans-serif; font-size: 0.6rem; cursor: pointer;
   transition: all 0.3s; color: rgba(255,255,255,0.7);
   background: rgba(255,255,255,0.08); overflow: hidden;
   white-space: nowrap; min-width: 0; box-sizing: border-box;
@@ -263,7 +263,7 @@ nav {
 .btn-submit {
   display: block; width: 100%; padding: 0.85rem; background: var(--gold-soft);
   color: #013C1C; border: none; border-radius: 8px;
-  font-family: 'Outfit', sans-serif; font-size: 0.78rem; font-weight: 700;
+  font-family: 'Varela Round', sans-serif; font-size: 0.78rem; font-weight: 700;
   cursor: pointer; transition: all 0.3s;
 }
 .btn-submit:hover { background: #C2954E; box-shadow: 0 8px 24px rgba(219,170,100,0.3); }
@@ -306,7 +306,7 @@ footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.4); 
   .footer-compact { flex-direction: column; gap: 0.75rem; text-align: center; }
 }
 
-.footer-link { color: rgba(255,255,255,0.85); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.04em; font-family: 'Outfit', sans-serif; transition: color 0.3s; }
+.footer-link { color: rgba(255,255,255,0.85); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.04em; font-family: 'Varela Round', sans-serif; transition: color 0.3s; }
 .footer-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
 .footer-link:hover { color: var(--gold-soft); }
 
