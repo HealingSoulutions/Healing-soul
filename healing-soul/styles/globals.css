@@ -6,7 +6,7 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; font-size: 17.5px; }
+html { scroll-behavior: smooth; font-size: 16.5px; }
 body {
   font-family: 'Varela Round', sans-serif;
   background: var(--ivory);
