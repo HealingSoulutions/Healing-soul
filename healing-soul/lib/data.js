@@ -3,19 +3,19 @@ export const serviceCategories = [
   {
     id: 'infusion', title: 'IV & Infusion Services', icon: '\u2726',
     services: [
-      { id: 1, title: 'IV Therapy & Wellness Drips', desc: 'Customized IV infusions delivered in the comfort of your home or office, tailored to your unique wellness needs.', tags: ['Hydration', 'Vitamin Therapy', 'NAD+', 'Immunity Boost'] },
-      { id: 20, title: 'Hangover Relief IV', desc: 'IV fluids, electrolytes, anti-nausea, B-vitamins, and antioxidants for rapid hangover recovery.', tags: ['Hangover', 'Rehydration', 'Anti-Nausea', 'Electrolytes'] },
-      { id: 21, title: 'Migraine & Headache Relief', desc: 'Magnesium, anti-inflammatory agents, hydration, and targeted vitamins for migraine relief.', tags: ['Migraine', 'Headache', 'Magnesium', 'Pain Relief'] },
-      { id: 22, title: 'Dehydration Recovery IV', desc: 'Rapid IV fluid and electrolyte replenishment for illness, exercise, travel, or heat exposure.', tags: ['Dehydration', 'Electrolytes', 'Fluid Replacement', 'Rapid Recovery'] },
-      { id: 23, title: 'Immune Boost IV', desc: 'High-dose vitamin C, zinc, and glutathione IV to boost immune defense.', tags: ['Immune Support', 'Vitamin C', 'Zinc', 'Glutathione'] },
-      { id: 24, title: 'Vitamin Therapy Infusions', desc: "Myers' Cocktail, B-complex, vitamin D, and custom vitamin/mineral IV blends.", tags: ["Myers' Cocktail", 'B-Complex', 'Vitamin D', 'Nutrient Optimization'] },
-      { id: 25, title: 'Niagen / NR (Nicotinamide Riboside)', desc: 'NAD+ precursor therapy for cellular energy, healthy aging, and metabolic support.', tags: ['Niagen', 'NR', 'NAD+ Precursor', 'Cellular Health'] },
-      { id: 26, title: 'NAD+ Infusion Therapy', desc: 'IV NAD+ for cellular energy, brain health, mental clarity, and anti-aging.', tags: ['NAD+', 'Anti-Aging', 'Brain Health', 'Cellular Energy'] },
-      { id: 27, title: 'Jet Lag Recovery IV', desc: 'Hydration, B-vitamins, magnesium, and adaptogens to combat jet lag.', tags: ['Jet Lag', 'Travel Recovery', 'Energy', 'Rehydration'] },
-      { id: 28, title: 'Digestive Health IV', desc: 'Anti-inflammatory nutrients, glutamine, zinc, and B-vitamins for GI support.', tags: ['Digestive Health', 'Gut Support', 'Glutamine', 'Anti-Inflammatory'] },
-      { id: 41, title: 'Colonoscopy Pre & Post Hydration IV', desc: 'Pre/post-colonoscopy IV hydration at home. Maintain electrolytes during prep, restore fluids after.', tags: ['Colonoscopy Prep', 'Post-Procedure', 'Electrolytes', 'Bowel Prep Hydration'] },
-      { id: 42, title: 'Custom Drip', desc: 'Build your own IV drip tailored to your specific needs. Work with our clinician to select vitamins, minerals, amino acids, and add-ons for a fully personalized infusion.', tags: ['Custom', 'Personalized', 'Build Your Own', 'Tailored Therapy'] },
-      { id: 3, title: 'Injection & Infusion Assistance', desc: 'Professional administration of prescribed injections and infusions with expert nursing care.', tags: ['B12 Injections', 'Medication Infusions', 'Subcutaneous', 'Intramuscular'] },
+      { id: 1, title: 'Signature Soulution', desc: 'Customized IV infusions delivered in the comfort of your home or office, tailored to your unique wellness needs.', tags: ['Hydration', 'Vitamin Therapy', 'NAD+', 'Immunity Boost'] },
+      { id: 20, title: 'Hangover Soulution', desc: 'IV fluids, electrolytes, anti-nausea, B-vitamins, and antioxidants for rapid hangover recovery.', tags: ['Hangover', 'Rehydration', 'Anti-Nausea', 'Electrolytes'] },
+      { id: 21, title: 'Migraine Soulution', desc: 'Magnesium, anti-inflammatory agents, hydration, and targeted vitamins for migraine relief.', tags: ['Migraine', 'Headache', 'Magnesium', 'Pain Relief'] },
+      { id: 22, title: 'Hydration Soulution', desc: 'Rapid IV fluid and electrolyte replenishment for illness, exercise, travel, or heat exposure.', tags: ['Dehydration', 'Electrolytes', 'Fluid Replacement', 'Rapid Recovery'] },
+      { id: 23, title: 'Immunity Soulution', desc: 'High-dose vitamin C, zinc, and glutathione IV to boost immune defense.', tags: ['Immune Support', 'Vitamin C', 'Zinc', 'Glutathione'] },
+      { id: 24, title: 'Vitamin Soulution', desc: "Myers' Cocktail, B-complex, vitamin D, and custom vitamin/mineral IV blends.", tags: ["Myers' Cocktail", 'B-Complex', 'Vitamin D', 'Nutrient Optimization'] },
+      { id: 25, title: 'Mitochondrial Health Soulution', desc: 'NAD+ precursor therapy for cellular energy, healthy aging, and metabolic support.', tags: ['Niagen', 'NR', 'NAD+ Precursor', 'Cellular Health'] },
+      { id: 26, title: 'NAD+ Soulution', desc: 'IV NAD+ for cellular energy, brain health, mental clarity, and anti-aging.', tags: ['NAD+', 'Anti-Aging', 'Brain Health', 'Cellular Energy'] },
+      { id: 27, title: 'Jet Lag Soulution', desc: 'Hydration, B-vitamins, magnesium, and adaptogens to combat jet lag.', tags: ['Jet Lag', 'Travel Recovery', 'Energy', 'Rehydration'] },
+      { id: 28, title: 'Digestive Soulution', desc: 'Anti-inflammatory nutrients, glutamine, zinc, and B-vitamins for GI support.', tags: ['Digestive Health', 'Gut Support', 'Glutamine', 'Anti-Inflammatory'] },
+      { id: 41, title: 'Colonoscopy Hydration Soulution', desc: 'Pre/post-colonoscopy IV hydration at home. Maintain electrolytes during prep, restore fluids after.', tags: ['Colonoscopy Prep', 'Post-Procedure', 'Electrolytes', 'Bowel Prep Hydration'] },
+      { id: 42, title: 'Custom Soulution', desc: 'Build your own IV drip tailored to your specific needs. Work with our clinician to select vitamins, minerals, amino acids, and add-ons for a fully personalized infusion.', tags: ['Custom', 'Personalized', 'Build Your Own', 'Tailored Therapy'] },
+      { id: 3, title: 'Injection & Infusion Assistance Soulution', desc: 'Professional administration of prescribed injections and infusions with expert nursing care.', tags: ['B12 Injections', 'Medication Infusions', 'Subcutaneous', 'Intramuscular'] },
     ],
   },
   {
@@ -168,4 +168,3 @@ ACKNOWLEDGMENT: By signing below, I certify that I am at least 18 years of age (
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    ICONS
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-
