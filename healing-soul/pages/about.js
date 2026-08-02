@@ -38,7 +38,6 @@ export default function About() {
 
           <div style={CARD}>
             <span style={EY}>Our Team</span>
-            <h2 style={{ ...H, marginTop: '0.5rem', marginBottom: '1.5rem' }}>Meet your clinicians</h2>
 
             <div style={{ marginBottom: '1.8rem' }}>
               <img src="/berit.jpg" alt="Berit Tran, Registered Nurse and founder of Healing Soulutions" style={{ width: 140, height: 140, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--gold-soft)', boxShadow: '0 0 0 5px rgba(219,170,100,0.15)' }} />
@@ -60,7 +59,6 @@ export default function About() {
 
           <div style={CARD}>
             <span style={EY}>How It Works</span>
-            <h2 style={{ ...H, marginTop: '0.5rem' }}>Three simple steps</h2>
             <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>1. Book.</strong> Choose your services and a preferred date and time, and complete secure intake and consent online.</p>
             <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>2. Confirm.</strong> Our team reaches out within 24 hours to confirm the details and answer any questions.</p>
             <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>3. We come to you.</strong> A licensed clinician arrives at your location to provide your care.</p>
