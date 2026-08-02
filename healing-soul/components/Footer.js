@@ -8,6 +8,7 @@ export default function Footer() {
           <Link href="/about" className="footer-link">About</Link>
           <Link href="/services" className="footer-link">Services</Link>
           <Link href="/book" className="footer-link">Book a Visit</Link>
+          <Link href="/contact" className="footer-link">Contact</Link>
           <Link href="/privacy" className="footer-link">Privacy Policy</Link>
           <Link href="/terms" className="footer-link">Terms of Use</Link>
           <Link href="/accessibility" className="footer-link">Accessibility</Link>
