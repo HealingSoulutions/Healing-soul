@@ -34,8 +34,8 @@ export default function Contact() {
 
           <div style={CARD}>
             <span style={EY}>Service Area</span>
-            <h2 style={H}>New York City &amp; the metro area</h2>
-            <p style={{ ...P, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto', marginBottom: 0 }}>We bring concierge and mobile nursing to homes, offices, and hotels across Manhattan, Brooklyn, Queens, the Bronx, and Staten Island, and to surrounding areas including Westchester and Long Island. Not sure if we reach you? Call or email and we&rsquo;ll confirm.</p>
+            <h2 style={H}>Manhattan &amp; the New York metro area</h2>
+            <p style={{ ...P, maxWidth: 480, marginLeft: 'auto', marginRight: 'auto', marginBottom: 0 }}>We primarily serve Manhattan, bringing concierge and mobile nursing to homes, offices, and hotels across the borough — from the Upper East and West Sides to Midtown, Chelsea, and Tribeca. Care in the surrounding New York metropolitan area is available on request; call or email and we&rsquo;ll confirm.</p>
           </div>
 
           <div style={CARD}>
