@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
+import Seo from '../components/Seo';
 import { useRouter } from 'next/router';
 import SceneBackground from '../components/SceneBackground';
 import { serviceCategories } from '../lib/data';
@@ -76,10 +77,7 @@ function ServicesContent() {
 export default function Services() {
   return (
     <>
-      <Head>
-        <title>Our Services — Healing Soulutions Concierge Nursing</title>
-        <meta name="description" content="Explore Healing Soulutions services: IV and infusion therapy, in-home and post-op nursing, at-home diagnostics and lab draws, medication education, telehealth, and medically guided wellness — delivered in your home." />
-      </Head>
+      <Seo title="Our Services — Healing Soulutions Concierge Nursing" description="Explore Healing Soulutions services: IV and infusion therapy, in-home and post-op nursing, at-home diagnostics and lab draws, medication education, telehealth, and medically guided wellness — delivered in your home." />
       <ServicesContent />
     </>
   );
