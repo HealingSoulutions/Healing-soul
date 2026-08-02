@@ -374,7 +374,7 @@ function BookContent() {
   var TS = { fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.68rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', textAlign: 'center', marginBottom: '0.3rem' };
   var LS = { color: 'rgba(255,255,255,0.85)', fontFamily: "'Outfit',sans-serif", fontSize: '0.7rem', fontWeight: 500 };
   var IS = { background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF', borderRadius: '6px', padding: '0.65rem 0.85rem', fontFamily: "'Outfit',sans-serif", fontSize: '0.78rem', outline: 'none', width: '100%', minWidth: 0, boxSizing: 'border-box' };
-  var CS = { background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '1.5rem', overflow: 'hidden', boxSizing: 'border-box', width: '100%' };
+  var CS = { background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.5rem', overflow: 'hidden', boxSizing: 'border-box', width: '100%' };
   var medIS = { ...IS, resize: 'vertical', minHeight: '60px' };
   var consentForms = [{ key: 'treatment', title: 'Patient Treatment Consent', text: CONSENT_TREATMENT }, { key: 'hipaa', title: 'HIPAA Notice of Privacy Practices', text: CONSENT_HIPAA }, { key: 'medical', title: 'Medical History Consent', text: CONSENT_MEDICAL }];
   var goToStep = function (s) { setStep(s); window.scrollTo(0, 0); };
@@ -464,9 +464,9 @@ function BookContent() {
       <div style={{ position: 'relative', zIndex: 10 }}>
         {/* Header */}
         <div style={{ padding: '8rem 3rem 0.25rem', textAlign: 'center', maxWidth: 800, margin: '0 auto' }}>
-          <div style={{ background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '1.5rem', width: '100%' }}>
+          <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.5rem', width: '100%' }}>
             <h1 ref={stepHeadingRef} tabIndex={-1} style={{ fontFamily: "'Outfit',sans-serif", color: 'var(--gold-soft)', fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.2em' }}>{stepTitles[step]}</h1>
-            <div style={{ margin: '0.5rem 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '3.12rem', width: 'auto', display: 'inline-block' }} /></div>
+            <div style={{ margin: '0.5rem 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '8.57rem', width: 'auto', display: 'inline-block' }} /></div>
             <div style={{ width: 25, height: 0.75, background: 'var(--gold-soft)', margin: '0 auto' }} />
             <div style={{ display: 'flex', justifyContent: 'center', gap: '0.4rem', marginTop: '1rem' }}>
               {stepItems.map((s, i) => {
