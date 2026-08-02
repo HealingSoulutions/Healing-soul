@@ -72,10 +72,9 @@ export default function About() {
 
           <div style={CARD}>
             <span style={EY}>FAQ</span>
-            <h2 style={{ ...H, marginTop: '0.5rem' }}>Frequently asked questions</h2>
             {FAQS.map(([q, a], i) => (
               <div key={i} style={{ borderTop: i ? '1px solid rgba(255,255,255,0.08)' : 'none', paddingTop: i ? '0.85rem' : 0, marginTop: i ? '0.85rem' : 0 }}>
-                <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'rgba(255,255,255,0.95)', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.35rem' }}>{q}</h3>
+                <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.35rem' }}>{q}</h3>
                 <p style={{ ...P, marginBottom: 0 }}>{a}</p>
               </div>
             ))}
