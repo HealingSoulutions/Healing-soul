@@ -37,7 +37,7 @@ export default function About() {
           </div>
 
           <div style={CARD}>
-            <span style={EY}>Our Team</span>
+            <span style={{ ...EY, fontSize: '0.72rem', display: 'block', marginBottom: '1.6rem' }}>Our Team</span>
 
             <div style={{ marginBottom: '1.8rem' }}>
               <img src="/berit.jpg" alt="Berit Tran, Registered Nurse and founder of Healing Soulutions" style={{ width: 140, height: 140, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--gold-soft)', boxShadow: '0 0 0 5px rgba(219,170,100,0.15)' }} />
@@ -58,7 +58,7 @@ export default function About() {
           </div>
 
           <div style={CARD}>
-            <span style={EY}>How It Works</span>
+            <span style={{ ...EY, fontSize: '0.72rem', display: 'block', marginBottom: '1.2rem' }}>How It Works</span>
             <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>1. Book.</strong> Choose your services and a preferred date and time, and complete secure intake and consent online.</p>
             <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>2. Confirm.</strong> Our team reaches out within 24 hours to confirm the details and answer any questions.</p>
             <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>3. We come to you.</strong> A licensed clinician arrives at your location to provide your care.</p>
@@ -68,9 +68,9 @@ export default function About() {
           </div>
 
           <div style={CARD}>
-            <span style={EY}>FAQ</span>
+            <span style={{ ...EY, fontSize: '0.72rem', display: 'block', marginBottom: '1.2rem' }}>FAQ</span>
             {FAQS.map(([q, a], i) => (
-              <div key={i} style={{ borderTop: i ? '1px solid rgba(255,255,255,0.08)' : 'none', paddingTop: i ? '0.85rem' : 0, marginTop: i ? '0.85rem' : 0 }}>
+              <div key={i} style={{ borderTop: i ? '1px solid rgba(255,255,255,0.08)' : 'none', paddingTop: i ? '1.3rem' : 0, marginTop: i ? '1.3rem' : 0 }}>
                 <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.82rem', fontWeight: 700, marginBottom: '0.35rem' }}>{q}</h3>
                 <p style={{ ...P, marginBottom: 0 }}>{a}</p>
               </div>
