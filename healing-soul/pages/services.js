@@ -63,6 +63,7 @@ function ServicesContent() {
               )}
             </div>
           ))}
+          <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.68rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.55)', textAlign: 'center', maxWidth: 640, margin: '1.5rem auto 0' }}>Some therapies may be prescribed off-label or may not be approved by the U.S. Food and Drug Administration for the uses described, and are provided only following a clinical consultation with our Nurse Practitioner. Information on this website is for educational purposes and is not medical advice, diagnosis, or treatment.</p>
         </div>
       </div>
     </div>
