@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Seo from '../components/Seo';
-import AmbientSound from '../components/AmbientSound';
 import { GoldPhoneIcon, GoldEmailIcon } from '../components/icons';
 
 function HomeContent() {
@@ -9,11 +8,7 @@ function HomeContent() {
   return (
     <>
       <section className="hero">
-        <div className="hero-fallback" aria-hidden="true" />
-        <video className="hero-video" autoPlay muted loop playsInline poster="/waves-poster.jpg" aria-hidden="true">
-          <source src="/waves.webm" type="video/webm" />
-          <source src="/waves.mp4" type="video/mp4" />
-        </video>
+        <div className="hero-gif" aria-hidden="true" />
         <div className="hero-gif-tint" aria-hidden="true" />
         <div className="hero-content">
           <div className="hero-text-panel">
@@ -89,17 +84,11 @@ function HomeContent() {
   );
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   SERVICES PAGE
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
-
-
 export default function Home() {
   return (
     <>
       <Seo title="Healing Soulutions — Concierge & Mobile Nursing | New York Metro" description="Healing Soulutions brings concierge and mobile nursing care to you across the New York metropolitan area — IV therapy, in-home and post-op nursing, at-home lab draws, and wellness services delivered by licensed RNs and Nurse Practitioners." />
       <HomeContent />
-      <AmbientSound />
     </>
   );
 }
