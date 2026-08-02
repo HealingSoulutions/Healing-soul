@@ -22,8 +22,8 @@ function HomeContent() {
               <p style={{ textAlign: 'center', fontStyle: 'italic', color: 'var(--jade-mist)', fontSize: '0.88rem', letterSpacing: '0.02em', margin: '0 0 0.2rem' }}>
                 <span style={{ color: '#DBAA64', fontStyle: 'normal', fontWeight: 700 }}>&mdash;</span> The Healing Soulutions experience
               </p>
-              <h1 style={{ textAlign: 'center', fontSize: '0.88rem', margin: 0, fontFamily: "'Varela Round', sans-serif" }}>
-                <em style={{ fontWeight: 700, fontStyle: 'italic', color: '#D9AC63' }}>Healing. Experience. Compassion.</em>
+              <h1 style={{ textAlign: 'center', fontSize: '0.72rem', margin: 0, fontFamily: "'Varela Round', sans-serif" }}>
+                <em style={{ fontWeight: 400, fontStyle: 'italic', color: '#D9AC63' }}>Healing. Experience. Compassion.</em>
               </h1>
             </div>
           </div>
