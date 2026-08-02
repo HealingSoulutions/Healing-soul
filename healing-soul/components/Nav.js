@@ -7,7 +7,10 @@ export default function Nav() {
   return (
     <>
       <a href="#main-content" className="skip-link">Skip to main content</a>
-      <nav aria-label="Main navigation" style={{ justifyContent: 'center' }}>
+      <nav aria-label="Main navigation" style={{ justifyContent: 'space-between' }}>
+        <Link href="/" className="nav-logo" aria-label="Healing Soulutions — Home" style={{ display: 'inline-flex', alignItems: 'center' }}>
+          <img src="/emblem.png" alt="" aria-hidden="true" style={{ height: 34, width: 'auto', display: 'block' }} />
+        </Link>
         <ul className={'nav-links' + (mo ? ' active' : '')} id="nav-menu">
           {links.map(([label, href]) => {
             const external = /^(mailto:|tel:|https?:)/.test(href);
