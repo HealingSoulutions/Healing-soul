@@ -13,7 +13,7 @@ function ServicesContent() {
       <SceneBackground />
       <div style={{ position: 'relative', zIndex: 10 }}>
         <div style={{ padding: '8rem 3rem 0.75rem', textAlign: 'center', background: 'transparent', maxWidth: 800, margin: '0 auto' }}>
-          <div style={{ background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '1.5rem', boxSizing: 'border-box', width: '100%' }}>
+          <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.5rem', boxSizing: 'border-box', width: '100%' }}>
             <div style={{ margin: '0.5rem 0 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '8.57rem', width: 'auto', display: 'inline-block' }} /></div>
             <div style={{ width: 40, height: 1.5, background: 'var(--gold-soft)', margin: '0.5rem auto 0.7rem' }} />
             <h1 style={{ color: 'var(--gold-soft)', fontSize: '1.05rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.2em', fontFamily: "'Outfit',sans-serif", margin: '1.1rem 0 0' }}>Our Services</h1>
@@ -32,7 +32,7 @@ function ServicesContent() {
                 </div>
               </div>
               {openCat === cat.id && (
-                <div style={{ background: 'rgba(18,70,47,0.86)', backdropFilter: 'blur(20px)', borderRadius: '0 0 12px 12px', padding: '0.5rem' }}>
+                <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '12px', padding: '0.5rem', marginTop: '0.4rem' }}>
                   {cat.consultOnly && (
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', padding: '0.65rem 0.85rem', margin: '0.25rem 0.4rem 0.5rem', background: 'rgba(127,212,160,0.08)', borderRadius: '8px', border: '1px solid rgba(127,212,160,0.12)' }}>
                       <span style={{ color: '#7FD4A0', fontSize: '0.8rem' }}>{'\u2139'}</span>
