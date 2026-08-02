@@ -391,7 +391,7 @@ function BookContent() {
           var selectedInCat = cat.services.filter(function (s) { return selectedServices.indexOf(s.title) >= 0; }).length;
           return (
             <div key={cat.id}>
-              <div onClick={function () { setOpenPickerCat(isOpen ? null : cat.id); }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.6rem 0.85rem', background: isOpen ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+              <div onClick={function () { setOpenPickerCat(isOpen ? null : cat.id); }} role="button" tabIndex={0} aria-expanded={isOpen} onKeyDown={function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenPickerCat(isOpen ? null : cat.id); } }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.6rem 0.85rem', background: isOpen ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                 <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.58rem', color: 'rgba(255,255,255,0.85)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
                   <span style={{ color: 'var(--gold-soft)', fontSize: '0.7rem' }}>{cat.icon}</span>{cat.title}
                   {cat.consultOnly && <span style={{ fontSize: '0.38rem', color: '#7FD4A0', background: 'rgba(127,212,160,0.12)', border: '1px solid rgba(127,212,160,0.2)', padding: '0.08rem 0.35rem', borderRadius: '4px', fontWeight: 600 }}>BOOK CONSULTATION</span>}
@@ -526,7 +526,7 @@ function BookContent() {
                   {renderServicePicker(form.services, (title) => setForm({ ...form, services: toggleService(form.services, title) }))}
                 </div>
                 <div style={{ ...LS, marginBottom: '0.5rem' }}>Preferred Time</div>
-                <div className="time-slots">{timeSlots.map((t) => <div key={t} className={'time-slot' + (selTime === t ? ' selected' : '')} onClick={() => setSelTime(t)}>{t}</div>)}</div>
+                <div className="time-slots">{timeSlots.map((t) => <div key={t} className={'time-slot' + (selTime === t ? ' selected' : '')} role="button" tabIndex={0} aria-pressed={selTime === t} onClick={() => setSelTime(t)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSelTime(t); } }}>{t}</div>)}</div>
 
                 {/* Personal info */}
                 <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
@@ -595,7 +595,7 @@ function BookContent() {
                             <select aria-label="Phone" value={pt.phoneCode || '+1'} onChange={(e) => updatePatient(pt.id, 'phoneCode', e.target.value)} style={{ ...IS, width: '80px', flex: '0 0 80px', appearance: 'auto', cursor: 'pointer' }}>
                               {phoneCodes.map(function (c) { return <option key={c} value={c}>{c}</option>; })}
                             </select>
-                            <input type="tel" placeholder="Phone number" value={pt.phone || ''} onChange={(e) => updatePatient(pt.id, 'phone', e.target.value)} style={{ ...IS, flex: 1 }} />
+                            <input type="tel" aria-label="Phone number" placeholder="Phone number" value={pt.phone || ''} onChange={(e) => updatePatient(pt.id, 'phone', e.target.value)} style={{ ...IS, flex: 1 }} />
                           </div>
                         </div>
                       </div>
@@ -697,7 +697,7 @@ function BookContent() {
                 </div>
                 {sigMode === 'type' ? (
                   <div>
-                    <input type="text" placeholder="Type your full legal name" value={signature === 'drawn-signature' ? '' : signature} onChange={(e) => setSignature(e.target.value)} style={{ ...IS, marginBottom: '0.5rem' }} />
+                    <input type="text" aria-label="Type your full legal name" placeholder="Type your full legal name" value={signature === 'drawn-signature' ? '' : signature} onChange={(e) => setSignature(e.target.value)} style={{ ...IS, marginBottom: '0.5rem' }} />
                     {signature && signature !== 'drawn-signature' && (<div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: '8px', padding: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.45rem', color: '#999', marginBottom: '0.3rem', fontFamily: "'Varela Round',sans-serif" }}>Signature Preview</p><p style={{ fontFamily: 'Georgia,serif', fontSize: '1.2rem', color: '#013C1C', fontStyle: 'italic' }}>{signature}</p></div>)}
                   </div>
                 ) : (
