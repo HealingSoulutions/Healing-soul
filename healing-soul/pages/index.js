@@ -62,6 +62,19 @@ function HomeContent() {
           </div>
         </div>
       </section>
+      <section aria-labelledby="area-heading" style={{ background: '#02240f', padding: '2.5rem 1.5rem' }}>
+        <div style={{ maxWidth: 820, margin: '0 auto', textAlign: 'center' }}>
+          <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.22em', color: 'var(--gold-soft)', textTransform: 'uppercase' }}>Service Area</span>
+          <h2 id="area-heading" style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '1.15rem', fontWeight: 700, color: 'var(--jade-whisper)', margin: '0.5rem 0 0.9rem' }}>Serving New York City &amp; the metro area</h2>
+          <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.85rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', maxWidth: 620, margin: '0 auto 1.1rem' }}>Concierge and mobile nursing brought to homes, offices, and hotels across Manhattan, Brooklyn, Queens, the Bronx, and Staten Island — and surrounding areas including Westchester and Long Island.</p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.5rem' }}>
+            {['Manhattan', 'Brooklyn', 'Queens', 'The Bronx', 'Staten Island', 'Westchester', 'Long Island'].map((a) => (
+              <span key={a} style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.68rem', color: 'var(--gold-soft)', background: 'rgba(219,170,100,0.10)', border: '1px solid rgba(219,170,100,0.22)', borderRadius: '999px', padding: '0.3rem 0.85rem' }}>{a}</span>
+            ))}
+          </div>
+          <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.72rem', color: 'var(--jade-soft)', marginTop: '1rem' }}>Not sure if we reach you? <Link href="/contact" style={{ color: 'var(--gold-soft)' }}>Contact us</Link> to confirm.</p>
+        </div>
+      </section>
       <div className="trust-ribbon">
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem 0' }}>
           {['Licensed RNs & NPs', 'HIPAA Compliant', 'Fully Insured', 'Same-Day When Available'].map((t, i) => (
