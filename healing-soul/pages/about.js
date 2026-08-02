@@ -38,10 +38,26 @@ export default function About() {
           </div>
 
           <div style={CARD}>
-            <span style={EY}>Our Care Team</span>
-            <h2 style={{ ...H, marginTop: '0.5rem' }}>Licensed, experienced clinicians</h2>
-            <p style={P}>Every visit is provided by licensed Registered Nurses (RNs) and Nurse Practitioners (NPs), held to New York&apos;s professional standards of care. Registered Nurses provide care under the order or standing order of a Nurse Practitioner or physician.</p>
-            <p style={{ ...P, fontSize: '0.72rem', color: 'rgba(255,255,255,0.55)' }}>All clinical care is provided by licensed professional entities. Full clinician profiles are available on request.</p>
+            <span style={EY}>Our Team</span>
+            <h2 style={{ ...H, marginTop: '0.5rem', marginBottom: '1.5rem' }}>Meet your clinicians</h2>
+
+            <div style={{ marginBottom: '1.8rem' }}>
+              <img src="/berit.jpg" alt="Berit Tran, Registered Nurse and founder of Healing Soulutions" style={{ width: 140, height: 140, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--gold-soft)', boxShadow: '0 0 0 5px rgba(219,170,100,0.15)' }} />
+              <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '1.05rem', fontWeight: 700, margin: '0.8rem 0 0.15rem' }}>Berit Tran, BSN, RN</h3>
+              <div style={{ ...EY, marginBottom: '0.7rem' }}>Clinician &amp; Wellness Nurse Consultant</div>
+              <p style={{ ...P, maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>Berit brings over fifteen years of acute-care, perioperative, and emergency nursing across New York&apos;s leading hospitals — from a Level I emergency department to surgical recovery and COVID-19 ICU surge care. Through Healing Soulutions, she brings that hospital-grade expertise into the home, with the calm, discretion, and heart that exceptional care deserves.</p>
+              <p style={{ ...P, fontSize: '0.7rem', color: 'rgba(255,255,255,0.6)', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', marginBottom: 0 }}>BSN &middot; Licensed RN (New York) &middot; ACLS &middot; PALS &middot; BLS &middot; English, Vietnamese, Norwegian &amp; Swedish</p>
+            </div>
+
+            <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1.8rem' }}>
+              <img src="/kristina.jpg" alt="Kristina Castro, Nurse Practitioner at Healing Soulutions" style={{ width: 140, height: 140, borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--gold-soft)', boxShadow: '0 0 0 5px rgba(219,170,100,0.15)' }} />
+              <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '1.05rem', fontWeight: 700, margin: '0.8rem 0 0.15rem' }}>Kristina Castro, MSN, APRN, FNP-BC</h3>
+              <div style={{ ...EY, marginBottom: '0.7rem' }}>Nurse Practitioner</div>
+              <p style={{ ...P, maxWidth: 560, marginLeft: 'auto', marginRight: 'auto' }}>Kristina is a board-certified Family Nurse Practitioner with more than a decade of emergency, urgent-care, and perioperative experience across New York&apos;s hospitals and urgent-care centers. As an advanced-practice clinician, she assesses, diagnoses, prescribes, and leads care plans — the clinical decision-maker guiding each patient&apos;s care.</p>
+              <p style={{ ...P, fontSize: '0.7rem', color: 'rgba(255,255,255,0.6)', maxWidth: 560, marginLeft: 'auto', marginRight: 'auto', marginBottom: 0 }}>MSN / FNP &mdash; College of Mount Saint Vincent &middot; ANCC Board Certified (FNP-BC) &middot; Licensed NP (NY &amp; CT) &middot; RN (NY, NJ &amp; CT) &middot; TNCC &middot; ENPC &middot; ACLS &middot; PALS &middot; BLS</p>
+            </div>
+
+            <p style={{ ...P, fontSize: '0.68rem', color: 'rgba(255,255,255,0.5)', marginTop: '1.6rem', marginBottom: 0 }}>Every visit is provided by licensed clinicians held to New York&apos;s professional standards of care. Registered Nurses provide care under the order or standing order of a Nurse Practitioner or physician.</p>
           </div>
 
           <div style={CARD}>
