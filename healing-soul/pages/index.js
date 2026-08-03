@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import Script from 'next/script';
 import Seo from '../components/Seo';
 import { GoldPhoneIcon, GoldEmailIcon } from '../components/icons';
 
@@ -90,6 +91,9 @@ export default function Home() {
   return (
     <>
       <Seo title="Healing Soulutions — Concierge & Mobile Nursing | New York Metro" description="Healing Soulutions brings concierge and mobile nursing care to you across the New York metropolitan area — IV therapy, in-home and post-op nursing, at-home lab draws, and wellness services delivered by licensed RNs and Nurse Practitioners." />
+      {/* Cinematic intro overlay (once per session). Uses the overlay's own built-in, code-generated ambient — no external audio file. */}
+      <Script id="hs-intro-config" strategy="afterInteractive">{`window.HS_INTRO = { duration: 12, sound: true, once: true, volume: 0.5 };`}</Script>
+      <Script src="/intro-overlay.js" strategy="afterInteractive" />
       <HomeContent />
     </>
   );
