@@ -23,7 +23,9 @@ export default function EntryGate() {
     // Load the cinematic intro now, so it plays together with the sound.
     // (The ambient audio unlocks from this same tap via the site-wide player.)
     try {
-      window.HS_INTRO = { duration: 12, sound: false, once: true, keepSoundToggle: false };
+      // once:false — the gate already enforces once-per-session, so the overlay
+      // must not self-suppress via its own sessionStorage flag (that was skipping the intro).
+      window.HS_INTRO = { duration: 12, sound: false, once: false, keepSoundToggle: false };
       if (!window.__hsIntroLoaded && !document.getElementById('hs-intro-js')) {
         const s = document.createElement('script');
         s.id = 'hs-intro-js';
