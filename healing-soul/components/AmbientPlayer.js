@@ -31,14 +31,15 @@ export default function AmbientPlayer() {
     const damp = ac.createBiquadFilter(); damp.type = 'lowpass'; damp.frequency.value = 1300;
     delay.connect(damp); damp.connect(fb); fb.connect(delay); delay.connect(master);
 
-    // warm drone chord (D minor add9), each voice with a slow tremolo
-    const pad = ac.createGain(); pad.gain.value = 0.6; pad.connect(master);
-    [146.83, 174.61, 220, 261.63].forEach((f, i) => {
+    // warm drone chord (D minor add9) spanning low to mid octaves so it stays
+    // audible on laptop speakers; each voice has a slow tremolo.
+    const pad = ac.createGain(); pad.gain.value = 0.65; pad.connect(master);
+    [146.83, 220, 293.66, 349.23, 440].forEach((f, i) => {
       const o = ac.createOscillator(); o.type = i === 0 ? 'triangle' : 'sine';
-      o.frequency.value = f; o.detune.value = (i - 1.5) * 3;
-      const g = ac.createGain(); g.gain.value = 0.09 - i * 0.012;
+      o.frequency.value = f; o.detune.value = (i - 2) * 3;
+      const g = ac.createGain(); g.gain.value = 0.085 - i * 0.008;
       const lfo = ac.createOscillator(); lfo.frequency.value = 0.04 + i * 0.017;
-      const lg = ac.createGain(); lg.gain.value = 0.028;
+      const lg = ac.createGain(); lg.gain.value = 0.025;
       lfo.connect(lg); lg.connect(g.gain);
       o.connect(g); g.connect(pad);
       o.start(); lfo.start();
@@ -53,15 +54,15 @@ export default function AmbientPlayer() {
       const o = ac.createOscillator(); o.type = 'sine'; o.frequency.value = f;
       const g = ac.createGain();
       g.gain.setValueAtTime(0.0001, t);
-      g.gain.linearRampToValueAtTime(0.07, t + 0.06);
+      g.gain.linearRampToValueAtTime(0.1, t + 0.06);
       g.gain.exponentialRampToValueAtTime(0.0001, t + 3.4);
       const send = ac.createGain(); send.gain.value = 0.5;
       o.connect(g); g.connect(master); g.connect(send); send.connect(delay);
       o.start(t); o.stop(t + 3.6);
     };
     const scheduleChimes = () => {
-      const tick = () => { chime(); chimeT = setTimeout(tick, 4000 + Math.random() * 5000); };
-      chimeT = setTimeout(tick, 1600);
+      const tick = () => { chime(); chimeT = setTimeout(tick, 3000 + Math.random() * 3500); };
+      chimeT = setTimeout(tick, 1000);
     };
 
     engineRef.current = {
@@ -71,7 +72,7 @@ export default function AmbientPlayer() {
           const now = ac.currentTime;
           master.gain.cancelScheduledValues(now);
           master.gain.setValueAtTime(Math.max(0.0001, master.gain.value), now);
-          master.gain.linearRampToValueAtTime(0.4, now + 3);
+          master.gain.linearRampToValueAtTime(0.6, now + 2.5);
           if (!chiming) { chiming = true; scheduleChimes(); }
         };
         // Resume first (needs a gesture); ramp once the context is actually running.
