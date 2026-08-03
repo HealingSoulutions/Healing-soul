@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { useRouter } from 'next/router';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
+import AmbientPlayer from '../components/AmbientPlayer';
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -16,6 +17,7 @@ export default function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </main>
       <Footer />
+      <AmbientPlayer />
       {analyticsOn && <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />}
     </>
   );
