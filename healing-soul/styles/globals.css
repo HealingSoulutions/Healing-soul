@@ -7,6 +7,8 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; font-size: 15.5px; }
+/* The intro overlay ships its own sound pill; hide it — ambient sound is handled site-wide by AmbientPlayer. */
+[data-hs="sound"] { display: none !important; }
 body {
   font-family: 'Varela Round', sans-serif;
   background: var(--ivory);
