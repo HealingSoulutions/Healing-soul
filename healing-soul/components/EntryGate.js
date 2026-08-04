@@ -25,7 +25,7 @@ export default function EntryGate() {
     try {
       // once:false — the gate already enforces once-per-session, so the overlay
       // must not self-suppress via its own sessionStorage flag (that was skipping the intro).
-      window.HS_INTRO = { duration: 8, sound: false, once: false, keepSoundToggle: false };
+      window.HS_INTRO = { duration: 8, sound: false, once: false, keepSoundToggle: false, wordmark: '/wordmark-v2.png' };
       if (!window.__hsIntroLoaded && !document.getElementById('hs-intro-js')) {
         const s = document.createElement('script');
         s.id = 'hs-intro-js';
@@ -71,7 +71,7 @@ export default function EntryGate() {
       `}</style>
       <div style={{ animation: 'hsGateIn 1.2s ease both' }}>
         <img
-          src="/wordmark.png"
+          src="/wordmark-v2.png"
           alt="Healing Soulutions"
           style={{ width: 'min(340px, 78vw)', height: 'auto', display: 'block', margin: '0 auto', filter: 'drop-shadow(0 6px 22px rgba(0,0,0,0.4))' }}
         />
