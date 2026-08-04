@@ -13,7 +13,7 @@ function HomeContent() {
         <div className="hero-gif-tint" aria-hidden="true" />
         <div className="hero-content">
           <div className="hero-text-panel">
-            <img src={"/wordmark.png"} alt="Healing Soulutions — Concierge Nursing" style={{ display: 'block', width: 'min(437px, 99%)', height: 'auto', margin: '0 auto 1rem' }} />
+            <img src={"/wordmark-v2.png"} alt="Healing Soulutions — Concierge Nursing" style={{ display: 'block', width: 'min(437px, 99%)', height: 'auto', margin: '0 auto 1rem' }} />
             <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '0.4rem auto 1rem', opacity: 0.9 }} />
             <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: 0, fontFamily: "'Varela Round', sans-serif", fontSize: '0.92rem', lineHeight: 1.72, maxWidth: 470, color: '#D9AC63', fontWeight: 400, textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
               Healing Soulutions was founded on a simple belief: trusted, personalized care is something only the human touch can provide. Technology and AI can automate much of medicine &mdash; but never human trust, compassion, and empathy, nor the skill of a nurse at your side. As nurses, we work alongside you: listening, guiding, and advocating, to build a relationship that genuinely enriches your life. Every plan is shaped uniquely around you, because we want you involved, invested, and curious &mdash; an active partner in your own care.
