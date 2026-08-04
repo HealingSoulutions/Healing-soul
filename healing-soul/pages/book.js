@@ -372,15 +372,15 @@ function BookContent() {
   var allConsentsChecked = consents.treatment && consents.hipaa && consents.medical && signature.length > 0;
   var cardValid = cardHolderName.trim().length > 0 && cardComplete && consents.financial;
 
-  var TS = { fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.68rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', textAlign: 'center', marginBottom: '0.3rem' };
-  var LS = { color: 'rgba(255,255,255,0.85)', fontFamily: "'Varela Round',sans-serif", fontSize: '0.7rem', fontWeight: 500 };
-  var IS = { background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF', borderRadius: '6px', padding: '0.65rem 0.85rem', fontFamily: "'Varela Round',sans-serif", fontSize: '0.78rem', outline: 'none', width: '100%', minWidth: 0, boxSizing: 'border-box' };
+  var TS = { fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.83rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.15em', textAlign: 'center', marginBottom: '0.3rem' };
+  var LS = { color: 'rgba(255,255,255,0.85)', fontFamily: "'Varela Round',sans-serif", fontSize: '0.84rem', fontWeight: 500 };
+  var IS = { background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)', color: '#FFFFFF', borderRadius: '6px', padding: '0.65rem 0.85rem', fontFamily: "'Varela Round',sans-serif", fontSize: '0.87rem', outline: 'none', width: '100%', minWidth: 0, boxSizing: 'border-box' };
   var CS = { background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.5rem', overflow: 'hidden', boxSizing: 'border-box', width: '100%' };
   var medIS = { ...IS, resize: 'vertical', minHeight: '60px' };
   var consentForms = [{ key: 'treatment', title: 'Patient Treatment Consent', text: CONSENT_TREATMENT }, { key: 'hipaa', title: 'HIPAA Notice of Privacy Practices', text: CONSENT_HIPAA }, { key: 'medical', title: 'Medical History Consent', text: CONSENT_MEDICAL }];
   var goToStep = function (s) { setStep(s); window.scrollTo(0, 0); };
   var stepItems = [{ num: 1, label: 'Appointment' }, { num: 2, label: 'Consent Forms' }, { num: 3, label: 'Card on File' }, { num: 4, label: 'Confirmation' }];
-  var backBtn = { flex: 1, padding: '0.7rem', fontSize: '0.6rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', cursor: 'pointer' };
+  var backBtn = { flex: 1, padding: '0.7rem', fontSize: '0.78rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.7)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', cursor: 'pointer' };
 
   // â”€â”€ Service Picker â”€â”€
   var renderServicePicker = function (selectedServices, onToggle) {
@@ -392,12 +392,12 @@ function BookContent() {
           return (
             <div key={cat.id}>
               <div onClick={function () { setOpenPickerCat(isOpen ? null : cat.id); }} role="button" tabIndex={0} aria-expanded={isOpen} onKeyDown={function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenPickerCat(isOpen ? null : cat.id); } }} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0.6rem 0.85rem', background: isOpen ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)', cursor: 'pointer', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-                <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.58rem', color: 'rgba(255,255,255,0.85)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
-                  <span style={{ color: 'var(--gold-soft)', fontSize: '0.7rem' }}>{cat.icon}</span>{cat.title}
-                  {cat.consultOnly && <span style={{ fontSize: '0.52rem', color: '#7FD4A0', background: 'rgba(127,212,160,0.12)', border: '1px solid rgba(127,212,160,0.2)', padding: '0.08rem 0.35rem', borderRadius: '4px', fontWeight: 600 }}>BOOK CONSULTATION</span>}
-                  {selectedInCat > 0 && <span style={{ background: 'var(--gold-soft)', color: '#013C1C', fontSize: '0.52rem', fontWeight: 700, padding: '0.08rem 0.35rem', borderRadius: '10px' }}>{selectedInCat}</span>}
+                <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.77rem', color: 'rgba(255,255,255,0.85)', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+                  <span style={{ color: 'var(--gold-soft)', fontSize: '0.84rem' }}>{cat.icon}</span>{cat.title}
+                  {cat.consultOnly && <span style={{ fontSize: '0.75rem', color: '#7FD4A0', background: 'rgba(127,212,160,0.12)', border: '1px solid rgba(127,212,160,0.2)', padding: '0.08rem 0.35rem', borderRadius: '4px', fontWeight: 600 }}>BOOK CONSULTATION</span>}
+                  {selectedInCat > 0 && <span style={{ background: 'var(--gold-soft)', color: '#013C1C', fontSize: '0.75rem', fontWeight: 700, padding: '0.08rem 0.35rem', borderRadius: '10px' }}>{selectedInCat}</span>}
                 </span>
-                <span style={{ color: 'var(--gold-soft)', fontSize: '0.52rem', transition: 'transform 0.3s', transform: isOpen ? 'rotate(180deg)' : 'none' }}>{'\u25BC'}</span>
+                <span style={{ color: 'var(--gold-soft)', fontSize: '0.75rem', transition: 'transform 0.3s', transform: isOpen ? 'rotate(180deg)' : 'none' }}>{'\u25BC'}</span>
               </div>
               {isOpen && (
                 <div style={{ padding: '0.4rem 0.5rem', background: 'rgba(0,0,0,0.1)' }}>
@@ -406,25 +406,25 @@ function BookContent() {
                     return (
                       <label key={svc.id} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem', cursor: 'pointer', borderRadius: '6px', background: checked ? 'rgba(219,170,100,0.08)' : 'transparent', marginBottom: '0.15rem' }}>
                         <input type="checkbox" checked={checked} onChange={function () { onToggle(svc.title); }} style={{ accentColor: 'var(--gold-soft)', width: '0.75rem', height: '0.75rem', flexShrink: 0 }} />
-                        <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', color: checked ? 'var(--gold-soft)' : 'rgba(255,255,255,0.7)', fontWeight: checked ? 500 : 400 }}>{svc.title}</span>
+                        <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', color: checked ? 'var(--gold-soft)' : 'rgba(255,255,255,0.7)', fontWeight: checked ? 500 : 400 }}>{svc.title}</span>
                       </label>
                     );
                   })}
                   {cat.consultOnly && (
                     <div style={{ margin: '0.4rem 0.15rem 0.25rem', padding: '0.65rem', background: 'rgba(255,180,50,0.06)', border: '1px solid rgba(255,180,50,0.12)', borderRadius: '8px' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.4rem' }}>
-                        <span style={{ color: '#FFB432', fontSize: '0.55rem' }}>{'\u26A0'}</span>
-                        <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', fontWeight: 700, color: '#FFB432', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Consultation Required</span>
+                        <span style={{ color: '#FFB432', fontSize: '0.76rem' }}>{'\u26A0'}</span>
+                        <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', fontWeight: 700, color: '#FFB432', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Consultation Required</span>
                       </div>
-                      <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', marginBottom: '0.35rem' }}>Certain therapies offered through our practice may be prescribed off-label or may not be approved by the U.S. Food and Drug Administration (FDA) for the specific uses described.</p>
-                      <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', marginBottom: '0.35rem' }}>Any such medications are sourced from licensed U.S. pharmacies. Their use is based on current clinical research, peer-reviewed literature, and clinical experience.</p>
+                      <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', marginBottom: '0.35rem' }}>Certain therapies offered through our practice may be prescribed off-label or may not be approved by the U.S. Food and Drug Administration (FDA) for the specific uses described.</p>
+                      <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', marginBottom: '0.35rem' }}>Any such medications are sourced from licensed U.S. pharmacies. Their use is based on current clinical research, peer-reviewed literature, and clinical experience.</p>
                       <div style={{ marginTop: '0.5rem', paddingTop: '0.45rem', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', marginBottom: '0.35rem' }}>
-                          <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.52rem' }}>{'\u2695'}</span>
-                          <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', fontWeight: 700, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Medical Disclaimer</span>
+                          <span style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.75rem' }}>{'\u2695'}</span>
+                          <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', fontWeight: 700, color: 'rgba(255,255,255,0.5)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>Medical Disclaimer</span>
                         </div>
-                        <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.45)', marginBottom: '0.3rem' }}>The information provided is for educational and informational purposes only and does not constitute medical advice, diagnosis, or treatment.</p>
-                        <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.45)' }}>By selecting these services, you acknowledge that a mandatory Nurse Practitioner consultation is required before any treatment begins.</p>
+                        <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.45)', marginBottom: '0.3rem' }}>The information provided is for educational and informational purposes only and does not constitute medical advice, diagnosis, or treatment.</p>
+                        <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.45)' }}>By selecting these services, you acknowledge that a mandatory Nurse Practitioner consultation is required before any treatment begins.</p>
                       </div>
                     </div>
                   )}
@@ -442,17 +442,17 @@ function BookContent() {
     var paragraphs = cf.text.split('\n\n').filter(function (p) { return p.trim(); });
     return (
       <div key={cf.key} style={{ marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '1.5rem' }}>
-        <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{cf.title}</h3>
+        <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', fontWeight: 600, marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{cf.title}</h3>
         <div style={{ maxHeight: '200px', overflow: 'auto', background: 'rgba(0,0,0,0.15)', borderRadius: '8px', padding: '0.85rem', marginBottom: '0.75rem' }}>
           {paragraphs.map(function (para, i) {
             var headerMatch = para.match(/^([A-Z][A-Z\s&,\/\(\)\-]+:)(.*)/);
-            if (headerMatch) return <p key={i} style={{ fontSize: '0.52rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', fontFamily: "'Varela Round',sans-serif", marginBottom: '0.6rem' }}><span style={{ color: 'var(--gold-soft)', fontWeight: 600, fontSize: '0.52rem' }}>{headerMatch[1]}</span>{headerMatch[2]}</p>;
-            return <p key={i} style={{ fontSize: '0.52rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', fontFamily: "'Varela Round',sans-serif", marginBottom: '0.6rem' }}>{para}</p>;
+            if (headerMatch) return <p key={i} style={{ fontSize: '0.75rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', fontFamily: "'Varela Round',sans-serif", marginBottom: '0.6rem' }}><span style={{ color: 'var(--gold-soft)', fontWeight: 600, fontSize: '0.75rem' }}>{headerMatch[1]}</span>{headerMatch[2]}</p>;
+            return <p key={i} style={{ fontSize: '0.75rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', fontFamily: "'Varela Round',sans-serif", marginBottom: '0.6rem' }}>{para}</p>;
           })}
         </div>
         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem' }}>
           <input type="checkbox" aria-label={`I have read, understand, and agree to the ${cf.title}`} checked={consents[cf.key]} onChange={(e) => setConsents({ ...consents, [cf.key]: e.target.checked })} style={{ marginTop: '0.15rem', accentColor: '#7FD4A0' }} />
-          <label style={{ fontSize: '0.58rem', color: 'rgba(255,255,255,0.8)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.5 }}>I have read, understand, and agree to the {cf.title}</label>
+          <label style={{ fontSize: '0.77rem', color: 'rgba(255,255,255,0.8)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.5 }}>I have read, understand, and agree to the {cf.title}</label>
         </div>
       </div>
     );
@@ -466,7 +466,7 @@ function BookContent() {
         {/* Header */}
         <div style={{ padding: '8rem 3rem 0.25rem', textAlign: 'center', maxWidth: 800, margin: '0 auto' }}>
           <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.5rem', width: '100%' }}>
-            <h1 ref={stepHeadingRef} tabIndex={-1} style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.65rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.2em' }}>{stepTitles[step]}</h1>
+            <h1 ref={stepHeadingRef} tabIndex={-1} style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.82rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.2em' }}>{stepTitles[step]}</h1>
             <div style={{ margin: '0.5rem 0' }}><img src={"/emblem.png"} alt="" aria-hidden="true" style={{ height: '8.57rem', width: 'auto', display: 'inline-block' }} /></div>
             <div style={{ width: 25, height: 0.75, background: 'var(--gold-soft)', margin: '0 auto' }} />
             <div style={{ display: 'flex', justifyContent: 'center', gap: '0.4rem', marginTop: '1rem' }}>
@@ -475,8 +475,8 @@ function BookContent() {
                 return (
                   <div key={s.num} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.25rem' }}>
-                      <div style={{ width: 22, height: 22, borderRadius: '50%', background: active ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)', color: active ? '#013C1C' : 'rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.52rem', fontWeight: 700, fontFamily: "'Varela Round',sans-serif" }}>{done ? '\u2713' : s.num}</div>
-                      <span style={{ fontSize: '0.52rem', color: active ? 'var(--gold-soft)' : 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif", fontWeight: 500 }}>{s.label}</span>
+                      <div style={{ width: 22, height: 22, borderRadius: '50%', background: active ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)', color: active ? '#013C1C' : 'rgba(255,255,255,0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.75rem', fontWeight: 700, fontFamily: "'Varela Round',sans-serif" }}>{done ? '\u2713' : s.num}</div>
+                      <span style={{ fontSize: '0.75rem', color: active ? 'var(--gold-soft)' : 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif", fontWeight: 500 }}>{s.label}</span>
                     </div>
                     {i < stepItems.length - 1 && <div style={{ width: 20, height: 1, background: active ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)', marginBottom: '1rem' }} />}
                   </div>
@@ -502,7 +502,7 @@ function BookContent() {
                   <div key={c.t} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
                     <div style={{ marginBottom: '0.3rem' }}>{c.icon === 'phone' ? <GoldPhoneIcon size={28} /> : c.icon === 'email' ? <GoldEmailIcon size={28} /> : c.icon === 'clock' ? <GoldClockIcon size={28} /> : <GoldPinIcon size={28} />}</div>
                     <h3 style={TS}>{c.t}</h3>
-                    <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.75rem' }}>{c.v}</p>
+                    <p style={{ color: 'rgba(255,255,255,0.85)', fontSize: '0.86rem' }}>{c.v}</p>
                   </div>
                 ))}
               </div>
@@ -516,9 +516,9 @@ function BookContent() {
                   {form.services.length > 0 && (
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', marginBottom: '0.5rem' }}>
                       {form.services.map((s) => (
-                        <span key={s} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', background: 'rgba(219,170,100,0.12)', border: '1px solid rgba(219,170,100,0.25)', borderRadius: '6px', padding: '0.2rem 0.5rem', fontSize: '0.52rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", fontWeight: 500 }}>
+                        <span key={s} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', background: 'rgba(219,170,100,0.12)', border: '1px solid rgba(219,170,100,0.25)', borderRadius: '6px', padding: '0.2rem 0.5rem', fontSize: '0.75rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", fontWeight: 500 }}>
                           {isPeptideService(s) ? s + ' (Consult)' : s}
-                          <span onClick={() => setForm({ ...form, services: form.services.filter((x) => x !== s) })} style={{ cursor: 'pointer', color: 'rgba(255,255,255,0.4)', fontSize: '0.55rem' }}>{'\u00D7'}</span>
+                          <span onClick={() => setForm({ ...form, services: form.services.filter((x) => x !== s) })} style={{ cursor: 'pointer', color: 'rgba(255,255,255,0.4)', fontSize: '0.76rem' }}>{'\u00D7'}</span>
                         </span>
                       ))}
                     </div>
@@ -531,7 +531,7 @@ function BookContent() {
                 {/* Personal info */}
                 <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                   <h2 style={TS}>Your Information</h2>
-                  <p style={{ fontSize: '0.52rem', color: 'rgba(255,180,50,0.6)', fontFamily: "'Varela Round',sans-serif", textAlign: 'center', marginBottom: '0.75rem' }}>Fields marked with * are required</p>
+                  <p style={{ fontSize: '0.75rem', color: 'rgba(255,180,50,0.6)', fontFamily: "'Varela Round',sans-serif", textAlign: 'center', marginBottom: '0.75rem' }}>Fields marked with * are required</p>
                   <div className="form-row" style={{ marginTop: '0.5rem' }}>
                     <div className="form-group"><label style={LS}>First Name *</label><input aria-label="First Name" type="text" placeholder="First name" value={form.fname} onChange={(e) => setForm({ ...form, fname: e.target.value })} style={IS} required /></div>
                     <div className="form-group"><label style={LS}>Last Name *</label><input aria-label="Last Name" type="text" placeholder="Last name" value={form.lname} onChange={(e) => setForm({ ...form, lname: e.target.value })} style={IS} required /></div>
@@ -563,7 +563,7 @@ function BookContent() {
 
                   {/* Medical info */}
                   <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                    <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Medical Information</h3>
+                    <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Medical Information</h3>
                     {[{ id: 'medicalSurgicalHistory', l: 'Medical / Surgical History', p: 'List any medical conditions and past surgeries...' }, { id: 'medications', l: 'Current Medications', p: 'List all current medications...' }, { id: 'allergies', l: 'Allergies', p: 'List any known allergies...' }, { id: 'ivReactions', l: 'Previous IV Therapy Reactions', p: 'List any previous reactions to IV therapy...' }, { id: 'clinicianNotes', l: 'Additional Notes for Clinician', p: 'Any additional information...' }].map((f) => (
                       <div key={f.id} className="form-row"><div className="form-group full"><label style={LS}>{f.l}</label><textarea aria-label="{f.l}" placeholder={f.p} value={form[f.id]} onChange={(e) => setForm({ ...form, [f.id]: e.target.value })} style={medIS} /></div></div>
                     ))}
@@ -573,15 +573,15 @@ function BookContent() {
                 {/* Additional Patients */}
                 <div style={{ marginTop: '1.25rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                    <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Additional Patients</h3>
-                    <span style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.4)', fontFamily: "'Varela Round',sans-serif" }}>{additionalPatients.length} added</span>
+                    <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Additional Patients</h3>
+                    <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', fontFamily: "'Varela Round',sans-serif" }}>{additionalPatients.length} added</span>
                   </div>
-                  <p style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.55)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6, marginBottom: '0.75rem' }}>Need to add family members or others to this appointment? Add their information below.</p>
+                  <p style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.55)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6, marginBottom: '0.75rem' }}>Need to add family members or others to this appointment? Add their information below.</p>
                   {additionalPatients.map((pt, idx) => (
                     <div key={pt.id} style={{ background: 'rgba(0,0,0,0.12)', borderRadius: '10px', padding: '1rem', marginBottom: '0.75rem', border: '1px solid rgba(255,255,255,0.06)' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                        <span style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.58rem', fontWeight: 600 }}>Patient {idx + 2}</span>
-                        <button onClick={() => removePatient(pt.id)} style={{ background: 'rgba(255,100,100,0.12)', border: '1px solid rgba(255,100,100,0.3)', color: '#FF9B9B', cursor: 'pointer', fontSize: '0.52rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, padding: '0.25rem 0.6rem', borderRadius: '5px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>{'\u2715'} Remove</button>
+                        <span style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.77rem', fontWeight: 600 }}>Patient {idx + 2}</span>
+                        <button onClick={() => removePatient(pt.id)} style={{ background: 'rgba(255,100,100,0.12)', border: '1px solid rgba(255,100,100,0.3)', color: '#FF9B9B', cursor: 'pointer', fontSize: '0.75rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, padding: '0.25rem 0.6rem', borderRadius: '5px', display: 'flex', alignItems: 'center', gap: '0.25rem' }}>{'\u2715'} Remove</button>
                       </div>
                       <div className="form-row">
                         <div className="form-group"><label style={LS}>First Name</label><input aria-label="First Name" type="text" placeholder="First name" value={pt.fname} onChange={(e) => updatePatient(pt.id, 'fname', e.target.value)} style={IS} /></div>
@@ -618,12 +618,12 @@ function BookContent() {
                       ))}
                     </div>
                   ))}
-                  <button onClick={addPatient} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', width: '100%', padding: '0.65rem', background: 'rgba(255,255,255,0.06)', border: '1px dashed rgba(219,170,100,0.25)', borderRadius: '8px', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", fontSize: '0.6rem', fontWeight: 500, cursor: 'pointer' }}><span style={{ fontSize: '0.85rem', lineHeight: 1 }}>+</span> Add Another Patient</button>
+                  <button onClick={addPatient} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem', width: '100%', padding: '0.65rem', background: 'rgba(255,255,255,0.06)', border: '1px dashed rgba(219,170,100,0.25)', borderRadius: '8px', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", fontSize: '0.78rem', fontWeight: 500, cursor: 'pointer' }}><span style={{ fontSize: '0.85rem', lineHeight: 1 }}>+</span> Add Another Patient</button>
                 </div>
 
                 {/* Intake Acknowledgment */}
                 <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-                  <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><span style={{ fontSize: '0.7rem' }}>{'\u270D'}</span> Intake Form Acknowledgment</h3>
+                  <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}><span style={{ fontSize: '0.84rem' }}>{'\u270D'}</span> Intake Form Acknowledgment</h3>
                   <div style={{ background: 'rgba(0,0,0,0.15)', borderRadius: '8px', padding: '0.85rem', marginBottom: '0.75rem', maxHeight: '160px', overflow: 'auto' }}>
                     {[
                       ['PATIENT INTAKE ACKNOWLEDGMENT:', ' By checking the box and signing below, I acknowledge and certify the following:'],
@@ -636,21 +636,21 @@ function BookContent() {
                       ['(7)', ' I certify that I am at least 18 years of age (or the legal guardian of the patient) and have the legal capacity to provide this acknowledgment.'],
                     ].map(([label, text], i) => (
                       <p key={i} style={{ fontFamily: "'Varela Round',sans-serif", fontSize: i === 0 ? '0.5rem' : '0.48rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', marginBottom: '0.4rem', ...(i > 0 ? { paddingLeft: '0.5rem', borderLeft: '2px solid rgba(219,170,100,0.15)' } : {}) }}>
-                        <span style={{ color: 'var(--gold-soft)', fontWeight: 600, fontSize: '0.52rem' }}>{label}</span>{text}
+                        <span style={{ color: 'var(--gold-soft)', fontWeight: 600, fontSize: '0.75rem' }}>{label}</span>{text}
                       </p>
                     ))}
                   </div>
                   <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.5rem', marginBottom: '1rem' }}>
                     <input type="checkbox" checked={intakeAcknowledged} onChange={(e) => setIntakeAcknowledged(e.target.checked)} style={{ marginTop: '0.15rem', accentColor: '#7FD4A0', width: '0.85rem', height: '0.85rem', flexShrink: 0 }} />
-                    <label style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.85)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.5 }}>I acknowledge and certify that all information provided in this intake form is complete, accurate, and truthful. I understand and accept the terms outlined above, including the limitations of liability for incomplete or inaccurate information.</label>
+                    <label style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.85)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.5 }}>I acknowledge and certify that all information provided in this intake form is complete, accurate, and truthful. I understand and accept the terms outlined above, including the limitations of liability for incomplete or inaccurate information.</label>
                   </div>
 
                   {/* Intake Signature */}
                   <div style={{ marginBottom: '1rem' }}>
-                    <label style={{ ...LS, marginBottom: '0.4rem', display: 'block' }}>Signature <span style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.35)' }}>(required)</span></label>
+                    <label style={{ ...LS, marginBottom: '0.4rem', display: 'block' }}>Signature <span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)' }}>(required)</span></label>
                     <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
-                      <button onClick={() => setIntakeSigMode('type')} style={{ padding: '0.35rem 0.75rem', fontSize: '0.52rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, background: intakeSigMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)', color: intakeSigMode === 'type' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: '1px solid ' + (intakeSigMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)'), borderRadius: '6px', cursor: 'pointer' }}>Type</button>
-                      <button onClick={() => setIntakeSigMode('draw')} style={{ padding: '0.35rem 0.75rem', fontSize: '0.52rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, background: intakeSigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)', color: intakeSigMode === 'draw' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: '1px solid ' + (intakeSigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)'), borderRadius: '6px', cursor: 'pointer' }}>Draw</button>
+                      <button onClick={() => setIntakeSigMode('type')} style={{ padding: '0.35rem 0.75rem', fontSize: '0.75rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, background: intakeSigMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)', color: intakeSigMode === 'type' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: '1px solid ' + (intakeSigMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)'), borderRadius: '6px', cursor: 'pointer' }}>Type</button>
+                      <button onClick={() => setIntakeSigMode('draw')} style={{ padding: '0.35rem 0.75rem', fontSize: '0.75rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 600, background: intakeSigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.08)', color: intakeSigMode === 'draw' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: '1px solid ' + (intakeSigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.15)'), borderRadius: '6px', cursor: 'pointer' }}>Draw</button>
                     </div>
                     {intakeSigMode === 'type' ? (
                       <input aria-label="I acknowledge and certify that all information provided in this intake form is complete, accurate, and truthful. I understand and accept the terms outlined above, including the limitations of liability for incomplete or inaccurate information." type="text" placeholder="Type your full legal name" value={intakeSignature} onChange={(e) => setIntakeSignature(e.target.value)} style={{ ...IS, fontFamily: "'Varela Round',serif", fontSize: '1.1rem', fontStyle: 'italic', fontWeight: 500 }} />
@@ -665,13 +665,13 @@ function BookContent() {
                           onTouchMove={(e) => { e.preventDefault(); if (!intakeDrawing) return; var t = e.touches[0]; var r = e.target.getBoundingClientRect(); var np = [...intakeDrawPoints, { x: t.clientX - r.left, y: t.clientY - r.top }]; setIntakeDrawPoints(np); var ctx = e.target.getContext('2d'); ctx.strokeStyle = '#DBAA64'; ctx.lineWidth = 2; ctx.lineCap = 'round'; if (np.length >= 2) { ctx.beginPath(); ctx.moveTo(np[np.length - 2].x * (500 / e.target.offsetWidth), np[np.length - 2].y * (120 / e.target.offsetHeight)); ctx.lineTo(np[np.length - 1].x * (500 / e.target.offsetWidth), np[np.length - 1].y * (120 / e.target.offsetHeight)); ctx.stroke(); } }}
                           onTouchEnd={() => { setIntakeDrawing(false); if (intakeDrawPoints.length > 2) setIntakeSignature('drawn_intake_sig'); }}
                         />
-                        <button onClick={(e) => { setIntakeDrawPoints([]); setIntakeSignature(''); var c = e.target.closest('div').querySelector('canvas'); if (c) { var ctx = c.getContext('2d'); ctx.clearRect(0, 0, 500, 120); } }} style={{ position: 'absolute', top: '0.35rem', right: '0.35rem', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '4px', color: 'rgba(255,255,255,0.5)', fontSize: '0.52rem', padding: '0.2rem 0.4rem', cursor: 'pointer', fontFamily: "'Varela Round',sans-serif" }}>Clear</button>
+                        <button onClick={(e) => { setIntakeDrawPoints([]); setIntakeSignature(''); var c = e.target.closest('div').querySelector('canvas'); if (c) { var ctx = c.getContext('2d'); ctx.clearRect(0, 0, 500, 120); } }} style={{ position: 'absolute', top: '0.35rem', right: '0.35rem', background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '4px', color: 'rgba(255,255,255,0.5)', fontSize: '0.75rem', padding: '0.2rem 0.4rem', cursor: 'pointer', fontFamily: "'Varela Round',sans-serif" }}>Clear</button>
                       </div>
                     )}
-                    {intakeSignature && <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', color: '#7FD4A0', marginTop: '0.3rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><span>{'\u2713'}</span> Signature captured</p>}
+                    {intakeSignature && <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', color: '#7FD4A0', marginTop: '0.3rem', display: 'flex', alignItems: 'center', gap: '0.25rem' }}><span>{'\u2713'}</span> Signature captured</p>}
                   </div>
-                  {(!intakeAcknowledged || !intakeSignature) && <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', color: 'rgba(255,180,50,0.7)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span>{'\u26A0'}</span> Please check the acknowledgment box and provide your signature to continue.</p>}
-                  {step1Error && <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', color: '#FF9B9B', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.3rem', background: 'rgba(255,100,100,0.1)', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid rgba(255,100,100,0.2)' }}><span>{'\u26A0'}</span> {step1Error}</p>}
+                  {(!intakeAcknowledged || !intakeSignature) && <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', color: 'rgba(255,180,50,0.7)', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span>{'\u26A0'}</span> Please check the acknowledgment box and provide your signature to continue.</p>}
+                  {step1Error && <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', color: '#FF9B9B', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.3rem', background: 'rgba(255,100,100,0.1)', padding: '0.5rem 0.75rem', borderRadius: '6px', border: '1px solid rgba(255,100,100,0.2)' }}><span>{'\u26A0'}</span> {step1Error}</p>}
                 </div>
                 <button className="btn-submit" onClick={handleStep1Continue} style={{ marginTop: '0.5rem', opacity: (!intakeAcknowledged || !intakeSignature || !requiredFieldsFilled) ? 0.4 : 1, cursor: (!intakeAcknowledged || !intakeSignature || !requiredFieldsFilled) ? 'not-allowed' : 'pointer' }}>Continue to Consent Forms</button>
               </div>
@@ -682,23 +682,23 @@ function BookContent() {
           {step === 2 && (
             <div style={CS}>
               <h2 style={{ ...TS, marginBottom: '0.25rem' }}>Patient Consent Forms</h2>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.65rem', textAlign: 'center', marginBottom: '1rem', fontFamily: "'Varela Round',sans-serif" }}>Please review and sign each consent form below.</p>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.82rem', textAlign: 'center', marginBottom: '1rem', fontFamily: "'Varela Round',sans-serif" }}>Please review and sign each consent form below.</p>
               {consentForms.map(renderConsent)}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.75rem', background: 'rgba(219,170,100,0.08)', border: '1px solid rgba(219,170,100,0.2)', borderRadius: '8px', marginBottom: '1.5rem', cursor: 'pointer' }} onClick={() => { var allChecked = consents.treatment && consents.hipaa && consents.medical; var newVal = !allChecked; setConsents({ treatment: newVal, hipaa: newVal, medical: newVal, financial: consents.financial }); }}>
                 <input type="checkbox" checked={consents.treatment && consents.hipaa && consents.medical} readOnly style={{ accentColor: '#7FD4A0', width: '1rem', height: '1rem', flexShrink: 0 }} />
-                <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.6rem', color: 'var(--gold-soft)', fontWeight: 600 }}>Select All — I have read and agree to all consent forms above</span>
+                <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.78rem', color: 'var(--gold-soft)', fontWeight: 600 }}>Select All — I have read and agree to all consent forms above</span>
               </div>
               <div style={{ marginTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}>
-                <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.62rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Electronic Signature</h3>
-                <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.52rem', color: 'rgba(255,255,255,0.6)', marginBottom: '0.75rem', lineHeight: 1.6 }}>One signature below applies to all consent forms checked above.</p>
+                <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.8rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Electronic Signature</h3>
+                <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', marginBottom: '0.75rem', lineHeight: 1.6 }}>One signature below applies to all consent forms checked above.</p>
                 <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                  <button onClick={() => setSigMode('type')} style={{ padding: '0.4rem 0.8rem', fontSize: '0.55rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 500, background: sigMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: sigMode === 'type' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Type Signature</button>
-                  <button onClick={() => setSigMode('draw')} style={{ padding: '0.4rem 0.8rem', fontSize: '0.55rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 500, background: sigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: sigMode === 'draw' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Draw Signature</button>
+                  <button onClick={() => setSigMode('type')} style={{ padding: '0.4rem 0.8rem', fontSize: '0.76rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 500, background: sigMode === 'type' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: sigMode === 'type' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Type Signature</button>
+                  <button onClick={() => setSigMode('draw')} style={{ padding: '0.4rem 0.8rem', fontSize: '0.76rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 500, background: sigMode === 'draw' ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: sigMode === 'draw' ? '#013C1C' : 'rgba(255,255,255,0.6)', border: 'none', borderRadius: '6px', cursor: 'pointer' }}>Draw Signature</button>
                 </div>
                 {sigMode === 'type' ? (
                   <div>
                     <input type="text" aria-label="Type your full legal name" placeholder="Type your full legal name" value={signature === 'drawn-signature' ? '' : signature} onChange={(e) => setSignature(e.target.value)} style={{ ...IS, marginBottom: '0.5rem' }} />
-                    {signature && signature !== 'drawn-signature' && (<div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: '8px', padding: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.52rem', color: '#999', marginBottom: '0.3rem', fontFamily: "'Varela Round',sans-serif" }}>Signature Preview</p><p style={{ fontFamily: 'Georgia,serif', fontSize: '1.2rem', color: '#013C1C', fontStyle: 'italic' }}>{signature}</p></div>)}
+                    {signature && signature !== 'drawn-signature' && (<div style={{ background: 'rgba(255,255,255,0.95)', borderRadius: '8px', padding: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.75rem', color: '#999', marginBottom: '0.3rem', fontFamily: "'Varela Round',sans-serif" }}>Signature Preview</p><p style={{ fontFamily: 'Georgia,serif', fontSize: '1.2rem', color: '#013C1C', fontStyle: 'italic' }}>{signature}</p></div>)}
                   </div>
                 ) : (
                   <div>
@@ -708,21 +708,21 @@ function BookContent() {
                       onPointerUp={(e) => { setIsDrawing(false); e.currentTarget.releasePointerCapture(e.pointerId); if (drawPoints.length > 3) setSignature('drawn-signature'); }}
                     >
                       <svg width="100%" height="100%" style={{ position: 'absolute', top: 0, left: 0 }}>{drawPoints.length > 1 && <polyline points={drawPoints.map((p) => p.x + ',' + p.y).join(' ')} fill="none" stroke="#013C1C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />}</svg>
-                      {drawPoints.length === 0 && <p style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', color: '#999', fontSize: '0.6rem', fontFamily: "'Varela Round',sans-serif" }}>Draw your signature here</p>}
+                      {drawPoints.length === 0 && <p style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', color: '#999', fontSize: '0.78rem', fontFamily: "'Varela Round',sans-serif" }}>Draw your signature here</p>}
                     </div>
-                    <button onClick={() => { setDrawPoints([]); setSignature(''); }} style={{ marginTop: '0.5rem', fontSize: '0.52rem', fontFamily: "'Varela Round',sans-serif", background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', textDecoration: 'underline' }}>Clear signature</button>
+                    <button onClick={() => { setDrawPoints([]); setSignature(''); }} style={{ marginTop: '0.5rem', fontSize: '0.75rem', fontFamily: "'Varela Round',sans-serif", background: 'none', border: 'none', color: 'rgba(255,255,255,0.5)', cursor: 'pointer', textDecoration: 'underline' }}>Clear signature</button>
                   </div>
                 )}
               </div>
               <div style={{ marginTop: '1.25rem', padding: '0.75rem', background: 'rgba(0,0,0,0.15)', borderRadius: '8px' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.3rem' }}>
-                  {consentForms.map((cf) => (<div key={cf.key} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.55rem', color: consents[cf.key] ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{consents[cf.key] ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.52rem', color: consents[cf.key] ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif" }}>{cf.title}</span></div>))}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.55rem', color: signature ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{signature ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.52rem', color: signature ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif" }}>E-Signature</span></div>
+                  {consentForms.map((cf) => (<div key={cf.key} style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.76rem', color: consents[cf.key] ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{consents[cf.key] ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.75rem', color: consents[cf.key] ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif" }}>{cf.title}</span></div>))}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem' }}><span style={{ fontSize: '0.76rem', color: signature ? '#7FD4A0' : 'rgba(255,255,255,0.25)' }}>{signature ? '\u2713' : '\u25CB'}</span><span style={{ fontSize: '0.75rem', color: signature ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif" }}>E-Signature</span></div>
                 </div>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem' }}>
                 <button onClick={() => goToStep(1)} style={backBtn}>Back</button>
-                <button onClick={() => goToStep(3)} disabled={!allConsentsChecked} style={{ flex: 2, padding: '0.7rem', fontSize: '0.6rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 700, background: allConsentsChecked ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: allConsentsChecked ? '#013C1C' : 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '8px', cursor: allConsentsChecked ? 'pointer' : 'not-allowed' }}>Continue to Payment</button>
+                <button onClick={() => goToStep(3)} disabled={!allConsentsChecked} style={{ flex: 2, padding: '0.7rem', fontSize: '0.78rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 700, background: allConsentsChecked ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: allConsentsChecked ? '#013C1C' : 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '8px', cursor: allConsentsChecked ? 'pointer' : 'not-allowed' }}>Continue to Payment</button>
               </div>
             </div>
           )}
@@ -731,31 +731,31 @@ function BookContent() {
           {step === 3 && (
             <div style={CS}>
               <h2 style={{ ...TS, marginBottom: '0.25rem' }}>Payment Method</h2>
-              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.6rem', textAlign: 'center', marginBottom: '0.5rem', fontFamily: "'Varela Round',sans-serif" }}>A payment method on file is required to complete your booking.</p>
-              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.52rem', textAlign: 'center', marginBottom: '1.25rem', fontFamily: "'Varela Round',sans-serif" }}>Pay with card, Apple Pay, Google Pay, or Venmo. A $0.01 verification charge may be applied and refunded.</p>
+              <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.78rem', textAlign: 'center', marginBottom: '0.5rem', fontFamily: "'Varela Round',sans-serif" }}>A payment method on file is required to complete your booking.</p>
+              <p style={{ color: 'rgba(255,255,255,0.45)', fontSize: '0.75rem', textAlign: 'center', marginBottom: '1.25rem', fontFamily: "'Varela Round',sans-serif" }}>Pay with card, Apple Pay, Google Pay, or Venmo. A $0.01 verification charge may be applied and refunded.</p>
               {renderConsent({ key: 'financial', title: 'Financial Consent', text: CONSENT_FINANCIAL })}
               <div style={{ background: 'rgba(1,60,28,0.95)', borderRadius: '12px', padding: '1.25rem', border: '1px solid rgba(219,170,100,0.15)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '1.25rem', flexWrap: 'wrap' }}>
                   <span style={{ fontSize: '0.85rem' }}>{'\uD83D\uDD12'}</span>
-                  <span style={{ fontSize: '0.52rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif" }}>{stripeFailed ? 'Payment follow-up' : 'Secured by Stripe'}</span>
+                  <span style={{ fontSize: '0.75rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif" }}>{stripeFailed ? 'Payment follow-up' : 'Secured by Stripe'}</span>
                 </div>
-                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.52rem', marginBottom: '0.35rem', fontFamily: "'Varela Round',sans-serif" }}>Name on Account</label><input aria-label="Name on Account" type="text" placeholder="Full name" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} className="cc-field" style={{ ...IS, color: '#DBAA64' }} autoComplete="cc-name" /></div>
+                <div style={{ marginBottom: '1rem' }}><label style={{ display: 'block', color: 'var(--gold-soft)', fontSize: '0.75rem', marginBottom: '0.35rem', fontFamily: "'Varela Round',sans-serif" }}>Name on Account</label><input aria-label="Name on Account" type="text" placeholder="Full name" value={cardHolderName} onChange={(e) => setCardHolderName(e.target.value)} className="cc-field" style={{ ...IS, color: '#DBAA64' }} autoComplete="cc-name" /></div>
                 {stripeFailed ? (
                   <div style={{ padding: '0.85rem', background: 'rgba(255,180,50,0.08)', border: '1px solid rgba(255,180,50,0.2)', borderRadius: '8px', marginBottom: '1rem' }}>
-                    <p style={{ fontSize: '0.52rem', color: '#FFB432', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6, marginBottom: '0.4rem', fontWeight: 600 }}>Secure payment is temporarily unavailable.</p>
-                    <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6 }}>Please refresh to try again, or continue and our team will contact you to collect payment securely. For your protection, we never accept card numbers typed into this form.</p>
+                    <p style={{ fontSize: '0.75rem', color: '#FFB432', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6, marginBottom: '0.4rem', fontWeight: 600 }}>Secure payment is temporarily unavailable.</p>
+                    <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6 }}>Please refresh to try again, or continue and our team will contact you to collect payment securely. For your protection, we never accept card numbers typed into this form.</p>
                   </div>
                 ) : (
                   <div ref={paymentMountRef} style={{ marginBottom: '1rem', minHeight: '120px' }} />
                 )}
-                {!stripeReady && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}><span style={{ display: 'inline-block', width: '0.55rem', height: '0.55rem', border: '1.5px solid rgba(255,255,255,0.15)', borderTop: '1.5px solid var(--gold-soft)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} /><p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif" }}>Loading payment options...</p></div>}
-                {cardComplete && cardHolderName.trim() && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.4rem 0.6rem', background: 'rgba(127,212,160,0.1)', borderRadius: '6px', marginBottom: '0.75rem' }}><span style={{ color: '#7FD4A0', fontSize: '0.52rem' }}>{'\u2713'}</span><p style={{ fontSize: '0.52rem', color: '#7FD4A0', fontFamily: "'Varela Round',sans-serif" }}>Payment details complete</p></div>}
-                {stripeError && <div style={{ padding: '0.5rem 0.75rem', background: 'rgba(255,100,100,0.1)', border: '1px solid rgba(255,100,100,0.2)', borderRadius: '6px', marginBottom: '0.75rem' }}><p style={{ fontSize: '0.52rem', color: '#FF9B9B', fontFamily: "'Varela Round',sans-serif" }}>{stripeError}</p></div>}
-                <p style={{ fontSize: '0.52rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6, marginTop: '0.5rem', opacity: 0.7 }}>Your payment information is handled directly by Stripe and never touches our servers.</p>
+                {!stripeReady && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', marginBottom: '0.75rem' }}><span style={{ display: 'inline-block', width: '0.55rem', height: '0.55rem', border: '1.5px solid rgba(255,255,255,0.15)', borderTop: '1.5px solid var(--gold-soft)', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} /><p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)', fontFamily: "'Varela Round',sans-serif" }}>Loading payment options...</p></div>}
+                {cardComplete && cardHolderName.trim() && !stripeError && <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', padding: '0.4rem 0.6rem', background: 'rgba(127,212,160,0.1)', borderRadius: '6px', marginBottom: '0.75rem' }}><span style={{ color: '#7FD4A0', fontSize: '0.75rem' }}>{'\u2713'}</span><p style={{ fontSize: '0.75rem', color: '#7FD4A0', fontFamily: "'Varela Round',sans-serif" }}>Payment details complete</p></div>}
+                {stripeError && <div style={{ padding: '0.5rem 0.75rem', background: 'rgba(255,100,100,0.1)', border: '1px solid rgba(255,100,100,0.2)', borderRadius: '6px', marginBottom: '0.75rem' }}><p style={{ fontSize: '0.75rem', color: '#FF9B9B', fontFamily: "'Varela Round',sans-serif" }}>{stripeError}</p></div>}
+                <p style={{ fontSize: '0.75rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", lineHeight: 1.6, marginTop: '0.5rem', opacity: 0.7 }}>Your payment information is handled directly by Stripe and never touches our servers.</p>
               </div>
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.25rem' }}>
                 <button onClick={() => goToStep(2)} style={backBtn}>Back</button>
-                <button onClick={handleStripePayment} disabled={!cardValid || isValidating} style={{ flex: 2, padding: '0.7rem', fontSize: '0.6rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 700, background: cardValid && !isValidating ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: cardValid && !isValidating ? '#013C1C' : 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '8px', cursor: cardValid && !isValidating ? 'pointer' : 'not-allowed', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
+                <button onClick={handleStripePayment} disabled={!cardValid || isValidating} style={{ flex: 2, padding: '0.7rem', fontSize: '0.78rem', fontFamily: "'Varela Round',sans-serif", fontWeight: 700, background: cardValid && !isValidating ? 'var(--gold-soft)' : 'rgba(255,255,255,0.1)', color: cardValid && !isValidating ? '#013C1C' : 'rgba(255,255,255,0.3)', border: 'none', borderRadius: '8px', cursor: cardValid && !isValidating ? 'pointer' : 'not-allowed', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.4rem' }}>
                   {isValidating && <span style={{ display: 'inline-block', width: '0.6rem', height: '0.6rem', border: '2px solid rgba(1,60,28,0.3)', borderTop: '2px solid #013C1C', borderRadius: '50%', animation: 'spin 0.8s linear infinite' }} />}
                   {isValidating ? 'Verifying...' : 'Verify & Complete Booking'}
                 </button>
@@ -767,11 +767,11 @@ function BookContent() {
           {step === 4 && (
             <div style={CS}>
               <div style={{ fontSize: '2.5rem', marginBottom: '0.75rem', textAlign: 'center' }}>{'\u2705'}</div>
-              <h2 style={{ ...TS, fontSize: '0.75rem' }}>Booking Confirmed!</h2>
-              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.65rem', lineHeight: 1.7, textAlign: 'center', maxWidth: 400, margin: '0 auto 1.5rem', fontFamily: "'Varela Round',sans-serif" }}>Your appointment has been successfully booked.</p>
-              {emailStatus === 'sent' && <div style={{ padding: '0.5rem 1rem', background: 'rgba(127,212,160,0.15)', borderRadius: '8px', marginBottom: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.52rem', color: '#7FD4A0', fontFamily: "'Varela Round',sans-serif" }}>{'\u2713'} Confirmation emails sent successfully</p></div>}
+              <h2 style={{ ...TS, fontSize: '0.86rem' }}>Booking Confirmed!</h2>
+              <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.82rem', lineHeight: 1.7, textAlign: 'center', maxWidth: 400, margin: '0 auto 1.5rem', fontFamily: "'Varela Round',sans-serif" }}>Your appointment has been successfully booked.</p>
+              {emailStatus === 'sent' && <div style={{ padding: '0.5rem 1rem', background: 'rgba(127,212,160,0.15)', borderRadius: '8px', marginBottom: '1rem', textAlign: 'center' }}><p style={{ fontSize: '0.75rem', color: '#7FD4A0', fontFamily: "'Varela Round',sans-serif" }}>{'\u2713'} Confirmation emails sent successfully</p></div>}
               <div style={{ background: 'rgba(0,0,0,0.2)', borderRadius: '12px', padding: '1.25rem' }}>
-                <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.55rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Booking Details</h3>
+                <h3 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.76rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.75rem' }}>Booking Details</h3>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.6rem' }}>
                   {[
                     { l: additionalPatients.length > 0 ? 'Primary Patient' : 'Patient', v: form.fname + ' ' + form.lname },
@@ -781,13 +781,13 @@ function BookContent() {
                     { l: 'Time', v: selTime || 'TBD' },
                     { l: 'Services', v: form.services.length > 0 ? form.services.map(formatServiceLabel).join(', ') : 'General Consultation' },
                   ].map((item) => (
-                    <div key={item.l}><p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Varela Round',sans-serif" }}>{item.l}</p><p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Varela Round',sans-serif" }}>{item.v || '\u2014'}</p></div>
+                    <div key={item.l}><p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Varela Round',sans-serif" }}>{item.l}</p><p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Varela Round',sans-serif" }}>{item.v || '\u2014'}</p></div>
                   ))}
                 </div>
-                {form.address1 && <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}><p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Varela Round',sans-serif" }}>Address</p><p style={{ fontSize: '0.6rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Varela Round',sans-serif" }}>{[form.address1, form.address2].filter(Boolean).join(', ')}</p>{(form.city || form.stateProvince || form.postalCode) && <p style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif" }}>{[form.city, form.stateProvince, form.postalCode].filter(Boolean).join(', ')}</p>}{form.country && <p style={{ fontSize: '0.55rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif" }}>{form.country}</p>}</div>}
+                {form.address1 && <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}><p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Varela Round',sans-serif" }}>Address</p><p style={{ fontSize: '0.78rem', color: 'rgba(255,255,255,0.9)', fontFamily: "'Varela Round',sans-serif" }}>{[form.address1, form.address2].filter(Boolean).join(', ')}</p>{(form.city || form.stateProvince || form.postalCode) && <p style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif" }}>{[form.city, form.stateProvince, form.postalCode].filter(Boolean).join(', ')}</p>}{form.country && <p style={{ fontSize: '0.76rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif" }}>{form.country}</p>}</div>}
                 {additionalPatients.length > 0 && (
                   <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                    <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Varela Round',sans-serif", marginBottom: '0.4rem' }}>Additional Patients ({additionalPatients.length})</p>
+                    <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.45)', textTransform: 'uppercase', letterSpacing: '0.1em', fontFamily: "'Varela Round',sans-serif", marginBottom: '0.4rem' }}>Additional Patients ({additionalPatients.length})</p>
                     {additionalPatients.map((pt, idx) => {
                       const ptName = (pt.fname + ' ' + pt.lname).trim() || 'Patient ' + (idx + 2);
                       const ptService = pt.services && pt.services.length > 0 ? pt.services.map(formatServiceLabel).join(', ') : 'Same as primary';
@@ -795,15 +795,15 @@ function BookContent() {
                       return (
                         <div key={pt.id} style={{ background: 'rgba(0,0,0,0.1)', borderRadius: '8px', padding: '0.6rem', marginBottom: '0.4rem' }}>
                           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.2rem' }}>
-                            <p style={{ fontSize: '0.6rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", fontWeight: 600 }}>{ptName}</p>
+                            <p style={{ fontSize: '0.78rem', color: 'var(--gold-soft)', fontFamily: "'Varela Round',sans-serif", fontWeight: 600 }}>{ptName}</p>
                           </div>
-                          <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.6)', fontFamily: "'Varela Round',sans-serif" }}>Services: {ptService}</p>
-                          {ptAddr && <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Address: {ptAddr}</p>}
-                          {pt.medicalSurgicalHistory && <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Medical/Surgical: {pt.medicalSurgicalHistory}</p>}
-                          {pt.medications && <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Medications: {pt.medications}</p>}
-                          {pt.allergies && <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Allergies: {pt.allergies}</p>}
-                          {pt.ivReactions && <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>IV Reactions: {pt.ivReactions}</p>}
-                          {pt.clinicianNotes && <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Clinician Notes: {pt.clinicianNotes}</p>}
+                          <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.6)', fontFamily: "'Varela Round',sans-serif" }}>Services: {ptService}</p>
+                          {ptAddr && <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Address: {ptAddr}</p>}
+                          {pt.medicalSurgicalHistory && <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Medical/Surgical: {pt.medicalSurgicalHistory}</p>}
+                          {pt.medications && <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Medications: {pt.medications}</p>}
+                          {pt.allergies && <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Allergies: {pt.allergies}</p>}
+                          {pt.ivReactions && <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>IV Reactions: {pt.ivReactions}</p>}
+                          {pt.clinicianNotes && <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.5)', fontFamily: "'Varela Round',sans-serif" }}>Clinician Notes: {pt.clinicianNotes}</p>}
                         </div>
                       );
                     })}
@@ -811,10 +811,10 @@ function BookContent() {
                 )}
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem', marginTop: '1rem' }}>
-                {['All consent forms signed', 'Card verified ($0.01 charge)', 'Confirmation sent to ' + (form.email || 'patient'), 'Data securely stored (HIPAA)'].map((s, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}><span style={{ color: '#7FD4A0', fontSize: '0.55rem', fontWeight: 700 }}>{'\u2713'}</span><span style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif" }}>{s}</span></div>))}
+                {['All consent forms signed', 'Card verified ($0.01 charge)', 'Confirmation sent to ' + (form.email || 'patient'), 'Data securely stored (HIPAA)'].map((s, i) => (<div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}><span style={{ color: '#7FD4A0', fontSize: '0.76rem', fontWeight: 700 }}>{'\u2713'}</span><span style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.7)', fontFamily: "'Varela Round',sans-serif" }}>{s}</span></div>))}
               </div>
-              <div style={{ padding: '0.75rem', background: 'rgba(193,163,98,0.1)', borderRadius: '8px', marginTop: '1rem', border: '1px solid rgba(193,163,98,0.15)' }}><p style={{ fontSize: '0.52rem', color: 'var(--gold-soft)', lineHeight: 1.6, fontFamily: "'Varela Round',sans-serif", textAlign: 'center' }}>Our team at <strong>info@healingsoulutions.care</strong> will contact you within 24 hours to confirm your appointment.</p></div>
-              <p style={{ fontSize: '0.52rem', color: 'rgba(255,255,255,0.35)', marginTop: '0.75rem', textAlign: 'center', fontFamily: "'Varela Round',sans-serif" }}>Your {cardBrand ? cardBrand.charAt(0).toUpperCase() + cardBrand.slice(1) : 'card'} ending in {cardInfo.number.replace(/\D/g, '').slice(-4)} has been securely saved.</p>
+              <div style={{ padding: '0.75rem', background: 'rgba(193,163,98,0.1)', borderRadius: '8px', marginTop: '1rem', border: '1px solid rgba(193,163,98,0.15)' }}><p style={{ fontSize: '0.75rem', color: 'var(--gold-soft)', lineHeight: 1.6, fontFamily: "'Varela Round',sans-serif", textAlign: 'center' }}>Our team at <strong>info@healingsoulutions.care</strong> will contact you within 24 hours to confirm your appointment.</p></div>
+              <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.35)', marginTop: '0.75rem', textAlign: 'center', fontFamily: "'Varela Round',sans-serif" }}>Your {cardBrand ? cardBrand.charAt(0).toUpperCase() + cardBrand.slice(1) : 'card'} ending in {cardInfo.number.replace(/\D/g, '').slice(-4)} has been securely saved.</p>
             </div>
           )}
 
