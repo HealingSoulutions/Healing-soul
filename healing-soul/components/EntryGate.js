@@ -25,7 +25,7 @@ export default function EntryGate() {
     try {
       // once:false — the gate already enforces once-per-session, so the overlay
       // must not self-suppress via its own sessionStorage flag (that was skipping the intro).
-      window.HS_INTRO = { duration: 5, sound: false, once: false, keepSoundToggle: false };
+      window.HS_INTRO = { duration: 7, sound: false, once: false, keepSoundToggle: false };
       if (!window.__hsIntroLoaded && !document.getElementById('hs-intro-js')) {
         const s = document.createElement('script');
         s.id = 'hs-intro-js';
