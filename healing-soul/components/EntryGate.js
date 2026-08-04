@@ -20,6 +20,9 @@ export default function EntryGate() {
 
   const enter = useCallback(() => {
     try { sessionStorage.setItem('hs_entry_seen', '1'); } catch (e) {}
+    // Release the gate's scroll lock BEFORE the intro mounts, so the intro captures
+    // "scrollable" as the state to restore when it finishes (otherwise the page stays locked).
+    try { document.body.style.overflow = ''; } catch (e) {}
     // Load the cinematic intro now, so it plays together with the sound.
     // (The ambient audio unlocks from this same tap via the site-wide player.)
     try {
@@ -39,6 +42,8 @@ export default function EntryGate() {
       setShow(false);
       document.body.style.overflow = '';
     }, 700);
+    // Safety net: after the intro + fade fully finish, guarantee the page is scrollable.
+    setTimeout(() => { try { document.body.style.overflow = ''; } catch (e) {} }, 12000);
   }, []);
 
   useEffect(() => {
