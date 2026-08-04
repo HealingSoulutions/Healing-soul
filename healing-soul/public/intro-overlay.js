@@ -26,7 +26,7 @@
     '<canvas data-hs="grass" style="position:absolute;inset:0;width:100%;height:100%;display:block"></canvas>',
     '<div data-hs="introtext" style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;pointer-events:none">',
     '<img src="' + WM + '" alt="Healing Soulutions" style="width:min(360px,54vw);height:auto;display:block" />',
-    '<div data-hs="breath" style="font-family:Jost,Helvetica,sans-serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:#DBAA64;transition:opacity 900ms ease">Healing</div>',
+    '<div data-hs="breath" style="font-family:Jost,Helvetica,sans-serif;font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:#DBAA64;transition:opacity 350ms ease">Healing</div>',
     '</div>',
     '<button data-hs="skip" style="position:absolute;right:26px;bottom:26px;z-index:2;padding:9px 18px;border:1px solid rgba(245,242,234,.3);border-radius:999px;background:transparent;color:rgba(245,242,234,.7);font-family:Jost,Helvetica,sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer">Skip</button>',
     '</div>',
@@ -547,8 +547,10 @@
           const br = this.el('breath');
           if (br) {
             const words = ['Healing', 'Experience', 'Compassion'];
-            const want = words[Math.min(2, Math.floor(p * 3))];
-            if (br.textContent !== want && !this.swapping) { this.swapping = true; br.style.opacity = '0'; setTimeout(() => { br.textContent = want; br.style.opacity = '1'; this.swapping = false; }, 900); }
+            // Show all three within the fully-visible window (before the text fades ~p0.72),
+            // so Compassion lands with time to spare.
+            const want = words[Math.max(0, Math.min(2, Math.floor((p - 0.05) / 0.21)))];
+            if (br.textContent !== want && !this.swapping) { this.swapping = true; br.style.opacity = '0'; setTimeout(() => { br.textContent = want; br.style.opacity = '1'; this.swapping = false; }, 300); }
           }
         }
       }
