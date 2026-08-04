@@ -27,7 +27,7 @@ export default function About() {
         <div style={{ position: 'relative', zIndex: 10, maxWidth: 780, margin: '0 auto', padding: '7rem 1.5rem 4rem' }}>
           <div style={{ background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '2rem 2.5rem', marginBottom: '1.25rem', textAlign: 'center' }}>
             <h1 style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '1rem', fontWeight: 700, letterSpacing: '0.28em', color: 'var(--gold-soft)', textTransform: 'uppercase', margin: '0 0 0.8rem' }}>About</h1>
-            <img src="/wordmark.png" alt="Healing Soulutions — Concierge Nursing" style={{ width: 'min(400px, 92%)', height: 'auto', display: 'inline-block' }} />
+            <img src="/wordmark-v2.png" alt="Healing Soulutions — Concierge Nursing" style={{ width: 'min(400px, 92%)', height: 'auto', display: 'inline-block' }} />
             <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '0.9rem auto 0', opacity: 0.9 }} />
           </div>
 
