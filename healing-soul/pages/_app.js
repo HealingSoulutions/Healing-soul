@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Nav from '../components/Nav';
 import Footer from '../components/Footer';
 import AmbientPlayer from '../components/AmbientPlayer';
+import BookCta from '../components/BookCta';
 
 export default function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -18,6 +19,7 @@ export default function MyApp({ Component, pageProps }) {
       </main>
       <Footer />
       <AmbientPlayer />
+      <BookCta />
       {analyticsOn && <Script src="/_vercel/insights/script.js" strategy="afterInteractive" />}
     </>
   );
