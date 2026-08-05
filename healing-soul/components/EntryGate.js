@@ -1,12 +1,23 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useRouter } from 'next/router';
 
 // Home-page entry gate. Shows a branded "Tap to begin" frame on the first visit
 // of a session. The single tap satisfies the browser's audio-unlock requirement,
 // so it launches BOTH the cinematic intro and the ambient sound together.
 // Skipped for reduced-motion visitors and after the first time each session.
 export default function EntryGate() {
+  const router = useRouter();
   const [show, setShow] = useState(false);
   const [leaving, setLeaving] = useState(false);
+
+  // Express lane: skip the intro and go straight to booking.
+  const skipToBook = (e) => {
+    e.stopPropagation();
+    try { sessionStorage.setItem('hs_entry_seen', '1'); } catch (err) {}
+    try { document.body.style.overflow = ''; } catch (err) {}
+    setShow(false);
+    router.push('/book');
+  };
 
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -104,6 +115,18 @@ export default function EntryGate() {
         }}>
           Enter
         </p>
+        <button
+          onClick={skipToBook}
+          aria-label="Skip the intro and book a visit"
+          style={{
+            marginTop: '1.4rem', background: 'none', border: 'none', cursor: 'pointer',
+            fontFamily: "'Varela Round', sans-serif", color: 'rgba(255,255,255,0.5)',
+            fontSize: '0.62rem', letterSpacing: '0.14em', textTransform: 'uppercase',
+            padding: '0.4rem 0.6rem',
+          }}
+        >
+          Book a visit &rarr;
+        </button>
       </div>
     </div>
   );
