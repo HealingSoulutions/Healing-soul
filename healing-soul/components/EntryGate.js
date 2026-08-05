@@ -25,15 +25,18 @@ export default function EntryGate() {
     try { document.body.style.overflow = ''; } catch (e) {}
     // Load the cinematic intro now, so it plays together with the sound.
     // (The ambient audio unlocks from this same tap via the site-wide player.)
+    const DURATION = 8;
     try {
       // once:false — the gate already enforces once-per-session, so the overlay
       // must not self-suppress via its own sessionStorage flag (that was skipping the intro).
-      window.HS_INTRO = { duration: 8, sound: false, once: false, keepSoundToggle: false, wordmark: '/wordmark-v2.png' };
+      window.HS_INTRO = { duration: DURATION, sound: false, once: false, keepSoundToggle: false, wordmark: '/wordmark-v2.png' };
       if (!window.__hsIntroLoaded && !document.getElementById('hs-intro-js')) {
         const s = document.createElement('script');
         s.id = 'hs-intro-js';
         s.src = '/intro-overlay.js';
         s.defer = true;
+        // If the intro script can't load (offline/slow), don't strand the visitor — just reveal the page.
+        s.onerror = () => { try { document.body.style.overflow = ''; } catch (e) {} };
         document.body.appendChild(s);
       }
     } catch (e) {}
@@ -42,8 +45,9 @@ export default function EntryGate() {
       setShow(false);
       document.body.style.overflow = '';
     }, 700);
-    // Safety net: after the intro + fade fully finish, guarantee the page is scrollable.
-    setTimeout(() => { try { document.body.style.overflow = ''; } catch (e) {} }, 12000);
+    // Safety net: after the intro + fade could possibly finish, guarantee the page is scrollable,
+    // no matter what happened inside the overlay. Tied to the intro length so it always clears.
+    setTimeout(() => { try { document.body.style.overflow = ''; } catch (e) {} }, (DURATION + 5) * 1000);
   }, []);
 
   useEffect(() => {
@@ -59,7 +63,7 @@ export default function EntryGate() {
     <div
       role="button"
       tabIndex={0}
-      aria-label="Tap to enter Healing Soulutions with sound"
+      aria-label="Enter Healing Soulutions"
       onClick={enter}
       style={{
         position: 'fixed', inset: 0, zIndex: 2147483600,
@@ -95,16 +99,10 @@ export default function EntryGate() {
         </div>
         <p style={{
           fontFamily: "'Varela Round', sans-serif", color: '#DBAA64',
-          fontSize: '0.72rem', letterSpacing: '0.24em', textTransform: 'uppercase',
+          fontSize: '0.72rem', letterSpacing: '0.34em', textTransform: 'uppercase',
           margin: '1.1rem 0 0', animation: 'hsGatePulse 2.4s ease-in-out infinite',
         }}>
-          Tap to begin
-        </p>
-        <p style={{
-          fontFamily: "'Varela Round', sans-serif", color: 'rgba(255,255,255,0.45)',
-          fontSize: '0.6rem', letterSpacing: '0.1em', margin: '0.5rem 0 0',
-        }}>
-          with sound
+          Enter
         </p>
       </div>
     </div>
