@@ -101,7 +101,7 @@ function BookContent() {
               Book a Visit
             </h1>
             <div style={{ margin: '0.5rem 0' }}>
-              <img src="/emblem.png" alt="" aria-hidden="true" style={{ height: '5rem', width: 'auto', display: 'inline-block' }} />
+              <img src="/emblem.png" alt="" aria-hidden="true" style={{ height: '8.57rem', width: 'auto', display: 'inline-block' }} />
             </div>
             <div style={{ width: 25, height: 0.75, background: 'var(--gold-soft)', margin: '0 auto 0.75rem' }} />
             <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.82rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.75)', maxWidth: 440, margin: '0 auto' }}>
@@ -110,11 +110,9 @@ function BookContent() {
           </div>
         </div>
 
-        {/* Form panel with the JotForm embed */}
+        {/* Form embed — no gold frame here; JotForm draws its own, so this avoids a double box */}
         <div style={{ padding: '0.5rem 3rem 3rem', maxWidth: 800, margin: '0 auto' }}>
-          <div style={CS}>
-            <JotformEmbed />
-          </div>
+          <JotformEmbed />
 
           {/* trust line */}
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '0.6rem 1.5rem', marginTop: '1.1rem', color: '#A8CCBC', fontSize: '0.7rem', fontFamily: "'Varela Round',sans-serif" }}>
