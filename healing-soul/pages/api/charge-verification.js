@@ -28,14 +28,15 @@ export default async function handler(req, res) {
         });
       }
 
-      // Create SetupIntent - this is Stripe's recommended way to save a card
+      // Create SetupIntent - this is Stripe's recommended way to save a card.
+      // Note: we intentionally do NOT put the patient's name/email in metadata.
+      // Stripe's customer object (created above) already holds the email and name
+      // natively, so there's no need to duplicate identifying info into metadata.
       const setupIntent = await stripe.setupIntents.create({
         customer: customer.id,
         payment_method_types: ['card'],
         metadata: {
           type: 'card_on_file',
-          patient_name: name || '',
-          patient_email: email || '',
         },
       });
 
@@ -50,7 +51,10 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    // Step 2: Client confirms card was saved, we do $0.01 verification
+    // Step 2: Client confirms card was saved, we place a true authorization
+    // HOLD (not a charge). A manual-capture PaymentIntent reserves the funds
+    // to validate the card, then we cancel it to release the hold immediately —
+    // so nothing is ever actually charged or refunded on the customer's statement.
     if (!process.env.STRIPE_SECRET_KEY) {
       return res.status(500).json({ error: 'Payment system not configured.' });
     }
@@ -74,7 +78,9 @@ export default async function handler(req, res) {
         invoice_settings: { default_payment_method: paymentMethodId },
       });
 
-      // Do $0.01 verification charge
+      // Place a true authorization HOLD to verify the card, then release it.
+      // capture_method:'manual' authorizes the amount without capturing (charging) it.
+      // Canceling the uncaptured intent releases the hold — no money ever moves.
       try {
         const paymentIntent = await stripe.paymentIntents.create({
           amount: 1,
@@ -82,21 +88,20 @@ export default async function handler(req, res) {
           customer: customerId,
           payment_method: paymentMethodId,
           payment_method_types: ['card'],
+          capture_method: 'manual',
           confirm: true,
           off_session: true,
-          description: 'Healing Soulutions - Card verification (refundable)',
+          description: 'Healing Soulutions - Card verification hold (released)',
         });
 
-        if (paymentIntent.status === 'succeeded') {
-          // Refund immediately
-          await stripe.refunds.create({
-            payment_intent: paymentIntent.id,
-            reason: 'requested_by_customer',
-          });
+        // A successful manual-capture auth lands in 'requires_capture'.
+        // We never capture — cancel to release the hold right away.
+        if (paymentIntent.status === 'requires_capture') {
+          await stripe.paymentIntents.cancel(paymentIntent.id);
         }
-      } catch (chargeErr) {
-        // $0.01 charge failed but card is still saved - this is OK
-        console.log('Verification charge skipped:', chargeErr.message);
+      } catch (holdErr) {
+        // Hold couldn't be placed, but the card is still saved via the SetupIntent - this is OK.
+        console.log('Verification hold skipped:', holdErr.message);
       }
 
       // Get card details for confirmation
