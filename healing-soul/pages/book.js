@@ -70,8 +70,9 @@ function BookContent() {
             allow="geolocation; microphone; camera; fullscreen; payment"
             src={JF_SRC}
             frameBorder="0"
-            scrolling="no"
-            style={{ minWidth: '100%', maxWidth: '100%', width: '1px', height: '1400px', border: 'none', borderRadius: '16px' }}
+            scrolling="auto"
+            allowpaymentrequest="true"
+            style={{ minWidth: '100%', maxWidth: '100%', width: '1px', height: '2400px', border: 'none', borderRadius: '16px' }}
           />
           <noscript>
             <p style={{ fontFamily: "'Varela Round',sans-serif", color: 'rgba(255,255,255,0.75)', fontSize: '0.85rem', textAlign: 'center' }}>
