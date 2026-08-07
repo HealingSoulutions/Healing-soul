@@ -38,7 +38,7 @@ function BookContent() {
   }, []);
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', overflow: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', overflowX: 'hidden' }}>
       <SceneBackground />
       <div style={{ position: 'relative', zIndex: 10 }}>
         {/* Branded header */}
