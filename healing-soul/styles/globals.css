@@ -283,7 +283,7 @@ nav {
 .StripeElement--complete { border-color: #7FD4A0 !important; }
 
 /* ── Footer ── */
-footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.4); }
+footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.7); }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-compact { display: flex; justify-content: space-between; align-items: center; }
 .footer-compact .logo { font-size: 0.85rem; }
