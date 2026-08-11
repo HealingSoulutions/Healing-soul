@@ -50,9 +50,7 @@ function BookContent() {
             borderRadius: '16px', padding: '1.5rem', width: '100%',
           }}>
             <h1 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.82rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.2em', margin: 0 }}>Book a Visit</h1>
-            <div style={{ margin: '0.5rem 0' }}>
-              <img src="/emblem.png" alt="" aria-hidden="true" style={{ height: '8.57rem', width: 'auto', display: 'inline-block' }} />
-            </div>
+           
             <div style={{ width: 25, height: 0.75, background: 'var(--gold-soft)', margin: '0 auto 0.9rem' }} />
             <p style={{ fontFamily: "'Varela Round',sans-serif", color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', lineHeight: 1.6, maxWidth: 560, margin: '0 auto' }}>
               Complete your intake, consent, and secure card-on-file below. Everything is submitted directly through our HIPAA-secure form.
