@@ -79,8 +79,8 @@ export default function Home() {
             className="wordmark"
             src="/wordmark-v2.png"
             alt="Healing Soulutions — Concierge Nursing"
-            width={1200}
-            height={504}
+            width={900}
+            height={378}
           />
           <div className="divider" aria-hidden="true" />
 
