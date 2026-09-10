@@ -1,99 +1,123 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import Seo from '../components/Seo';
-import EntryGate from '../components/EntryGate';
-import { GoldPhoneIcon, GoldEmailIcon } from '../components/icons';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#013C1C">
+<title>Healing Soulutions — Concierge & Mobile Nursing | New York Metro</title>
+<meta name="description" content="Concierge nursing in your home. A skilled nursing team that knows you, comes to you, and follows through. Serving Manhattan and the New York metro area.">
+<link rel="icon" href="/emblem.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap">
+<style>
+  :root {
+    --emerald: #013C1C;
+    --emerald-deep: #02240f;
+    --gold: #D9AC63;
+    --gold-soft: #dbaa64;
+    --gold-muted: #c79a56;
+    --jade-mist: #a8ccbc;
+    --jade-whisper: #d4e8df;
+    --ivory: #fdfcf9;
+    --ink: #2c3532;
+    --body: "Varela Round", "Nunito", "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 15.5px; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: #083c22 radial-gradient(120% 90% at 50% 42%, #0b4629 0%, #083c22 45%, #02180d 100%);
+    color: var(--jade-whisper);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.72;
+    padding-block: 64px 72px;
+    padding-inline: 20px;
+  }
+  a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-function HomeContent() {
-  const router = useRouter();
-  return (
-    <>
-      <section className="hero">
-        <div className="hero-gif" aria-hidden="true" />
-        <div className="hero-gif-tint" aria-hidden="true" />
-        <div className="hero-content">
-          <div className="hero-text-panel">
-            <img src={"/wordmark-v2.png"} alt="Healing Soulutions — Concierge Nursing" style={{ display: 'block', width: 'min(437px, 99%)', height: 'auto', margin: '0 auto 1rem' }} />
-            <div style={{ width: 48, height: 1.5, background: 'var(--gold-soft)', margin: '0.4rem auto 1rem', opacity: 0.9 }} />
-            <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: 0, fontFamily: "'Varela Round', sans-serif", fontSize: '0.92rem', lineHeight: 1.72, maxWidth: 470, color: '#D9AC63', fontWeight: 400, textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
-              Healing Soulutions was founded on a simple belief: trusted, personalized care is something only the human touch can provide. Technology and AI can automate much of medicine &mdash; but never human trust, compassion, and empathy, nor the skill of a nurse at your side. As nurses, we work alongside you: listening, guiding, and advocating, to build a relationship that genuinely enriches your life. Every plan is shaped uniquely around you, because we want you involved, invested, and curious &mdash; an active partner in your own care.
-            </p>
-            <p className="hero-mission" style={{ borderLeft: 'none', paddingLeft: 0, textAlign: 'center', marginTop: '0.9rem', fontFamily: "'Varela Round', sans-serif", fontSize: '0.92rem', lineHeight: 1.72, maxWidth: 470, color: '#D9AC63', fontWeight: 400, fontStyle: 'italic', textShadow: '0 1px 2px rgba(0,0,0,0.35)' }}>
-              With your wellness at the center, our purpose is simple: that you feel your best. Present and happy in your life &mdash; for yourself, your family, your friends, and your work.
-            </p>
-            <div style={{ marginTop: '1.5rem' }}>
-              <p style={{ textAlign: 'center', fontStyle: 'italic', color: 'var(--jade-mist)', fontSize: '0.88rem', letterSpacing: '0.02em', margin: '0 0 0.2rem' }}>
-                <span style={{ color: '#DBAA64', fontStyle: 'normal', fontWeight: 700 }}>&mdash;</span> The Healing Soulutions experience
-              </p>
-              <h1 style={{ textAlign: 'center', fontSize: '0.72rem', margin: 0, fontFamily: "'Varela Round', sans-serif" }}>
-                <em style={{ fontWeight: 400, fontStyle: 'italic', color: '#D9AC63' }}>Healing. Experience. Compassion.</em>
-              </h1>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="services-home">
-        <div className="sec-header">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: '0.3rem', maxWidth: 500, margin: '0 auto' }}>
-            <button className="btn-jade" onClick={() => router.push('/book')}><span style={{ color: '#DBAA64', fontSize: '0.88rem' }}>{'\u2606'}</span> Book a Visit</button>
-            <a href="tel:+15857472215" className="btn-jade"><GoldPhoneIcon size={14} /> Call Us</a>
-            <a href="mailto:info@healingsoulutions.care" className="btn-jade"><GoldEmailIcon size={14} /> Email Us</a>
-            <button className="btn-jade" onClick={() => router.push('/services')}><span style={{ color: '#DBAA64', fontSize: '0.88rem' }}>{'\u2192'}</span> Learn More</button>
-          </div>
-        </div>
-      </section>
-      <section aria-labelledby="wwd-heading" style={{ background: '#013C1C', padding: '2.5rem 1.5rem 3rem' }}>
-        <div style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' }}>
-          <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.22em', color: 'var(--gold-soft)', textTransform: 'uppercase' }}>What We Do</span>
-          <h2 id="wwd-heading" style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.95rem', fontWeight: 400, color: 'var(--jade-whisper)', margin: '0.5rem 0 1.6rem' }}>Hospital-grade care, delivered to you</h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: '0.9rem' }}>
-            {[
-              ['✦', 'IV & Infusion Therapy', 'Hydration, vitamin, and NAD+ drips delivered in your home or office.'],
-              ['❖', 'In-Home & Post-Op Nursing', 'Skilled bedside care, wound care, and recovery support after surgery.'],
-              ['⚕', 'Diagnostics & Lab Draws', 'At-home blood draws with lab interpretation, urine tests, and rapid or PCR swabs for flu, COVID-19, and RSV.'],
-              ['✧', 'Wellness & Care Plans', 'Medically guided wellness, medication education, and personalized care plans.'],
-            ].map(([icon, title, blurb]) => (
-              <Link key={title} href="/services" style={{ textDecoration: 'none', display: 'block', textAlign: 'left', background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '1.2rem 1.25rem' }}>
-                <div aria-hidden="true" style={{ fontSize: '1.3rem', color: 'var(--gold-soft)', marginBottom: '0.5rem' }}>{icon}</div>
-                <div style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.9rem', fontWeight: 700, color: 'var(--gold-soft)', marginBottom: '0.35rem' }}>{title}</div>
-                <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.76rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.8)', margin: 0 }}>{blurb}</p>
-              </Link>
-            ))}
-          </div>
-          <div style={{ marginTop: '1.6rem' }}>
-            <Link href="/services" className="btn-jade" style={{ display: 'inline-flex', width: 'auto', padding: '0.55rem 1.4rem', fontSize: '0.7rem' }}><span style={{ color: '#DBAA64' }}>{'→'}</span> See all services</Link>
-          </div>
-        </div>
-      </section>
-      <section aria-labelledby="area-heading" style={{ background: '#02240f', padding: '2.5rem 1.5rem' }}>
-        <div style={{ maxWidth: 820, margin: '0 auto', textAlign: 'center' }}>
-          <span style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.62rem', fontWeight: 700, letterSpacing: '0.22em', color: 'var(--gold-soft)', textTransform: 'uppercase' }}>Service Area</span>
-          <h2 id="area-heading" style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.95rem', fontWeight: 400, color: 'var(--jade-whisper)', margin: '0.5rem 0 0.9rem' }}>Serving Manhattan &amp; the New York metro area</h2>
-          <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.85rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.8)', maxWidth: 620, margin: '0 auto 1.1rem' }}>Concierge and mobile nursing across Manhattan — from the Upper East and West Sides to Midtown, Chelsea, Tribeca, and beyond. Care in the surrounding New York metropolitan area is available on request.</p>
-          <p style={{ fontFamily: "'Varela Round',sans-serif", fontSize: '0.72rem', color: 'var(--jade-soft)', marginTop: '1rem' }}>Outside Manhattan? <Link href="/contact" style={{ color: 'var(--gold-soft)' }}>Contact us</Link> and we&rsquo;ll confirm.</p>
-        </div>
-      </section>
-      <div className="trust-ribbon">
-        <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem 0' }}>
-          {['Licensed RNs & NPs', 'HIPAA Compliant', 'Fully Insured', 'Same-Day When Available'].map((t, i) => (
-            <span key={t} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              {i > 0 && <span style={{ width: 3, height: 3, background: 'var(--gold-soft)', borderRadius: '50%', margin: '0 0.5rem' }} />}
-              <span style={{ fontSize: '0.65rem', color: 'var(--jade-mist)', fontWeight: 500, letterSpacing: '0.04em' }}>{t}</span>
-            </span>
-          ))}
-        </div>
-      </div>
-    </>
-  );
-}
+  .hero { max-width: 520px; margin: 0 auto; text-align: center; display: grid; justify-items: center; gap: 0; }
+  .wordmark { display: block; width: min(437px, 99%); height: auto; margin: 0 auto 1rem; }
+  .divider { width: 48px; height: 1.5px; background: var(--gold-soft); opacity: .9; margin: .4rem auto 1.4rem; }
 
-export default function Home() {
-  return (
-    <>
-      <Seo title="Healing Soulutions — Concierge & Mobile Nursing | New York Metro" description="Healing Soulutions brings concierge and mobile nursing care to you across the New York metropolitan area — IV therapy, in-home and post-op nursing, at-home lab draws, and wellness services delivered by licensed RNs and Nurse Practitioners." />
-      {/* "Tap to begin" entry gate: one tap launches the intro + ambient sound together. */}
-      <EntryGate />
-      <HomeContent />
-    </>
-  );
-}
+  .mission {
+    margin: 0; max-width: 470px;
+    font-size: .92rem; line-height: 1.72; color: var(--gold);
+    text-shadow: 0 1px 2px rgba(0,0,0,.35);
+  }
+  .mission + .mission { margin-top: .9rem; }
+  .mission.lead { font-size: 1.05rem; color: var(--jade-whisper); }
+
+  .principles {
+    width: 100%; max-width: 470px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px;
+    margin: 1.6rem 0 0; padding-top: 1.4rem;
+    border-top: 1px solid rgba(219,170,102,.25);
+    text-align: left;
+  }
+  .principle h3 {
+    margin: 0 0 3px; font-size: .72rem; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--gold);
+  }
+  .principle p { margin: 0; font-size: .84rem; line-height: 1.6; color: var(--jade-whisper); }
+
+  .goal { margin: 1.6rem 0 0; max-width: 470px; font-size: .92rem; line-height: 1.72; color: var(--gold); font-style: italic; text-shadow: 0 1px 2px rgba(0,0,0,.35); }
+  .sig { margin: .6rem 0 0; font-size: .88rem; letter-spacing: .02em; color: var(--jade-mist); }
+  .motto { margin: .2rem 0 0; font-size: .72rem; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-soft); }
+
+  .book {
+    margin-top: 2.2rem; display: grid; justify-items: center; gap: 14px;
+  }
+  .btn-jade {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--emerald-deep); color: var(--gold-soft);
+    border: 1px solid rgba(219,170,102,.35); border-radius: 6px;
+    padding: 12px 28px; text-decoration: none;
+    font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+    transition: border-color .2s ease, background .2s ease;
+  }
+  .btn-jade:hover { border-color: var(--gold-soft); background: #032e14; }
+  .btn-jade .star { color: var(--gold); font-size: .9rem; }
+  .book p { margin: 0; font-size: .78rem; letter-spacing: .08em; color: var(--jade-mist); }
+  .book .trust { font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold-soft); margin-bottom: 4px; }
+  .book .trust span { color: var(--jade-mist); padding-inline: 6px; }
+  .contact { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; font-size: .78rem; letter-spacing: .06em; }
+  .contact a { color: rgba(255,255,255,.6); text-decoration: none; }
+  .contact a:hover { color: var(--gold-soft); }
+
+  @media (max-width: 460px) { .principles { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce) { .btn-jade { transition: none; } }
+</style>
+</head>
+<body>
+<main class="hero">
+  <img class="wordmark" src="/wordmark-v2.png" alt="Healing Soulutions — Concierge Nursing">
+  <div class="divider"></div>
+
+  <p class="mission lead">We are building healthcare where a skilled nursing team knows you, comes to you, and follows through.</p>
+  <p class="mission">Medicine has become rushed, fragmented, and impersonal. Healing Soulutions exists to be the opposite: personal, consistent, and at your side.</p>
+
+  <div class="principles">
+    <div class="principle"><h3>Care that knows you</h3><p>Individualized supplement protocols, tailored to your lifestyle, your needs, and your lab work — and adjusted as your results change.</p></div>
+    <div class="principle"><h3>Care that comes to you</h3><p>Infusions, injections, labs, and nursing delivered in your home, on your schedule.</p></div>
+    <div class="principle"><h3>Care that follows through</h3><p>One consistent team and one point of contact, visit after visit — so nothing about you gets lost between them.</p></div>
+    <div class="principle"><h3>Care that includes you</h3><p>We listen, guide, and advocate — and every decision about your care is made with you, not for you.</p></div>
+  </div>
+
+  <p class="goal">Our goal: that you feel your best and live fully present — for yourself, your family, your friends, and your work.</p>
+  <p class="sig">— The Healing Soulutions experience</p>
+  <p class="motto">Healing. Experience. Compassion.</p>
+
+  <div class="book">
+    <p class="trust">Licensed RNs &amp; NPs <span>·</span> HIPAA compliant <span>·</span> Fully insured</p>
+    <a class="btn-jade" href="https://healingsoulutions.care/book"><span class="star">☆</span>Book a Visit</a>
+    <p>SERVING MANHATTAN &amp; THE NEW YORK METRO AREA</p>
+    <div class="contact">
+      <a href="mailto:info@healingsoulutions.care">info@healingsoulutions.care</a>
+      <a href="tel:+15857472215">(585) 747-2215</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>
