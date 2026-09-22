@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-const GOLD = '#DBAA64';
+const GOLD = '#D4A24C';
 const PHONE = '+15857472215';
 
 // Persistent express lane: a "Book a Visit" pill plus quick Call / Text, on every page
@@ -14,8 +14,8 @@ export default function BookCta() {
   const iconBtn = {
     width: 40, height: 40, borderRadius: '50%',
     display: 'flex', alignItems: 'center', justifyContent: 'center',
-    background: 'rgba(1,60,28,0.72)', border: `1.5px solid rgba(219,170,100,0.7)`,
-    boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 6px 18px rgba(0,0,0,0.3)',
+    background: 'rgba(1,60,28,0.72)', border: `1.5px solid rgba(212,162,76,0.7)`,
+    boxShadow: '0 0 0 1px rgba(212,162,76,0.18), 0 6px 18px rgba(0,0,0,0.3)',
     backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)',
     color: GOLD, textDecoration: 'none',
   };
@@ -29,7 +29,7 @@ export default function BookCta() {
           background: GOLD, color: '#013C1C', textDecoration: 'none',
           fontFamily: "'Varela Round', sans-serif", fontWeight: 700, fontSize: '0.75rem',
           letterSpacing: '0.04em', padding: '0.62rem 1.15rem', borderRadius: 999,
-          boxShadow: '0 6px 18px rgba(0,0,0,0.3), 0 0 0 1px rgba(219,170,100,0.2)',
+          boxShadow: '0 6px 18px rgba(0,0,0,0.3), 0 0 0 1px rgba(212,162,76,0.2)',
         }}
       >
         Book a Visit

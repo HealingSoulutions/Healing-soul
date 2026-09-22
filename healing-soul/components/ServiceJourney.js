@@ -59,6 +59,7 @@ const PHONE_SEGS = segments(PHONE, 358, 1000, 390, 1000, [122, 122, 122, 122], 8
 export default function ServiceJourney() {
   const [open, setOpen] = useState(null); // index of the service whose pop-up is open
   const [turns, setTurns] = useState([0, 0, 0, 0]);
+  const [touched, setTouched] = useState(false); // first interaction dismisses the tap cue
   const current = open == null ? null : SERVICES[open];
 
   useEffect(() => {
@@ -74,7 +75,10 @@ export default function ServiceJourney() {
   }, [open]);
 
   // Hover in: swivel half a turn and land on the back. Hover out: swivel on and land on the front.
-  const swivel = (i) => setTurns((t) => t.map((v, k) => (k === i ? v + 1 : v)));
+  const swivel = (i) => {
+    setTouched(true);
+    setTurns((t) => t.map((v, k) => (k === i ? v + 1 : v)));
+  };
   const hoverProps = (i) => ({
     onMouseEnter: () => swivel(i),
     onMouseLeave: () => swivel(i),
@@ -121,13 +125,21 @@ export default function ServiceJourney() {
         ))}
 
         {SERVICES.map((s, i) => (
-          <div className={`slot${i % 2 ? ' up' : ''}`} role="listitem" style={place(i)} key={s.slug}>
+          <div
+            className={`slot${i % 2 ? ' up' : ''}${i === 0 && !touched ? ' cue' : ''}`}
+            role="listitem"
+            style={place(i)}
+            key={s.slug}
+          >
             <button
               type="button"
               className="step"
               aria-haspopup="dialog"
               aria-expanded={open === i}
-              onClick={() => setOpen(i)}
+              onClick={() => {
+                setTouched(true);
+                setOpen(i);
+              }}
               {...hoverProps(i)}
             >
               {inner(s, i)}
@@ -140,6 +152,17 @@ export default function ServiceJourney() {
           </Link>
         </div>
       </div>
+
+      <p className="trust">
+        <span>Licensed RNs &amp; NP</span>
+        <i aria-hidden="true">·</i>
+        <span>HIPAA compliant</span>
+        <i aria-hidden="true">·</i>
+        <span>Manhattan &amp; the New York metro area</span>
+      </p>
+      <p className="cue-hint" aria-hidden="true">
+        {touched ? '\u00a0' : 'Tap a medallion to explore each step'}
+      </p>
 
       {current && (
         <div className="backdrop" onClick={() => setOpen(null)}>
@@ -160,6 +183,7 @@ export default function ServiceJourney() {
                   {current.number} · {current.eyebrow}
                 </span>
                 <h3 id="hs-modal-title">{current.title}</h3>
+                {current.priceFrom && <span className="price">From ${current.priceFrom}</span>}
               </div>
             </div>
             <p className="lede">{current.heroLede}</p>
@@ -315,6 +339,57 @@ export default function ServiceJourney() {
           margin-top: 6px;
           color: rgba(247, 241, 229, 0.7);
           font: 400 11.5px/1.4 var(--round);
+        }
+
+        /* ---- trust line + tap cue ---- */
+        .hs-journey-section .trust {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+          margin: 44px 0 0;
+          color: var(--gold-light);
+          font: 500 10.5px/1.6 var(--round);
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+        }
+        .hs-journey-section .trust i {
+          color: var(--sage);
+          font-style: normal;
+        }
+        .hs-journey-section .cue-hint {
+          margin: 10px 0 0;
+          min-height: 18px;
+          color: rgba(247, 241, 229, 0.55);
+          text-align: center;
+          font: italic 400 15px/1.2 var(--serif);
+          transition: opacity 0.4s;
+        }
+        .hs-journey-section .slot.cue .wrap {
+          border-radius: 50%;
+          animation: hs-cue 2.2s ease-out infinite;
+        }
+        @keyframes hs-cue {
+          0% { box-shadow: 0 0 0 0 rgba(212, 162, 76, 0.55); }
+          70% { box-shadow: 0 0 0 18px rgba(212, 162, 76, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(212, 162, 76, 0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .hs-journey-section .slot.cue .wrap {
+            animation: none;
+            box-shadow: 0 0 0 4px rgba(212, 162, 76, 0.45);
+          }
+        }
+        .hs-journey-section .price {
+          display: inline-block;
+          margin-top: 8px;
+          padding: 4px 10px;
+          border: 1px solid rgba(212, 162, 76, 0.5);
+          border-radius: 999px;
+          color: var(--gold-light);
+          font: 500 11px/1 var(--round);
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
         }
 
         /* ---- pop-up ---- */
