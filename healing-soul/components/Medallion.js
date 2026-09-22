@@ -12,7 +12,7 @@ export default function Medallion({ icon, back, backTight, active = false, turn 
         style={turn ? { transform: `rotateY(${turn * 180}deg)` } : undefined}
       >
         <span className="face front">
-          <Icon style={{ width: size * 0.46, height: size * 0.46 }} />
+          <Icon style={icon === 'swan' ? { width: size * 0.36, height: size * 0.56 } : { width: size * 0.46, height: size * 0.46 }} />
         </span>
         {back && (
           <span className="face back">
