@@ -59,10 +59,16 @@ export const SIGNATURE = [
   },
   {
     name: 'The Antioxidant Soulution',
-    badge: 'Special order',
-    special: 'Special order — please book at least 72 hours in advance so your infusion can be prepared.',
     tagline: 'High-dose immune & antioxidant support for recovery and resilience.',
     contents: '25 g Vitamin C • Magnesium',
+    extra: '+$79 per additional 4 g • higher doses require lab clearance',
+  },
+  {
+    name: 'The High-Dose Vitamin C Soulution',
+    badge: 'Special order',
+    special: 'Special order — stand-alone high-dose vitamin C is prepared to order. Please book at least 72 hours in advance.',
+    tagline: 'Stand-alone high-dose vitamin C, 25 g and above, infused slowly over 60–90 minutes.',
+    contents: '25 g+ Vitamin C in 500 mL–1,000 mL LR or NS',
     extra: '+$79 per additional 4 g • higher doses require lab clearance',
   },
   {
