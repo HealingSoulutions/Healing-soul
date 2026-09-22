@@ -106,8 +106,8 @@ export default function ServiceJourney() {
     <section className="hs-journey-section" aria-label="Healing Soulutions care journey">
       <p className="intro">
         Establish your baseline. Build your protocol. Replenish and optimize. Ongoing clinical oversight &amp;
-        monitoring &mdash; by an experienced wellness nursing team, tailored to your body, without ever leaving
-        your home or office.
+        monitoring &mdash; by an experienced wellness nursing team, tailored to your own body&rsquo;s unique
+        needs and goals, without ever leaving your home or office.
       </p>
 
       <div className="stage" role="list" aria-label="Service categories">
