@@ -140,7 +140,9 @@ export const SERVICES = [
   },
   {
     slug: 'iv-injections',
-    priceFrom: null, // e.g. 199 → shows "From $199" in the pop-up; null hides it
+    priceFrom: 375,
+    priceLabel: 'Signature drips $375 · Injections from $85',
+    menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
     back: ['IV &', 'INJECTIONS'],
@@ -153,7 +155,7 @@ export const SERVICES = [
       'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — the third step of your plan.',
     heroLede:
       'Hydration, nutrients, and targeted injections — administered by a registered nurse in your home, hotel, or office.',
-    includedLede: 'Choose a signature Soulution, or build your own with our clinician.',
+    includedLede: 'Every Signature Soulution is one flat price. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
     included: asCards('infusion'),
     steps: [
       ['Book', 'Choose a drip or injection and a time. A short intake follows.'],
