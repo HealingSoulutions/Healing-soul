@@ -21,7 +21,7 @@ export default function BookCta() {
   };
 
   return (
-    <div style={{ position: 'fixed', left: '18px', bottom: '18px', zIndex: 99989, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+    <div style={{ position: 'fixed', left: '18px', bottom: '18px', zIndex: 99989, display: 'flex', alignItems: 'center', gap: '0.5rem', transform: 'scale(0.88)', transformOrigin: 'bottom left' }}>
       <Link
         href="/book"
         style={{
