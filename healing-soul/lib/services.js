@@ -95,8 +95,8 @@ export const SERVICES = [
         tag: 'Third-party tested · NSF',
       },
       {
-        name: 'Our Wholesale Partners',
-        copy: 'Through our wholesale affiliations we supply products directly, at practitioner pricing, from brands including Promix (electrolytes and nutrition) and Thorne. Every product is named in your protocol: brand, form, dose, and timing.',
+        name: 'Our Wholesale Affiliations',
+        copy: 'Through our wholesale affiliations we supply products directly, at practitioner pricing. Brands we frequently recommend include Thorne, Pure Encapsulations, Metagenics, Momentous, Promix, Pendulum, Omni-Biotic, Needed, and Renue By Science — though your protocol is never limited to them. Every product is named: brand, form, dose, and timing.',
         tag: 'Direct supply',
       },
       {
