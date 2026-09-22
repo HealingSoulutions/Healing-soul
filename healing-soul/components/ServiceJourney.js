@@ -51,6 +51,8 @@ function segments(points, pxW, pxH, vbW, vbH, gaps, endGap) {
   }
   return out;
 }
+// Small caption under each label, matching the four steps of the intro line.
+const CAPTIONS = ['Your baseline', 'Your protocol', 'Replenish & optimize', 'Clinician oversight'];
 const DESKTOP_SEGS = segments(DESKTOP, 920, 240, 1000, 240, [76, 76, 76, 76]);
 const PHONE_SEGS = segments(PHONE, 358, 880, 390, 880, [100, 100, 100, 100], 80);
 
@@ -96,6 +98,7 @@ export default function ServiceJourney() {
       <span className="number">{s.number}</span>
       <Medallion icon={s.icon} back={s.back} backTight={s.backTight} turn={turns[i]} />
       <span className="label">{s.label}</span>
+      <span className="sub">{CAPTIONS[i]}</span>
     </>
   );
 
@@ -339,9 +342,10 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .sub {
           display: block;
-          margin-top: 6px;
-          color: rgba(247, 241, 229, 0.7);
-          font: 400 11.5px/1.4 var(--round);
+          margin-top: 5px;
+          color: rgba(247, 241, 229, 0.62);
+          font: 400 11px/1.4 var(--round);
+          letter-spacing: 0.06em;
         }
 
         /* ---- trust line + tap cue ---- */
