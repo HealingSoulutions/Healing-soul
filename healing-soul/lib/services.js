@@ -19,8 +19,8 @@ export const SERVICES = [
     summary:
       'Blood work, urine testing, and respiratory swabs collected in the comfort and privacy of your home — with your results reviewed and explained by our Nurse Practitioner.',
     heroLede:
-      'Collected at home by your nurse. Delivered to Labcorp by that same nurse. Results explained by our Nurse Practitioner.',
-    includedLede: 'Book any one on its own, or combine them in a single visit.',
+      'Collected in your home by our nurse. Delivered directly to Labcorp by the Healing Soulutions team. Results explained by our Nurse Practitioner.',
+    includedLede: 'Your path begins here. Everything below can be done in a single visit.',
     included: [
       {
         name: 'At-Home Blood Draw',
@@ -38,8 +38,8 @@ export const SERVICES = [
         tag: 'COVID-19 PCR · RSV · Flu A/B',
       },
       {
-        name: 'Nurse-to-Lab Chain of Custody',
-        copy: 'Every specimen is collected by our nurse team and dropped off at Labcorp by the nurse who saw you — no couriers, no hand-offs.',
+        name: 'Direct to the Lab',
+        copy: 'Every specimen is collected by our nurse team and dropped off directly at Labcorp by the Healing Soulutions team — no third-party couriers.',
         tag: 'Labcorp',
       },
       {
@@ -51,7 +51,7 @@ export const SERVICES = [
     steps: [
       ['Book', "Choose a time and tell us what you'd like tested. We'll confirm any fasting or prep instructions."],
       ['We come to you', 'Your nurse arrives with everything needed and collects your specimens. Most visits take under 30 minutes.'],
-      ['Straight to the lab', 'The same nurse hand-delivers your specimens to Labcorp — no couriers, no hand-offs.'],
+      ['Straight to the lab', 'The Healing Soulutions team delivers your specimens directly to Labcorp — no third-party couriers.'],
       [
         'Understand your results',
         'Results are delivered securely, then reviewed with you by our Nurse Practitioner, with next steps if any are needed.',
@@ -60,7 +60,7 @@ export const SERVICES = [
     seo: {
       title: 'At-Home Testing in NYC — Blood Draws, Urine, Respiratory Swabs | Healing Soulutions',
       description:
-        'At-home blood draws, urine testing, COVID-19 PCR and rapid RSV / flu A & B swabs, hand-delivered to Labcorp by your nurse, with Nurse Practitioner result interpretation. Manhattan and the New York metro area.',
+        'At-home blood draws, urine testing, COVID-19 PCR and rapid RSV / flu A & B swabs, delivered directly to Labcorp by the Healing Soulutions team, with Nurse Practitioner result interpretation. Manhattan and the New York metro area.',
     },
   },
   {
@@ -129,7 +129,7 @@ export const SERVICES = [
     eyebrow: 'Restore & replenish',
     title: 'IV & injections, at home',
     summary:
-      'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — as part of your plan or on their own.',
+      'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — the third step of your plan.',
     heroLede:
       'Hydration, nutrients, and targeted injections — administered by a registered nurse in your home, hotel, or office.',
     includedLede: 'Choose a signature Soulution, or build your own with our clinician.',
