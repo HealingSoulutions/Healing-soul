@@ -194,7 +194,7 @@ export default function ServiceJourney() {
                 </span>
                 <h3 id="hs-modal-title">{current.title}</h3>
                 {(current.priceLabel || current.priceFrom) && (
-                  <span className="price">{current.priceLabel || `From ${current.priceFrom}`}</span>
+                  <span className="price">{current.priceLabel || `From $${current.priceFrom}`}</span>
                 )}
               </div>
             </div>
