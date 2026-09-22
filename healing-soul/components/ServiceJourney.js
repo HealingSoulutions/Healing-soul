@@ -165,7 +165,7 @@ export default function ServiceJourney() {
         </span>
         <span className="badge">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="m9 14.5-1.5 7 4.5-2.5 4.5 2.5-1.5-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="m9.6 9 1.6 1.6 3.2-3.2" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          <span><strong>Board Certified</strong><em>Family Nurse Practitioner (ANCC)</em></span>
+          <span><strong>Board Certified</strong><em>NP &amp; RN</em></span>
         </span>
         <span className="badge">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" fill="none" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg>
