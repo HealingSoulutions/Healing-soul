@@ -322,3 +322,7 @@ footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.7); 
   position: absolute; inset: 0; z-index: 1; pointer-events: none;
   background: linear-gradient(180deg, rgba(1,60,28,0.70) 0%, rgba(1,60,28,0.42) 45%, rgba(1,60,28,0.62) 100%);
 }
+
+.nav-emblem { display: none; }
+.nav-wordmark { display: block; }
+@media (max-width: 480px) { .nav-wordmark { display: none; } .nav-emblem { display: block; } }
