@@ -44,9 +44,9 @@ function BookContent() {
         {/* Branded header */}
         <div style={{ padding: '8rem 1.5rem 0.25rem', textAlign: 'center', maxWidth: 820, margin: '0 auto' }}>
           <div style={{
-            background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)',
-            border: '1.5px solid rgba(219,170,100,0.7)',
-            boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)',
+            background: 'rgba(1,60,28,0.9)', backdropFilter: 'blur(24px)',
+            border: '1.5px solid rgba(212,162,76,0.7)',
+            boxShadow: '0 0 0 1px rgba(212,162,76,0.18), 0 10px 30px rgba(0,0,0,0.28)',
             borderRadius: '16px', padding: '1.5rem', width: '100%',
           }}>
             <h1 style={{ fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '0.82rem', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.2em', margin: 0 }}>Book a Visit</h1>
