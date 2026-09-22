@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Seo from './Seo';
 import Medallion from './Medallion';
+import DripMenu from './DripMenu';
 import { SERVICES } from '../lib/services';
 
 // Shared template for /services/<slug>. Pass one entry from lib/services SERVICES.
@@ -25,9 +26,10 @@ export default function ServiceCategoryPage({ service }) {
         </div>
 
         <section className="body">
-          <h2>What&apos;s included</h2>
+          <h2>{service.menu ? 'The Drip Menu' : "What's included"}</h2>
           <p className="lede">{service.includedLede}</p>
-          <div className="grid">
+          {service.menu && <DripMenu />}
+          <div className="grid" hidden={!!service.menu}>
             {service.included.map((item) => (
               <article className={`card${item.brands ? ' wide' : ''}`} key={item.name}>
                 <h3>{item.name}</h3>
@@ -161,6 +163,9 @@ export default function ServiceCategoryPage({ service }) {
           color: #4d5f55;
           margin: 0 0 26px;
           max-width: 640px;
+        }
+        .grid[hidden] {
+          display: none;
         }
         .grid {
           display: grid;
