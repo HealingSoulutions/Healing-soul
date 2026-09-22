@@ -114,6 +114,11 @@ export const SERVICES = [
         tag: 'Practitioner-grade partners',
       },
       {
+        name: 'Fertility Optimization',
+        copy: 'Nutrition and supplement support for natural conception or alongside IVF — built from your labs, timed to your cycle, and coordinated with your fertility clinic\u2019s plan. Led by nurses with hands-on IVF experience.',
+        tag: 'Preconception · IVF support',
+      },
+      {
         name: 'Follow-Up & Adjustment',
         copy: 'A scheduled check-in to review how the plan is working and adjust before your next labs.',
         tag: 'Ongoing',
@@ -129,7 +134,7 @@ export const SERVICES = [
     seo: {
       title: 'Personalized Supplement Protocols in NYC | Healing Soulutions',
       description:
-        'Nurse-built supplement protocols from your labs or a consult, using only cGMP, NSF, USP, or Informed Sport certified, third-party-tested brands such as Thorne, Momentous, and Pure Encapsulations. Manhattan and the New York metro area.',
+        'Nurse-built supplement protocols from your labs or a consult, including fertility optimization and IVF support, using only cGMP, NSF, USP, or Informed Sport certified, third-party-tested brands such as Thorne, Momentous, and Pure Encapsulations. Manhattan and the New York metro area.',
     },
   },
   {
