@@ -21,7 +21,7 @@ export default function DripMenu() {
       <div className="dm-banner">
         <span className="dm-banner-label">Every Signature Soulution</span>
         <span className="dm-banner-price">{usd(SIGNATURE_PRICE)}</span>
-        <span className="dm-banner-note">boosters &amp; add-ons from there</span>
+        <span className="dm-banner-note">boosters &amp; add-ons from there &middot; high-dose vitamin C drips {usd(479)}</span>
       </div>
       <p className="dm-fine">
         Each drip begins with your choice of 500 mL to 1,000 mL Lactated Ringer&rsquo;s (LR) or Normal Saline (NS);
@@ -34,6 +34,7 @@ export default function DripMenu() {
               {d.name}
               {d.badge && <span className={`dm-badge${d.special ? ' warn' : ''}`}>{d.badge}</span>}
             </h3>
+            {d.price && <span className="dm-card-price">{usd(d.price)}</span>}
             <p className="dm-tagline">{d.tagline}</p>
             <p className="dm-contents">{d.contents}</p>
             {d.extra && <p className="dm-extra">{d.extra}</p>}
@@ -231,6 +232,12 @@ export default function DripMenu() {
           border-color: var(--gold);
           align-self: flex-start;
           margin-bottom: 8px;
+        }
+        .dm-card-price {
+          display: inline-block;
+          margin: 2px 0 6px;
+          font: 600 20px/1 var(--serif);
+          color: var(--gold-dark);
         }
         .dm-tagline {
           margin: 0 0 6px;
