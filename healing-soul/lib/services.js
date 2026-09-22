@@ -103,7 +103,7 @@ export const SERVICES = [
           'Thorne — NSF Certified for Sport',
           'Pure Encapsulations',
           'Metagenics',
-          'Ortho Molecular Products',
+          'Ortho Molecular Products — practitioner-only',
           'Promix',
           'Pendulum',
           'Omni-Biotic',
