@@ -29,9 +29,17 @@ export default function ServiceCategoryPage({ service }) {
           <p className="lede">{service.includedLede}</p>
           <div className="grid">
             {service.included.map((item) => (
-              <article className="card" key={item.name}>
+              <article className={`card${item.brands ? ' wide' : ''}`} key={item.name}>
                 <h3>{item.name}</h3>
                 <p>{item.copy}</p>
+                {item.brands && (
+                  <ul className="brands">
+                    {item.brands.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
+                  </ul>
+                )}
+                {item.after && <p>{item.after}</p>}
                 <span className="tag">{item.tag}</span>
               </article>
             ))}
@@ -173,6 +181,29 @@ export default function ServiceCategoryPage({ service }) {
           font-size: 13.5px;
           color: #4d5f55;
           line-height: 1.55;
+        }
+        .card.wide {
+          grid-column: 1 / -1;
+        }
+        .brands {
+          list-style: disc;
+          margin: 10px 0;
+          padding: 0 0 0 20px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 24px;
+          row-gap: 5px;
+          font-size: 13.5px;
+          color: #2f4038;
+          line-height: 1.5;
+        }
+        .brands li::marker {
+          color: var(--gold-dark);
+        }
+        @media (max-width: 420px) {
+          .brands {
+            grid-template-columns: 1fr;
+          }
         }
         .tag {
           display: inline-block;

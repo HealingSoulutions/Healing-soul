@@ -102,8 +102,9 @@ export default function ServiceJourney() {
   return (
     <section className="hs-journey-section" aria-label="Healing Soulutions care journey">
       <p className="intro">
-        One path, four steps — test, plan, restore, and return. Care built around your body, your needs, and
-        your goals, delivered entirely at home.
+        Establish your baseline. Build your protocol. Replenish and optimize. Ongoing clinical oversight &amp;
+        monitoring &mdash; by an experienced wellness nursing team, tailored to your body, without ever leaving
+        your home or office.
       </p>
 
       <div className="stage" role="list" aria-label="Service categories">
@@ -204,6 +205,14 @@ export default function ServiceJourney() {
                 <li key={item.name}>
                   <strong>{item.name}</strong>
                   <span>{item.copy}</span>
+                  {item.brands && (
+                    <ul className="brands">
+                      {item.brands.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {item.after && <span>{item.after}</span>}
                 </li>
               ))}
             </ul>
@@ -527,6 +536,36 @@ export default function ServiceJourney() {
           margin-bottom: 4px;
           color: var(--gold-light);
           font: 600 17px/1.2 var(--serif);
+        }
+        .hs-journey-section .included li:has(.brands) {
+          grid-column: 1 / -1;
+        }
+        .hs-journey-section .brands {
+          list-style: disc;
+          margin: 8px 0 8px 0;
+          padding: 0 0 0 18px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 18px;
+          row-gap: 4px;
+          color: rgba(247, 241, 229, 0.86);
+          font-size: 12.5px;
+          line-height: 1.45;
+        }
+        .hs-journey-section .brands li {
+          padding: 0;
+          border: 0;
+          background: none;
+          border-radius: 0;
+          display: list-item;
+        }
+        .hs-journey-section .brands li::marker {
+          color: var(--gold);
+        }
+        @media (max-width: 420px) {
+          .hs-journey-section .brands {
+            grid-template-columns: 1fr;
+          }
         }
         .hs-journey-section .included span,
         .hs-journey-section .steps span {
