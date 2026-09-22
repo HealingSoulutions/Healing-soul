@@ -19,12 +19,39 @@ export const SERVICES = [
     summary:
       'Blood work, urine testing, and respiratory swabs collected in the comfort and privacy of your home — with your results reviewed and explained by our Nurse Practitioner.',
     heroLede:
-      'Specimens collected in your own home, on your schedule, and sent to an accredited laboratory — then a clinician who walks you through what the numbers mean.',
+      'Specimens collected in your own home by our nurse team, hand-delivered to Labcorp by the same nurse who saw you — then a clinician who walks you through what the numbers mean.',
     includedLede: 'Book any one on its own, or combine them in a single visit.',
-    included: asCards('diagnostics'),
+    included: [
+      {
+        name: 'At-Home Blood Draw',
+        copy: 'Venipuncture performed in your home by a licensed nurse. Standard and specialty panels, from routine wellness screening to targeted testing.',
+        tag: 'Phlebotomy',
+      },
+      {
+        name: 'Urine Testing',
+        copy: 'Private, guided specimen collection at home for urinalysis and related testing.',
+        tag: 'Urinalysis',
+      },
+      {
+        name: 'Respiratory Swabs',
+        copy: 'COVID-19 PCR, plus rapid RSV and influenza A & B. Collected in-home, with results reviewed by a clinician.',
+        tag: 'COVID-19 PCR · RSV · Flu A/B',
+      },
+      {
+        name: 'Nurse-to-Lab Chain of Custody',
+        copy: 'Every specimen is collected by our nurse team and dropped off at Labcorp by the nurse who saw you — no couriers, no hand-offs.',
+        tag: 'Labcorp',
+      },
+      {
+        name: 'Lab Result Interpretation',
+        copy: 'A Nurse Practitioner reviews and interprets your laboratory results and discusses findings and next steps with you.',
+        tag: 'NP Review',
+      },
+    ],
     steps: [
       ['Book', "Choose a time and tell us what you'd like tested. We'll confirm any fasting or prep instructions."],
-      ['We come to you', 'Your nurse arrives with everything needed. Most collection visits take under 30 minutes.'],
+      ['We come to you', 'Your nurse arrives with everything needed and collects your specimens. Most visits take under 30 minutes.'],
+      ['Straight to the lab', 'The same nurse hand-delivers your specimens to Labcorp — no couriers, no hand-offs.'],
       [
         'Understand your results',
         'Results are delivered securely, then reviewed with you by our Nurse Practitioner, with next steps if any are needed.',
@@ -33,7 +60,7 @@ export const SERVICES = [
     seo: {
       title: 'At-Home Testing in NYC — Blood Draws, Urine, Respiratory Swabs | Healing Soulutions',
       description:
-        'At-home blood draws, urine testing, respiratory swabs, and Nurse Practitioner lab result interpretation. Serving Manhattan and the New York metro area.',
+        'At-home blood draws, urine testing, COVID-19 PCR and rapid RSV / flu A & B swabs, hand-delivered to Labcorp by your nurse, with Nurse Practitioner result interpretation. Manhattan and the New York metro area.',
     },
   },
   {
@@ -48,8 +75,8 @@ export const SERVICES = [
     summary:
       "A personalized supplement plan built from your labs when you have them, or from a consult when you don't — with specific product selections and a follow-up schedule.",
     heroLede:
-      'Not a generic list. A plan built around your labs, your goals, and your life — with specific products, doses, and timing you can actually follow.',
-    includedLede: 'Start from your labs or from a conversation. Either way, you leave with a written protocol.',
+      'Not a generic list. A plan built around your labs, your goals, and your life — using only high-quality brands that undergo rigorous independent testing.',
+    includedLede: 'Start from your labs or from a conversation. Either way, you leave with a written protocol built from brands we trust.',
     included: [
       {
         name: 'Protocol Consult',
@@ -63,9 +90,14 @@ export const SERVICES = [
         tag: 'Built from your results',
       },
       {
-        name: 'Specific Product Selection',
-        copy: 'Specific products, not categories: brand, form, dose, and timing, with sourcing guidance.',
-        tag: 'Specific, not generic',
+        name: 'Only Rigorously Tested Brands',
+        copy: 'We recommend only professional-grade supplements from manufacturers that submit to independent third-party testing for purity, potency, and contaminants — including NSF certification programs. No proprietary blends, no unverified sourcing.',
+        tag: 'Third-party tested · NSF',
+      },
+      {
+        name: 'Our Wholesale Partners',
+        copy: 'Through our wholesale affiliations we supply products directly, at practitioner pricing, from brands including Promix (electrolytes and nutrition) and Thorne. Every product is named in your protocol: brand, form, dose, and timing.',
+        tag: 'Direct supply',
       },
       {
         name: 'Follow-Up & Adjustment',
@@ -75,7 +107,7 @@ export const SERVICES = [
     ],
     steps: [
       ['Consult', 'Share your goals, history, and any recent labs.'],
-      ['Receive your protocol', 'A written plan with named products, doses, and a schedule — usually within a few days.'],
+      ['Receive your protocol', 'A written plan with named, third-party-tested products, doses, and a schedule — usually within a few days.'],
       ['Follow up', 'We check in, adjust, and re-test when it makes sense.'],
     ],
     disclaimer:
@@ -83,7 +115,7 @@ export const SERVICES = [
     seo: {
       title: 'Personalized Supplement Protocols in NYC | Healing Soulutions',
       description:
-        'Nurse-built supplement protocols from your labs or a consult, with specific product selections, dosing, and follow-up. Manhattan and the New York metro area.',
+        'Nurse-built supplement protocols from your labs or a consult, using only third-party-tested professional brands, including NSF-certified lines, supplied through our wholesale partners. Manhattan and the New York metro area.',
     },
   },
   {
