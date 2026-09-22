@@ -79,7 +79,7 @@ export default function EntryGate() {
       style={{
         position: 'fixed', inset: 0, zIndex: 2147483600,
         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-        background: 'radial-gradient(120% 90% at 50% 42%, #0b4629 0%, #083c22 45%, #02180D 100%)',
+        background: 'radial-gradient(120% 90% at 50% 42%, #02532A 0%, #013C1C 45%, #012512 100%)',
         cursor: 'pointer', textAlign: 'center', padding: '2rem',
         opacity: leaving ? 0 : 1, transition: 'opacity 0.7s ease',
       }}
@@ -87,7 +87,7 @@ export default function EntryGate() {
       <style>{`
         @keyframes hsGateIn { 0% { opacity: 0; transform: translateY(10px) scale(0.985); } 100% { opacity: 1; transform: none; } }
         @keyframes hsGatePulse { 0%,100% { opacity: 0.5; } 50% { opacity: 1; } }
-        @keyframes hsGateRing { 0%,100% { box-shadow: 0 0 0 0 rgba(219,170,100,0.0); } 50% { box-shadow: 0 0 0 8px rgba(219,170,100,0.08); } }
+        @keyframes hsGateRing { 0%,100% { box-shadow: 0 0 0 0 rgba(212,162,76,0.0); } 50% { box-shadow: 0 0 0 8px rgba(212,162,76,0.08); } }
       `}</style>
       <div style={{ animation: 'hsGateIn 1.2s ease both' }}>
         <img
@@ -100,16 +100,16 @@ export default function EntryGate() {
           style={{
             width: 60, height: 60, borderRadius: '50%', margin: '2rem auto 0',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            border: '1.5px solid rgba(219,170,100,0.8)', background: 'rgba(1,60,28,0.5)',
+            border: '1.5px solid rgba(212,162,76,0.8)', background: 'rgba(1,60,28,0.5)',
             animation: 'hsGateRing 2.4s ease-in-out infinite',
           }}
         >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="#DBAA64" aria-hidden="true" style={{ marginLeft: 3 }}>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="#D4A24C" aria-hidden="true" style={{ marginLeft: 3 }}>
             <path d="M8 5v14l11-7z" />
           </svg>
         </div>
         <p style={{
-          fontFamily: "'Varela Round', sans-serif", color: '#DBAA64',
+          fontFamily: "'Varela Round', sans-serif", color: '#D4A24C',
           fontSize: '0.72rem', letterSpacing: '0.34em', textTransform: 'uppercase',
           margin: '1.1rem 0 0', animation: 'hsGatePulse 2.4s ease-in-out infinite',
         }}>

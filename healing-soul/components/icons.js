@@ -14,7 +14,7 @@ export function LotusIcon({ size = 60, color = 'rgba(193,163,98' }) {
 export function GoldPhoneIcon({ size = 14 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ display: 'inline-block', verticalAlign: 'middle', opacity: 0.65 }}>
-      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="#DBAA64" />
+      <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.25 1.01l-2.2 2.2z" fill="#D4A24C" />
     </svg>
   );
 }
@@ -22,8 +22,8 @@ export function GoldPhoneIcon({ size = 14 }) {
 export function GoldEmailIcon({ size = 14 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ display: 'inline-block', verticalAlign: 'middle', opacity: 0.65 }}>
-      <rect x="2" y="4" width="20" height="16" rx="2" stroke="#DBAA64" strokeWidth="1.5" fill="none" />
-      <path d="M2 6l10 7 10-7" stroke="#DBAA64" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+      <rect x="2" y="4" width="20" height="16" rx="2" stroke="#D4A24C" strokeWidth="1.5" fill="none" />
+      <path d="M2 6l10 7 10-7" stroke="#D4A24C" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
     </svg>
   );
 }
@@ -31,8 +31,8 @@ export function GoldEmailIcon({ size = 14 }) {
 export function GoldClockIcon({ size = 14 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ display: 'inline-block', verticalAlign: 'middle', opacity: 0.65 }}>
-      <circle cx="12" cy="12" r="9" stroke="#DBAA64" strokeWidth="1.5" fill="none" />
-      <path d="M12 7v5l3.5 2" stroke="#DBAA64" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+      <circle cx="12" cy="12" r="9" stroke="#D4A24C" strokeWidth="1.5" fill="none" />
+      <path d="M12 7v5l3.5 2" stroke="#D4A24C" strokeWidth="1.5" strokeLinecap="round" fill="none" />
     </svg>
   );
 }
@@ -40,7 +40,7 @@ export function GoldClockIcon({ size = 14 }) {
 export function GoldPinIcon({ size = 14 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" style={{ display: 'inline-block', verticalAlign: 'middle', opacity: 0.65 }}>
-      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#DBAA64" />
+      <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" fill="#D4A24C" />
       <circle cx="12" cy="9" r="2.5" fill="#013C1C" />
     </svg>
   );

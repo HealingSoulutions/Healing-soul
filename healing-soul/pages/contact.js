@@ -2,7 +2,7 @@ import Seo from '../components/Seo';
 import Link from 'next/link';
 import SceneBackground from '../components/SceneBackground';
 
-const CARD = { background: 'rgba(8,44,26,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(219,170,100,0.7)', boxShadow: '0 0 0 1px rgba(219,170,100,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '2rem 2.4rem', marginBottom: '1.25rem', textAlign: 'center' };
+const CARD = { background: 'rgba(1,60,28,0.9)', backdropFilter: 'blur(24px)', border: '1.5px solid rgba(212,162,76,0.7)', boxShadow: '0 0 0 1px rgba(212,162,76,0.18), 0 10px 30px rgba(0,0,0,0.28)', borderRadius: '16px', padding: '2rem 2.4rem', marginBottom: '1.25rem', textAlign: 'center' };
 const EY = { fontSize: '0.6rem', fontWeight: 700, letterSpacing: '0.2em', color: 'var(--gold-soft)', textTransform: 'uppercase', fontFamily: "'Varela Round',sans-serif" };
 const H = { fontFamily: "'Varela Round',sans-serif", color: 'var(--gold-soft)', fontSize: '1.15rem', fontWeight: 400, margin: '0.5rem 0 0.8rem' };
 const P = { fontFamily: "'Varela Round',sans-serif", fontSize: '0.85rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.82)', marginBottom: '0.5rem' };
