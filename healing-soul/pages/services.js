@@ -44,7 +44,7 @@ function ServicesContent() {
                   {(cat.displayServices || cat.services).map((s) => (
                     <div key={s.id} style={{ borderBottom: '1px solid rgba(255,255,255,0.06)', padding: '0.5rem 0.75rem' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} role="button" tabIndex={0} aria-expanded={openSvc === s.id} aria-label={s.title} onClick={() => setOpenSvc(openSvc === s.id ? null : s.id)} onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenSvc(openSvc === s.id ? null : s.id); } }}>
-                        <span style={{ fontFamily: "'Varela Round', sans-serif", fontSize: '0.82rem', color: 'var(--gold-soft)' }}>{s.title}</span>
+                        <span style={{ fontFamily: "'Varela Round', sans-serif", fontSize: '0.82rem', color: 'var(--gold-soft)' }}>{s.title}{s.price && <span style={{ marginLeft: '0.6rem', fontSize: '0.68rem', color: 'rgba(255,255,255,0.7)', letterSpacing: '0.04em' }}>{s.price}</span>}</span>
                         <span style={{ fontSize: '0.8rem', color: 'var(--gold-soft)', transition: 'transform 0.3s', transform: openSvc === s.id ? 'rotate(180deg)' : 'none' }}>{'\u25BE'}</span>
                       </div>
                       {openSvc === s.id && (
