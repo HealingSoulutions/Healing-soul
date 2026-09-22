@@ -169,7 +169,7 @@ export const SERVICES = [
 
 export const BOOK_STEP = {
   number: '04',
-  icon: 'calendar',
+  icon: 'swan',
   back: ['BOOK', 'NOW'],
   label: 'Book a Visit',
   sub: 'Choose a convenient time',
