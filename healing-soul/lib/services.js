@@ -98,7 +98,19 @@ export const SERVICES = [
       },
       {
         name: 'Healing Soulutions Supplement Brand Partnerships & Affiliations',
-        copy: 'Our brand partnerships and affiliations include, but are not limited to, Thorne (NSF Certified for Sport), Momentous (NSF Certified for Sport, Informed Sport), Pure Encapsulations, Metagenics, Promix, Pendulum, Omni-Biotic, Needed, and Renue By Science — all independently third-party tested. Every product on your protocol is named by brand, form, dose, and timing.',
+        copy: 'Our brand partnerships and affiliations include, but are not limited to:',
+        brands: [
+          'Thorne — NSF Certified for Sport',
+          'Pure Encapsulations',
+          'Metagenics',
+          'Promix',
+          'Pendulum',
+          'Omni-Biotic',
+          'Needed',
+          'Renue By Science',
+          'Momentous — NSF Certified for Sport, Informed Sport',
+        ],
+        after: 'All independently third-party tested. Every product on your protocol is named by brand, form, dose, and timing.',
         tag: 'Practitioner-grade partners',
       },
       {
