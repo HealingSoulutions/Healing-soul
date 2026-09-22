@@ -101,8 +101,8 @@ export default function ServiceJourney() {
   return (
     <section className="hs-journey-section" aria-label="Healing Soulutions care journey">
       <p className="intro">
-        A seamless, at-home journey designed around your body, your needs, and your goals. Follow the full path,
-        or begin at any step — every service stands on its own.
+        One path, four steps — test, plan, restore, and return. Care built around your body, your needs, and
+        your goals, delivered entirely at home.
       </p>
 
       <div className="stage" role="list" aria-label="Service categories">
