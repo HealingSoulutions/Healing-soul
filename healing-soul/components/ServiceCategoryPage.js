@@ -13,6 +13,9 @@ export default function ServiceCategoryPage({ service }) {
       <Seo title={service.seo.title} description={service.seo.description} />
       <div className="cat">
         <div className="cat-hero">
+          <Link href="/" className="cat-close" aria-label="Back to home">
+            ×
+          </Link>
           <Medallion icon={service.icon} size={128} />
           <div className="kicker">
             Service {service.number} · {service.label}
@@ -81,7 +84,29 @@ export default function ServiceCategoryPage({ service }) {
           color: var(--emerald);
           font-family: var(--round);
         }
+        .cat :global(.cat-close) {
+          position: absolute;
+          top: 118px;
+          right: 22px;
+          width: 44px;
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid rgba(212, 162, 76, 0.6);
+          border-radius: 50%;
+          color: var(--gold-light);
+          background: rgba(1, 60, 28, 0.85);
+          font: 400 28px/1 var(--serif);
+          text-decoration: none;
+          z-index: 5;
+        }
+        .cat :global(.cat-close:hover) {
+          background: var(--gold);
+          color: var(--emerald-deep);
+        }
         .cat-hero {
+          position: relative;
           display: block;
           background: radial-gradient(circle at 50% 100%, var(--emerald-glow) 0%, var(--emerald) 45%, var(--emerald-deep) 100%);
           color: var(--ivory);

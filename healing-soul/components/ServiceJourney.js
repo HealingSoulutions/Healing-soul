@@ -344,20 +344,23 @@ export default function ServiceJourney() {
           font-family: var(--round);
         }
         .hs-journey-section .close {
-          position: absolute;
-          top: 14px;
-          right: 16px;
-          width: 36px;
-          height: 36px;
-          border: 1px solid rgba(212, 162, 76, 0.5);
+          position: sticky;
+          top: 0;
+          float: right;
+          margin: -14px -16px 0 0;
+          width: 44px;
+          height: 44px;
+          border: 1px solid rgba(212, 162, 76, 0.7);
           border-radius: 50%;
-          background: transparent;
+          background: var(--emerald);
           color: var(--gold-light);
-          font: 400 22px/1 var(--serif);
+          font: 400 28px/1 var(--serif);
           cursor: pointer;
+          z-index: 2;
         }
         .hs-journey-section .close:hover {
-          background: rgba(212, 162, 76, 0.15);
+          background: var(--gold);
+          color: var(--emerald-deep);
         }
         .hs-journey-section .modal-head {
           display: flex;
