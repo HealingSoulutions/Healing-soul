@@ -242,7 +242,7 @@ export default function ServiceCategoryPage({ service }) {
         .disclaimer {
           margin: 28px 0 0;
           font-size: 12px;
-          color: #6b7a72;
+          color: #5f6e66;
           max-width: 640px;
         }
         .cta {

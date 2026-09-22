@@ -67,10 +67,14 @@ export default function ServiceJourney() {
     const onKey = (e) => e.key === 'Escape' && setOpen(null);
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
+    const prevFocus = document.activeElement;
     document.body.style.overflow = 'hidden';
+    // Move keyboard focus into the dialog, and return it to the medallion on close.
+    document.querySelector('.hs-journey-section .close')?.focus();
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prev;
+      if (prevFocus && prevFocus.focus) prevFocus.focus();
     };
   }, [open]);
 
