@@ -193,7 +193,9 @@ export default function ServiceJourney() {
                   {current.number} · {current.eyebrow}
                 </span>
                 <h3 id="hs-modal-title">{current.title}</h3>
-                {current.priceFrom && <span className="price">From ${current.priceFrom}</span>}
+                {(current.priceLabel || current.priceFrom) && (
+                  <span className="price">{current.priceLabel || `From $${current.priceFrom}`}</span>
+                )}
               </div>
             </div>
             <p className="lede">{current.heroLede}</p>
