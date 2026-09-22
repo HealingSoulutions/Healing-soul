@@ -1,4 +1,5 @@
 import Head from "next/head";
+import ServiceJourney from "../components/ServiceJourney";
 
 const TITLE = "Healing Soulutions — Concierge & Mobile Nursing | New York Metro";
 const DESCRIPTION =
@@ -130,6 +131,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <section className="journey-wrap">
+          <ServiceJourney />
+        </section>
       </main>
 
       <style jsx>{`
@@ -147,6 +152,10 @@ export default function Home() {
           font-weight: 400;
           line-height: 1.72;
           padding: 64px 20px 72px;
+        }
+        .journey-wrap {
+          max-width: 1040px;
+          margin: 64px auto 0;
         }
         .hero {
           max-width: 520px;
