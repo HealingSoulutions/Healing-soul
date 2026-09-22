@@ -158,13 +158,20 @@ export default function ServiceJourney() {
       </div>
 
       <div className="band">
-      <p className="trust">
-        <span>Licensed RNs &amp; NP</span>
-        <i aria-hidden="true">·</i>
-        <span>HIPAA compliant</span>
-        <i aria-hidden="true">·</i>
-        <span>Manhattan &amp; the New York metro area</span>
-      </p>
+      <div className="badges" aria-label="Credentials">
+        <span className="badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <span><strong>HIPAA</strong><em>Compliant practice</em></span>
+        </span>
+        <span className="badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="m9 14.5-1.5 7 4.5-2.5 4.5 2.5-1.5-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="m9.6 9 1.6 1.6 3.2-3.2" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <span><strong>Board Certified</strong><em>Family Nurse Practitioner (ANCC)</em></span>
+        </span>
+        <span className="badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" fill="none" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg>
+          <span><strong>Licensed RNs &amp; NP</strong><em>Manhattan &amp; the NY metro area</em></span>
+        </span>
+      </div>
       <div className="team">
         <Link href="/about" className="person">
           <img src="/kristina.jpg" alt="Kristina Castro, MSN, APRN, FNP-BC" />
@@ -373,6 +380,42 @@ export default function ServiceJourney() {
         .hs-journey-section .trust i {
           color: var(--sage);
           font-style: normal;
+        }
+        .hs-journey-section .badges {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px 16px;
+          margin: 0 auto;
+        }
+        .hs-journey-section .badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 9px 16px 9px 12px;
+          border: 1px solid rgba(212, 162, 76, 0.45);
+          border-radius: 999px;
+          color: var(--gold-light);
+          background: rgba(255, 255, 255, 0.025);
+        }
+        .hs-journey-section .badge svg {
+          width: 26px;
+          height: 26px;
+          flex: none;
+        }
+        .hs-journey-section .badge strong {
+          display: block;
+          font: 500 12px/1.2 var(--round);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+        .hs-journey-section .badge em {
+          display: block;
+          margin-top: 2px;
+          color: rgba(247, 241, 229, 0.66);
+          font: 400 10.5px/1.3 var(--round);
+          font-style: normal;
+          letter-spacing: 0.03em;
         }
         .hs-journey-section .slot.cue .wrap {
           border-radius: 50%;
