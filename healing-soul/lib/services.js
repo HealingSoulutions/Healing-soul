@@ -19,7 +19,7 @@ export const SERVICES = [
     summary:
       'Blood work, urine testing, and respiratory swabs collected in the comfort and privacy of your home — with your results reviewed and explained by our Nurse Practitioner.',
     heroLede:
-      'Specimens collected in your own home by our nurse team, hand-delivered to Labcorp by the same nurse who saw you — then a clinician who walks you through what the numbers mean.',
+      'Collected at home by your nurse. Delivered to Labcorp by that same nurse. Results explained by our Nurse Practitioner.',
     includedLede: 'Book any one on its own, or combine them in a single visit.',
     included: [
       {

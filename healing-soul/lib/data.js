@@ -10,7 +10,7 @@ export const serviceCategories = [
       { id: 43, title: 'High Dose Vitamin C Soulution', desc: 'High-dose intravenous vitamin C at 25 g and above, infused slowly for antioxidant and immune support.', tags: ['25 g+', 'High Dose', 'Vitamin C', 'Antioxidant'] },
       { id: 23, title: 'Immunity Soulution', desc: 'High-dose vitamin C, zinc, and glutathione IV to boost immune defense.', tags: ['Immune Support', 'Vitamin C', 'Zinc', 'Glutathione'] },
       { id: 24, title: 'Vitamin Soulution', desc: "Myers' Cocktail, B-complex, vitamin D, and custom vitamin/mineral IV blends.", tags: ["Myers' Cocktail", 'B-Complex', 'Vitamin D', 'Nutrient Optimization'] },
-      { id: 25, title: 'Mitochondrial Health Soulution', desc: 'NAD+ precursor therapy for cellular energy, healthy aging, and metabolic support.', tags: ['Niagen', 'NR', 'NAD+ Precursor', 'Cellular Health'] },
+      { id: 25, title: 'Mitochondrial Health Soulution', desc: 'Your choice of IV NAD+ or Niagen NR (an NAD+ precursor) for cellular energy, healthy aging, and metabolic support.', tags: ['NAD+ or Niagen NR', 'NAD+', 'Niagen NR', 'Cellular Health'] },
       { id: 26, title: 'NAD+ Soulution', desc: 'IV NAD+ for cellular energy, brain health, mental clarity, and anti-aging.', tags: ['NAD+', 'Anti-Aging', 'Brain Health', 'Cellular Energy'] },
       { id: 27, title: 'Jet Lag Soulution', desc: 'Hydration, B-vitamins, magnesium, and vitamin C to combat jet lag.', tags: ['Jet Lag', 'Travel Recovery', 'Energy', 'Rehydration'] },
       { id: 28, title: 'Digestive Soulution', desc: 'Anti-inflammatory nutrients, glutamine, zinc, and B-vitamins for GI support.', tags: ['Digestive Health', 'Gut Support', 'Glutamine', 'Anti-Inflammatory'] },
