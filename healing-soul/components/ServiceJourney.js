@@ -172,22 +172,6 @@ export default function ServiceJourney() {
           <span><strong>Licensed RNs &amp; NP</strong><em>Manhattan &amp; the NY metro area</em></span>
         </span>
       </div>
-      <div className="team">
-        <Link href="/about" className="person">
-          <img src="/kristina.jpg" alt="Kristina Castro, MSN, APRN, FNP-BC" />
-          <span>
-            <strong>Kristina Castro, MSN, APRN, FNP-BC</strong>
-            <em>Nurse Practitioner</em>
-          </span>
-        </Link>
-        <Link href="/about" className="person">
-          <img src="/berit.jpg" alt="Berit Tran, BSN, RN" />
-          <span>
-            <strong>Berit Tran, BSN, RN</strong>
-            <em>Registered Nurse</em>
-          </span>
-        </Link>
-      </div>
       </div>
 
       {current && (
