@@ -1,7 +1,7 @@
 :root {
   --jade: #6B9E8A; --jade-deep: #4F8472; --jade-soft: #8AB5A3;
   --jade-mist: #A8CCBC; --jade-whisper: #D4E8DF; --jade-ghost: #EBF3EF;
-  --gold: #84A888; --gold-soft: #D4A24C; --gold-muted: #B3842F;
+  --gold: #84A888; --gold-soft: #E0B566; --gold-muted: #B3842F;
   --ivory: #FDFCF9; --ink: #2C3532; --ink-soft: #4A5752;
 }
 
@@ -323,6 +323,4 @@ footer { background: #013C1C; padding: 1rem 3rem; color: rgba(255,255,255,0.7); 
   background: linear-gradient(180deg, rgba(1,60,28,0.70) 0%, rgba(1,60,28,0.42) 45%, rgba(1,60,28,0.62) 100%);
 }
 
-.nav-emblem { display: none; }
-.nav-wordmark { display: block; }
-@media (max-width: 480px) { .nav-wordmark { display: none; } .nav-emblem { display: block; } }
+.nav-emblem { display: block; }

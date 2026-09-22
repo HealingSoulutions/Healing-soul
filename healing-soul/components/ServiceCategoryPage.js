@@ -34,8 +34,11 @@ export default function ServiceCategoryPage({ service }) {
                 <p>{item.copy}</p>
                 {item.brands && (
                   <ul className="brands">
-                    {item.brands.map((b) => (
-                      <li key={b}>{b}</li>
+                    {item.brands.map(([name, note]) => (
+                      <li key={name}>
+                        <b>{name}</b>
+                        <i>{note}</i>
+                      </li>
                     ))}
                   </ul>
                 )}
@@ -191,14 +194,27 @@ export default function ServiceCategoryPage({ service }) {
           padding: 0 0 0 20px;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          column-gap: 24px;
-          row-gap: 5px;
+          column-gap: 28px;
+          row-gap: 12px;
           font-size: 13.5px;
           color: #2f4038;
           line-height: 1.5;
         }
         .brands li::marker {
           color: var(--gold-dark);
+        }
+        .brands b {
+          display: block;
+          color: var(--emerald);
+          font-weight: 600;
+        }
+        .brands i {
+          display: block;
+          margin-top: 1px;
+          color: #4d5f55;
+          font-style: normal;
+          font-size: 12.5px;
+          line-height: 1.5;
         }
         @media (max-width: 420px) {
           .brands {
@@ -242,7 +258,7 @@ export default function ServiceCategoryPage({ service }) {
         .disclaimer {
           margin: 28px 0 0;
           font-size: 12px;
-          color: #6b7a72;
+          color: #5f6e66;
           max-width: 640px;
         }
         .cta {

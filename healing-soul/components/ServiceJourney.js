@@ -67,10 +67,14 @@ export default function ServiceJourney() {
     const onKey = (e) => e.key === 'Escape' && setOpen(null);
     document.addEventListener('keydown', onKey);
     const prev = document.body.style.overflow;
+    const prevFocus = document.activeElement;
     document.body.style.overflow = 'hidden';
+    // Move keyboard focus into the dialog, and return it to the medallion on close.
+    document.querySelector('.hs-journey-section .close')?.focus();
     return () => {
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prev;
+      if (prevFocus && prevFocus.focus) prevFocus.focus();
     };
   }, [open]);
 
@@ -154,28 +158,19 @@ export default function ServiceJourney() {
       </div>
 
       <div className="band">
-      <p className="trust">
-        <span>Licensed RNs &amp; NP</span>
-        <i aria-hidden="true">·</i>
-        <span>HIPAA compliant</span>
-        <i aria-hidden="true">·</i>
-        <span>Manhattan &amp; the New York metro area</span>
-      </p>
-      <div className="team">
-        <Link href="/about" className="person">
-          <img src="/kristina.jpg" alt="Kristina Castro, MSN, APRN, FNP-BC" />
-          <span>
-            <strong>Kristina Castro, MSN, APRN, FNP-BC</strong>
-            <em>Nurse Practitioner</em>
-          </span>
-        </Link>
-        <Link href="/about" className="person">
-          <img src="/berit.jpg" alt="Berit Tran, BSN, RN" />
-          <span>
-            <strong>Berit Tran, BSN, RN</strong>
-            <em>Registered Nurse</em>
-          </span>
-        </Link>
+      <div className="badges" aria-label="Credentials">
+        <span className="badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <span><strong>HIPAA</strong><em>Compliant practice</em></span>
+        </span>
+        <span className="badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="m9 14.5-1.5 7 4.5-2.5 4.5 2.5-1.5-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="m9.6 9 1.6 1.6 3.2-3.2" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          <span><strong>Board Certified</strong><em>NP &amp; RN</em></span>
+        </span>
+        <span className="badge">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" fill="none" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg>
+          <span><strong>Licensed RNs &amp; NP</strong><em>Manhattan &amp; the NY metro area</em></span>
+        </span>
       </div>
       </div>
 
@@ -210,8 +205,11 @@ export default function ServiceJourney() {
                   <span>{item.copy}</span>
                   {item.brands && (
                     <ul className="brands">
-                      {item.brands.map((b) => (
-                        <li key={b}>{b}</li>
+                      {item.brands.map(([name, note]) => (
+                        <li key={name}>
+                          <b>{name}</b>
+                          <i>{note}</i>
+                        </li>
                       ))}
                     </ul>
                   )}
@@ -369,6 +367,42 @@ export default function ServiceJourney() {
         .hs-journey-section .trust i {
           color: var(--sage);
           font-style: normal;
+        }
+        .hs-journey-section .badges {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px 16px;
+          margin: 0 auto;
+        }
+        .hs-journey-section .badge {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          padding: 9px 16px 9px 12px;
+          border: 1px solid rgba(212, 162, 76, 0.45);
+          border-radius: 999px;
+          color: var(--gold-light);
+          background: rgba(255, 255, 255, 0.025);
+        }
+        .hs-journey-section .badge svg {
+          width: 26px;
+          height: 26px;
+          flex: none;
+        }
+        .hs-journey-section .badge strong {
+          display: block;
+          font: 500 12px/1.2 var(--round);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+        }
+        .hs-journey-section .badge em {
+          display: block;
+          margin-top: 2px;
+          color: rgba(247, 241, 229, 0.66);
+          font: 400 10.5px/1.3 var(--round);
+          font-style: normal;
+          letter-spacing: 0.03em;
         }
         .hs-journey-section .slot.cue .wrap {
           border-radius: 50%;
@@ -550,8 +584,8 @@ export default function ServiceJourney() {
           padding: 0 0 0 18px;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          column-gap: 18px;
-          row-gap: 4px;
+          column-gap: 22px;
+          row-gap: 10px;
           color: rgba(247, 241, 229, 0.86);
           font-size: 12.5px;
           line-height: 1.45;
@@ -565,6 +599,19 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .brands li::marker {
           color: var(--gold);
+        }
+        .hs-journey-section .brands b {
+          display: block;
+          color: var(--gold-light);
+          font-weight: 600;
+        }
+        .hs-journey-section .brands i {
+          display: block;
+          margin-top: 1px;
+          color: rgba(247, 241, 229, 0.7);
+          font-style: normal;
+          font-size: 11.5px;
+          line-height: 1.45;
         }
         @media (max-width: 420px) {
           .hs-journey-section .brands {

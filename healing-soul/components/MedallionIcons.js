@@ -66,9 +66,35 @@ export function ChevronDown(props) {
   );
 }
 
+// Engraved swan-lotus emblem: the brand PNG used as a mask, filled with the engraving colour
+// so it takes the same inset shading as the line icons.
+export function SwanIcon({ style, ...props }) {
+  const mask = 'url(/emblem.png) center / contain no-repeat';
+  return (
+    <span
+      aria-hidden="true"
+      {...props}
+      style={{
+        display: 'block',
+        backgroundColor: 'currentColor',
+        WebkitMaskImage: 'url(/emblem.png)',
+        maskImage: 'url(/emblem.png)',
+        WebkitMaskSize: 'contain',
+        maskSize: 'contain',
+        WebkitMaskRepeat: 'no-repeat',
+        maskRepeat: 'no-repeat',
+        WebkitMaskPosition: 'center',
+        maskPosition: 'center',
+        ...style,
+      }}
+    />
+  );
+}
+
 export const ICONS = {
   house: HouseIcon,
   pill: PillIcon,
   iv: IvIcon,
   calendar: CalendarHeartIcon,
+  swan: SwanIcon,
 };

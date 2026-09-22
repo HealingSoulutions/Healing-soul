@@ -100,18 +100,24 @@ export const SERVICES = [
         name: 'Healing Soulutions Supplement Brand Partnerships & Affiliations',
         copy: 'Our brand partnerships and affiliations include, but are not limited to:',
         brands: [
-          'Thorne — NSF Certified for Sport',
-          'Pure Encapsulations',
-          'Metagenics',
-          'Promix',
-          'Pendulum',
-          'Omni-Biotic',
-          'Needed',
-          'Renue By Science',
-          'Momentous — NSF Certified for Sport, Informed Sport',
+          ['Thorne', 'Practitioner-grade, research-backed formulas. NSF Certified for Sport; every product is tested up to four times in-house for identity, potency, and contaminants.'],
+          ['Pure Encapsulations', 'Hypoallergenic formulas free of unnecessary additives. cGMP-manufactured; every batch is third-party tested for purity and potency.'],
+          ['Metagenics', 'Practitioner brand with a TGA-audited manufacturing standard. Its TruQuality program publishes third-party test results for every lot.'],
+          ['Ortho Molecular Products', 'Practitioner-only brand with efficacy-focused dosing. Manufactured in its own cGMP facility, with raw-material identity and potency testing on every batch.'],
+          ['Promix', 'Clean sports nutrition with minimal, traceable ingredients. Third-party tested for purity and heavy metals.'],
+          ['Pendulum', 'Next-generation probiotics built on clinically studied strains, including Akkermansia. Each batch is verified for strain identity and live-cell count.'],
+          ['Omni-Biotic', 'Austrian probiotic maker whose strain combinations are studied in published clinical research. Every batch is tested for viability and purity.'],
+          ['Needed', 'Fertility, pregnancy, and postpartum specialists. Practitioner-formulated at research-based doses; third-party tested for purity and heavy metals.'],
+          ['Renue By Science', 'Longevity-focused formulas including NMN and NAD+ precursors. Third-party tested, with certificates of analysis published for each batch.'],
+          ['Momentous', 'Performance and recovery formulas developed with sports scientists. NSF Certified for Sport and Informed Sport; every batch is tested.'],
         ],
         after: 'All independently third-party tested. Every product on your protocol is named by brand, form, dose, and timing.',
         tag: 'Practitioner-grade partners',
+      },
+      {
+        name: 'Fertility Optimization',
+        copy: 'Nutrition and supplement support for natural conception or alongside IVF — built from your labs, timed to your cycle, and coordinated with your fertility clinic\u2019s plan. Led by nurses with hands-on IVF experience.',
+        tag: 'Preconception · IVF support',
       },
       {
         name: 'Follow-Up & Adjustment',
@@ -129,7 +135,7 @@ export const SERVICES = [
     seo: {
       title: 'Personalized Supplement Protocols in NYC | Healing Soulutions',
       description:
-        'Nurse-built supplement protocols from your labs or a consult, using only cGMP, NSF, USP, or Informed Sport certified, third-party-tested brands such as Thorne, Momentous, and Pure Encapsulations. Manhattan and the New York metro area.',
+        'Nurse-built supplement protocols from your labs or a consult, including fertility optimization and IVF support, using only cGMP, NSF, USP, or Informed Sport certified, third-party-tested brands such as Thorne, Momentous, and Pure Encapsulations. Manhattan and the New York metro area.',
     },
   },
   {
@@ -164,7 +170,7 @@ export const SERVICES = [
 
 export const BOOK_STEP = {
   number: '04',
-  icon: 'calendar',
+  icon: 'swan',
   back: ['BOOK', 'NOW'],
   label: 'Book a Visit',
   sub: 'Choose a convenient time',
