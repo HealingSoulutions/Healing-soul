@@ -75,7 +75,7 @@ export const SERVICES = [
     summary:
       "A personalized supplement plan built from your labs when you have them, or from a consult when you don't — with specific product selections and a follow-up schedule.",
     heroLede:
-      'Not a generic list. A plan built around your labs, your goals, and your life — using only high-quality brands that undergo rigorous independent testing.',
+      'Not a generic list. A plan built around your labs, your goals, and your life — using only brands that pass our certification and third-party testing standards.',
     includedLede: 'Start from your labs or from a conversation. Either way, you leave with a written protocol built from brands we trust.',
     included: [
       {
@@ -90,14 +90,14 @@ export const SERVICES = [
         tag: 'Built from your results',
       },
       {
-        name: 'Only Rigorously Tested Brands',
-        copy: 'We recommend only professional-grade supplements from manufacturers that submit to independent third-party testing for purity, potency, and contaminants — including NSF certification programs. No proprietary blends, no unverified sourcing.',
-        tag: 'Third-party tested · NSF',
+        name: 'How We Vet Every Brand',
+        copy: 'Before a product goes on your protocol it has to clear our quality bar: made in a cGMP-compliant facility (FDA 21 CFR Part 111), NSF/ANSI 173 or USP Verified where available, NSF Certified for Sport or Informed Sport for any performance product, and lot-specific third-party testing for identity, potency, heavy metals, microbes, and contaminants. No proprietary blends that hide doses.',
+        tag: 'cGMP · NSF · USP · Informed Sport',
       },
       {
-        name: 'Our Wholesale Affiliations',
-        copy: 'Through our wholesale affiliations we supply products directly, at practitioner pricing. Brands we frequently recommend include Thorne, Pure Encapsulations, Metagenics, Momentous, Promix, Pendulum, Omni-Biotic, Needed, and Renue By Science — though your protocol is never limited to them. Every product is named: brand, form, dose, and timing.',
-        tag: 'Direct supply',
+        name: 'Healing Soulutions Supplement Brand Partnerships & Affiliations',
+        copy: 'Brands we frequently recommend and supply directly include Thorne (NSF Certified for Sport), Momentous (NSF Certified for Sport, Informed Sport), Pure Encapsulations, Metagenics, Promix, Pendulum, Omni-Biotic, Needed, and Renue By Science — all independently third-party tested. Your protocol is never limited to them; every product is named by brand, form, dose, and timing.',
+        tag: 'Practitioner-grade partners',
       },
       {
         name: 'Follow-Up & Adjustment',
@@ -115,7 +115,7 @@ export const SERVICES = [
     seo: {
       title: 'Personalized Supplement Protocols in NYC | Healing Soulutions',
       description:
-        'Nurse-built supplement protocols from your labs or a consult, using only third-party-tested professional brands, including NSF-certified lines, supplied through our wholesale partners. Manhattan and the New York metro area.',
+        'Nurse-built supplement protocols from your labs or a consult, using only cGMP, NSF, USP, or Informed Sport certified, third-party-tested brands such as Thorne, Momentous, and Pure Encapsulations. Manhattan and the New York metro area.',
     },
   },
   {
