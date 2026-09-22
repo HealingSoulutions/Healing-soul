@@ -9,14 +9,12 @@ import { SERVICES, BOOK_STEP } from '../lib/services';
 
 // Medallion centres as % of the stage, desktop and phone. The SVG paths below pass
 // through the same points (viewBox units = % × 10 desktop, % × 3.9 / × 9.2 phone).
-// Horizontal zig-zag: 01 low → 02 high → 03 low → 04 (Book) high. Vertical zig-zag on phones.
-// High medallions carry their label above, so the connectors stay clear of text.
-// Phones use a straight vertical column.
+// One calm row on desktop; a straight vertical column on phones.
 const DESKTOP = [
-  { x: 12, y: 70 },
-  { x: 37.5, y: 30 },
-  { x: 62.5, y: 70 },
-  { x: 88, y: 30 },
+  { x: 12, y: 50 },
+  { x: 37.5, y: 50 },
+  { x: 62.5, y: 50 },
+  { x: 88, y: 50 },
 ];
 const PHONE = [
   { x: 50, y: 10 },
@@ -53,8 +51,8 @@ function segments(points, pxW, pxH, vbW, vbH, gaps, endGap) {
   }
   return out;
 }
-const DESKTOP_SEGS = segments(DESKTOP, 920, 400, 1000, 400, [82, 82, 82, 82]);
-const PHONE_SEGS = segments(PHONE, 358, 1000, 390, 1000, [122, 122, 122, 122], 80);
+const DESKTOP_SEGS = segments(DESKTOP, 920, 240, 1000, 240, [76, 76, 76, 76]);
+const PHONE_SEGS = segments(PHONE, 358, 880, 390, 880, [100, 100, 100, 100], 80);
 
 export default function ServiceJourney() {
   const [open, setOpen] = useState(null); // index of the service whose pop-up is open
@@ -98,7 +96,6 @@ export default function ServiceJourney() {
       <span className="number">{s.number}</span>
       <Medallion icon={s.icon} back={s.back} backTight={s.backTight} turn={turns[i]} />
       <span className="label">{s.label}</span>
-      <span className="sub">{s.sub}</span>
     </>
   );
 
@@ -111,14 +108,13 @@ export default function ServiceJourney() {
 
       <div className="stage" role="list" aria-label="Service categories">
         {[
-          ['flow-d', '0 0 1000 400', DESKTOP_SEGS],
-          ['flow-p', '0 0 390 1000', PHONE_SEGS],
+          ['flow-d', '0 0 1000 240', DESKTOP_SEGS],
+          ['flow-p', '0 0 390 880', PHONE_SEGS],
         ].map(([cls, vb, segs]) => (
           <svg className={`flow ${cls}`} viewBox={vb} preserveAspectRatio="none" aria-hidden="true" key={cls}>
             {segs.map((seg, i) => (
               <g key={i}>
                 <path className="base" d={seg.line} />
-                <path className="head" d={seg.head} />
               </g>
             ))}
           </svg>
@@ -126,7 +122,7 @@ export default function ServiceJourney() {
 
         {SERVICES.map((s, i) => (
           <div
-            className={`slot${i % 2 ? ' up' : ''}${i === 0 && !touched ? ' cue' : ''}`}
+            className={`slot${i === 0 && !touched ? ' cue' : ''}`}
             role="listitem"
             style={place(i)}
             key={s.slug}
@@ -146,13 +142,14 @@ export default function ServiceJourney() {
             </button>
           </div>
         ))}
-        <div className="slot up" role="listitem" style={place(3)}>
+        <div className="slot" role="listitem" style={place(3)}>
           <Link href={BOOK_STEP.href} className="step book" aria-label="Book a visit" {...hoverProps(3)}>
             {inner(BOOK_STEP, 3)}
           </Link>
         </div>
       </div>
 
+      <div className="band">
       <p className="trust">
         <span>Licensed RNs &amp; NP</span>
         <i aria-hidden="true">·</i>
@@ -160,10 +157,6 @@ export default function ServiceJourney() {
         <i aria-hidden="true">·</i>
         <span>Manhattan &amp; the New York metro area</span>
       </p>
-      <p className="cue-hint" aria-hidden="true">
-        {touched ? '\u00a0' : 'Tap a medallion to explore each step'}
-      </p>
-
       <div className="team">
         <Link href="/about" className="person">
           <img src="/berit.jpg" alt="Berit Tran, BSN, RN" />
@@ -179,6 +172,7 @@ export default function ServiceJourney() {
             <em>Nurse Practitioner · Leads every care plan</em>
           </span>
         </Link>
+      </div>
       </div>
 
       {current && (
@@ -266,7 +260,7 @@ export default function ServiceJourney() {
         .hs-journey-section .stage {
           position: relative;
           max-width: 920px;
-          height: 400px;
+          height: 240px;
           margin: auto;
         }
         .hs-journey-section .flow {
@@ -287,12 +281,7 @@ export default function ServiceJourney() {
         .hs-journey-section .flow .base {
           stroke: var(--sage);
           stroke-width: 1px;
-          opacity: 0.55;
-        }
-        .hs-journey-section .flow .head {
-          stroke: var(--sage);
-          stroke-width: 1px;
-          opacity: 0.7;
+          opacity: 0.4;
         }
         .hs-journey-section .slot {
           position: absolute;
@@ -301,18 +290,6 @@ export default function ServiceJourney() {
           width: 220px;
           transform: translate(-50%, calc(-52px - 23px));
         }
-        .hs-journey-section .slot.up {
-          transform: translate(-50%, calc(-52px - 98px));
-        }
-        .hs-journey-section .slot.up .step {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .hs-journey-section .slot.up .number { order: 1; margin-bottom: 8px; }
-        .hs-journey-section .slot.up .label { order: 2; margin-top: 0; }
-        .hs-journey-section .slot.up .sub { order: 3; margin-bottom: 14px; }
-        .hs-journey-section .slot.up .wrap { order: 4; }
         .hs-journey-section .step,
         .hs-journey-section a.step {
           appearance: none;
@@ -359,12 +336,18 @@ export default function ServiceJourney() {
         }
 
         /* ---- trust line + tap cue ---- */
+        .hs-journey-section .band {
+          margin: 96px auto 0;
+          padding-top: 44px;
+          border-top: 1px solid rgba(212, 162, 76, 0.22);
+          max-width: 920px;
+        }
         .hs-journey-section .trust {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           gap: 10px;
-          margin: 44px 0 0;
+          margin: 0;
           color: var(--gold-light);
           font: 500 10.5px/1.6 var(--round);
           letter-spacing: 0.18em;
@@ -373,14 +356,6 @@ export default function ServiceJourney() {
         .hs-journey-section .trust i {
           color: var(--sage);
           font-style: normal;
-        }
-        .hs-journey-section .cue-hint {
-          margin: 10px 0 0;
-          min-height: 18px;
-          color: rgba(247, 241, 229, 0.55);
-          text-align: center;
-          font: italic 400 15px/1.2 var(--serif);
-          transition: opacity 0.4s;
         }
         .hs-journey-section .slot.cue .wrap {
           border-radius: 50%;
@@ -415,7 +390,7 @@ export default function ServiceJourney() {
           flex-wrap: wrap;
           justify-content: center;
           gap: 18px 44px;
-          margin: 30px auto 0;
+          margin: 34px auto 0;
           max-width: 920px;
         }
         .hs-journey-section .person {
@@ -624,7 +599,7 @@ export default function ServiceJourney() {
             padding: 12px 16px 28px;
           }
           .hs-journey-section .stage {
-            height: 1000px;
+            height: 880px;
           }
           .hs-journey-section .flow-d {
             display: none;
@@ -632,19 +607,13 @@ export default function ServiceJourney() {
           .hs-journey-section .flow-p {
             display: block;
           }
-          .hs-journey-section .slot,
-          .hs-journey-section .slot.up {
+          .hs-journey-section .slot {
             left: var(--px);
             top: var(--py);
             width: 220px;
-            transform: translate(-50%, calc(-52px - 23px));
           }
-          .hs-journey-section .slot.up .step { display: block; }
-          .hs-journey-section .slot.up .number { margin-bottom: 12px; }
-          .hs-journey-section .slot.up .label { margin-top: 15px; }
-          .hs-journey-section .slot.up .sub { margin-bottom: 0; }
-          .hs-journey-section .sub {
-            font-size: 10.5px;
+          .hs-journey-section .band {
+            margin-top: 56px;
           }
           .hs-journey-section .label {
             font-size: 20px;
