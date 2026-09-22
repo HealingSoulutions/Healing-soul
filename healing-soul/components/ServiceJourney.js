@@ -221,8 +221,11 @@ export default function ServiceJourney() {
                   <span>{item.copy}</span>
                   {item.brands && (
                     <ul className="brands">
-                      {item.brands.map((b) => (
-                        <li key={b}>{b}</li>
+                      {item.brands.map(([name, note]) => (
+                        <li key={name}>
+                          <b>{name}</b>
+                          <i>{note}</i>
+                        </li>
                       ))}
                     </ul>
                   )}
@@ -597,8 +600,8 @@ export default function ServiceJourney() {
           padding: 0 0 0 18px;
           display: grid;
           grid-template-columns: 1fr 1fr;
-          column-gap: 18px;
-          row-gap: 4px;
+          column-gap: 22px;
+          row-gap: 10px;
           color: rgba(247, 241, 229, 0.86);
           font-size: 12.5px;
           line-height: 1.45;
@@ -612,6 +615,19 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .brands li::marker {
           color: var(--gold);
+        }
+        .hs-journey-section .brands b {
+          display: block;
+          color: var(--gold-light);
+          font-weight: 600;
+        }
+        .hs-journey-section .brands i {
+          display: block;
+          margin-top: 1px;
+          color: rgba(247, 241, 229, 0.7);
+          font-style: normal;
+          font-size: 11.5px;
+          line-height: 1.45;
         }
         @media (max-width: 420px) {
           .hs-journey-section .brands {
