@@ -1,7 +1,7 @@
 // The Drip Menu — single source of truth for IV & injection pricing.
 // Mirrors the printed Healing Soulutions Drip Menu (PDF). Edit prices here only.
 
-export const SIGNATURE_PRICE = 375;
+export const SIGNATURE_PRICE = 349;
 export const BOOSTER_PRICE = 45;
 export const INJECTION_PRICE = 85;
 
@@ -66,7 +66,7 @@ export const SIGNATURE = [
   },
   {
     name: 'The High-Dose Vitamin C Soulution',
-    price: 479,
+    price: 849,
     badge: 'Special order',
     special: 'Special order — stand-alone high-dose vitamin C is prepared to order. Please book at least 72 hours in advance.',
     tagline: 'Stand-alone high-dose vitamin C, 25 g and above, infused slowly over 60–90 minutes.',

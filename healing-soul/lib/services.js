@@ -140,8 +140,8 @@ export const SERVICES = [
   },
   {
     slug: 'iv-injections',
-    priceFrom: 375,
-    priceLabel: 'Signature drips $375 · Injections from $85',
+    priceFrom: 349,
+    priceLabel: 'Signature drips $349 · Injections from $85',
     menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
