@@ -9,6 +9,7 @@ const asCards = (id) =>
 export const SERVICES = [
   {
     slug: 'at-home-testing',
+    priceFrom: null, // e.g. 199 → shows "From $199" in the pop-up; null hides it
     number: '01',
     icon: 'house',
     back: ['AT', 'HOME'],
@@ -65,6 +66,7 @@ export const SERVICES = [
   },
   {
     slug: 'supplement-protocols',
+    priceFrom: null, // e.g. 199 → shows "From $199" in the pop-up; null hides it
     number: '02',
     icon: 'pill',
     back: ['YOUR', 'PLAN'],
@@ -120,6 +122,7 @@ export const SERVICES = [
   },
   {
     slug: 'iv-injections',
+    priceFrom: null, // e.g. 199 → shows "From $199" in the pop-up; null hides it
     number: '03',
     icon: 'iv',
     back: ['IV &', 'INJECTIONS'],
