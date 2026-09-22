@@ -55,7 +55,7 @@ export default function Home() {
       <main id="main-content" className="home">
         <img
           className="wordmark"
-          src="/wordmark-v2.png"
+          src="/wordmark-gold.png"
           alt="Healing Soulutions — Concierge Nursing"
           width={900}
           height={378}
