@@ -108,7 +108,7 @@ export default function ServiceCategoryPage({ service }) {
         .cat-hero {
           position: relative;
           display: block;
-          background: radial-gradient(circle at 50% 100%, var(--emerald-glow) 0%, var(--emerald) 45%, var(--emerald-deep) 100%);
+          background: var(--emerald);
           color: var(--ivory);
           padding: 128px 42px 56px;
           text-align: center;

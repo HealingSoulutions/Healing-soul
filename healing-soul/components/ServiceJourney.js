@@ -164,6 +164,23 @@ export default function ServiceJourney() {
         {touched ? '\u00a0' : 'Tap a medallion to explore each step'}
       </p>
 
+      <div className="team">
+        <Link href="/about" className="person">
+          <img src="/berit.jpg" alt="Berit Tran, BSN, RN" />
+          <span>
+            <strong>Berit Tran, BSN, RN</strong>
+            <em>Founder · Registered Nurse</em>
+          </span>
+        </Link>
+        <Link href="/about" className="person">
+          <img src="/kristina.jpg" alt="Kristina Castro, MSN, APRN, FNP-BC" />
+          <span>
+            <strong>Kristina Castro, MSN, APRN, FNP-BC</strong>
+            <em>Nurse Practitioner · Leads every care plan</em>
+          </span>
+        </Link>
+      </div>
+
       {current && (
         <div className="backdrop" onClick={() => setOpen(null)}>
           <div
@@ -390,6 +407,50 @@ export default function ServiceJourney() {
           font: 500 11px/1 var(--round);
           letter-spacing: 0.12em;
           text-transform: uppercase;
+        }
+
+        /* ---- team row ---- */
+        .hs-journey-section .team {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 18px 44px;
+          margin: 30px auto 0;
+          max-width: 920px;
+        }
+        .hs-journey-section .person {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          text-decoration: none;
+          color: inherit;
+        }
+        .hs-journey-section .person img {
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 2px solid var(--gold);
+          box-shadow: 0 0 0 4px rgba(212, 162, 76, 0.15);
+          flex: none;
+        }
+        .hs-journey-section .person strong {
+          display: block;
+          color: var(--gold-light);
+          font: 500 18px/1.15 var(--serif);
+        }
+        .hs-journey-section .person em {
+          display: block;
+          margin-top: 3px;
+          color: rgba(247, 241, 229, 0.65);
+          font: 400 11px/1.4 var(--round);
+          font-style: normal;
+          letter-spacing: 0.04em;
+        }
+        .hs-journey-section .person:hover strong {
+          text-decoration: underline;
+          text-decoration-color: var(--gold);
+          text-underline-offset: 4px;
         }
 
         /* ---- pop-up ---- */
