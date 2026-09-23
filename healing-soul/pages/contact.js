@@ -12,7 +12,8 @@ export default function Contact() {
       />
       <main id="main-content" className="contact">
         <section className="wrap">
-          <h1 className="eyebrow">Contact</h1>
+          <span className="eyebrow">Contact</span>
+          <h1 className="title">Reach Our Mobile Concierge Nursing Team</h1>
           <p className="intro">
             Reach us directly to ask a question, confirm availability at your location, or arrange a visit. Our team
             follows up within 24 hours.
@@ -82,6 +83,13 @@ export default function Contact() {
           font: 500 11px/1 var(--round);
           letter-spacing: 0.22em;
           text-transform: uppercase;
+        }
+        .title {
+          margin: 0 auto 18px;
+          max-width: 560px;
+          color: var(--gold-light);
+          font: 500 28px/1.2 var(--serif);
+          letter-spacing: 0.01em;
         }
         .intro {
           max-width: 560px;

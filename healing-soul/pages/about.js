@@ -57,7 +57,8 @@ export default function About() {
       />
       <main id="main-content" className="about">
         <section className="wrap">
-          <h1 className="label section">Our Team</h1>
+          <span className="label eyebrow">Our Team</span>
+          <h1 className="title">Meet Your Concierge Nursing Team in Manhattan</h1>
           <div className="team">
             {TEAM.map((t) => (
               <article className="member" key={t.name}>
@@ -147,6 +148,18 @@ export default function About() {
           font: 500 10.5px/1 var(--round);
           letter-spacing: 0.18em;
           text-transform: uppercase;
+        }
+        .label.eyebrow {
+          font-size: 11px;
+          letter-spacing: 0.22em;
+          margin-bottom: 14px;
+        }
+        .title {
+          margin: 0 auto 36px;
+          max-width: 560px;
+          color: var(--gold-light, #ebcb8a);
+          font: 500 28px/1.2 var(--serif, 'Cormorant Garamond', Georgia, serif);
+          letter-spacing: 0.01em;
         }
         .label.section {
           margin-top: 0;

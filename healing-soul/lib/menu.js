@@ -182,7 +182,7 @@ export const LONGEVITY = {
     {
       name: 'The NAD+ Soulution',
       dose: '500 mg • standard dose',
-      price: 695,
+      price: 745,
       copy: 'Pure NAD+ coenzyme infused directly into the bloodstream for cellular repair, mental clarity, sustained energy, and healthy aging.',
     },
     {
@@ -196,7 +196,7 @@ export const LONGEVITY = {
   includes: 'Every NAD+ & Niagen Soulution includes a $150 nutrient base at no charge — Vitamin C • B-Complex • B12 • Glutathione 1,000 mg — in 500 mL–1,000 mL LR or NS.',
   ladder: [
     ['250 mg', 395, 595],
-    ['500 mg', 695, 795],
+    ['500 mg', 745, 795],
     ['750 mg', 895, 995],
     ['1,000 mg', 1095, 1295],
   ],

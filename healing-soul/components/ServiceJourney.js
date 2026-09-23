@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Medallion from './Medallion';
 import { SERVICES, BOOK_STEP } from '../lib/services';
+import { GOOGLE_REVIEWS } from '../lib/reviews';
 
 // Homepage section: three service-category medallions + Book on a zig-zag path, with
 // subtle 01→02→03→04 connectors between them. Clicking a medallion opens a pop-up with the
@@ -209,6 +210,12 @@ export default function ServiceJourney() {
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" fill="none" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg>
           <span><strong>Licensed RNs &amp; NP</strong><em>Manhattan &amp; the NY metro area</em></span>
         </span>
+        {GOOGLE_REVIEWS.url && GOOGLE_REVIEWS.rating && GOOGLE_REVIEWS.count ? (
+          <a className="badge reviews" href={GOOGLE_REVIEWS.url} target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/></svg>
+            <span><strong>{Number(GOOGLE_REVIEWS.rating).toFixed(1)} on Google</strong><em>{GOOGLE_REVIEWS.count} client reviews</em></span>
+          </a>
+        ) : null}
       </div>
       </div>
 
@@ -444,6 +451,16 @@ export default function ServiceJourney() {
           border-radius: 999px;
           color: var(--gold-light);
           background: rgba(255, 255, 255, 0.025);
+        }
+        .hs-journey-section .badge.reviews {
+          text-decoration: none;
+          transition: border-color 0.25s, background 0.25s;
+        }
+        .hs-journey-section .badge.reviews:hover,
+        .hs-journey-section .badge.reviews:focus-visible {
+          border-color: var(--gold);
+          background: rgba(212, 162, 76, 0.08);
+          outline: none;
         }
         .hs-journey-section .badge svg {
           width: 26px;
