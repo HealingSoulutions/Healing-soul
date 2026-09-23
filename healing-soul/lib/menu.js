@@ -232,14 +232,14 @@ export const INJECTIONS = [
 // The four-step Pathway to Wellness, priced as one bundle.
 export const PATHWAY = {
   name: 'The Pathway to Wellness',
-  price: 1595,
-  compare: 1789,
-  lede: 'Steps 1–4 in one booking — three home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
+  price: 1795,
+  compare: 2138,
+  lede: 'Steps 1–4 in one booking — four home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
   includes: [
     'At-home lab visit: blood draw, hand-delivered to Labcorp by our team',
     'Nurse Practitioner lab interpretation & results call',
     'Written, labs-based supplement protocol',
-    'One Signature Soulution IV',
+    'Two Signature Soulution IVs',
     'Week-4 repeat blood panel, NP reassessment & adjusted protocol',
   ],
   note: 'Laboratory fees are billed by Labcorp and may be covered by insurance. Your protocol is built around up to four products, sourced by us directly from the manufacturer and delivered to you.',
