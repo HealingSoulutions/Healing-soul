@@ -35,6 +35,11 @@ export default function ServiceCategoryPage({ service }) {
                 <h3>{item.name}</h3>
                 {item.price && <span className="price">{item.price}</span>}
                 <p>{item.copy}</p>
+                {item.booked && (
+                  <p className="booked">
+                    <b>Commonly booked for:</b> {item.booked}
+                  </p>
+                )}
                 {item.brands && (
                   <ul className="brands">
                     {item.brands.map(([name, note]) => (
@@ -226,6 +231,16 @@ export default function ServiceCategoryPage({ service }) {
           .brands {
             grid-template-columns: 1fr;
           }
+        }
+        .booked {
+          margin: 8px 0 0;
+          font-size: 12.5px;
+          line-height: 1.55;
+          color: var(--muted, #4d5f55);
+        }
+        .booked b {
+          color: var(--emerald, #013c1c);
+          font-weight: 500;
         }
         .price {
           display: block;
