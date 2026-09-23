@@ -199,6 +199,8 @@ export const PROTOCOLS = [
   ['Iron Deficiency Protocol', 450, 'labs-based · re-test schedule'],
   ['Thyroid Health Protocol', 450, 'labs-based · complements physician care'],
   ['Immunity Defense Protocol', 350, 'year-round immune support'],
+  ['Post-Natal Protocol', 450, 'postpartum replenishment · nursing-safe'],
+  ['Gut Health Protocol', 450, 'microbiome & digestive support'],
   ['Follow-Up & Adjustment', 125, ''],
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];

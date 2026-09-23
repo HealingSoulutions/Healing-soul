@@ -165,6 +165,18 @@ export const SERVICES = [
         tag: 'Immune support',
       },
       {
+        name: 'Post-Natal Protocol',
+        price: '$450',
+        copy: 'Recovery and replenishment after birth — iron, vitamin D, omega-3s, and the nutrients depleted by pregnancy and breastfeeding, built from your postpartum labs and safe for nursing. Led by nurses with hands-on maternity and IVF experience.',
+        tag: 'Postpartum · nursing-safe',
+      },
+      {
+        name: 'Gut Health Protocol',
+        price: '$450',
+        copy: 'A structured plan for digestive comfort and a resilient microbiome — targeted probiotics, gut-lining support, and food timing, built from your history and labs, with a follow-up to adjust. Pairs with the Gut Health Soulution.',
+        tag: 'Microbiome · digestive support',
+      },
+      {
         name: 'Follow-Up & Adjustment',
         price: '$125',
         copy: 'A scheduled check-in to review how the plan is working and adjust before your next labs.',
