@@ -46,14 +46,27 @@ export const SIGNATURE = [
     contents: 'L-Glutamine • B-Complex • Magnesium • Zinc • Glutathione',
   },
   {
+    name: 'The Reproductive Health Soulution',
+    badge: 'IV + IM',
+    tagline: 'Preconception & fertility support — for natural conception or alongside IVF, timed to your cycle.',
+    contents: 'Vitamin C • B-Complex • B12 • Magnesium • Zinc • Glutathione • CoQ-10',
+    extra: 'Includes one IM injection (B12 or Vitamin D3) at the same visit • pairs with our Fertility Optimization protocol',
+  },
+  {
     name: 'The Immunity Soulution',
     tagline: 'Cold & flu defense — fight illness off early and recover faster.',
     contents: 'B-Complex • Vitamin C • Glutathione • Zinc',
   },
   {
-    name: 'The Energy & Focus Soulution',
-    tagline: 'Beat burnout — sustained energy and sharp mental clarity.',
+    name: 'The Energy Soulution',
+    tagline: 'Beat burnout — sustained, steady energy without the crash.',
     contents: 'B-Complex • B12 • Taurine • Amino Blend • Magnesium',
+  },
+  {
+    name: 'The Brain & Focus Soulution',
+    tagline: 'Mental clarity, concentration & cognitive support — for deep work, exams, and long days.',
+    contents: 'B-Complex • B12 • Magnesium • Taurine • Alpha Lipoic Acid • Glutathione',
+    extra: 'Add NAD+ Booster 50 mg +$75',
   },
   {
     name: 'The Beauty Glow Soulution',
