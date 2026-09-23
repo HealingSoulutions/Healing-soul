@@ -48,16 +48,6 @@ export default function Contact() {
               <span className="label">Hours</span>
               <p>By appointment, seven days a week. Same-day requests within four hours carry a rush fee.</p>
             </div>
-            <div>
-              <span className="label">Address</span>
-              <p>
-                Healing Soulutions LLC
-                <br />
-                416 Lenox Avenue, Unit 6A
-                <br />
-                New York, NY 10037
-              </p>
-            </div>
           </div>
 
           <p className="fine">
