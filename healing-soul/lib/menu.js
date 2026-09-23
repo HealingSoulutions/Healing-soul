@@ -53,6 +53,12 @@ export const SIGNATURE = [
     extra: 'IM: CoQ-10 injection included at the same visit • pairs with our Fertility Optimization protocol',
   },
   {
+    name: 'The Liver Detox Soulution',
+    tagline: 'Support your body’s natural detox pathways — after travel, indulgence, medication courses, or a heavy season.',
+    contents: 'Glutathione • Vitamin C • B-Complex • Magnesium • Taurine • Alpha Lipoic Acid',
+    extra: 'Add NAC +$49 · increase glutathione up to 3,000 mg at $49 per 600 mg',
+  },
+  {
     name: 'The Immunity Soulution',
     tagline: 'Cold & flu defense — fight illness off early and recover faster.',
     contents: 'B-Complex • Vitamin C • Glutathione • Zinc',
