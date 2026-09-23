@@ -152,10 +152,10 @@ export const UPGRADES = [
   ['NAD+ Booster 50 mg', '+$75'],
 ];
 
-export const INJECTION_VISIT_MIN = 149;
+export const INJECTION_VISIT_MIN = 249;
 export const INJECTION_PACK = ['4-Shot Package (any $85 shot, used within 60 days)', 299];
 export const INJECTION_NOTE =
-  'Shot prices apply when added to an IV visit. Stand-alone injection visits are $149 minimum (one shot included); additional shots at the listed price.';
+  'Shot prices apply when added to an IV visit. Stand-alone injection visits are $249 minimum (one shot included); additional shots at the listed price.';
 export const INJECTIONS = [
   ['B12 Energy Shot', 85],
   ['Beauty Shot (Glutathione)', 85],
