@@ -125,6 +125,7 @@ export const SERVICES = [
           ['Needed', 'Fertility, pregnancy, and postpartum specialists. Every batch tested at an accredited third-party lab for potency, pesticides, solvents, and heavy metals.'],
           ['Renue By Science', 'Longevity-focused formulas including NMN and NAD+ precursors. Third-party tested in ISO- and cGMP-certified labs, with batch-numbered test reports published.'],
           ['Momentous', 'Performance and recovery formulas. Every batch third-party tested for banned substances, with most products NSF Certified for Sport or Informed Sport.'],
+          ['Quicksilver Scientific', 'Liposomal formulas, including glutathione and detox support, made in its NSF/ANSI 455-2 GMP-certified Colorado facility. Every batch quality-controlled in its ISO 17025-accredited in-house lab and third-party tested for safety and potency.'],
         ],
         after: 'All independently third-party tested, as published by each brand. Every product on your protocol is named by brand, form, dose, and timing — and supplied by us, sourced directly from the manufacturer through our practitioner accounts and delivered to your door, so you never buy through a third-party marketplace.',
         tag: 'Practitioner-grade partners',
