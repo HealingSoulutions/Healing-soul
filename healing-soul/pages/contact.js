@@ -13,7 +13,7 @@ export default function Contact() {
       <main id="main-content" className="contact">
         <section className="wrap">
           <span className="eyebrow">Contact</span>
-          <h1 className="title">Reach Our Mobile Concierge Nursing Team</h1>
+          <h1 className="sr-only">Reach Our Mobile Concierge Nursing Team</h1>
           <p className="intro">
             Reach us directly to ask a question, confirm availability at your location, or arrange a visit. Our team
             follows up within 24 hours.
