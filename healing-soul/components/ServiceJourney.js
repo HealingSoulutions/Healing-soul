@@ -150,6 +150,9 @@ export default function ServiceJourney() {
         monitoring &mdash; by an experienced wellness nursing team, tailored to your own body&rsquo;s unique
         needs and goals, without ever leaving your home or office.
       </p>
+      <p className="pathway">
+        For best results, follow the full Healing Soulutions Pathway to Wellness &mdash; or book any service on its own.
+      </p>
 
       <div className="stage" role="list" aria-label="Service categories">
         {[
@@ -302,12 +305,20 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .intro {
           max-width: 620px;
-          margin: 0 auto 64px;
+          margin: 0 auto 18px;
           color: rgba(247, 241, 229, 0.82);
           text-align: center;
           font-size: 19px;
           line-height: 1.55;
           font-style: italic;
+        }
+        .hs-journey-section .pathway {
+          max-width: 620px;
+          margin: 0 auto 56px;
+          color: var(--gold);
+          text-align: center;
+          font: 500 12px/1.6 var(--round);
+          letter-spacing: 0.06em;
         }
 
         /* ---- the flowing stage ---- */
