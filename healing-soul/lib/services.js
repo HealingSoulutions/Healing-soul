@@ -198,7 +198,7 @@ export const SERVICES = [
         name: 'Athletic Optimization & Recovery Protocol',
         booked: 'Marathon & triathlon training, strength blocks, recovery from injury, tested athletes',
         price: '$450',
-        copy: 'Performance nutrition for training blocks, race prep, and recovery — NSF Certified for Sport and Informed Sport products only, timed to your training calendar. Pairs with the Recovery & Performance Soulution.',
+        copy: 'Performance nutrition for training blocks, race prep, and recovery — NSF Certified for Sport and Informed Sport products only, timed to your training calendar. Pairs with the Athletic Performance Support and Recovery Soulutions.',
         tag: 'Certified-for-sport products',
       },
       {

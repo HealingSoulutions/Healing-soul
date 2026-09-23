@@ -100,9 +100,16 @@ export const SIGNATURE = [
     contents: 'high-dose Glutathione • Vitamin C • Biotin • B-Complex',
   },
   {
-    name: 'The Recovery & Performance Soulution',
-    for: 'Muscle soreness (DOMS), overtraining fatigue, pre-race loading, injury recovery',
-    tagline: 'Athletic recovery & muscle repair — before the event or after the finish line.',
+    name: 'The Athletic Performance Support Soulution',
+    for: 'Pre-race and pre-competition loading, heavy training blocks, endurance events, tested athletes',
+    tagline: 'Fuel the effort — hydration, amino acids & energy cofactors before the event or a hard training week.',
+    contents: 'Amino Blend • B-Complex • B12 • Magnesium • Taurine • L-Carnitine',
+    extra: 'Pairs with our Athletic Optimization & Recovery Protocol',
+  },
+  {
+    name: 'The Recovery Soulution',
+    for: 'Muscle soreness (DOMS), post-race depletion, overtraining fatigue, injury recovery',
+    tagline: 'Repair & rebuild — after the finish line, a hard block, or an injury.',
     contents: 'Amino Blend • B-Complex • Magnesium • Glutathione • Vitamin C • anti-inflammatory',
   },
   {
