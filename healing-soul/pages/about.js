@@ -13,7 +13,7 @@ const FAQS = [
   ['Who provides my care?', 'Care is delivered by licensed Registered Nurses (RNs) and Nurse Practitioners (NPs). Registered Nurses provide care under the order or standing order of a Nurse Practitioner or physician, consistent with New York scope-of-practice law.'],
   ['Do you offer telehealth?', 'Yes. Virtual consultations with a Nurse Practitioner are available where clinically appropriate, for clients located in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
   ['How does payment work? Do you take insurance?', 'Healing Soulutions is an out-of-network provider; payment is due at the time of service. We accept major cards through a secure, PCI-compliant processor and, as required by the No Surprises Act, we provide a Good Faith Estimate of expected charges before your scheduled visit.'],
-  ['What should I expect when booking?', 'You choose your services, complete a secure intake and consent, and select a date and time. Our team follows up within 24 hours to confirm the details of your visit.'],
+  ['What should I expect when booking?', 'You choose your services, share a brief health history, review the financial agreement, secure your visit with a card on file, and select a date and time. Our team follows up within 24 hours to confirm the details. Treatment consent and our privacy acknowledgment are reviewed and signed with your nurse at the appointment, before care begins.'],
   ['What is your cancellation policy?', 'We ask for at least 24 hours notice to cancel or reschedule. Full details are in the Financial Agreement presented during booking.'],
 ];
 
@@ -54,9 +54,9 @@ export default function About() {
 
           <div style={CARD}>
             <span style={{ ...EY, fontSize: '0.72rem', display: 'block', marginBottom: '1.2rem' }}>How It Works</span>
-            <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>1. Book.</strong> Choose your services and a preferred date and time, and complete secure intake and consent online.</p>
+            <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>1. Book.</strong> Choose your services and a preferred date and time, share a brief health history, review the financial agreement, and secure your visit online.</p>
             <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>2. Confirm.</strong> Our team reaches out within 24 hours to confirm the details and answer any questions.</p>
-            <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>3. We come to you.</strong> A licensed clinician arrives at your location to provide your care.</p>
+            <p style={P}><strong style={{ color: 'var(--gold-soft)' }}>3. We come to you.</strong> A licensed clinician arrives at your location, reviews and signs consent with you, and provides your care.</p>
             <div style={{ textAlign: 'center', marginTop: '1rem' }}>
               <Link href="/book" className="btn-submit" style={{ display: 'inline-block', width: 'auto', padding: '0.7rem 2rem', textDecoration: 'none' }}>Book a Visit</Link>
             </div>

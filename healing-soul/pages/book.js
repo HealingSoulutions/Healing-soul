@@ -53,7 +53,7 @@ function BookContent() {
            
             <div style={{ width: 25, height: 0.75, background: 'var(--gold-soft)', margin: '0 auto 0.9rem' }} />
             <p style={{ fontFamily: "'Varela Round',sans-serif", color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem', lineHeight: 1.6, maxWidth: 560, margin: '0 auto' }}>
-              Complete your intake, consent, and secure card-on-file below. Everything is submitted directly through our HIPAA-secure form.
+              Choose your time, share a brief health history, review the financial agreement, and secure your visit with a card on file &mdash; all through our HIPAA-secure form. Treatment consent is reviewed and signed with your nurse at the appointment.
             </p>
           </div>
         </div>
@@ -62,7 +62,7 @@ function BookContent() {
         <div style={{ padding: '1.25rem 1.5rem 3rem', maxWidth: 820, margin: '0 auto' }}>
           <iframe
             id={'JotFormIFrame-' + JF_FORM_ID}
-            title="Healing Soulutions — Booking, Intake & Consent"
+            title="Healing Soulutions — Booking & Intake"
             onLoad={() => { try { window.parent.scrollTo(0, 0); } catch (e) {} }}
             allowTransparency={true}
             allow="geolocation; microphone; camera; fullscreen; payment"
@@ -90,7 +90,7 @@ function BookContent() {
 export default function Book() {
   return (
     <>
-      <Seo title="Book a Visit — Healing Soulutions Concierge Nursing" description="Schedule a concierge nursing visit with Healing Soulutions. Complete secure intake, consent, and card-on-file through our HIPAA-secure booking form, serving the New York metro area." />
+      <Seo title="Book a Visit — Healing Soulutions Concierge Nursing" description="Schedule a concierge nursing visit with Healing Soulutions. Choose your time, share a brief health history, review the financial agreement, and secure your visit through our HIPAA-secure booking form. Consent is signed with your nurse at the appointment. Serving the New York metro area." />
       <BookContent />
     </>
   );
