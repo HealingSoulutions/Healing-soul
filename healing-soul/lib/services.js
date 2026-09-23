@@ -111,7 +111,7 @@ export const SERVICES = [
           ['Renue By Science', 'Longevity-focused formulas including NMN and NAD+ precursors. Third-party tested, with certificates of analysis published for each batch.'],
           ['Momentous', 'Performance and recovery formulas developed with sports scientists. NSF Certified for Sport and Informed Sport; every batch is tested.'],
         ],
-        after: 'All independently third-party tested. Every product on your protocol is named by brand, form, dose, and timing.',
+        after: 'All independently third-party tested, as published by each brand. Every product on your protocol is named by brand, form, dose, and timing.',
         tag: 'Practitioner-grade partners',
       },
       {

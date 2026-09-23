@@ -28,8 +28,9 @@ export function PillIcon(props) {
 }
 
 export function IvIcon(props) {
+  // Drawn smaller than the house/pill glyphs; tighten the viewBox so it engraves at the same size.
   return (
-    <svg {...base} {...props}>
+    <svg {...base} {...props} viewBox="4.5 0.5 15 22">
       <circle cx="12" cy="2.5" r="1.3" />
       <path d="M7.5 5h9v8.5a2.5 2.5 0 0 1-2.5 2.5h-4a2.5 2.5 0 0 1-2.5-2.5z" />
       <path d="M9 8.5h6" />
