@@ -40,7 +40,7 @@ export default function DripMenu() {
       <div className="dm-banner">
         <span className="dm-banner-label">Signature Soulutions</span>
         <span className="dm-banner-price">{usd(SIGNATURE_PRICE)}</span>
-        <span className="dm-banner-note">Pure Hydration {usd(279)} &middot; Antioxidant {usd(479)} &middot; High-Dose Vitamin C {usd(849)} &middot; travel included</span>
+        <span className="dm-banner-note">Dehydration (fluids only) {usd(279)} &middot; Antioxidant {usd(479)} &middot; High-Dose Vitamin C {usd(849)} &middot; travel included</span>
       </div>
       <p className="dm-fine">
         Each drip begins with your choice of 500 mL to 1,000 mL Lactated Ringer&rsquo;s (LR) or Normal Saline (NS);
