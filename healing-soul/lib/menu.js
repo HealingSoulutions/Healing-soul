@@ -193,17 +193,17 @@ export const INJECTIONS = [
 // The four-step Pathway to Wellness, priced as one bundle.
 export const PATHWAY = {
   name: 'The Pathway to Wellness',
-  price: 1095,
-  compare: 1169,
-  lede: 'Steps 1–4 in one booking — two home visits, your labs delivered and interpreted, a protocol built for you, and a follow-up. For best results, this is where we recommend every new client begins.',
+  price: 1295,
+  compare: 1439,
+  lede: 'Steps 1–4 in one booking — three home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
   includes: [
     'At-home blood draw, delivered directly to Labcorp',
     'Nurse Practitioner lab interpretation & results call',
     'Written, labs-based supplement protocol',
     'One Signature Soulution IV',
-    '30-day follow-up & protocol adjustment',
+    'Week-4 repeat blood panel, NP reassessment & adjusted protocol',
   ],
-  note: 'Laboratory fees are billed by Labcorp and may be covered by insurance. Your protocol includes up to four supplements (additional supplements $39 each); products are purchased separately and delivered to you.',
+  note: 'Laboratory fees are billed by Labcorp and may be covered by insurance. Your protocol is built around up to four products, sourced by us directly from the manufacturer and delivered to you.',
 };
 
 // Steps 1 & 2 — testing and protocols.
@@ -227,10 +227,11 @@ export const PROTOCOLS = [
   ['Gut Health Protocol', 450, 'microbiome & digestive support'],
   ['Hormonal Health Protocol', 450, 'male & female · labs-based'],
   ['Athletic Optimization & Recovery Protocol', 450, 'certified-for-sport products · training-timed'],
-  ['Follow-Up & Adjustment', 125, ''],
+  ['4-Week Re-Panel & Adjustment', 395, 'repeat panel · NP reassessment · adjusted protocol · $470 separately'],
+  ['Check-In (no labs)', 125, 'between cycles · as needed'],
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];
-export const PROTOCOL_NOTE = 'Every protocol includes up to four supplements; each additional supplement is $39. Products are purchased separately and delivered to you.';
+export const PROTOCOL_NOTE = 'Every protocol runs as a 4-week cycle: consult and written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with reassessment and adjustment.';
 export const LAB_FEE_NOTE = 'Laboratory fees are billed by Labcorp and may be covered by insurance.';
 
 export const CONCIERGE = [
