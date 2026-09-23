@@ -165,7 +165,7 @@ export const SERVICES = [
       'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — the third step of your plan.',
     heroLede:
       'Hydration, nutrients, and targeted injections — administered by a registered nurse in your home, hotel, or office.',
-    includedLede: 'Signature Soulutions are $349 (Pure Hydration $279). Longevity drips, boosters, and injections are priced below — travel included within our service area.',
+    includedLede: 'Signature Soulutions are $349; the fluids-only Dehydration Soulution is $279. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
     included: asCards('infusion'),
     steps: [
       ['Book', 'Choose a drip or injection and a time. A short intake follows.'],
