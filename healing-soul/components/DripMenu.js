@@ -93,7 +93,7 @@ export default function DripMenu() {
       {/* ---- Boosters ---- */}
       <h2 className="dm-h2">Boost Your Drip</h2>
       <p className="dm-lede">
-        Add any nutrient to any Soulution — <b>{usd(BOOSTER_PRICE)} each</b> (glutathione $65).
+        Add any nutrient to any Soulution — <b>{usd(BOOSTER_PRICE)} each</b>. Glutathione {usd(BOOSTER_PRICE)} per 600 mg, up to 3,000 mg.
       </p>
       <div className="dm-boost">
         {BOOSTERS.map(([group, list]) => (

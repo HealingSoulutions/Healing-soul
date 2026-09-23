@@ -2,8 +2,8 @@
 // Mirrors the printed Healing Soulutions Drip Menu (PDF). Edit prices here only.
 
 export const SIGNATURE_PRICE = 349;
-export const BOOSTER_PRICE = 45;
-export const GLUTATHIONE_PRICE = 65;
+export const BOOSTER_PRICE = 49;
+export const GLUTATHIONE_PRICE = 49; // per 600 mg, up to 3,000 mg
 export const INJECTION_PRICE = 85;
 
 export const SIGNATURE = [
@@ -88,7 +88,7 @@ export const SIGNATURE = [
     price: 479,
     tagline: 'Cellular defense & detox support — for recovery, resilience, and healthy aging.',
     contents: 'NAC • Vitamin C • Glutathione',
-    extra: 'Add Alpha Lipoic Acid +$45 (infused separately, light-protected)',
+    extra: 'Add Alpha Lipoic Acid +$79 (infused separately, light-protected)',
   },
   {
     name: 'The High-Dose Vitamin C Soulution',
@@ -103,7 +103,7 @@ export const SIGNATURE = [
     name: 'The Custom Soulution',
     tagline: 'Build your own — choose your nutrients with our clinician for a fully personalized infusion.',
     contents: 'Base: your choice of fluid plus any two nutrients',
-    extra: 'Each additional booster +$45 · premium upgrades as listed below',
+    extra: 'Each additional booster +$49 · premium upgrades as listed below',
   },
 ];
 
@@ -135,7 +135,7 @@ export const LONGEVITY = {
 
 export const BOOSTERS = [
   ['Energy & Metabolism', 'B-Complex · B12 · Thiamine (B1) · Taurine · Amino Blend · L-Carnitine · MICC lipotropic'],
-  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($65) · Zinc · Vitamin D · Alpha Lipoic Acid'],
+  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($49 per 600 mg, up to 3,000 mg) · Zinc · Vitamin D · Alpha Lipoic Acid'],
   ['Recovery & Beauty', 'Magnesium · Mineral Blend · L-Glutamine · Lysine · Biotin'],
   ['Comfort Medications', 'Anti-Nausea · Anti-Inflammatory · Antacid · Antihistamine · Steroid'],
 ];
