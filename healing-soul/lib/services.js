@@ -72,7 +72,7 @@ export const SERVICES = [
   {
     slug: 'supplement-protocols',
     priceFrom: 250,
-    priceLabel: 'Consult $250 · Labs-based protocol $350 · up to 4 supplements included',
+    priceLabel: 'Protocols from $250 · 4-week re-panel & adjustment $395',
     number: '02',
     icon: 'pill',
     back: ['YOUR', 'PLAN'],
@@ -84,7 +84,7 @@ export const SERVICES = [
       "A personalized supplement plan built from your labs when you have them, or from a consult when you don't — with specific product selections and a follow-up schedule.",
     heroLede:
       'Not a generic list. A plan built around your labs, your goals, and your life — using only brands that pass our certification and third-party testing standards.',
-    includedLede: 'Start from your labs or from a conversation. Either way, you leave with a written protocol built from brands we trust. Every protocol includes up to four supplements; each additional supplement is $39. Products are purchased separately and delivered to you.',
+    includedLede: 'Every protocol runs as a 4-week cycle: consult, a written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with a Nurse Practitioner reassessment and adjustment. Cycles repeat until your goals are met.',
     included: [
       {
         name: 'Protocol Consult',
@@ -96,7 +96,7 @@ export const SERVICES = [
       {
         name: 'Labs-Based Protocol',
         booked: 'Low vitamin D or B12, borderline labs, fatigue with normal-range results, optimizing after a physical',
-        price: '$350 · includes NP lab interpretation · supplements purchased separately',
+        price: '$350 · includes NP lab interpretation',
         copy:
           'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages.',
         tag: 'Built from your results',
@@ -202,17 +202,24 @@ export const SERVICES = [
         tag: 'Certified-for-sport products',
       },
       {
-        name: 'Follow-Up & Adjustment',
-        booked: 'Re-checking a plan after 4\u20138 weeks, adjusting doses after new labs',
+        name: '4-Week Re-Panel & Adjustment',
+        booked: 'End of every protocol cycle \u2014 repeat labs, reassessment, dose and product adjustment',
+        price: '$395 per cycle \u00b7 $470 booked separately',
+        copy: 'At the end of each 4-week cycle: an at-home repeat blood panel delivered to Labcorp, Nurse Practitioner interpretation, and a reassessment that adjusts your protocol for the next cycle. Laboratory fees are billed by Labcorp and may be covered by insurance.',
+        tag: 'Every 4 weeks',
+      },
+      {
+        name: 'Check-In (no labs)',
+        booked: 'A mid-cycle question, a side effect to review, a product swap',
         price: '$125',
-        copy: 'A scheduled check-in to review how the plan is working and adjust before your next labs.',
-        tag: 'Ongoing',
+        copy: 'A virtual or in-home check-in between cycles to review how the plan is working and make small adjustments before your next panel.',
+        tag: 'As needed',
       },
     ],
     steps: [
       ['Consult', 'Share your goals, history, and any recent labs.'],
       ['Receive your protocol', 'A written plan with named, third-party-tested products, doses, and a schedule — usually within a few days.'],
-      ['Follow up', 'We check in, adjust, and re-test when it makes sense.'],
+      ['Re-panel at week 4', 'A repeat blood panel, a Nurse Practitioner reassessment, and an adjusted protocol for the next cycle.'],
     ],
     disclaimer:
       'Supplement protocols are educational and wellness-focused and are not intended to diagnose, treat, cure, or prevent any disease.',
@@ -225,7 +232,7 @@ export const SERVICES = [
   {
     slug: 'iv-injections',
     priceFrom: 279,
-    priceLabel: 'Signature drips from $279 · Pathway bundle $1,095',
+    priceLabel: 'Signature drips from $279 · Pathway bundle $1,295',
     menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
