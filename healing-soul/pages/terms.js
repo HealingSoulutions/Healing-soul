@@ -429,9 +429,7 @@ export default function Terms() {
           <h2>18. Contact</h2>
           <div className="box" tabIndex={0} role="region">
           <p>
-            Healing Soulutions LLC
-            <br />
-            416 Lenox Avenue, Unit 6A, New York, NY 10037
+            Healing Soulutions LLC &mdash; New York, NY
             <br />
             <a href="tel:+15857472215">(585) 747-2215</a>
             <br />
