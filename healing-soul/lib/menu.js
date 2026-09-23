@@ -81,7 +81,7 @@ export const SIGNATURE = [
 ];
 
 export const LONGEVITY = {
-  lede: 'The gold standard in cellular renewal — supporting brain health, energy, focus, and healthy aging at the DNA level. Infused slowly for comfort.',
+  lede: 'The gold standard in cellular renewal — supporting brain health, energy, focus, and healthy aging at the cellular level. Infused slowly for comfort.',
   items: [
     {
       name: 'The NAD+ Soulution',
