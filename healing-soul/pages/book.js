@@ -36,33 +36,42 @@ function BookContent() {
 
   useEffect(() => {
     // JotForm posts "scrollIntoView::<id>" when the client moves between form pages and
-    // "setHeight:<px>:<id>" when the iframe resizes. A shorter page 2 leaves the browser
-    // scrolled below the form's new bottom edge (a blank screen), so on either event we
-    // bring the top of the form back into view, just under the fixed nav.
+    // "setHeight:<px>:<id>" when the iframe resizes. JotForm's own embed handler also reacts
+    // to these, and the iframe height changes a beat later, so a single scroll lands wrong.
+    // We scroll to the top of the form now and again after the resize settles, and treat
+    // any large height change as a page change (conditional fields only move a few px).
     const NAV_OFFSET = 84;
+    let prevHeight = 0;
+    let timers = [];
     function toFormTop() {
       const el = document.getElementById('JotFormIFrame-' + JF_FORM_ID);
       if (!el) return;
       const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
       window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
     }
+    function settleToTop() {
+      timers.forEach(clearTimeout);
+      timers = [0, 120, 350, 700].map((ms) => setTimeout(toFormTop, ms));
+    }
     function onMessage(e) {
-      if (e.origin !== JF_ORIGIN || typeof e.data !== 'string') return;
-      if (e.data.indexOf('scrollIntoView') === 0) {
-        toFormTop();
+      if (e.origin !== JF_ORIGIN) return;
+      const str = typeof e.data === 'string' ? e.data : JSON.stringify(e.data || '');
+      if (str.indexOf('scrollIntoView') !== -1) {
+        settleToTop();
         return;
       }
-      if (e.data.indexOf('setHeight:') === 0) {
-        const px = parseInt(e.data.split(':')[1], 10);
-        const el = document.getElementById('JotFormIFrame-' + JF_FORM_ID);
-        if (!el || !px) return;
-        const formTop = el.getBoundingClientRect().top + window.scrollY;
-        // If the viewport is now below the resized form, jump back to its top.
-        if (window.scrollY > formTop + px - window.innerHeight * 0.5) toFormTop();
+      const m = /setHeight:(\d+)/.exec(str);
+      if (m) {
+        const px = parseInt(m[1], 10);
+        if (prevHeight && Math.abs(px - prevHeight) > 250) settleToTop();
+        prevHeight = px;
       }
     }
     window.addEventListener('message', onMessage);
-    return () => window.removeEventListener('message', onMessage);
+    return () => {
+      window.removeEventListener('message', onMessage);
+      timers.forEach(clearTimeout);
+    };
   }, []);
 
   return (
