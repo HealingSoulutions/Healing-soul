@@ -195,6 +195,10 @@ export const PROTOCOLS = [
   ['Fertility Optimization Protocol', 450, 'cycle-timed · coordinated with your clinic'],
   ['Brain Health & Focus Protocol', 450, 'labs-informed · cognitive support'],
   ['Sleep Architecture Protocol', 450, 'timing, nutrients & habits · with follow-up'],
+  ['Seasonal Allergy Protocol', 350, 'histamine support · seasonal'],
+  ['Iron Deficiency Protocol', 450, 'labs-based · re-test schedule'],
+  ['Thyroid Health Protocol', 450, 'labs-based · complements physician care'],
+  ['Immunity Defense Protocol', 350, 'year-round immune support'],
   ['Follow-Up & Adjustment', 125, ''],
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];

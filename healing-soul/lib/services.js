@@ -141,6 +141,30 @@ export const SERVICES = [
         tag: 'Sleep optimization',
       },
       {
+        name: 'Seasonal Allergy Protocol',
+        price: '$350',
+        copy: 'A seasonal plan to support histamine balance and airway comfort before and during allergy season — nutrients, timing, and lifestyle, adjusted as the season changes.',
+        tag: 'Histamine support',
+      },
+      {
+        name: 'Iron Deficiency Protocol',
+        price: '$450',
+        copy: 'A labs-based plan for low iron and ferritin — the right form and dose, absorption pairing, and a re-test schedule, coordinated with your physician where treatment is already underway.',
+        tag: 'Labs-based · re-test included',
+      },
+      {
+        name: 'Thyroid Health Protocol',
+        price: '$450',
+        copy: 'Labs-informed nutritional support for thyroid health — built from a full thyroid panel and designed to complement, never replace, care from your endocrinologist or physician.',
+        tag: 'Labs-based',
+      },
+      {
+        name: 'Immunity Defense Protocol',
+        price: '$350',
+        copy: 'A year-round immune-support plan for frequent travelers, parents, and anyone who gets run down — daily foundations plus a short-course plan for the first sign of illness.',
+        tag: 'Immune support',
+      },
+      {
         name: 'Follow-Up & Adjustment',
         price: '$125',
         copy: 'A scheduled check-in to review how the plan is working and adjust before your next labs.',
