@@ -8,14 +8,9 @@ export const INJECTION_PRICE = 85;
 
 export const SIGNATURE = [
   {
-    name: 'The Dehydration Soulution',
+    name: 'The Pure Hydration Soulution',
     price: 279,
     badge: 'Entry drip',
-    tagline: 'Pure IV fluids, nothing added — fast rehydration for heat, travel, illness, or a long night.',
-    contents: '500 mL–1,000 mL Lactated Ringer’s or Normal Saline only • no additives',
-  },
-  {
-    name: 'The Pure Hydration Soulution',
     tagline: 'Full-body replenishment — post-workout & marathon training, exhaustion & recovery, colonoscopy prep & aftercare, or an everyday hydration boost.',
     contents: '500 mL–1,000 mL Lactated Ringer’s or Normal Saline • Magnesium • Calcium • balanced electrolytes',
   },
@@ -33,12 +28,12 @@ export const SIGNATURE = [
   {
     name: 'The Migraine Soulution',
     tagline: 'Targeted relief for migraines & tension headaches, with light-sensitive comfort.',
-    contents: 'Magnesium • B-Complex • anti-inflammatory (Toradol) • anti-nausea (Zofran) • optional antihistamine',
+    contents: 'Magnesium • B-Complex • anti-inflammatory • anti-nausea • optional antihistamine',
   },
   {
     name: 'The Stomach Bug Soulution',
     tagline: 'Stomach flu, food poisoning & vomiting — deep rehydration plus a gut reset.',
-    contents: 'B-Complex • Magnesium • anti-nausea (Zofran) • antacid (Pepcid) • Glutathione',
+    contents: 'B-Complex • Magnesium • anti-nausea • antacid • Glutathione',
   },
   {
     name: 'The Immunity Soulution',
@@ -119,7 +114,7 @@ export const BOOSTERS = [
   ['Energy & Metabolism', 'B-Complex · B12 · Thiamine (B1) · Taurine · Amino Blend · L-Carnitine · MICC lipotropic'],
   ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($65) · Zinc · Vitamin D · CoQ-10 · Alpha Lipoic Acid'],
   ['Recovery & Beauty', 'Magnesium · Mineral Blend · L-Glutamine · Lysine · Biotin'],
-  ['Comfort Medications', 'Anti-Nausea · Anti-Inflammatory · Antacid'],
+  ['Comfort Medications', 'Anti-Nausea · Anti-Inflammatory · Antacid · Antihistamine · Steroid'],
 ];
 
 export const UPGRADES = [
