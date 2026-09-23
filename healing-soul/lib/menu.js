@@ -179,7 +179,7 @@ export const PATHWAY = {
     'One Signature Soulution IV',
     '30-day follow-up & protocol adjustment',
   ],
-  note: 'Laboratory fees are billed by Labcorp and may be covered by insurance. Supplements on your protocol are purchased separately and delivered to you.',
+  note: 'Laboratory fees are billed by Labcorp and may be covered by insurance. Your protocol includes up to four supplements (additional supplements $39 each); products are purchased separately and delivered to you.',
 };
 
 // Steps 1 & 2 — testing and protocols.
@@ -198,6 +198,7 @@ export const PROTOCOLS = [
   ['Follow-Up & Adjustment', 125, ''],
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];
+export const PROTOCOL_NOTE = 'Every protocol includes up to four supplements; each additional supplement is $39. Products are purchased separately and delivered to you.';
 export const LAB_FEE_NOTE = 'Laboratory fees are billed by Labcorp and may be covered by insurance.';
 
 export const CONCIERGE = [

@@ -72,7 +72,7 @@ export const SERVICES = [
   {
     slug: 'supplement-protocols',
     priceFrom: 250,
-    priceLabel: 'Consult $250 · Labs-based protocol $350',
+    priceLabel: 'Consult $250 · Labs-based protocol $350 · up to 4 supplements included',
     number: '02',
     icon: 'pill',
     back: ['YOUR', 'PLAN'],
@@ -84,7 +84,7 @@ export const SERVICES = [
       "A personalized supplement plan built from your labs when you have them, or from a consult when you don't — with specific product selections and a follow-up schedule.",
     heroLede:
       'Not a generic list. A plan built around your labs, your goals, and your life — using only brands that pass our certification and third-party testing standards.',
-    includedLede: 'Start from your labs or from a conversation. Either way, you leave with a written protocol built from brands we trust.',
+    includedLede: 'Start from your labs or from a conversation. Either way, you leave with a written protocol built from brands we trust. Every protocol includes up to four supplements; each additional supplement is $39. Products are purchased separately and delivered to you.',
     included: [
       {
         name: 'Protocol Consult',
