@@ -4,7 +4,7 @@ import { serviceCategories } from './data';
 
 const cat = (id) => serviceCategories.find((c) => c.id === id);
 const asCards = (id) =>
-  (cat(id)?.services || []).map((s) => ({ name: s.title, copy: s.desc, tag: s.tags?.[0] }));
+  (cat(id)?.services || []).map((s) => ({ name: s.title, copy: s.desc, tag: s.tags?.[0], bullets: s.bullets, price: s.price }));
 
 export const SERVICES = [
   {

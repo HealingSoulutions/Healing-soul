@@ -50,6 +50,11 @@ function ServicesContent() {
                       {openSvc === s.id && (
                         <div style={{ padding: '0.5rem 0.75rem 0.85rem', fontFamily: "'Varela Round', sans-serif" }}>
                           <p style={{ marginBottom: '0.6rem', fontSize: '0.75rem', lineHeight: 1.7, color: 'rgba(255,255,255,0.88)' }}>{s.desc}</p>
+                          {s.bullets && (
+                            <ul style={{ margin: '0 0 0.7rem', paddingLeft: '1.1rem', fontSize: '0.73rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.88)' }}>
+                              {s.bullets.map((b) => <li key={b} style={{ marginBottom: '0.2rem' }}>{b}</li>)}
+                            </ul>
+                          )}
                           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
                             {s.tags.map((t) => (
                               <span key={t} className="svc-tag">{t}</span>
