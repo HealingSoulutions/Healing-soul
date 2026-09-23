@@ -201,6 +201,8 @@ export const PROTOCOLS = [
   ['Immunity Defense Protocol', 350, 'year-round immune support'],
   ['Post-Natal Protocol', 450, 'postpartum replenishment · nursing-safe'],
   ['Gut Health Protocol', 450, 'microbiome & digestive support'],
+  ['Hormonal Health Protocol', 450, 'male & female · labs-based'],
+  ['Athletic Optimization & Recovery Protocol', 450, 'certified-for-sport products · training-timed'],
   ['Follow-Up & Adjustment', 125, ''],
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];

@@ -177,6 +177,18 @@ export const SERVICES = [
         tag: 'Microbiome · digestive support',
       },
       {
+        name: 'Hormonal Health Protocol',
+        price: '$450',
+        copy: 'For men and women — labs-informed nutritional support for hormone balance across perimenopause, menopause, andropause, and stress-related shifts, coordinated with any hormone therapy you are already on.',
+        tag: 'Male & female · labs-based',
+      },
+      {
+        name: 'Athletic Optimization & Recovery Protocol',
+        price: '$450',
+        copy: 'Performance nutrition for training blocks, race prep, and recovery — NSF Certified for Sport and Informed Sport products only, timed to your training calendar. Pairs with the Recovery & Performance Soulution.',
+        tag: 'Certified-for-sport products',
+      },
+      {
         name: 'Follow-Up & Adjustment',
         price: '$125',
         copy: 'A scheduled check-in to review how the plan is working and adjust before your next labs.',
