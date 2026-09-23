@@ -232,7 +232,7 @@ export const SERVICES = [
   {
     slug: 'iv-injections',
     priceFrom: 279,
-    priceLabel: 'Signature drips from $279 · Pathway bundle $1,595',
+    priceLabel: 'Signature drips from $279 · Pathway bundle $1,795',
     menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
