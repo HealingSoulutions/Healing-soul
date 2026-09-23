@@ -37,8 +37,7 @@ function BookContent() {
   return (
     <main id="main-content" className="book">
       <section className="wrap">
-        <span className="eyebrow">Book a Visit</span>
-        <h1>Choose your time. We&rsquo;ll come to you.</h1>
+        <h1 className="eyebrow">Book a Visit</h1>
         <p className="intro">
           Choose your time, share a brief health history, review the financial agreement, and secure your visit with a
           card on file &mdash; all through our HIPAA-secure form. Treatment consent is reviewed and signed with your nurse
@@ -96,16 +95,11 @@ function BookContent() {
         }
         .eyebrow {
           display: block;
-          margin-bottom: 14px;
+          margin: 0 0 18px;
           color: var(--gold);
           font: 500 11px/1 var(--round);
           letter-spacing: 0.22em;
           text-transform: uppercase;
-        }
-        h1 {
-          margin: 0 0 16px;
-          color: var(--gold-light);
-          font: 500 clamp(34px, 5vw, 46px) / 1.1 var(--serif);
         }
         .intro {
           max-width: 560px;

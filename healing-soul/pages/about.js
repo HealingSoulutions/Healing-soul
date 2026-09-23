@@ -2,7 +2,7 @@ import Seo from '../components/Seo';
 import Link from 'next/link';
 
 // About page in the homepage's language: flat emerald, Cormorant headings, Varela Round
-// detail text, gold hairlines. No cards, no scene background. Wordmark matches the homepage exactly.
+// detail text, gold hairlines. No cards, no scene background, no header block — opens on the team.
 
 const FAQS = [
   ['What areas do you serve?', 'Healing Soulutions primarily serves Manhattan, with concierge and mobile nursing also available across the greater New York metropolitan area on request. Contact us to confirm availability at your location.'],
@@ -57,23 +57,7 @@ export default function About() {
       />
       <main id="main-content" className="about">
         <section className="wrap">
-          <span className="eyebrow">About</span>
-          <img
-            className="wordmark"
-            src="/wordmark-gold.png"
-            alt="Healing Soulutions — Concierge Nursing"
-            width={900}
-            height={378}
-          />
-          <h1>Experienced hands. Delivered to your door.</h1>
-          <p className="intro">
-            Concierge nursing led by clinicians with deep hospital roots &mdash; bringing ICU- and ER-level judgment,
-            and a wellness-first approach, into the privacy of your home or office.
-          </p>
-
-          <div className="rule" />
-
-          <span className="label section">Our Team</span>
+          <h1 className="label section">Our Team</h1>
           <div className="team">
             {TEAM.map((t) => (
               <article className="member" key={t.name}>
@@ -152,34 +136,6 @@ export default function About() {
           margin: 0 auto;
           text-align: center;
         }
-        .eyebrow {
-          display: block;
-          margin-bottom: 18px;
-          color: var(--gold);
-          font: 500 11px/1 var(--round);
-          letter-spacing: 0.22em;
-          text-transform: uppercase;
-        }
-        .wordmark {
-          display: block;
-          /* identical to the homepage: 63% of a 20px-gutter viewport, capped at 306px */
-          width: min(306px, calc((100vw - 40px) * 0.63));
-          height: auto;
-          margin: 0 auto 8px;
-        }
-        h1 {
-          margin: 18px 0 16px;
-          color: var(--gold-light);
-          font: 500 clamp(34px, 5vw, 46px) / 1.1 var(--serif);
-        }
-        .intro {
-          max-width: 560px;
-          margin: 0 auto;
-          color: rgba(247, 241, 229, 0.82);
-          font-size: 19px;
-          line-height: 1.55;
-          font-style: italic;
-        }
         .rule {
           height: 1px;
           margin: 52px auto 44px;
@@ -193,6 +149,7 @@ export default function About() {
           text-transform: uppercase;
         }
         .label.section {
+          margin-top: 0;
           font-size: 11px;
           letter-spacing: 0.22em;
           margin-bottom: 32px;
