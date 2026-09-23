@@ -62,6 +62,11 @@ export default function DripMenu() {
               </p>
             )}
             {d.extra && <p className="dm-extra">{d.extra}</p>}
+            {d.pair && (
+              <p className="dm-pair">
+                <b>Pairs well with:</b> {d.pair[0]} &middot; {d.pair[1]}
+              </p>
+            )}
             {d.special && <p className="dm-special">{d.special}</p>}
           </article>
         ))}
@@ -342,6 +347,16 @@ export default function DripMenu() {
           margin: 6px 0 0;
           font-size: 12px;
           color: var(--gold-dark);
+        }
+        .dm-pair {
+          margin: 6px 0 0;
+          font-size: 12px;
+          line-height: 1.5;
+          color: var(--gold-dark);
+        }
+        .dm-pair b {
+          color: var(--emerald);
+          font-weight: 500;
         }
         .dm-special {
           margin: 8px 0 0;
