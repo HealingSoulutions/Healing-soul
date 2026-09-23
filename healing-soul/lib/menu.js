@@ -277,7 +277,7 @@ export const CONCIERGE = [
   ['Travel included', 'within our service area'],
   ['Same-day rush', 'requests within 4 hours, +$79'],
   ['Group bookings (3+)', 'save 10% — perfect for events, bridal parties & recovery days'],
-  ['Membership & multi-session packages', 'available for longevity & wellness regulars'],
+  ['Multi-session packages', 'ask about packages for longevity & wellness regulars'],
   ['Good-faith wellness evaluation', 'included with every visit, by our medical team'],
   ['HSA / FSA', 'welcome'],
 ];
