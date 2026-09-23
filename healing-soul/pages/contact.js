@@ -12,8 +12,7 @@ export default function Contact() {
       />
       <main id="main-content" className="contact">
         <section className="wrap">
-          <span className="eyebrow">Contact</span>
-          <h1>We&rsquo;re here to help</h1>
+          <h1 className="eyebrow">Contact</h1>
           <p className="intro">
             Reach us directly to ask a question, confirm availability at your location, or arrange a visit. Our team
             follows up within 24 hours.
@@ -78,16 +77,11 @@ export default function Contact() {
         }
         .eyebrow {
           display: block;
-          margin-bottom: 14px;
+          margin: 0 0 18px;
           color: var(--gold);
           font: 500 11px/1 var(--round);
           letter-spacing: 0.22em;
           text-transform: uppercase;
-        }
-        h1 {
-          margin: 0 0 16px;
-          color: var(--gold-light);
-          font: 500 clamp(34px, 5vw, 46px) / 1.1 var(--serif);
         }
         .intro {
           max-width: 560px;
