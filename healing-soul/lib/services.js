@@ -21,24 +21,29 @@ export const SERVICES = [
     summary:
       'Blood work, urine testing, and respiratory swabs collected in the comfort and privacy of your home — with your results reviewed and explained by our Nurse Practitioner.',
     heroLede:
-      'Collected in your home and dropped off directly at the lab for processing and quick results. Lab interpretation and ongoing monitoring recommended.',
+      'ER- and ICU-trained nurses come to you, draw your labs, and hand-deliver them to our partner Labcorp the same day. Our Nurse Practitioner interprets every result with you — and if you want to act on them, we build your supplement protocol, bring the supplements, and set up your monthly pill organizer with you.',
     includedLede: 'Your path begins here. Everything below can be done in a single visit.',
     included: [
       {
         name: 'At-Home Lab Visit',
         price: '$695 · includes NP interpretation',
-        copy: 'Venipuncture performed in your home by a licensed nurse, hand-delivered to Labcorp by our team, then reviewed by our Nurse Practitioner with a results call. Standard and specialty panels, from routine wellness screening to targeted testing. Laboratory fees are billed by Labcorp and may be covered by insurance.',
+        copy: 'Your blood draw performed at home by an ER/ICU-trained nurse, hand-delivered to our partner Labcorp the same day, then interpreted by our Nurse Practitioner on a results call. Standard and specialty panels, from routine wellness screening to targeted testing. Laboratory fees are billed by Labcorp and may be covered by insurance.',
         tag: 'Phlebotomy',
       },
       {
+        name: 'One Stick with Your IV',
+        copy: 'Booking a Soulution the same day? We draw your labs from the same IV line before your infusion begins, so there is no second needle stick.',
+        tag: 'Labs + IV, one visit',
+      },
+      {
         name: 'Urine Testing',
-        price: '+$45 with a blood draw',
+        price: '$295 · +$95 with an At-Home Lab Visit',
         copy: 'Private, guided specimen collection at home for urinalysis and related testing.',
         tag: 'Urinalysis',
       },
       {
-        name: 'Respiratory Swabs',
-        price: '$175 visit + test fee',
+        name: 'Respiratory PCR Swabs',
+        price: '$349 visit + test fee',
         copy: 'COVID-19 PCR, plus rapid RSV and influenza A & B. Collected in-home, with results reviewed by a clinician.',
         tag: 'COVID-19 PCR · RSV · Flu A/B',
       },
@@ -84,7 +89,7 @@ export const SERVICES = [
       "A personalized supplement plan built from your labs when you have them, or from a consult when you don't — with specific product selections and a follow-up schedule.",
     heroLede:
       'Not a generic list. A plan built around your labs, your goals, and your life — using only brands that pass our certification and third-party testing standards, supplied by us and delivered to your door.',
-    includedLede: 'Every protocol runs as a 4-week cycle: consult, a written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with a Nurse Practitioner reassessment and adjustment. Cycles repeat until your goals are met.',
+    includedLede: 'Every protocol runs as a 4-week cycle: consult, a written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with a Nurse Practitioner reassessment and adjustment. We bring your supplements to you and set up your monthly pill organizer together, so the plan is easy to follow from day one. Cycles repeat until your goals are met.',
     included: [
       {
         name: 'Protocol Consult',
