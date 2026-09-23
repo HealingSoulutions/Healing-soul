@@ -71,7 +71,7 @@ export default function Home() {
         }
         .wordmark {
           display: block;
-          width: min(306px, 63%);
+          width: min(337px, 69%);
           height: auto;
           margin: 0 auto 8px;
         }
