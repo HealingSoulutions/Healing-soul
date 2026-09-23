@@ -16,7 +16,7 @@ export const SIGNATURE = [
   },
   {
     name: 'The Pure Hydration Soulution',
-    tagline: 'Full-body replenishment — post-workout & marathon training, exhaustion & recovery, colonoscopy prep & aftercare, or an everyday hydration boost.',
+    tagline: 'Full-body replenishment — post-workout & marathon training, exhaustion & recovery, POTS symptom support, colonoscopy prep & aftercare, or an everyday hydration boost.',
     contents: '500 mL–1,000 mL Lactated Ringer’s or Normal Saline • Magnesium • Calcium • balanced electrolytes',
   },
   {
