@@ -243,6 +243,11 @@ export default function ServiceJourney() {
                 <li key={item.name}>
                   <strong>{item.name}{item.price && <em className="ptag">{item.price}</em>}</strong>
                   <span>{item.copy}</span>
+                  {item.booked && (
+                    <span className="booked">
+                      <b>Commonly booked for:</b> {item.booked}
+                    </span>
+                  )}
                   {item.bullets && (
                     <ul className="bullets">
                       {item.bullets.map((b) => (
@@ -654,6 +659,16 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .bullets li::marker {
           color: var(--gold);
+        }
+        .hs-journey-section .booked {
+          display: block;
+          margin-top: 6px;
+          font: 400 11.5px/1.5 var(--round);
+          color: rgba(247, 241, 229, 0.7);
+        }
+        .hs-journey-section .booked b {
+          color: var(--gold);
+          font-weight: 500;
         }
         .hs-journey-section .ptag {
           display: inline-block;

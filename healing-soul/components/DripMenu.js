@@ -56,6 +56,11 @@ export default function DripMenu() {
             {d.price && <span className="dm-card-price">{usd(d.price)}</span>}
             <p className="dm-tagline">{d.tagline}</p>
             <p className="dm-contents">{d.contents}</p>
+            {d.for && (
+              <p className="dm-for">
+                <b>Commonly booked for:</b> {d.for}
+              </p>
+            )}
             {d.extra && <p className="dm-extra">{d.extra}</p>}
             {d.special && <p className="dm-special">{d.special}</p>}
           </article>
@@ -322,6 +327,16 @@ export default function DripMenu() {
           font-size: 12.5px;
           line-height: 1.55;
           color: var(--muted);
+        }
+        .dm-for {
+          margin: 6px 0 0;
+          font-size: 12px;
+          line-height: 1.5;
+          color: var(--muted);
+        }
+        .dm-for b {
+          color: var(--emerald);
+          font-weight: 500;
         }
         .dm-extra {
           margin: 6px 0 0;
