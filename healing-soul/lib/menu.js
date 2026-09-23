@@ -232,11 +232,11 @@ export const INJECTIONS = [
 // The four-step Pathway to Wellness, priced as one bundle.
 export const PATHWAY = {
   name: 'The Pathway to Wellness',
-  price: 1295,
-  compare: 1439,
+  price: 1595,
+  compare: 1789,
   lede: 'Steps 1–4 in one booking — three home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
   includes: [
-    'At-home blood draw, delivered directly to Labcorp',
+    'At-home lab visit: blood draw, hand-delivered to Labcorp by our team',
     'Nurse Practitioner lab interpretation & results call',
     'Written, labs-based supplement protocol',
     'One Signature Soulution IV',
@@ -247,10 +247,10 @@ export const PATHWAY = {
 
 // Steps 1 & 2 — testing and protocols.
 export const TESTING = [
-  ['At-Home Blood Draw', 195, 'Manhattan · delivered directly to Labcorp'],
+  ['At-Home Lab Visit', 695, 'blood draw · hand-delivered to Labcorp by our team · NP interpretation & results call'],
   ['Urine collection (added to a draw)', 45, ''],
   ['Respiratory swab visit', 175, 'COVID-19 PCR · RSV · Flu A/B · plus test fee'],
-  ['NP lab interpretation & results call', 150, 'waived with any Supplement Protocol'],
+  ['NP review of outside lab results', 150, 'labs drawn elsewhere · waived with any Supplement Protocol'],
 ];
 export const PROTOCOLS = [
   ['Protocol Consult', 250, 'virtual or in-home · no labs required'],
@@ -266,7 +266,7 @@ export const PROTOCOLS = [
   ['Gut Health Protocol', 450, 'microbiome & digestive support'],
   ['Hormonal Health Protocol', 450, 'male & female · labs-based'],
   ['Athletic Optimization & Recovery Protocol', 450, 'certified-for-sport products · training-timed'],
-  ['4-Week Re-Panel & Adjustment', 395, 'repeat panel · NP reassessment · adjusted protocol · $470 separately'],
+  ['4-Week Re-Panel & Adjustment', 395, 'repeat panel · NP reassessment · adjusted protocol · $695 separately'],
   ['Check-In (no labs)', 125, 'between cycles · as needed'],
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];
