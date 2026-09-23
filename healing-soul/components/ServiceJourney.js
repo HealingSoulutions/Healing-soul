@@ -78,17 +78,54 @@ export default function ServiceJourney() {
     };
   }, [open]);
 
+  // Touch screens have no hover: swivel each medallion once as it scrolls into view, and on tap
+  // swivel first, then open the pop-up so the motion is seen.
+  const [touch, setTouch] = useState(false);
+  useEffect(() => {
+    const coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+    setTouch(coarse);
+    if (!coarse || !('IntersectionObserver' in window)) return undefined;
+    const seen = new Set();
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          const i = Number(e.target.dataset.i);
+          if (e.isIntersecting && !seen.has(i)) {
+            seen.add(i);
+            setTimeout(() => setTurns((t) => t.map((v, k) => (k === i ? v + 1 : v))), 250);
+            setTimeout(() => setTurns((t) => t.map((v, k) => (k === i ? v + 1 : v))), 1900);
+          }
+        });
+      },
+      { threshold: 0.7 }
+    );
+    document.querySelectorAll('.hs-journey-section .slot').forEach((el) => io.observe(el));
+    return () => io.disconnect();
+  }, []);
+  const openStep = (i) => {
+    setTouched(true);
+    if (touch) {
+      setTurns((t) => t.map((v, k) => (k === i ? v + 1 : v)));
+      setTimeout(() => setOpen(i), 700);
+    } else {
+      setOpen(i);
+    }
+  };
+
   // Hover in: swivel half a turn and land on the back. Hover out: swivel on and land on the front.
   const swivel = (i) => {
     setTouched(true);
     setTurns((t) => t.map((v, k) => (k === i ? v + 1 : v)));
   };
-  const hoverProps = (i) => ({
-    onMouseEnter: () => swivel(i),
-    onMouseLeave: () => swivel(i),
-    onFocus: () => swivel(i),
-    onBlur: () => swivel(i),
-  });
+  const hoverProps = (i) =>
+    touch
+      ? {}
+      : {
+          onMouseEnter: () => swivel(i),
+          onMouseLeave: () => swivel(i),
+          onFocus: () => swivel(i),
+          onBlur: () => swivel(i),
+        };
 
   const place = (i) => ({
     '--dx': `${DESKTOP[i].x}%`,
@@ -133,6 +170,7 @@ export default function ServiceJourney() {
             className={`slot${i === 0 && !touched ? ' cue' : ''}`}
             role="listitem"
             style={place(i)}
+            data-i={i}
             key={s.slug}
           >
             <button
@@ -140,17 +178,14 @@ export default function ServiceJourney() {
               className="step"
               aria-haspopup="dialog"
               aria-expanded={open === i}
-              onClick={() => {
-                setTouched(true);
-                setOpen(i);
-              }}
+              onClick={() => openStep(i)}
               {...hoverProps(i)}
             >
               {inner(s, i)}
             </button>
           </div>
         ))}
-        <div className="slot" role="listitem" style={place(3)}>
+        <div className="slot" role="listitem" style={place(3)} data-i={3}>
           <Link href={BOOK_STEP.href} className="step book" aria-label="Book a visit" {...hoverProps(3)}>
             {inner(BOOK_STEP, 3)}
           </Link>
@@ -203,8 +238,15 @@ export default function ServiceJourney() {
             <ul className="included">
               {current.included.map((item) => (
                 <li key={item.name}>
-                  <strong>{item.name}</strong>
+                  <strong>{item.name}{item.price && <em className="ptag">{item.price}</em>}</strong>
                   <span>{item.copy}</span>
+                  {item.bullets && (
+                    <ul className="bullets">
+                      {item.bullets.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  )}
                   {item.brands && (
                     <ul className="brands">
                       {item.brands.map(([name, note]) => (
@@ -576,6 +618,45 @@ export default function ServiceJourney() {
           margin-bottom: 4px;
           color: var(--gold-light);
           font: 600 17px/1.2 var(--serif);
+        }
+        .hs-journey-section .included li:has(.bullets) {
+          grid-column: 1 / -1;
+        }
+        .hs-journey-section .bullets {
+          list-style: disc;
+          margin: 8px 0 4px;
+          padding: 0 0 0 18px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 22px;
+          row-gap: 5px;
+          color: rgba(247, 241, 229, 0.8);
+          font-size: 12px;
+          line-height: 1.45;
+        }
+        .hs-journey-section .bullets li {
+          padding: 0;
+          border: 0;
+          background: none;
+          border-radius: 0;
+          display: list-item;
+        }
+        .hs-journey-section .bullets li::marker {
+          color: var(--gold);
+        }
+        .hs-journey-section .ptag {
+          display: inline-block;
+          margin-left: 8px;
+          vertical-align: middle;
+          font: 500 10px/1 var(--round);
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: var(--gold);
+        }
+        @media (max-width: 420px) {
+          .hs-journey-section .bullets {
+            grid-template-columns: 1fr;
+          }
         }
         .hs-journey-section .included li:has(.brands) {
           grid-column: 1 / -1;
