@@ -7,6 +7,9 @@ import {
   UPGRADES,
   INJECTIONS,
   INJECTION_PRICE,
+  INJECTION_PACK,
+  INJECTION_NOTE,
+  PATHWAY,
   CONCIERGE,
   MENU_DISCLAIMER,
   usd,
@@ -16,12 +19,28 @@ import {
 export default function DripMenu() {
   return (
     <div className="dm">
+      {/* ---- Pathway bundle ---- */}
+      <h2 className="dm-h2">The Pathway to Wellness</h2>
+      <div className="dm-pathway">
+        <div className="dm-pathway-head">
+          <span className="dm-pathway-price">{usd(PATHWAY.price)}</span>
+          <span className="dm-pathway-compare">{usd(PATHWAY.compare)} booked separately</span>
+        </div>
+        <p className="dm-pathway-lede">{PATHWAY.lede}</p>
+        <ul className="dm-pathway-list">
+          {PATHWAY.includes.map((x) => (
+            <li key={x}>{x}</li>
+          ))}
+        </ul>
+        <p className="dm-pathway-note">{PATHWAY.note}</p>
+      </div>
+
       {/* ---- Signature ---- */}
       <h2 className="dm-h2">Signature Soulutions</h2>
       <div className="dm-banner">
-        <span className="dm-banner-label">Every Signature Soulution</span>
+        <span className="dm-banner-label">Signature Soulutions</span>
         <span className="dm-banner-price">{usd(SIGNATURE_PRICE)}</span>
-        <span className="dm-banner-note">boosters &amp; add-ons from there &middot; Antioxidant {usd(479)} &middot; High-Dose Vitamin C {usd(849)}</span>
+        <span className="dm-banner-note">Pure Hydration {usd(279)} &middot; Antioxidant {usd(479)} &middot; High-Dose Vitamin C {usd(849)} &middot; travel included</span>
       </div>
       <p className="dm-fine">
         Each drip begins with your choice of 500 mL to 1,000 mL Lactated Ringer&rsquo;s (LR) or Normal Saline (NS);
@@ -74,7 +93,7 @@ export default function DripMenu() {
       {/* ---- Boosters ---- */}
       <h2 className="dm-h2">Boost Your Drip</h2>
       <p className="dm-lede">
-        Add any nutrient to any Soulution — <b>{usd(BOOSTER_PRICE)} each</b>.
+        Add any nutrient to any Soulution — <b>{usd(BOOSTER_PRICE)} each</b> (glutathione $65).
       </p>
       <div className="dm-boost">
         {BOOSTERS.map(([group, list]) => (
@@ -106,7 +125,12 @@ export default function DripMenu() {
             <b>{usd(p)}</b>
           </li>
         ))}
+        <li>
+          <span>{INJECTION_PACK[0]}</span>
+          <b>{usd(INJECTION_PACK[1])}</b>
+        </li>
       </ul>
+      <p className="dm-fine">{INJECTION_NOTE}</p>
 
       {/* ---- Concierge ---- */}
       <div className="dm-concierge">
@@ -169,6 +193,54 @@ export default function DripMenu() {
         }
         .dm-banner-note {
           font: italic 400 14px/1 var(--serif);
+          color: var(--muted);
+        }
+        .dm-pathway {
+          margin: 14px 0 8px;
+          padding: 20px 22px 16px;
+          border: 1.5px solid var(--gold);
+          border-radius: 14px;
+          background: #fffaf0;
+        }
+        .dm-pathway-head {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: baseline;
+          gap: 6px 16px;
+        }
+        .dm-pathway-price {
+          font: 600 34px/1 var(--serif);
+          color: var(--gold-dark);
+        }
+        .dm-pathway-compare {
+          font: italic 400 14px/1 var(--serif);
+          color: var(--muted);
+          text-decoration: line-through;
+        }
+        .dm-pathway-lede {
+          margin: 8px 0 10px;
+          font: italic 400 15px/1.5 var(--serif);
+          color: var(--ink);
+        }
+        .dm-pathway-list {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 4px 24px;
+          font-size: 13px;
+          line-height: 1.55;
+          color: var(--ink);
+        }
+        .dm-pathway-list li::before {
+          content: '•';
+          color: var(--gold);
+          margin-right: 8px;
+        }
+        .dm-pathway-note {
+          margin: 10px 0 0;
+          font-size: 11.5px;
           color: var(--muted);
         }
         .dm-fine {

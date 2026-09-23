@@ -33,6 +33,7 @@ export default function ServiceCategoryPage({ service }) {
             {service.included.map((item) => (
               <article className={`card${item.brands ? ' wide' : ''}`} key={item.name}>
                 <h3>{item.name}</h3>
+                {item.price && <span className="price">{item.price}</span>}
                 <p>{item.copy}</p>
                 {item.brands && (
                   <ul className="brands">
@@ -225,6 +226,12 @@ export default function ServiceCategoryPage({ service }) {
           .brands {
             grid-template-columns: 1fr;
           }
+        }
+        .price {
+          display: block;
+          margin: 2px 0 8px;
+          font: 600 18px/1.2 var(--serif, 'Cormorant Garamond', Georgia, serif);
+          color: var(--gold-dark);
         }
         .tag {
           display: inline-block;
