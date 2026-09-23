@@ -60,9 +60,9 @@ export const SIGNATURE = [
   {
     name: 'The Antioxidant Soulution',
     price: 479,
-    tagline: 'High-dose immune & antioxidant support for recovery and resilience.',
-    contents: '25 g Vitamin C • Magnesium',
-    extra: '+$79 per additional 4 g • higher doses require lab clearance',
+    tagline: 'Cellular defense & detox support — for recovery, resilience, and healthy aging.',
+    contents: 'NAC • Vitamin C • Glutathione',
+    extra: 'Add Alpha Lipoic Acid +$45 (infused separately, light-protected)',
   },
   {
     name: 'The High-Dose Vitamin C Soulution',
