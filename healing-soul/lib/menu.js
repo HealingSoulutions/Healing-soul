@@ -193,6 +193,8 @@ export const PROTOCOLS = [
   ['Protocol Consult', 250, 'virtual or in-home · no labs required'],
   ['Labs-Based Protocol', 350, 'includes NP lab interpretation & written plan'],
   ['Fertility Optimization Protocol', 450, 'cycle-timed · coordinated with your clinic'],
+  ['Brain Health & Focus Protocol', 450, 'labs-informed · cognitive support'],
+  ['Sleep Architecture Protocol', 450, 'timing, nutrients & habits · with follow-up'],
   ['Follow-Up & Adjustment', 125, ''],
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];

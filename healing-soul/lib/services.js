@@ -129,6 +129,18 @@ export const SERVICES = [
         tag: 'Preconception · IVF support',
       },
       {
+        name: 'Brain Health & Focus Protocol',
+        price: '$450',
+        copy: 'A labs-informed supplement plan for concentration, memory, mental stamina, and long-term brain health — built around your goals and paired with the Brain & Focus Soulution when appropriate.',
+        tag: 'Cognitive support',
+      },
+      {
+        name: 'Sleep Architecture Protocol',
+        price: '$450',
+        copy: 'A structured plan for deeper, more consistent sleep — timing, nutrients, and habits built from your history and labs, with a follow-up to adjust as your sleep changes.',
+        tag: 'Sleep optimization',
+      },
+      {
         name: 'Follow-Up & Adjustment',
         price: '$125',
         copy: 'A scheduled check-in to review how the plan is working and adjust before your next labs.',
