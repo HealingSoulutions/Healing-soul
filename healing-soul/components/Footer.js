@@ -9,6 +9,7 @@ export default function Footer() {
           <Link href="/book" className="footer-link">Book a Visit</Link>
           <Link href="/contact" className="footer-link">Contact</Link>
           <Link href="/privacy" className="footer-link">Privacy Policy</Link>
+          <Link href="/notice-of-privacy-practices" className="footer-link">Notice of Privacy Practices</Link>
           <Link href="/terms" className="footer-link">Terms of Use</Link>
           <Link href="/accessibility" className="footer-link">Accessibility</Link>
         </div>
