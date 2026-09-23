@@ -3,11 +3,14 @@
 
 export const SIGNATURE_PRICE = 349;
 export const BOOSTER_PRICE = 45;
+export const GLUTATHIONE_PRICE = 65;
 export const INJECTION_PRICE = 85;
 
 export const SIGNATURE = [
   {
     name: 'The Pure Hydration Soulution',
+    price: 279,
+    badge: 'Entry drip',
     tagline: 'Full-body replenishment — post-workout & marathon training, exhaustion & recovery, colonoscopy prep & aftercare, or an everyday hydration boost.',
     contents: '500 mL–1,000 mL Lactated Ringer’s or Normal Saline • Magnesium • Calcium • balanced electrolytes',
   },
@@ -76,7 +79,8 @@ export const SIGNATURE = [
   {
     name: 'The Custom Soulution',
     tagline: 'Build your own — choose your nutrients with our clinician for a fully personalized infusion.',
-    contents: 'Your choice of base fluid, vitamins, minerals, amino acids & add-ons',
+    contents: 'Base: your choice of fluid plus any two nutrients',
+    extra: 'Each additional booster +$45 · premium upgrades as listed below',
   },
 ];
 
@@ -97,9 +101,9 @@ export const LONGEVITY = {
       copy: 'Our premium longevity infusion featuring patented NIAGEN® (nicotinamide riboside) — a next-generation NAD+ precursor prized for smoother, gentler tolerance and efficient cellular uptake.',
     },
   ],
-  includes: 'Every NAD+ & Niagen Soulution includes complimentary Vitamin C • B-Complex • B12 • Glutathione 1,000 mg, in 500 mL–1,000 mL LR or NS.',
+  includes: 'Every NAD+ & Niagen Soulution includes a $150 nutrient base at no charge — Vitamin C • B-Complex • B12 • Glutathione 1,000 mg — in 500 mL–1,000 mL LR or NS.',
   ladder: [
-    ['250 mg', 475, 595],
+    ['250 mg', 395, 595],
     ['500 mg', 695, 795],
     ['750 mg', 895, 995],
     ['1,000 mg', 1095, 1295],
@@ -108,7 +112,7 @@ export const LONGEVITY = {
 
 export const BOOSTERS = [
   ['Energy & Metabolism', 'B-Complex · B12 · Thiamine (B1) · Taurine · Amino Blend · L-Carnitine · MICC lipotropic'],
-  ['Immunity & Antioxidant', 'Vitamin C · Glutathione · Zinc · Vitamin D · CoQ-10 · Alpha Lipoic Acid'],
+  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($65) · Zinc · Vitamin D · CoQ-10 · Alpha Lipoic Acid'],
   ['Recovery & Beauty', 'Magnesium · Mineral Blend · L-Glutamine · Lysine · Biotin'],
   ['Comfort Medications', 'Anti-Nausea · Anti-Inflammatory · Antacid'],
 ];
@@ -119,6 +123,10 @@ export const UPGRADES = [
   ['NAD+ Booster 50 mg', '+$75'],
 ];
 
+export const INJECTION_VISIT_MIN = 149;
+export const INJECTION_PACK = ['4-Shot Package (any $85 shot, used within 60 days)', 299];
+export const INJECTION_NOTE =
+  'Shot prices apply when added to an IV visit. Stand-alone injection visits are $149 minimum (one shot included); additional shots at the listed price.';
 export const INJECTIONS = [
   ['B12 Energy Shot', 85],
   ['Beauty Shot (Glutathione)', 85],
@@ -127,6 +135,38 @@ export const INJECTIONS = [
   ['Skinny Shot (MIC + B12)', 85],
   ['B12 + Full B-Complex (B1–B6) — anti-aging & immunity', 129],
 ];
+
+// The four-step Pathway to Wellness, priced as one bundle.
+export const PATHWAY = {
+  name: 'The Pathway to Wellness',
+  price: 1095,
+  compare: 1169,
+  lede: 'Steps 1–4 in one booking — two home visits, your labs delivered and interpreted, a protocol built for you, and a follow-up. For best results, this is where we recommend every new client begins.',
+  includes: [
+    'At-home blood draw, delivered directly to Labcorp',
+    'Nurse Practitioner lab interpretation & results call',
+    'Written, labs-based supplement protocol',
+    'One Signature Soulution IV',
+    '30-day follow-up & protocol adjustment',
+  ],
+  note: 'Laboratory fees are billed by Labcorp and may be covered by insurance. Supplements on your protocol are purchased separately and delivered to you.',
+};
+
+// Steps 1 & 2 — testing and protocols.
+export const TESTING = [
+  ['At-Home Blood Draw', 195, 'Manhattan · delivered directly to Labcorp'],
+  ['Urine collection (added to a draw)', 45, ''],
+  ['Respiratory swab visit', 175, 'COVID-19 PCR · RSV · Flu A/B · plus test fee'],
+  ['NP lab interpretation & results call', 150, 'waived with any Supplement Protocol'],
+];
+export const PROTOCOLS = [
+  ['Protocol Consult', 250, 'virtual or in-home · no labs required'],
+  ['Labs-Based Protocol', 350, 'includes NP lab interpretation & written plan'],
+  ['Fertility Optimization Protocol', 450, 'cycle-timed · coordinated with your clinic'],
+  ['Follow-Up & Adjustment', 125, ''],
+  ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
+];
+export const LAB_FEE_NOTE = 'Laboratory fees are billed by Labcorp and may be covered by insurance.';
 
 export const CONCIERGE = [
   ['Travel included', 'within our service area'],

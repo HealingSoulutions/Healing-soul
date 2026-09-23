@@ -9,7 +9,8 @@ const asCards = (id) =>
 export const SERVICES = [
   {
     slug: 'at-home-testing',
-    priceFrom: null, // e.g. 199 → shows "From $199" in the pop-up; null hides it
+    priceFrom: 195,
+    priceLabel: 'Blood draw $195 · NP results review $150',
     number: '01',
     icon: 'house',
     back: ['AT', 'HOME'],
@@ -25,16 +26,19 @@ export const SERVICES = [
     included: [
       {
         name: 'At-Home Blood Draw',
-        copy: 'Venipuncture performed in your home by a licensed nurse. Standard and specialty panels, from routine wellness screening to targeted testing.',
+        price: '$195',
+        copy: 'Venipuncture performed in your home by a licensed nurse. Standard and specialty panels, from routine wellness screening to targeted testing. Laboratory fees are billed by Labcorp and may be covered by insurance.',
         tag: 'Phlebotomy',
       },
       {
         name: 'Urine Testing',
+        price: '+$45 with a blood draw',
         copy: 'Private, guided specimen collection at home for urinalysis and related testing.',
         tag: 'Urinalysis',
       },
       {
         name: 'Respiratory Swabs',
+        price: '$175 visit + test fee',
         copy: 'COVID-19 PCR, plus rapid RSV and influenza A & B. Collected in-home, with results reviewed by a clinician.',
         tag: 'COVID-19 PCR · RSV · Flu A/B',
       },
@@ -45,6 +49,7 @@ export const SERVICES = [
       },
       {
         name: 'Lab Result Interpretation',
+        price: '$150 · waived with any Supplement Protocol',
         copy: 'A Nurse Practitioner reviews and interprets your laboratory results and discusses findings and next steps with you.',
         tag: 'NP Review',
       },
@@ -66,7 +71,8 @@ export const SERVICES = [
   },
   {
     slug: 'supplement-protocols',
-    priceFrom: null, // e.g. 199 → shows "From $199" in the pop-up; null hides it
+    priceFrom: 250,
+    priceLabel: 'Consult $250 · Labs-based protocol $350',
     number: '02',
     icon: 'pill',
     back: ['YOUR', 'PLAN'],
@@ -82,11 +88,13 @@ export const SERVICES = [
     included: [
       {
         name: 'Protocol Consult',
+        price: '$250',
         copy: 'A focused review of your goals, current supplements, and lifestyle. In person or virtual.',
         tag: 'Virtual or in-home',
       },
       {
         name: 'Labs-Based Protocol',
+        price: '$350 · includes NP lab interpretation · supplements purchased separately',
         copy:
           'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages.',
         tag: 'Built from your results',
@@ -116,11 +124,13 @@ export const SERVICES = [
       },
       {
         name: 'Fertility Optimization',
+        price: '$450',
         copy: 'Nutrition and supplement support for natural conception or alongside IVF — built from your labs, timed to your cycle, and coordinated with your fertility clinic\u2019s plan. Led by nurses with hands-on IVF experience.',
         tag: 'Preconception · IVF support',
       },
       {
         name: 'Follow-Up & Adjustment',
+        price: '$125',
         copy: 'A scheduled check-in to review how the plan is working and adjust before your next labs.',
         tag: 'Ongoing',
       },
@@ -140,8 +150,8 @@ export const SERVICES = [
   },
   {
     slug: 'iv-injections',
-    priceFrom: 349,
-    priceLabel: 'Signature drips $349 · Injections from $85',
+    priceFrom: 279,
+    priceLabel: 'Signature drips from $279 · Pathway bundle $1,095',
     menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
@@ -155,7 +165,7 @@ export const SERVICES = [
       'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — the third step of your plan.',
     heroLede:
       'Hydration, nutrients, and targeted injections — administered by a registered nurse in your home, hotel, or office.',
-    includedLede: 'Every Signature Soulution is one flat price. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
+    includedLede: 'Signature Soulutions are $349 (Pure Hydration $279). Longevity drips, boosters, and injections are priced below — travel included within our service area.',
     included: asCards('infusion'),
     steps: [
       ['Book', 'Choose a drip or injection and a time. A short intake follows.'],
