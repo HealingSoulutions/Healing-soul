@@ -3,7 +3,7 @@
 
 export const SIGNATURE_PRICE = 349;
 export const BOOSTER_PRICE = 49;
-export const GLUTATHIONE_PRICE = 89; // per 600 mg
+export const GLUTATHIONE_PRICE = 49; // per 600 mg, up to 3,000 mg
 export const INJECTION_PRICE = 85;
 
 export const SIGNATURE = [
@@ -135,7 +135,7 @@ export const LONGEVITY = {
 
 export const BOOSTERS = [
   ['Energy & Metabolism', 'B-Complex · B12 · Thiamine (B1) · Taurine · Amino Blend · L-Carnitine · MICC lipotropic'],
-  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($89 per 600 mg) · Zinc · Vitamin D · Alpha Lipoic Acid'],
+  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($49 per 600 mg, up to 3,000 mg) · Zinc · Vitamin D · Alpha Lipoic Acid'],
   ['Recovery & Beauty', 'Magnesium · Mineral Blend · L-Glutamine · Lysine · Biotin'],
   ['Comfort Medications', 'Anti-Nausea · Anti-Inflammatory · Antacid · Antihistamine · Steroid'],
 ];
