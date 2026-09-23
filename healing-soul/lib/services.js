@@ -100,7 +100,7 @@ export const SERVICES = [
         name: 'Healing Soulutions Supplement Brand Partnerships & Affiliations',
         copy: 'Our brand partnerships and affiliations include, but are not limited to:',
         brands: [
-          ['Thorne', 'Practitioner-grade, research-backed formulas. NSF Certified for Sport; every product is tested up to four times in-house for identity, potency, and contaminants.'],
+          ['Thorne', 'Practitioner-grade, research-backed formulas. Four rounds of in-house testing on every batch — raw materials through finished product — with select products NSF Certified for Sport.'],
           ['Pure Encapsulations', 'Hypoallergenic formulas free of unnecessary additives. cGMP-manufactured; every batch is third-party tested for purity and potency.'],
           ['Metagenics', 'Practitioner brand with a TGA-audited manufacturing standard. Its TruQuality program publishes third-party test results for every lot.'],
           ['Ortho Molecular Products', 'Practitioner-only brand with efficacy-focused dosing. Manufactured in its own cGMP facility, with raw-material identity and potency testing on every batch.'],
