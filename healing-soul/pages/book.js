@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Seo from '../components/Seo';
 
 // The booking + intake + card-on-file flow is handled entirely inside
@@ -11,69 +10,10 @@ const JF_ORIGIN = 'https://hipaa-submit.jotform.com';
 const JF_SRC = JF_ORIGIN + '/' + JF_FORM_ID;
 
 function BookContent() {
-  useEffect(() => {
-    // Load JotForm's embed handler once — it listens for the form's postMessage
-    // events and auto-resizes the iframe so there's no inner scrollbar.
-    function attach() {
-      try {
-        if (window.jotformEmbedHandler) {
-          window.jotformEmbedHandler("iframe[id='JotFormIFrame-" + JF_FORM_ID + "']", JF_ORIGIN);
-        }
-      } catch (e) {}
-    }
-    const existing = document.getElementById('jotform-embed-handler');
-    if (existing) {
-      attach();
-      return;
-    }
-    const s = document.createElement('script');
-    s.id = 'jotform-embed-handler';
-    s.src = 'https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js';
-    s.async = true;
-    s.onload = attach;
-    document.body.appendChild(s);
-  }, []);
-
-  useEffect(() => {
-    // JotForm posts "scrollIntoView::<id>" when the client moves between form pages and
-    // "setHeight:<px>:<id>" when the iframe resizes. JotForm's own embed handler also reacts
-    // to these, and the iframe height changes a beat later, so a single scroll lands wrong.
-    // We scroll to the top of the form now and again after the resize settles, and treat
-    // any large height change as a page change (conditional fields only move a few px).
-    const NAV_OFFSET = 84;
-    let prevHeight = 0;
-    let timers = [];
-    function toFormTop() {
-      const el = document.getElementById('JotFormIFrame-' + JF_FORM_ID);
-      if (!el) return;
-      const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
-      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
-    }
-    function settleToTop() {
-      timers.forEach(clearTimeout);
-      timers = [0, 120, 350, 700].map((ms) => setTimeout(toFormTop, ms));
-    }
-    function onMessage(e) {
-      if (e.origin !== JF_ORIGIN) return;
-      const str = typeof e.data === 'string' ? e.data : JSON.stringify(e.data || '');
-      if (str.indexOf('scrollIntoView') !== -1) {
-        settleToTop();
-        return;
-      }
-      const m = /setHeight:(\d+)/.exec(str);
-      if (m) {
-        const px = parseInt(m[1], 10);
-        if (prevHeight && Math.abs(px - prevHeight) > 250) settleToTop();
-        prevHeight = px;
-      }
-    }
-    window.addEventListener('message', onMessage);
-    return () => {
-      window.removeEventListener('message', onMessage);
-      timers.forEach(clearTimeout);
-    };
-  }, []);
-
+  // The form is embedded at viewport height and scrolls inside its own frame. JotForm's
+  // page navigation scrolls its own document to the top on "Next", which works natively in
+  // a scrolling frame; the auto-resizing embed (parent-page scrolling) left clients stranded
+  // below a shorter page 2 because this HIPAA form does not emit scrollIntoView messages.
   return (
     <main id="main-content" className="book">
       <section className="wrap">
@@ -90,18 +30,13 @@ function BookContent() {
         <iframe
           id={'JotFormIFrame-' + JF_FORM_ID}
           title="Healing Soulutions — Booking & Intake"
-          onLoad={() => {
-            try {
-              window.parent.scrollTo(0, 0);
-            } catch (e) {}
-          }}
           allowTransparency={true}
           allow="geolocation; microphone; camera; fullscreen; payment"
           src={JF_SRC}
           frameBorder="0"
-          scrolling="auto"
+          scrolling="yes"
           allowpaymentrequest="true"
-          style={{ minWidth: '100%', maxWidth: '100%', width: '1px', height: '2400px', border: 'none', borderRadius: '16px' }}
+          className="jf"
         />
         <noscript>
           <p className="fine">
@@ -157,6 +92,23 @@ function BookContent() {
         .form {
           max-width: 820px;
           margin: 36px auto 0;
+        }
+        .form :global(.jf) {
+          display: block;
+          width: 100%;
+          height: calc(100vh - 150px);
+          min-height: 640px;
+          border: 1px solid rgba(212, 162, 76, 0.35);
+          border-radius: 16px;
+          background: #fff;
+          overflow: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+        @media (max-width: 680px) {
+          .form :global(.jf) {
+            height: calc(100vh - 110px);
+            min-height: 560px;
+          }
         }
         .fine {
           margin: 32px auto 0;
