@@ -21,7 +21,7 @@ export default function ServiceCategoryPage({ service }) {
           <div className="kicker">
             Service {service.number} · {service.label}
           </div>
-          <h1>{service.title}</h1>
+          <h1 className="sr-only">{service.label} in Manhattan — Healing Soulutions</h1>
           <p>{service.heroLede}</p>
         </div>
 
@@ -148,7 +148,7 @@ export default function ServiceCategoryPage({ service }) {
         }
         .cat-hero p {
           max-width: 600px;
-          margin: auto;
+          margin: 14px auto 0;
           color: rgba(247, 241, 229, 0.8);
           font-family: var(--serif);
           font-style: italic;
@@ -160,10 +160,11 @@ export default function ServiceCategoryPage({ service }) {
           padding: 48px 42px 64px;
         }
         .body h2 {
-          font-family: var(--serif);
-          font-size: 30px;
-          font-weight: 500;
-          margin: 0 0 6px;
+          font: 500 12.5px/1.2 var(--round);
+          letter-spacing: 0.2em;
+          text-transform: uppercase;
+          color: var(--emerald);
+          margin: 0 0 10px;
         }
         .lede {
           color: #4d5f55;
