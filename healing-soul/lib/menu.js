@@ -53,6 +53,12 @@ export const SIGNATURE = [
     extra: 'IM: CoQ-10 injection included at the same visit • pairs with our Fertility Optimization protocol',
   },
   {
+    name: 'The Post-Natal Replenish Soulution',
+    tagline: 'Replenish after birth — hydration and the nutrients depleted by pregnancy, delivery, and breastfeeding. Nursing-safe formulation.',
+    contents: 'Vitamin C • B-Complex • B12 • Magnesium • Zinc • Amino Blend',
+    extra: 'Pairs with our Post-Natal Protocol • add a B12 or Vitamin D3 IM injection +$85',
+  },
+  {
     name: 'The Liver Detox Soulution',
     tagline: 'Support your body’s natural detox pathways — after travel, indulgence, medication courses, or a heavy season.',
     contents: 'Glutathione • Vitamin C • B-Complex • Magnesium • Taurine • Alpha Lipoic Acid',
