@@ -34,6 +34,37 @@ function BookContent() {
     document.body.appendChild(s);
   }, []);
 
+  useEffect(() => {
+    // JotForm posts "scrollIntoView::<id>" when the client moves between form pages and
+    // "setHeight:<px>:<id>" when the iframe resizes. A shorter page 2 leaves the browser
+    // scrolled below the form's new bottom edge (a blank screen), so on either event we
+    // bring the top of the form back into view, just under the fixed nav.
+    const NAV_OFFSET = 84;
+    function toFormTop() {
+      const el = document.getElementById('JotFormIFrame-' + JF_FORM_ID);
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - NAV_OFFSET;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+    }
+    function onMessage(e) {
+      if (e.origin !== JF_ORIGIN || typeof e.data !== 'string') return;
+      if (e.data.indexOf('scrollIntoView') === 0) {
+        toFormTop();
+        return;
+      }
+      if (e.data.indexOf('setHeight:') === 0) {
+        const px = parseInt(e.data.split(':')[1], 10);
+        const el = document.getElementById('JotFormIFrame-' + JF_FORM_ID);
+        if (!el || !px) return;
+        const formTop = el.getBoundingClientRect().top + window.scrollY;
+        // If the viewport is now below the resized form, jump back to its top.
+        if (window.scrollY > formTop + px - window.innerHeight * 0.5) toFormTop();
+      }
+    }
+    window.addEventListener('message', onMessage);
+    return () => window.removeEventListener('message', onMessage);
+  }, []);
+
   return (
     <main id="main-content" className="book">
       <section className="wrap">
