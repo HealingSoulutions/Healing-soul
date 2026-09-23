@@ -17,7 +17,7 @@ export const SIGNATURE = [
   },
   {
     name: 'The Pure Hydration Soulution',
-    for: 'POTS symptoms & orthostatic dizziness, marathon & endurance recovery, colonoscopy prep, persistent fatigue',
+    for: 'POTS symptoms & orthostatic dizziness, marathon & endurance recovery, colonoscopy prep, post-surgical hydration, persistent fatigue',
     tagline: 'Full-body replenishment — post-workout & marathon training, exhaustion & recovery, POTS symptom support, colonoscopy prep & aftercare, or an everyday hydration boost.',
     contents: '500 mL–1,000 mL Lactated Ringer’s or Normal Saline • Magnesium • Calcium • balanced electrolytes',
   },
@@ -76,9 +76,22 @@ export const SIGNATURE = [
   },
   {
     name: 'The Immunity Soulution',
-    for: 'Cold & flu, early viral symptoms, frequent infections, pre-travel immune prep',
+    for: 'Cold & flu, early viral symptoms, frequent infections, pre-travel immune prep, post-surgical immune support',
     tagline: 'Cold & flu defense — fight illness off early and recover faster.',
     contents: 'B-Complex • Vitamin C • Glutathione • Zinc',
+  },
+  {
+    name: 'The Allergy Soulution',
+    for: 'Seasonal allergies, hay-fever flares, sinus pressure, hives-prone weeks, pet and dust sensitivity',
+    tagline: 'Calm the flare — hydration, antihistamine relief and immune support when the season turns.',
+    contents: 'Vitamin C • B-Complex • Magnesium • Glutathione • antihistamine',
+    extra: 'Add steroid comfort medication +$49 · pairs with our Seasonal Allergy Protocol',
+  },
+  {
+    name: 'The Trace Mineral Soulution',
+    for: 'Mineral depletion after illness or GI issues, muscle cramps, hair and nail changes, post-bariatric nutrient support, heavy sweaters',
+    tagline: 'Restore the minerals your body runs on — zinc, selenium, copper, manganese and chromium with magnesium.',
+    contents: 'Mineral Blend (Zinc • Selenium • Copper • Manganese • Chromium) • Magnesium • Vitamin C',
   },
   {
     name: 'The Energy Soulution',
@@ -108,7 +121,7 @@ export const SIGNATURE = [
   },
   {
     name: 'The Recovery Soulution',
-    for: 'Muscle soreness (DOMS), post-race depletion, overtraining fatigue, injury recovery',
+    for: 'Muscle soreness (DOMS), post-race depletion, overtraining fatigue, injury and post-surgical recovery',
     tagline: 'Repair & rebuild — after the finish line, a hard block, or an injury.',
     contents: 'Amino Blend • B-Complex • Magnesium • Glutathione • Vitamin C • anti-inflammatory',
   },
@@ -120,7 +133,7 @@ export const SIGNATURE = [
   },
   {
     name: 'The Antioxidant Soulution',
-    for: 'Oxidative stress, inflammation-related fatigue, autoimmune-related fatigue, healthy-aging support',
+    for: 'Oxidative stress, inflammation-related fatigue, autoimmune-related fatigue, post-surgical healing support, healthy-aging support',
     price: 479,
     tagline: 'Cellular defense & detox support — for recovery, resilience, and healthy aging.',
     contents: 'NAC • Vitamin C • Glutathione',
