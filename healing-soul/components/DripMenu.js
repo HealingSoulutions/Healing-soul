@@ -42,6 +42,7 @@ export default function DripMenu() {
           </article>
         ))}
       </div>
+      <p className="dm-fine">Formulas may be adjusted by your clinician based on your evaluation.</p>
 
       {/* ---- Longevity ---- */}
       <h2 className="dm-h2">Longevity Soulutions</h2>
