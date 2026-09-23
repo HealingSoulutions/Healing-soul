@@ -49,8 +49,8 @@ export const SIGNATURE = [
     name: 'The Reproductive Health Soulution',
     badge: 'IV + IM',
     tagline: 'Preconception & fertility support — for natural conception or alongside IVF, timed to your cycle.',
-    contents: 'Vitamin C • B-Complex • B12 • Magnesium • Zinc • Glutathione • CoQ-10',
-    extra: 'Includes one IM injection (B12 or Vitamin D3) at the same visit • pairs with our Fertility Optimization protocol',
+    contents: 'IV: Vitamin C • B-Complex • B12 • Magnesium • Zinc • Glutathione',
+    extra: 'IM: CoQ-10 injection included at the same visit • pairs with our Fertility Optimization protocol',
   },
   {
     name: 'The Immunity Soulution',
@@ -135,7 +135,7 @@ export const LONGEVITY = {
 
 export const BOOSTERS = [
   ['Energy & Metabolism', 'B-Complex · B12 · Thiamine (B1) · Taurine · Amino Blend · L-Carnitine · MICC lipotropic'],
-  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($65) · Zinc · Vitamin D · CoQ-10 · Alpha Lipoic Acid'],
+  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($65) · Zinc · Vitamin D · Alpha Lipoic Acid'],
   ['Recovery & Beauty', 'Magnesium · Mineral Blend · L-Glutamine · Lysine · Biotin'],
   ['Comfort Medications', 'Anti-Nausea · Anti-Inflammatory · Antacid · Antihistamine · Steroid'],
 ];
@@ -156,6 +156,7 @@ export const INJECTIONS = [
   ['Vitamin D3 Shot', 85],
   ['Immunity Shot (Tri-Immune)', 85],
   ['Skinny Shot (MIC + B12)', 85],
+  ['CoQ-10 Shot', 85],
   ['B12 + Full B-Complex (B1–B6) — anti-aging & immunity', 129],
 ];
 
