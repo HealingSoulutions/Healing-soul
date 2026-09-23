@@ -41,6 +41,11 @@ export const SIGNATURE = [
     contents: 'B-Complex • Magnesium • anti-nausea • antacid • Glutathione',
   },
   {
+    name: 'The Gut Health Soulution',
+    tagline: 'Soothe, rebuild & rebalance — digestive comfort, post-antibiotic recovery, and gut-lining support.',
+    contents: 'L-Glutamine • B-Complex • Magnesium • Zinc • Glutathione',
+  },
+  {
     name: 'The Immunity Soulution',
     tagline: 'Cold & flu defense — fight illness off early and recover faster.',
     contents: 'B-Complex • Vitamin C • Glutathione • Zinc',
