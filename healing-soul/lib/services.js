@@ -96,9 +96,9 @@ export const SERVICES = [
       {
         name: 'Labs-Based Protocol',
         booked: 'Low vitamin D or B12, borderline labs, fatigue with normal-range results, optimizing after a physical',
-        price: '$350 · includes NP lab interpretation',
+        price: '$350 · $200 with an At-Home Lab Visit',
         copy:
-          'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages.',
+          'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages. Booked with our At-Home Lab Visit, NP interpretation is already included, so the protocol is $200.',
         tag: 'Built from your results',
       },
       {
