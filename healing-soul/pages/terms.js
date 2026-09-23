@@ -26,7 +26,7 @@ export default function Terms() {
           </p>
         </header>
 
-        <nav className="toc" aria-label="Sections">
+        <div className="toc" role="navigation" aria-label="Sections">
           <ol>
             <li><a href="#parties">1. Who You Are Contracting With</a></li>
             <li><a href="#services">2. Services</a></li>
@@ -47,7 +47,7 @@ export default function Terms() {
             <li><a href="#changes">17. Changes to These Terms</a></li>
             <li><a href="#contact">18. Contact</a></li>
           </ol>
-        </nav>
+        </div>
 
         <section id="parties">
           <h2>1. Who You Are Contracting With</h2>
@@ -448,8 +448,11 @@ export default function Terms() {
       <style jsx>{`
         .terms {
           max-width: 820px;
-          margin: 0 auto;
-          padding: 4rem 1.25rem 6rem;
+          margin: 6.5rem auto 4rem;
+          padding: 3rem 2.25rem 3.5rem;
+          background: #f7f1e5;
+          border: 1px solid rgba(212, 162, 76, 0.5);
+          border-radius: 16px;
           color: #16281f;
           font-family: "Varela Round", system-ui, -apple-system, sans-serif;
           font-size: 1rem;
@@ -578,7 +581,8 @@ export default function Terms() {
             columns: 1;
           }
           .terms {
-            padding-top: 2.5rem;
+            margin: 5.5rem 0.75rem 3rem;
+            padding: 2rem 1.1rem 2.5rem;
           }
         }
       `}</style>
