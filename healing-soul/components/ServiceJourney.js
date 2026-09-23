@@ -151,7 +151,7 @@ export default function ServiceJourney() {
         needs and goals, without ever leaving your home or office.
       </p>
       <p className="pathway">
-        For best results, follow the full Healing Soulutions Pathway to Wellness &mdash; or book any service on its own.
+        For best results, follow the full Healing Soulutions Pathway to Wellness (steps 1&ndash;4) &mdash; or book any service on its own.
       </p>
 
       <div className="stage" role="list" aria-label="Service categories">
