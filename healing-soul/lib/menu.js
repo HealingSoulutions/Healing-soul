@@ -248,8 +248,8 @@ export const PATHWAY = {
 // Steps 1 & 2 — testing and protocols.
 export const TESTING = [
   ['At-Home Lab Visit', 695, 'blood draw · hand-delivered to Labcorp by our team · NP interpretation & results call'],
-  ['Urine collection (added to a draw)', 45, ''],
-  ['Respiratory swab visit', 175, 'COVID-19 PCR · RSV · Flu A/B · plus test fee'],
+  ['Urine collection', 295, 'stand-alone visit · +$95 when added to an At-Home Lab Visit · delivered to Labcorp'],
+  ['Respiratory PCR swab visit', 349, 'COVID-19 PCR · RSV · Flu A/B · plus test fee'],
   ['NP review of outside lab results', 150, 'labs drawn elsewhere · waived with any Supplement Protocol'],
 ];
 export const PROTOCOLS = [
