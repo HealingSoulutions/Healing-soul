@@ -233,7 +233,7 @@ export const INJECTIONS = [
 export const PATHWAY = {
   name: 'The Pathway to Wellness',
   price: 1795,
-  compare: 2138,
+  compare: 1988,
   lede: 'Steps 1–4 in one booking — four home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
   includes: [
     'At-home lab visit: blood draw, hand-delivered to Labcorp by our team',
@@ -254,7 +254,7 @@ export const TESTING = [
 ];
 export const PROTOCOLS = [
   ['Protocol Consult', 250, 'virtual or in-home · no labs required'],
-  ['Labs-Based Protocol', 350, 'includes NP lab interpretation & written plan'],
+  ['Labs-Based Protocol', 350, 'includes NP lab interpretation & written plan · $200 with an At-Home Lab Visit'],
   ['Fertility Optimization Protocol', 450, 'cycle-timed · coordinated with your clinic'],
   ['Brain Health & Focus Protocol', 450, 'labs-informed · cognitive support'],
   ['Sleep Architecture Protocol', 450, 'timing, nutrients & habits · with follow-up'],
