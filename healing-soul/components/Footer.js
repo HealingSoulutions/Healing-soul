@@ -6,7 +6,6 @@ export default function Footer() {
       <div className="footer-inner">
         <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
           <Link href="/about" className="footer-link">About</Link>
-          <Link href="/services" className="footer-link">Services</Link>
           <Link href="/book" className="footer-link">Book a Visit</Link>
           <Link href="/contact" className="footer-link">Contact</Link>
           <Link href="/privacy" className="footer-link">Privacy Policy</Link>
