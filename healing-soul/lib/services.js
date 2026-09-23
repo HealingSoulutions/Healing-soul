@@ -9,8 +9,8 @@ const asCards = (id) =>
 export const SERVICES = [
   {
     slug: 'at-home-testing',
-    priceFrom: 195,
-    priceLabel: 'Blood draw $195 · NP results review $150',
+    priceFrom: 695,
+    priceLabel: 'At-home lab visit $695 · includes NP interpretation',
     number: '01',
     icon: 'house',
     back: ['AT', 'HOME'],
@@ -25,9 +25,9 @@ export const SERVICES = [
     includedLede: 'Your path begins here. Everything below can be done in a single visit.',
     included: [
       {
-        name: 'At-Home Blood Draw',
-        price: '$195',
-        copy: 'Venipuncture performed in your home by a licensed nurse. Standard and specialty panels, from routine wellness screening to targeted testing. Laboratory fees are billed by Labcorp and may be covered by insurance.',
+        name: 'At-Home Lab Visit',
+        price: '$695 · includes NP interpretation',
+        copy: 'Venipuncture performed in your home by a licensed nurse, hand-delivered to Labcorp by our team, then reviewed by our Nurse Practitioner with a results call. Standard and specialty panels, from routine wellness screening to targeted testing. Laboratory fees are billed by Labcorp and may be covered by insurance.',
         tag: 'Phlebotomy',
       },
       {
@@ -48,9 +48,9 @@ export const SERVICES = [
         tag: 'Labcorp',
       },
       {
-        name: 'Lab Result Interpretation',
+        name: 'Outside Lab Review',
         price: '$150 · waived with any Supplement Protocol',
-        copy: 'A Nurse Practitioner reviews and interprets your laboratory results and discusses findings and next steps with you.',
+        copy: 'Already had labs drawn elsewhere? A Nurse Practitioner reviews and interprets those results and discusses findings and next steps with you.',
         tag: 'NP Review',
       },
     ],
@@ -204,7 +204,7 @@ export const SERVICES = [
       {
         name: '4-Week Re-Panel & Adjustment',
         booked: 'End of every protocol cycle \u2014 repeat labs, reassessment, dose and product adjustment',
-        price: '$395 per cycle \u00b7 $470 booked separately',
+        price: '$395 per cycle \u00b7 $695 booked separately',
         copy: 'At the end of each 4-week cycle: an at-home repeat blood panel delivered to Labcorp, Nurse Practitioner interpretation, and a reassessment that adjusts your protocol for the next cycle. Laboratory fees are billed by Labcorp and may be covered by insurance.',
         tag: 'Every 4 weeks',
       },
@@ -232,7 +232,7 @@ export const SERVICES = [
   {
     slug: 'iv-injections',
     priceFrom: 279,
-    priceLabel: 'Signature drips from $279 · Pathway bundle $1,295',
+    priceLabel: 'Signature drips from $279 · Pathway bundle $1,595',
     menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
