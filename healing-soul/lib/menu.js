@@ -57,7 +57,7 @@ export const SIGNATURE = [
     pair: ['Vitamin D3 Shot', 'Gut Health Protocol'],
     for: 'IBS-related bloating, post-antibiotic recovery, gut-lining support, food-sensitivity flares',
     tagline: 'Soothe, rebuild & rebalance — digestive comfort, post-antibiotic recovery, and gut-lining support.',
-    contents: 'L-Glutamine • B-Complex • Magnesium • Zinc • Glutathione',
+    contents: 'L-Glutamine • B-Complex • Magnesium • Zinc • Glutathione 600 mg',
   },
   {
     name: 'The Reproductive Health Soulution',
@@ -65,7 +65,7 @@ export const SIGNATURE = [
     for: 'Preconception preparation, IVF cycle support, PCOS-related nutrient needs, fatigue during fertility treatment',
     badge: 'IV + IM',
     tagline: 'Preconception & fertility support — for natural conception or alongside IVF, timed to your cycle.',
-    contents: 'IV: Vitamin C • B-Complex • B12 • Magnesium • Zinc • Glutathione',
+    contents: 'IV: Vitamin C • B-Complex • B12 • Magnesium • Zinc • Glutathione 600 mg',
     extra: 'IM: CoQ-10 injection included at the same visit',
   },
   {
@@ -80,7 +80,7 @@ export const SIGNATURE = [
     pair: ['Beauty Shot (Glutathione)', 'Labs-Based Protocol'],
     for: 'Liver-health support, post-medication or alcohol recovery, environmental-exposure support',
     tagline: 'Support your body’s natural detox pathways — after travel, indulgence, medication courses, or a heavy season.',
-    contents: 'Glutathione • Vitamin C • B-Complex • Magnesium • Taurine • Alpha Lipoic Acid',
+    contents: 'Glutathione 600 mg • Vitamin C • B-Complex • Magnesium • Taurine • Alpha Lipoic Acid',
     extra: 'Add NAC +$49 · increase glutathione up to 3,000 mg at $49 per 600 mg',
   },
   {
@@ -95,7 +95,7 @@ export const SIGNATURE = [
     pair: ['Immunity Shot (Tri-Immune)', 'Seasonal Allergy Protocol'],
     for: 'Seasonal allergies, hay-fever flares, sinus pressure, hives-prone weeks, pet and dust sensitivity',
     tagline: 'Calm the flare — hydration, antihistamine relief and immune support when the season turns.',
-    contents: 'Vitamin C • B-Complex • Magnesium • Glutathione • antihistamine',
+    contents: 'Vitamin C • B-Complex • Magnesium • Glutathione 600 mg • antihistamine',
     extra: 'Add steroid comfort medication +$49',
   },
   {
@@ -117,7 +117,7 @@ export const SIGNATURE = [
     pair: ['B12 + Full B-Complex', 'Brain Health & Focus Protocol'],
     for: 'Brain fog, post-viral brain fog, ADHD-related focus fatigue, exam & deadline weeks',
     tagline: 'Mental clarity, concentration & cognitive support — for deep work, exams, and long days.',
-    contents: 'B-Complex • B12 • Magnesium • Taurine • Alpha Lipoic Acid • Glutathione',
+    contents: 'B-Complex • B12 • Magnesium • Taurine • Alpha Lipoic Acid • Glutathione 600 mg',
     extra: 'Add NAD+ Booster 50 mg +$75',
   },
   {
@@ -277,7 +277,7 @@ export const CONCIERGE = [
   ['Travel included', 'within our service area'],
   ['Same-day rush', 'requests within 4 hours, +$79'],
   ['Group bookings (3+)', 'save 10% — perfect for events, bridal parties & recovery days'],
-  ['Membership & multi-session packages', 'available for longevity & wellness regulars'],
+  ['Multi-session packages', 'ask about packages for longevity & wellness regulars'],
   ['Good-faith wellness evaluation', 'included with every visit, by our medical team'],
   ['HSA / FSA', 'welcome'],
 ];
