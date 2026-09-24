@@ -9,6 +9,15 @@ const asCards = (id) =>
 export const SERVICES = [
   {
     slug: 'at-home-testing',
+    quick: {
+      line: 'Labs drawn at home, delivered to Labcorp the same day, and explained by our NP.',
+      items: [
+        ['At-Home Lab Visit', '$695', 'draw + NP results review'],
+        ['Urine collection', '$295', '+$95 with a lab visit'],
+        ['Respiratory PCR swab', '$349', 'COVID · RSV · Flu'],
+      ],
+      note: 'Share your insurance card when you book. Labcorp bills your insurance for the lab work.',
+    },
     priceFrom: 695,
     priceLabel: 'At-home lab visit $695 · includes NP interpretation',
     number: '01',
@@ -22,12 +31,12 @@ export const SERVICES = [
       'Blood work, urine testing, and respiratory swabs collected in the comfort and privacy of your home — with your results reviewed and explained by our Nurse Practitioner.',
     heroLede:
       'ER- and ICU-trained nurses come to you, draw your labs, and hand-deliver them to our partner Labcorp the same day. Our Nurse Practitioner interprets every result with you — and if you want to act on them, we build your supplement protocol, bring the supplements, and set up your monthly pill organizer with you.',
-    includedLede: 'Your path begins here. Everything below can be done in a single visit.',
+    includedLede: 'Your path begins here. Everything below can be done in a single visit, at your home, office, or hotel.',
     included: [
       {
         name: 'At-Home Lab Visit',
         price: '$695 · includes NP interpretation',
-        copy: 'Your blood draw performed at home by an ER/ICU-trained nurse, hand-delivered to our partner Labcorp the same day, then interpreted by our Nurse Practitioner on a results call. Standard and specialty panels, from routine wellness screening to targeted testing. Laboratory fees are billed by Labcorp and may be covered by insurance.',
+        copy: 'Your blood draw performed at home by an ER/ICU-trained nurse, hand-delivered to our partner Labcorp the same day, then interpreted by our Nurse Practitioner on a results call. Standard and specialty panels, from routine wellness screening to targeted testing.',
         tag: 'Phlebotomy',
       },
       {
@@ -43,7 +52,7 @@ export const SERVICES = [
       },
       {
         name: 'Respiratory PCR Swabs',
-        price: '$349 visit + test fee',
+        price: '$349',
         copy: 'COVID-19 PCR, plus rapid RSV and influenza A & B. Collected in-home, with results reviewed by a clinician.',
         tag: 'COVID-19 PCR · RSV · Flu A/B',
       },
@@ -60,9 +69,9 @@ export const SERVICES = [
       },
     ],
     steps: [
-      ['Book', "Choose a time and tell us what you'd like tested. We'll confirm any fasting or prep instructions."],
+      ['Book', "Choose a time, tell us what you'd like tested, and share your insurance card for lab processing. We'll confirm any fasting or prep instructions."],
       ['We come to you', 'Your nurse arrives with everything needed and collects your specimens. Most visits take under 30 minutes.'],
-      ['Straight to the lab', 'The Healing Soulutions team delivers your specimens directly to Labcorp — no third-party couriers.'],
+      ['Straight to the lab', 'The Healing Soulutions team delivers your specimens to Labcorp the same day — no third-party couriers. Labcorp bills your insurance directly for the lab work.'],
       [
         'Understand your results',
         'Results are delivered securely, then reviewed with you by our Nurse Practitioner, with next steps if any are needed.',
@@ -76,6 +85,15 @@ export const SERVICES = [
   },
   {
     slug: 'supplement-protocols',
+    quick: {
+      line: 'A 4-week supplement plan built for you, with the supplements brought to your door.',
+      items: [
+        ['Protocol Consult', '$250', 'no labs needed'],
+        ['Labs-Based Protocol', '$350', '$200 with a lab visit'],
+        ['Targeted protocols', '$350–$450', 'fertility, sleep, gut, hormones & more'],
+        ['4-Week Re-Panel', '$395', 'repeat labs + adjustment'],
+      ],
+    },
     priceFrom: 250,
     priceLabel: 'Protocols from $250 · 4-week re-panel & adjustment $395',
     number: '02',
@@ -211,7 +229,7 @@ export const SERVICES = [
         name: '4-Week Re-Panel & Adjustment',
         booked: 'End of every protocol cycle \u2014 repeat labs, reassessment, dose and product adjustment',
         price: '$395 per cycle \u00b7 $695 booked separately',
-        copy: 'At the end of each 4-week cycle: an at-home repeat blood panel delivered to Labcorp, Nurse Practitioner interpretation, and a reassessment that adjusts your protocol for the next cycle. Laboratory fees are billed by Labcorp and may be covered by insurance.',
+        copy: 'At the end of each 4-week cycle: an at-home repeat blood panel delivered to Labcorp, Nurse Practitioner interpretation, and a reassessment that adjusts your protocol for the next cycle. Labcorp bills your insurance directly for the repeat lab work.',
         tag: 'Every 4 weeks',
       },
       {
@@ -237,6 +255,15 @@ export const SERVICES = [
   },
   {
     slug: 'iv-injections',
+    quick: {
+      line: 'IV drips and injections given by your nurse at home, hotel, or office.',
+      items: [
+        ['Signature Soulutions', 'from $279', 'most drips $349'],
+        ['NAD+ & Niagen', 'from $395', 'longevity drips'],
+        ['Injections', '$85', 'B12, D3, glutathione & more'],
+        ['Pathway to Wellness', '$1,795', 'labs, protocol, 2 IVs, re-panel'],
+      ],
+    },
     priceFrom: 279,
     priceLabel: 'Signature drips from $279 · Pathway bundle $1,795',
     menu: true, // renders the full Drip Menu on the category page
