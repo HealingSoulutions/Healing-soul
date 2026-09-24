@@ -242,14 +242,14 @@ export const PATHWAY = {
     'Two Signature Soulution IVs',
     'Week-4 repeat blood panel, NP reassessment & adjusted protocol',
   ],
-  note: 'Laboratory fees are billed by Labcorp and may be covered by insurance. Your protocol is built around up to four products, sourced by us directly from the manufacturer and delivered to you.',
+  note: 'Labcorp bills your insurance directly for the lab work. Your protocol is built around up to four products, sourced by us directly from the manufacturer and delivered to you.',
 };
 
 // Steps 1 & 2 — testing and protocols.
 export const TESTING = [
   ['At-Home Lab Visit', 695, 'blood draw · hand-delivered to Labcorp by our team · NP interpretation & results call'],
   ['Urine collection', 295, 'stand-alone visit · +$95 when added to an At-Home Lab Visit · delivered to Labcorp'],
-  ['Respiratory PCR swab visit', 349, 'COVID-19 PCR · RSV · Flu A/B · plus test fee'],
+  ['Respiratory PCR swab visit', 349, 'COVID-19 PCR · RSV · Flu A/B'],
   ['NP review of outside lab results', 150, 'labs drawn elsewhere · waived with any Supplement Protocol'],
 ];
 export const PROTOCOLS = [
@@ -271,7 +271,7 @@ export const PROTOCOLS = [
   ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
 ];
 export const PROTOCOL_NOTE = 'Every protocol runs as a 4-week cycle: consult and written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with reassessment and adjustment.';
-export const LAB_FEE_NOTE = 'Laboratory fees are billed by Labcorp and may be covered by insurance.';
+export const LAB_FEE_NOTE = 'Prices cover the visit, collection, same-day delivery to Labcorp, and NP interpretation. Labcorp bills your insurance directly for the lab work, using the insurance card you share when you book.';
 
 export const CONCIERGE = [
   ['Travel included', 'within our service area'],
