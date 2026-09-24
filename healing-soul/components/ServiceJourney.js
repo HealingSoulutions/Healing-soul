@@ -54,8 +54,8 @@ function segments(points, pxW, pxH, vbW, vbH, gaps, endGap) {
 }
 // Small caption under each label, matching the four steps of the intro line.
 const CAPTIONS = ['Your baseline', 'Your protocol', 'Replenish & optimize', 'Clinician oversight'];
-const DESKTOP_SEGS = segments(DESKTOP, 920, 240, 1000, 240, [76, 76, 76, 76]);
-const PHONE_SEGS = segments(PHONE, 358, 880, 390, 880, [100, 100, 100, 100], 80);
+const DESKTOP_SEGS = segments(DESKTOP, 920, 240, 1000, 240, [66, 66, 66, 66]);
+const PHONE_SEGS = segments(PHONE, 358, 740, 390, 740, [104, 104, 104, 104], 66);
 
 export default function ServiceJourney() {
   const [open, setOpen] = useState(null); // index of the service whose pop-up is open
@@ -138,7 +138,7 @@ export default function ServiceJourney() {
   const inner = (s, i) => (
     <>
       <span className="number">{s.number}</span>
-      <Medallion icon={s.icon} back={s.back} backTight={s.backTight} turn={turns[i]} />
+      <Medallion icon={s.icon} back={s.back} backTight={s.backTight} turn={turns[i]} size={84} />
       <span className="label">{s.label}</span>
       <span className="sub">{CAPTIONS[i]}</span>
     </>
@@ -158,7 +158,7 @@ export default function ServiceJourney() {
       <div className="stage" role="list" aria-label="Service categories">
         {[
           ['flow-d', '0 0 1000 240', DESKTOP_SEGS],
-          ['flow-p', '0 0 390 880', PHONE_SEGS],
+          ['flow-p', '0 0 390 740', PHONE_SEGS],
         ].map(([cls, vb, segs]) => (
           <svg className={`flow ${cls}`} viewBox={vb} preserveAspectRatio="none" aria-hidden="true" key={cls}>
             {segs.map((seg, i) => (
@@ -232,59 +232,31 @@ export default function ServiceJourney() {
               ×
             </button>
             <div className="modal-head">
-              <Medallion icon={current.icon} size={72} />
+              <Medallion icon={current.icon} size={56} />
               <div>
-                <span className="eyebrow">
-                  {current.number} · {current.eyebrow}
-                </span>
-                <h3 id="hs-modal-title">{current.title}</h3>
-                {(current.priceLabel || current.priceFrom) && (
-                  <span className="price">{current.priceLabel || `From $${current.priceFrom}`}</span>
-                )}
+                <span className="eyebrow">{current.number}</span>
+                <h3 id="hs-modal-title">{current.label}</h3>
               </div>
             </div>
-            <p className="lede">{current.heroLede}</p>
-            <p className="modal-sub">{current.includedLede}</p>
-            <ul className="included">
-              {current.included.map((item) => (
-                <li key={item.name}>
-                  <strong>{item.name}{item.price && <em className="ptag">{item.price}</em>}</strong>
-                  <span>{item.copy}</span>
-                  {item.booked && (
-                    <span className="booked">
-                      <b>Commonly booked for:</b> {item.booked}
-                    </span>
-                  )}
-                  {item.bullets && (
-                    <ul className="bullets">
-                      {item.bullets.map((b) => (
-                        <li key={b}>{b}</li>
-                      ))}
-                    </ul>
-                  )}
-                  {item.brands && (
-                    <ul className="brands">
-                      {item.brands.map(([name, note]) => (
-                        <li key={name}>
-                          <b>{name}</b>
-                          <i>{note}</i>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {item.after && <span>{item.after}</span>}
-                </li>
-              ))}
-            </ul>
-            <ol className="steps">
-              {current.steps.map(([name, copy]) => (
-                <li key={name}>
-                  <strong>{name}</strong>
-                  <span>{copy}</span>
-                </li>
-              ))}
-            </ol>
-            {current.disclaimer && <p className="disclaimer">{current.disclaimer}</p>}
+            {current.quick ? (
+              <>
+                <p className="quick-line">{current.quick.line}</p>
+                <ul className="quick">
+                  {current.quick.items.map(([name, price, note]) => (
+                    <li key={name}>
+                      <span className="q-name">
+                        {name}
+                        {note && <small>{note}</small>}
+                      </span>
+                      <span className="q-price">{price}</span>
+                    </li>
+                  ))}
+                </ul>
+                {current.quick.note && <p className="quick-note">{current.quick.note}</p>}
+              </>
+            ) : (
+              <p className="lede">{current.heroLede}</p>
+            )}
             <div className="modal-actions">
               <Link href="/book" className="gold-btn">
                 Book a visit
@@ -567,7 +539,7 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .modal {
           position: relative;
-          width: min(720px, 100%);
+          width: min(460px, 100%);
           max-height: calc(100vh - 40px);
           overflow: auto;
           padding: 34px 36px 30px;
@@ -617,7 +589,7 @@ export default function ServiceJourney() {
         .hs-journey-section .modal h3 {
           margin: 8px 0 0;
           color: var(--gold-light);
-          font-size: 30px;
+          font-size: 24px;
           font-weight: 500;
           font-family: var(--serif);
           line-height: 1.1;
@@ -782,6 +754,45 @@ export default function ServiceJourney() {
           color: rgba(247, 241, 229, 0.5);
           font-size: 11.5px;
         }
+        .hs-journey-section .quick-line {
+          margin: 4px 0 14px;
+          font: 400 14.5px/1.5 var(--round);
+          color: rgba(247, 241, 229, 0.85);
+        }
+        .hs-journey-section .quick {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          border-top: 1px solid rgba(212, 162, 76, 0.28);
+        }
+        .hs-journey-section .quick li {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 12px;
+          padding: 11px 0;
+          border-bottom: 1px solid rgba(212, 162, 76, 0.28);
+        }
+        .hs-journey-section .q-name {
+          font: 600 17px/1.25 var(--serif);
+          color: var(--gold-light);
+        }
+        .hs-journey-section .q-name small {
+          display: block;
+          font: 400 12px/1.4 var(--round);
+          color: rgba(247, 241, 229, 0.65);
+          margin-top: 2px;
+        }
+        .hs-journey-section .q-price {
+          font: 600 16px/1.2 var(--serif);
+          color: var(--gold);
+          white-space: nowrap;
+        }
+        .hs-journey-section .quick-note {
+          margin: 12px 0 0;
+          font: 400 12.5px/1.5 var(--round);
+          color: rgba(247, 241, 229, 0.65);
+        }
         .hs-journey-section .modal-actions {
           display: flex;
           flex-wrap: wrap;
@@ -815,7 +826,7 @@ export default function ServiceJourney() {
             padding: 12px 16px 28px;
           }
           .hs-journey-section .stage {
-            height: 880px;
+            height: 740px;
           }
           .hs-journey-section .flow-d {
             display: none;
