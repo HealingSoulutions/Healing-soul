@@ -40,11 +40,6 @@ export const SERVICES = [
         tag: 'Phlebotomy',
       },
       {
-        name: 'One Stick with Your IV',
-        copy: 'Booking a Soulution the same day? We draw your labs from the same IV line before your infusion begins, so there is no second needle stick.',
-        tag: 'Labs + IV, one visit',
-      },
-      {
         name: 'Urine Testing',
         price: '$295 · +$95 with an At-Home Lab Visit',
         copy: 'Private, guided specimen collection at home for urinalysis and related testing.',
