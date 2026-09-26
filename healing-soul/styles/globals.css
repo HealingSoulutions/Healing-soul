@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5 { font-family: 'Aime', Georgia, serif; }
 }
 
 /* ── Navigation ── */
-nav {
+nav[aria-label="Main navigation"] {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: 0.9rem 3rem; display: flex; justify-content: center; align-items: center; gap: 2.25rem;
   background: rgba(1,60,28,0.94); backdrop-filter: blur(28px);
@@ -307,7 +307,7 @@ footer { background: #fbfaf9; padding: 1rem 3rem; color: rgba(37,31,33,0.7); bor
 
 /* ── Mobile ── */
 @media(max-width: 768px) {
-  nav { padding: 0.75rem 1.5rem; justify-content: space-between; }
+  nav[aria-label="Main navigation"] { padding: 0.75rem 1.5rem; justify-content: space-between; }
   .nav-links { display: none; }
   .nav-links.active {
     display: flex; flex-direction: column; position: absolute;

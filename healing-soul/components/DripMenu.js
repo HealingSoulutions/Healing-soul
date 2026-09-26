@@ -73,7 +73,7 @@ function DripRow({ d }) {
           {d.name}
           {d.badge && <span className={`dr-badge${d.special ? ' warn' : ''}`}>{d.badge}</span>}
         </span>
-        {d.price && <span className="dr-price">{usd(d.price)}</span>}
+        <span className="dr-price">{usd(d.price ?? SIGNATURE_PRICE)}</span>
         <span className="dr-chev" aria-hidden="true">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <path d="m6 9 6 6 6-6" />
@@ -236,7 +236,7 @@ export default function DripMenu() {
               {d.name}
               {d.badge && <span className={`dm-badge${d.special ? ' warn' : ''}`}>{d.badge}</span>}
             </h3>
-            {d.price && <span className="dm-card-price">{usd(d.price)}</span>}
+            <span className="dm-card-price">{usd(d.price ?? SIGNATURE_PRICE)}</span>
             <p className="dm-tagline">{d.tagline}</p>
             <p className="dm-contents">{d.contents}</p>
             {d.for && (
