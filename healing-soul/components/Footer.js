@@ -4,7 +4,8 @@ export default function Footer() {
   return (
     <footer role="contentinfo">
       <div className="footer-inner">
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1.25rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
+        <img src="/emblem-metallic.png" alt="" aria-hidden="true" style={{ height: 30, width: 'auto', display: 'block', margin: '0 auto 0.9rem' }} />
+        <div style={{ display: 'flex' , justifyContent: 'center', gap: '1.25rem', marginBottom: '0.4rem', flexWrap: 'wrap' }}>
           <Link href="/about" className="footer-link">About</Link>
           <Link href="/book" className="footer-link">Book a Visit</Link>
           <Link href="/contact" className="footer-link">Contact</Link>
