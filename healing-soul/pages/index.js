@@ -75,10 +75,6 @@ export default function Home() {
             <Link href="/book" className="cta-primary">Book a Visit</Link>
             <Link href="/services/at-home-testing" className="cta-secondary">See At-Home Testing</Link>
           </div>
-          <p className="owner-note">
-            Preview note for Berit (replace or remove before publishing): if you offer a named starter bundle - e.g.
-            a lab draw plus NP review at one price - tell me the name, what it includes, and the price.
-          </p>
         </section>
       </main>
 
