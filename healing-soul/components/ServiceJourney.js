@@ -344,7 +344,7 @@ export default function ServiceJourney() {
         .hs-journey-section .hero-emerald {
           background: #013c1c;
           margin: 0 calc(50% - 50vw) 0;
-          padding: 60px 20px 40px;
+          padding: 78px 20px 44px;
         }
         .hs-journey-section .hero-wordmark {
           display: block;
@@ -909,8 +909,8 @@ export default function ServiceJourney() {
             padding: 12px 16px 28px;
           }
           .hs-journey-section .hero-emerald {
-            margin-top: -12px;
-            padding: 22px 16px 34px;
+            margin-top: 0;
+            padding: 66px 16px 36px;
           }
           .hs-journey-section .stage {
             height: 740px;
