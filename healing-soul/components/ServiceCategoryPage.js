@@ -8,7 +8,7 @@ import { SERVICES } from '../lib/services';
 function CollapsibleCard({ item }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className={`card collapsible${item.brands ? ' wide' : ''}${open ? ' open' : ''}`}>
+    <div className={`card wide collapsible${open ? ' open' : ''}`}>
       <button
         type="button"
         className="collapsible-head"
@@ -45,6 +45,120 @@ function CollapsibleCard({ item }) {
           </div>
         </>
       )}
+      <style jsx>{`
+        .card {
+          background: #fff;
+          border: 1px solid rgba(37, 31, 33, 0.1);
+          border-radius: 16px;
+        }
+        .wide {
+          grid-column: 1 / -1;
+        }
+        .collapsible {
+          position: relative;
+          padding: 0;
+        }
+        .collapsible-head {
+          display: flex;
+          width: 100%;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 14px;
+          padding: 22px 20px;
+          background: none;
+          border: 0;
+          font: inherit;
+          text-align: left;
+          cursor: pointer;
+        }
+        .collapsible-head h3 {
+          font-family: var(--serif);
+          font-size: 21px;
+          font-weight: 500;
+          color: #251f21;
+          margin: 0;
+        }
+        .collapsible.open .collapsible-head {
+          padding: 22px 56px 6px 20px;
+        }
+        .reveal-hint {
+          flex-shrink: 0;
+          font: 500 10.5px/1 var(--round, sans-serif);
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #73a89a;
+        }
+        .collapsible-close {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          width: 30px;
+          height: 30px;
+          border-radius: 999px;
+          border: 1px solid rgba(37, 31, 33, 0.16);
+          background: #fff;
+          color: #585254;
+          font-size: 17px;
+          line-height: 1;
+          cursor: pointer;
+          transition: background 0.15s ease, color 0.15s ease;
+        }
+        .collapsible-close:hover {
+          background: #4f7f73;
+          border-color: #4f7f73;
+          color: #fff;
+        }
+        .collapsible-body {
+          padding: 0 20px 22px;
+        }
+        .collapsible-body p {
+          margin: 0;
+          font-size: 13.5px;
+          color: #585254;
+          line-height: 1.55;
+        }
+        .brands {
+          list-style: disc;
+          margin: 10px 0;
+          padding: 0 0 0 20px;
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: 28px;
+          row-gap: 12px;
+          font-size: 13.5px;
+          color: #251f21;
+          line-height: 1.5;
+        }
+        .brands li::marker {
+          color: var(--gold-dark);
+        }
+        .brands b {
+          display: block;
+          color: var(--emerald);
+          font-weight: 600;
+        }
+        .brands i {
+          display: block;
+          margin-top: 1px;
+          color: #585254;
+          font-style: normal;
+          font-size: 12.5px;
+          line-height: 1.5;
+        }
+        @media (max-width: 420px) {
+          .brands {
+            grid-template-columns: 1fr;
+          }
+        }
+        .tag {
+          display: inline-block;
+          margin-top: 12px;
+          font-size: 10.5px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--gold-dark);
+        }
+      `}</style>
     </div>
   );
 }
@@ -310,59 +424,6 @@ export default function ServiceCategoryPage({ service }) {
           text-transform: uppercase;
           color: #4f7f73;
           white-space: nowrap;
-        }
-        .card.collapsible {
-          position: relative;
-          padding: 0;
-        }
-        .collapsible-head {
-          display: flex;
-          width: 100%;
-          align-items: baseline;
-          justify-content: space-between;
-          gap: 14px;
-          padding: 22px 20px;
-          background: none;
-          border: 0;
-          font: inherit;
-          text-align: left;
-          cursor: pointer;
-        }
-        .collapsible-head h3 {
-          margin: 0;
-        }
-        .card.collapsible.open .collapsible-head {
-          padding: 22px 56px 6px 20px;
-        }
-        .reveal-hint {
-          flex-shrink: 0;
-          font: 500 10.5px/1 var(--round, sans-serif);
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: #73a89a;
-        }
-        .collapsible-close {
-          position: absolute;
-          top: 12px;
-          right: 12px;
-          width: 30px;
-          height: 30px;
-          border-radius: 999px;
-          border: 1px solid rgba(37, 31, 33, 0.16);
-          background: #fff;
-          color: #585254;
-          font-size: 17px;
-          line-height: 1;
-          cursor: pointer;
-          transition: background 0.15s ease, color 0.15s ease;
-        }
-        .collapsible-close:hover {
-          background: #4f7f73;
-          border-color: #4f7f73;
-          color: #fff;
-        }
-        .collapsible-body {
-          padding: 0 20px 22px;
         }
         .booked {
           margin: 8px 0 0;
