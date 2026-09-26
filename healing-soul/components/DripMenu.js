@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {
   SIGNATURE,
   SIGNATURE_PRICE,
@@ -14,6 +15,186 @@ import {
   MENU_DISCLAIMER,
   usd,
 } from '../lib/menu';
+
+
+const POPULAR = [
+  'The Myers’ Soulution',
+  'The Dehydration Soulution',
+  'The Immunity Soulution',
+  'The Hangover Soulution',
+];
+const FEATURED = POPULAR.map((n) => SIGNATURE.find((d) => d.name === n)).filter(Boolean);
+const MORE_DRIPS = SIGNATURE.filter((d) => !POPULAR.includes(d.name));
+
+const ICON_PROPS = {
+  width: 22,
+  height: 22,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 1.6,
+  strokeLinecap: 'round',
+  strokeLinejoin: 'round',
+};
+const DRIP_ICONS = {
+  'The Myers’ Soulution': (
+    <svg {...ICON_PROPS}>
+      <path d="M12 4.5 13.9 10 19.5 12 13.9 14 12 19.5 10.1 14 4.5 12 10.1 10Z" />
+      <path d="M18.5 3.5v3M17 5h3M5.5 17.5v3M4 19h3" />
+    </svg>
+  ),
+  'The Dehydration Soulution': (
+    <svg {...ICON_PROPS}>
+      <path d="M12 3.5c3.2 3.9 5.5 7 5.5 9.9a5.5 5.5 0 1 1-11 0c0-2.9 2.3-6 5.5-9.9Z" />
+      <path d="M9.5 13.5a2.6 2.6 0 0 0 2 2.5" />
+    </svg>
+  ),
+  'The Immunity Soulution': (
+    <svg {...ICON_PROPS}>
+      <path d="M12 3l7 2.7v5.5c0 4.4-3 7.6-7 9.8-4-2.2-7-5.4-7-9.8V5.7Z" />
+      <path d="M12 9v6M9 12h6" />
+    </svg>
+  ),
+  'The Hangover Soulution': (
+    <svg {...ICON_PROPS}>
+      <path d="M17 18a5 5 0 0 0-10 0" />
+      <path d="M12 5.5V8M5.2 8.7l1.5 1.5M18.8 8.7l-1.5 1.5" />
+      <path d="M3 18h18M7.5 21h9" />
+    </svg>
+  ),
+};
+
+function DripRow({ d }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`dr${open ? ' open' : ''}`}>
+      <button type="button" className="dr-head" onClick={() => setOpen(!open)} aria-expanded={open}>
+        <span className="dr-name">
+          {d.name}
+          {d.badge && <span className={`dr-badge${d.special ? ' warn' : ''}`}>{d.badge}</span>}
+        </span>
+        {d.price && <span className="dr-price">{usd(d.price)}</span>}
+        <span className="dr-chev" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </span>
+      </button>
+      {open && (
+        <div className="dr-body">
+          <p className="dr-tagline">{d.tagline}</p>
+          <p className="dr-contents">{d.contents}</p>
+          {d.for && (
+            <p className="dr-for">
+              <b>Commonly booked for:</b> {d.for}
+            </p>
+          )}
+          {d.extra && <p className="dr-extra">{d.extra}</p>}
+          {d.pair && (
+            <p className="dr-pair">
+              <b>Pairs well with:</b> {d.pair[0]} &middot; {d.pair[1]}
+            </p>
+          )}
+          {d.special && <p className="dr-special">{d.special}</p>}
+        </div>
+      )}
+      <style jsx>{`
+        .dr {
+          border-bottom: 1px solid rgba(115, 168, 154, 0.35);
+        }
+        .dr-head {
+          display: flex;
+          align-items: baseline;
+          gap: 10px;
+          width: 100%;
+          padding: 13px 2px;
+          background: none;
+          border: 0;
+          cursor: pointer;
+          text-align: left;
+          font-family: inherit;
+        }
+        .dr-name {
+          flex: 1;
+          font: 500 15px/1.4 var(--serif);
+          color: #251f21;
+        }
+        .dr-badge {
+          display: inline-block;
+          margin-left: 8px;
+          padding: 3px 9px;
+          border: 1px solid var(--gold);
+          border-radius: 999px;
+          font: 500 9.5px/1.2 var(--round);
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: var(--gold-dark);
+          vertical-align: middle;
+        }
+        .dr-badge.warn {
+          background: #251f21;
+          color: #ffffff;
+          border-color: #251f21;
+        }
+        .dr-price {
+          font: 500 15px/1 var(--serif);
+          color: var(--gold-dark);
+          white-space: nowrap;
+        }
+        .dr-chev {
+          display: inline-flex;
+          color: var(--gold-dark);
+          transition: transform 0.2s ease;
+        }
+        .dr.open .dr-chev {
+          transform: rotate(180deg);
+        }
+        .dr-body {
+          padding: 2px 2px 14px;
+        }
+        .dr-tagline {
+          margin: 0 0 6px;
+          font: 400 14.5px/1.45 var(--serif);
+          color: #251f21;
+        }
+        .dr-contents {
+          margin: 0;
+          font-size: 12.5px;
+          line-height: 1.55;
+          color: #585254;
+        }
+        .dr-for,
+        .dr-pair {
+          margin: 6px 0 0;
+          font-size: 12px;
+          line-height: 1.5;
+          color: #585254;
+        }
+        .dr-for b,
+        .dr-pair b {
+          color: #251f21;
+          font-weight: 500;
+        }
+        .dr-pair {
+          color: #4f7f73;
+        }
+        .dr-extra {
+          margin: 6px 0 0;
+          font-size: 12px;
+          color: #4f7f73;
+        }
+        .dr-special {
+          margin: 8px 0 0;
+          padding-top: 8px;
+          border-top: 1px dashed rgba(115, 168, 154, 0.5);
+          font-size: 12px;
+          line-height: 1.5;
+          color: #251f21;
+        }
+      `}</style>
+    </div>
+  );
+}
 
 // Web-native version of the printed Drip Menu. Rendered on /services/iv-injections.
 export default function DripMenu() {
@@ -46,9 +227,11 @@ export default function DripMenu() {
         Each drip begins with your choice of 500 mL to 1,000 mL Lactated Ringer&rsquo;s (LR) or Normal Saline (NS);
         additional fluids +$150 per liter.
       </p>
+<p className="dm-eyebrow dm-pop-label">Most booked</p>
       <div className="dm-grid">
-        {SIGNATURE.map((d) => (
+        {FEATURED.map((d) => (
           <article className={`dm-card${d.special ? ' special' : ''}`} key={d.name}>
+            <span className="dm-drip-icon" aria-hidden="true">{DRIP_ICONS[d.name]}</span>
             <h3>
               {d.name}
               {d.badge && <span className={`dm-badge${d.special ? ' warn' : ''}`}>{d.badge}</span>}
@@ -69,6 +252,12 @@ export default function DripMenu() {
             )}
             {d.special && <p className="dm-special">{d.special}</p>}
           </article>
+        ))}
+      </div>
+      <p className="dm-eyebrow dm-more-label">More Soulutions &middot; tap to reveal</p>
+      <div className="dm-rows">
+        {MORE_DRIPS.map((d) => (
+          <DripRow key={d.name} d={d} />
         ))}
       </div>
       <p className="dm-fine">Formulas may be adjusted by your clinician based on your evaluation.</p>
@@ -443,6 +632,30 @@ export default function DripMenu() {
           letter-spacing: 0.16em;
           text-transform: uppercase;
           color: var(--gold-dark);
+        }
+
+        .dm-pop-label {
+          margin: 20px 0 8px;
+        }
+        .dm-more-label {
+          margin: 26px 0 8px;
+        }
+        .dm-drip-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px;
+          height: 44px;
+          margin-bottom: 10px;
+          border-radius: 50%;
+          background: rgba(115, 168, 154, 0.14);
+          color: #4f7f73;
+        }
+        .dm-rows {
+          border-top: 1px solid rgba(115, 168, 154, 0.35);
+        }
+        .dm-card h3 {
+          margin-top: 0;
         }
         .dm-eyebrow.light {
           color: #251f21;
