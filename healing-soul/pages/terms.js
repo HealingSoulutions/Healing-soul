@@ -450,48 +450,48 @@ export default function Terms() {
           max-width: 820px;
           margin: 6.5rem auto 4rem;
           padding: 3rem 2.25rem 3.5rem;
-          background: #f7f1e5;
-          border: 1px solid rgba(212, 162, 76, 0.5);
+          background: #ffffff;
+          border: 1px solid #eae9ea;
           border-radius: 16px;
-          color: #16281f;
-          font-family: "Varela Round", system-ui, -apple-system, sans-serif;
+          color: #251f21;
+          font-family: "KMR Melange Grotesk", system-ui, -apple-system, sans-serif;
           font-size: 1rem;
           line-height: 1.75;
         }
         .terms-head {
-          border-bottom: 1px solid rgba(212, 162, 76, 0.45);
+          border-bottom: 1px solid rgba(115, 168, 154, 0.45);
           padding-bottom: 2rem;
           margin-bottom: 2rem;
         }
         .eyebrow {
-          font-family: "Varela Round", sans-serif;
+          font-family: "KMR Melange Grotesk", sans-serif;
           letter-spacing: 0.22em;
           text-transform: uppercase;
           font-size: 0.7rem;
-          color: #d4a24c;
+          color: #73a89a;
           margin: 0 0 0.75rem;
         }
         h1 {
-          font-family: "Cormorant Garamond", Georgia, serif;
+          font-family: "Aime", Georgia, serif;
           font-size: clamp(2.2rem, 5vw, 3rem);
-          font-weight: 500;
-          color: #013c1c;
+          font-weight: 400;
+          color: #251f21;
           margin: 0 0 0.5rem;
           line-height: 1.15;
         }
         .meta {
           font-size: 0.85rem;
-          color: #6b7a71;
+          color: #969394;
           margin: 0 0 1.5rem;
         }
         .lede {
           font-size: 1.05rem;
-          color: #2c3e34;
+          color: #585254;
           margin: 0;
         }
         .toc {
-          background: rgba(1, 60, 28, 0.04);
-          border-left: 3px solid #d4a24c;
+          background: #f4efec;
+          border-left: 3px solid #73a89a;
           padding: 1.25rem 1.5rem 1.25rem 2.5rem;
           margin-bottom: 3rem;
           border-radius: 2px;
@@ -509,39 +509,39 @@ export default function Terms() {
           margin-bottom: 0.35rem;
         }
         .toc a {
-          color: #013c1c;
+          color: #251f21;
           text-decoration: none;
           border-bottom: 1px solid transparent;
         }
         .toc a:hover {
-          border-bottom-color: #d4a24c;
+          border-bottom-color: #73a89a;
         }
         .box {
           max-height: 200px;
           overflow-y: auto;
           padding: 1rem 1.25rem 0.25rem;
-          border: 1px solid rgba(1, 60, 28, 0.14);
-          border-left: 3px solid #d4a24c;
+          border: 1px solid rgba(37, 31, 33, 0.14);
+          border-left: 3px solid #73a89a;
           border-radius: 2px;
-          background: #fcfbf7;
+          background: #fbfaf9;
           font-size: 0.94rem;
         }
         .box:focus-visible {
-          outline: 2px solid #d4a24c;
+          outline: 2px solid #73a89a;
           outline-offset: 2px;
         }
         .box::-webkit-scrollbar {
           width: 6px;
         }
         .box::-webkit-scrollbar-thumb {
-          background: rgba(1, 60, 28, 0.25);
+          background: rgba(37, 31, 33, 0.2);
           border-radius: 3px;
         }
         .hint {
           font-size: 0.72rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: #a08a5e;
+          color: #4f7f73;
           margin: 0.4rem 0 0;
         }
         section {
@@ -549,10 +549,10 @@ export default function Terms() {
           scroll-margin-top: 6rem;
         }
         h2 {
-          font-family: "Cormorant Garamond", Georgia, serif;
+          font-family: "Aime", Georgia, serif;
           font-size: 1.6rem;
           font-weight: 600;
-          color: #013c1c;
+          color: #251f21;
           margin: 0 0 0.75rem;
           line-height: 1.3;
         }
@@ -567,14 +567,14 @@ export default function Terms() {
           margin-bottom: 0.6rem;
         }
         a {
-          color: #013c1c;
+          color: #4f7f73;
         }
         .foot {
           margin-top: 3.5rem;
           padding-top: 1.5rem;
-          border-top: 1px solid rgba(212, 162, 76, 0.45);
+          border-top: 1px solid rgba(115, 168, 154, 0.45);
           font-size: 0.85rem;
-          color: #6b7a71;
+          color: #969394;
         }
         @media (max-width: 640px) {
           .toc ol {

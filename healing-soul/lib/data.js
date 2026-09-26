@@ -45,7 +45,7 @@ export const serviceCategories = [
     services: [
       { id: 50, title: 'At-Home Blood Draw & Phlebotomy', desc: 'Convenient in-home blood collection by a licensed nurse, with samples delivered to an accredited laboratory for processing.', tags: ['Phlebotomy', 'Venipuncture', 'In-Home Collection', 'Lab Ready'] },
       { id: 51, title: 'At-Home Lab Testing', desc: 'Bloodwork and diagnostic panels collected in the comfort of your home and sent to an accredited laboratory, from routine wellness panels to targeted screenings.', tags: ['Lab Panels', 'Wellness Screening', 'Diagnostics', 'Bloodwork'] },
-      { id: 52, title: 'Lab Result Interpretation', desc: 'A Nurse Practitioner reviews and interprets your laboratory results and discusses findings and next steps with you.', tags: ['NP Review', 'Result Interpretation', 'Care Plan', 'Follow-Up'] },
+      { id: 52, title: 'Lab Result Interpretation', desc: 'A provider reviews and interprets your laboratory results and discusses findings and next steps with you.', tags: ['Provider Review', 'Result Interpretation', 'Care Plan', 'Follow-Up'] },
       { id: 53, title: 'Respiratory Swabs', desc: 'In-home collection of respiratory specimens for testing such as COVID-19, influenza, RSV, and strep, with results reviewed by a clinician.', tags: ['COVID-19', 'Influenza', 'RSV', 'Strep'] },
       { id: 54, title: 'Urine Testing', desc: 'In-home urine specimen collection for urinalysis and related testing, processed by an accredited laboratory.', tags: ['Urinalysis', 'UTI Screening', 'Specimen Collection', 'Diagnostics'] },
     ],

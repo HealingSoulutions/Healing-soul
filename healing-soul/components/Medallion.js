@@ -56,15 +56,13 @@ export default function Medallion({ icon, back, backTight, active = false, turn 
           place-items: center;
           border-radius: 50%;
           backface-visibility: hidden;
-          border: 1px solid #e3be7a;
-          color: #5a3f12;
-          background-color: #d4a24c;
-          background-image: radial-gradient(circle at 48% 44%, rgba(255, 236, 196, 0.14) 0%, rgba(255, 236, 196, 0) 58%),
-            linear-gradient(118deg, #a87b2e 0%, #c9983f 18%, #e6c078 39%, #d4a24c 57%, #b3842f 78%, #d0a24f 100%);
-          box-shadow: inset 0 1px 1px rgba(255, 236, 196, 0.3), inset 0 -2px 3px rgba(96, 64, 16, 0.2),
-            inset 0 0 0 5px rgba(110, 78, 24, 0.09), 0 8px 16px rgba(0, 0, 0, 0.2);
+          border: 1.5px solid #d4a24c;
+          color: #a87b2e;
+          background: linear-gradient(150deg, #faf4e4 0%, #f5e9cc 100%);
+          box-shadow: 0 4px 10px rgba(96, 64, 16, 0.10);
         }
         .face:before {
+          display: none;
           content: '';
           position: absolute;
           inset: 3px;
@@ -79,6 +77,7 @@ export default function Medallion({ icon, back, backTight, active = false, turn 
           );
         }
         .face:after {
+          display: none;
           content: '';
           position: absolute;
           inset: 11px;
@@ -94,7 +93,7 @@ export default function Medallion({ icon, back, backTight, active = false, turn 
         }
         .back span {
           position: relative;
-          font: 400 13px/1.25 'Varela Round', system-ui, sans-serif;
+          font: 400 13px/1.25 'KMR Melange Grotesk', system-ui, sans-serif;
           letter-spacing: 0.16em;
           color: #4a3410;
         }

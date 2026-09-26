@@ -15,8 +15,7 @@ export default function Contact() {
           <span className="eyebrow">Contact</span>
           <h1 className="sr-only">Reach Our Mobile Concierge Nursing Team</h1>
           <p className="intro">
-            Reach us directly to ask a question, confirm availability at your location, or arrange a visit. Our team
-            follows up within 24 hours.
+            Questions, availability, or a visit: reach us directly. We follow up within 24 hours.
           </p>
 
           <div className="ways" role="list">
@@ -51,20 +50,19 @@ export default function Contact() {
           </div>
 
           <p className="fine">
-            For a medical emergency, call 911. This website is informational and is not a substitute for emergency or
-            primary medical care.
+            For a medical emergency, call 911. This site is informational and not a substitute for emergency or primary care.
           </p>
         </section>
       </main>
 
       <style jsx>{`
         .contact {
-          --emerald: #013c1c;
-          --gold: #d4a24c;
-          --gold-light: #ebcb8a;
-          --ivory: #f7f1e5;
-          --serif: 'Cormorant Garamond', Georgia, serif;
-          --round: 'Varela Round', system-ui, sans-serif;
+          --emerald: #fbfaf9;
+          --gold: #73a89a;
+          --gold-light: #251f21;
+          --ivory: #251f21;
+          --serif: 'Aime', Georgia, serif;
+          --round: 'KMR Melange Grotesk', system-ui, sans-serif;
           min-height: 100vh;
           background: var(--emerald);
           color: var(--ivory);
@@ -94,10 +92,10 @@ export default function Contact() {
         .intro {
           max-width: 560px;
           margin: 0 auto 44px;
-          color: rgba(247, 241, 229, 0.82);
+          color: rgba(37, 31, 33, 0.82);
           font-size: 19px;
           line-height: 1.55;
-          font-style: italic;
+          font-style: normal;
         }
         .ways {
           display: grid;
@@ -107,9 +105,9 @@ export default function Contact() {
         .contact :global(.way) {
           display: block;
           padding: 22px 18px;
-          border: 1px solid rgba(212, 162, 76, 0.45);
+          border: 1px solid rgba(115, 168, 154, 0.45);
           border-radius: 16px;
-          background: rgba(255, 255, 255, 0.025);
+          background: rgba(37, 31, 33, 0.025);
           text-decoration: none;
           color: inherit;
           transition: border-color 0.25s, background 0.25s;
@@ -117,7 +115,7 @@ export default function Contact() {
         .contact :global(.way:hover),
         .contact :global(.way:focus-visible) {
           border-color: var(--gold);
-          background: rgba(212, 162, 76, 0.08);
+          background: rgba(115, 168, 154, 0.08);
           outline: none;
         }
         .label {
@@ -145,7 +143,7 @@ export default function Contact() {
         .rule {
           height: 1px;
           margin: 52px auto 44px;
-          background: rgba(212, 162, 76, 0.22);
+          background: rgba(115, 168, 154, 0.22);
         }
         .facts {
           display: grid;
@@ -155,13 +153,13 @@ export default function Contact() {
         }
         .facts p {
           margin: 0;
-          color: rgba(247, 241, 229, 0.78);
+          color: rgba(37, 31, 33, 0.78);
           font: 400 13px/1.65 var(--round);
         }
         .fine {
           margin: 56px auto 0;
           max-width: 560px;
-          color: rgba(247, 241, 229, 0.5);
+          color: rgba(37, 31, 33, 0.5);
           font: 400 11.5px/1.55 var(--round);
         }
         @media (max-width: 680px) {

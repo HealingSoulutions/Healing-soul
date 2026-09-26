@@ -17,8 +17,8 @@ export default function Nav() {
             return (
               <li key={label}>
                 {external
-                  ? <a href={href} className="nav-btn" onClick={() => setMo(false)}>{label}</a>
-                  : <Link href={href} className="nav-btn" onClick={() => setMo(false)}>{label}</Link>}
+                  ? <a href={href} className={'nav-btn' + (label === 'Book a Visit' ? ' nav-cta' : '')} onClick={() => setMo(false)}>{label}</a>
+                  : <Link href={href} className={'nav-btn' + (label === 'Book a Visit' ? ' nav-cta' : '')} onClick={() => setMo(false)}>{label}</Link>}
               </li>
             );
           })}

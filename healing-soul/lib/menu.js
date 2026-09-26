@@ -237,24 +237,24 @@ export const PATHWAY = {
   lede: 'Steps 1–4 in one booking — four home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
   includes: [
     'At-home lab visit: blood draw, hand-delivered to Labcorp by our team',
-    'Nurse Practitioner lab interpretation & results call',
+    'Provider lab interpretation & results call',
     'Written, labs-based supplement protocol',
     'Two Signature Soulution IVs',
-    'Week-4 repeat blood panel, NP reassessment & adjusted protocol',
+    'Week-4 repeat blood panel, provider reassessment & adjusted protocol',
   ],
   note: 'Labcorp bills your insurance directly for the lab work. Your protocol is built around up to four products, sourced by us directly from the manufacturer and delivered to you.',
 };
 
 // Steps 1 & 2 — testing and protocols.
 export const TESTING = [
-  ['At-Home Lab Visit', 695, 'blood draw · hand-delivered to Labcorp by our team · NP interpretation & results call'],
+  ['At-Home Lab Visit', 695, 'blood draw · hand-delivered to Labcorp by our team · provider interpretation & results call'],
   ['Urine collection', 295, 'stand-alone visit · +$95 when added to an At-Home Lab Visit · delivered to Labcorp'],
   ['Respiratory PCR swab visit', 349, 'COVID-19 PCR · RSV · Flu A/B'],
-  ['NP review of outside lab results', 150, 'labs drawn elsewhere · waived with any Supplement Protocol'],
+  ['Provider review of outside lab results', 150, 'labs drawn elsewhere · waived with any Supplement Protocol'],
 ];
 export const PROTOCOLS = [
   ['Protocol Consult', 250, 'virtual or in-home · no labs required'],
-  ['Labs-Based Protocol', 350, 'includes NP lab interpretation & written plan · $200 with an At-Home Lab Visit'],
+  ['Labs-Based Protocol', 350, 'includes provider lab interpretation & written plan · $200 with an At-Home Lab Visit'],
   ['Fertility Optimization Protocol', 450, 'cycle-timed · coordinated with your clinic'],
   ['Brain Health & Focus Protocol', 450, 'labs-informed · cognitive support'],
   ['Sleep Architecture Protocol', 450, 'timing, nutrients & habits · with follow-up'],
@@ -266,12 +266,12 @@ export const PROTOCOLS = [
   ['Gut Health Protocol', 450, 'microbiome & digestive support'],
   ['Hormonal Health Protocol', 450, 'male & female · labs-based'],
   ['Athletic Optimization & Recovery Protocol', 450, 'certified-for-sport products · training-timed'],
-  ['4-Week Re-Panel & Adjustment', 395, 'repeat panel · NP reassessment · adjusted protocol · $695 separately'],
+  ['4-Week Re-Panel & Adjustment', 395, 'repeat panel · provider reassessment · adjusted protocol · $695 separately'],
   ['Check-In (no labs)', 125, 'between cycles · as needed'],
-  ['Telehealth NP Consult', 150, '30 minutes · NY & CT'],
+  ['Telehealth Provider Consult', 150, '30 minutes · NY & CT'],
 ];
 export const PROTOCOL_NOTE = 'Every protocol runs as a 4-week cycle: consult and written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with reassessment and adjustment.';
-export const LAB_FEE_NOTE = 'Prices cover the visit, collection, same-day delivery to Labcorp, and NP interpretation. Labcorp bills your insurance directly for the lab work, using the insurance card you share when you book.';
+export const LAB_FEE_NOTE = 'Prices cover the visit, collection, same-day delivery to Labcorp, and provider interpretation. Labcorp bills your insurance directly for the lab work, using the insurance card you share when you book.';
 
 export const CONCIERGE = [
   ['Travel included', 'within our service area'],
@@ -283,6 +283,6 @@ export const CONCIERGE = [
 ];
 
 export const MENU_DISCLAIMER =
-  'These statements have not been evaluated by the Food & Drug Administration. IV therapy is not intended to diagnose, treat, cure, or prevent any disease and is not a substitute for emergency or primary medical care. All treatments are administered under medical direction following a good-faith evaluation; not all clients are candidates for every therapy, and services may be declined for safety reasons. Clients must be 18 or older. Prices are subject to change and may vary with add-ons, dosing, and travel distance. NIAGEN® is a registered trademark of its respective owner. If you are experiencing a medical emergency, call 911.';
+  'Our services are a supportive adjunct to treatment, not a cure or a replacement for medical care. These statements have not been evaluated by the Food & Drug Administration. IV therapy is not intended to diagnose, treat, cure, or prevent any disease and is not a substitute for emergency or primary medical care. All treatments are administered under medical direction following a good-faith evaluation; not all clients are candidates for every therapy, and services may be declined for safety reasons. Clients must be 18 or older. Prices are subject to change and may vary with add-ons, dosing, and travel distance. NIAGEN® is a registered trademark of its respective owner. If you are experiencing a medical emergency, call 911.';
 
 export const usd = (n) => `$${n.toLocaleString('en-US')}`;

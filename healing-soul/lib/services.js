@@ -10,16 +10,16 @@ export const SERVICES = [
   {
     slug: 'at-home-testing',
     quick: {
-      line: 'Labs drawn at home, delivered to Labcorp the same day, and explained by our NP.',
+      line: 'Labs drawn at home, delivered to Labcorp the same day, and explained by a provider.',
       items: [
-        ['At-Home Lab Visit', '$695', 'draw + NP results review'],
+        ['At-Home Lab Visit', '$695', 'draw + provider results review'],
         ['Urine collection', '$295', '+$95 with a lab visit'],
         ['Respiratory PCR swab', '$349', 'COVID · RSV · Flu'],
       ],
       note: 'Share your insurance card when you book. Labcorp bills your insurance for the lab work.',
     },
     priceFrom: 695,
-    priceLabel: 'At-home lab visit $695 · includes NP interpretation',
+    priceLabel: 'At-home lab visit $695 · includes provider interpretation',
     number: '01',
     icon: 'house',
     back: ['AT', 'HOME'],
@@ -28,15 +28,15 @@ export const SERVICES = [
     eyebrow: 'Begin with clarity',
     title: 'Testing, brought to you',
     summary:
-      'Blood work, urine testing, and respiratory swabs collected in the comfort and privacy of your home — with your results reviewed and explained by our Nurse Practitioner.',
+      'Blood work, urine testing, and respiratory swabs collected privately at home, with results reviewed and explained by a provider.',
     heroLede:
-      'ER- and ICU-trained nurses come to you, draw your labs, and hand-deliver them to our partner Labcorp the same day. Our Nurse Practitioner interprets every result with you — and if you want to act on them, we build your supplement protocol, bring the supplements, and set up your monthly pill organizer with you.',
+      'Nurses draw your labs at home and hand-deliver them to Labcorp the same day. A provider reviews every result with you - and if you want to act on them, we build your supplement protocol, deliver the supplements, and set up your pill organizer.',
     includedLede: 'Your path begins here. Everything below can be done in a single visit, at your home, office, or hotel.',
     included: [
       {
         name: 'At-Home Lab Visit',
-        price: '$695 · includes NP interpretation',
-        copy: 'Your blood draw performed at home by an ER/ICU-trained nurse, hand-delivered to our partner Labcorp the same day, then interpreted by our Nurse Practitioner on a results call. Standard and specialty panels, from routine wellness screening to targeted testing.',
+        price: '$695 · includes provider interpretation',
+        copy: 'Labs drawn at home by a nurse, delivered to Labcorp same-day, and reviewed with you by a provider on a results call. Standard and specialty panels.',
         tag: 'Phlebotomy',
       },
       {
@@ -58,29 +58,29 @@ export const SERVICES = [
       },
       {
         name: 'Direct to the Lab',
-        copy: 'Every specimen is collected by our nurse team and dropped off directly at Labcorp by the Healing Soulutions team — no third-party couriers.',
+        copy: 'Collected by our nurses and delivered directly to Labcorp by our team - no third-party couriers.',
         tag: 'Labcorp',
       },
       {
         name: 'Outside Lab Review',
         price: '$150 · waived with any Supplement Protocol',
-        copy: 'Already had labs drawn elsewhere? A Nurse Practitioner reviews and interprets those results and discusses findings and next steps with you.',
-        tag: 'NP Review',
+        copy: 'Had labs drawn elsewhere? A provider reviews them and discusses findings and next steps with you.',
+        tag: 'Provider Review',
       },
     ],
     steps: [
       ['Book', "Choose a time, tell us what you'd like tested, and share your insurance card for lab processing. We'll confirm any fasting or prep instructions."],
       ['We come to you', 'Your nurse arrives with everything needed and collects your specimens. Most visits take under 30 minutes.'],
-      ['Straight to the lab', 'The Healing Soulutions team delivers your specimens to Labcorp the same day — no third-party couriers. Labcorp bills your insurance directly for the lab work.'],
+      ['Straight to the lab', 'We deliver your specimens to Labcorp the same day - no third-party couriers. Labcorp bills your insurance directly for the lab work.'],
       [
         'Understand your results',
-        'Results are delivered securely, then reviewed with you by our Nurse Practitioner, with next steps if any are needed.',
+        'Results arrive securely and are reviewed with you by a provider, with next steps if needed.',
       ],
     ],
     seo: {
       title: 'At-Home Testing in NYC — Blood Draws, Urine, Respiratory Swabs | Healing Soulutions',
       description:
-        'At-home blood draws, urine testing, COVID-19 PCR and rapid RSV / flu A & B swabs, delivered directly to Labcorp by the Healing Soulutions team, with Nurse Practitioner result interpretation. Manhattan and the New York metro area.',
+        'At-home blood draws, urine testing, COVID-19 PCR and rapid RSV / flu A & B swabs, delivered directly to Labcorp by the Healing Soulutions team, with provider result interpretation. Manhattan and the New York metro area.',
     },
   },
   {
@@ -104,10 +104,10 @@ export const SERVICES = [
     eyebrow: 'Guided by your goals',
     title: 'A protocol made for you',
     summary:
-      "A personalized supplement plan built from your labs when you have them, or from a consult when you don't — with specific product selections and a follow-up schedule.",
+      "A personalized supplement plan built from your labs - or from a consult - with named products and a follow-up schedule.",
     heroLede:
-      'Not a generic list. A plan built around your labs, your goals, and your life — using only brands that pass our certification and third-party testing standards, supplied by us and delivered to your door.',
-    includedLede: 'Every protocol runs as a 4-week cycle: consult, a written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with a Nurse Practitioner reassessment and adjustment. We bring your supplements to you and set up your monthly pill organizer together, so the plan is easy to follow from day one. Cycles repeat until your goals are met.',
+      'A plan around your labs, goals, and life - certified, third-party-tested brands, delivered to your door.',
+    includedLede: 'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products we source directly from the manufacturer and deliver to you, then a repeat panel at week 4 with provider reassessment and adjustment. We set up your monthly pill organizer with you, so the plan is easy to follow from day one. Cycles repeat until your goals are met.',
     included: [
       {
         name: 'Protocol Consult',
@@ -121,7 +121,7 @@ export const SERVICES = [
         booked: 'Low vitamin D or B12, borderline labs, fatigue with normal-range results, optimizing after a physical',
         price: '$350 · $200 with an At-Home Lab Visit',
         copy:
-          'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages. Booked with our At-Home Lab Visit, NP interpretation is already included, so the protocol is $200.',
+          'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages. Booked with our At-Home Lab Visit, provider interpretation is already included, so the protocol is $200.',
         tag: 'Built from your results',
       },
       {
@@ -145,7 +145,7 @@ export const SERVICES = [
           ['Momentous', 'Performance and recovery formulas. Every batch third-party tested for banned substances, with most products NSF Certified for Sport or Informed Sport.'],
           ['Quicksilver Scientific', 'Liposomal formulas, including glutathione and detox support, made in its NSF/ANSI 455-2 GMP-certified Colorado facility. Every batch quality-controlled in its ISO 17025-accredited in-house lab and third-party tested for safety and potency.'],
         ],
-        after: 'All independently third-party tested, as published by each brand. Every product on your protocol is named by brand, form, dose, and timing — and supplied by us, sourced directly from the manufacturer through our practitioner accounts and delivered to your door, so you never buy through a third-party marketplace.',
+        after: 'All independently third-party tested, as published by each brand. Every product on your protocol is named by brand, form, dose, and timing - supplied by us, sourced directly from the manufacturer, and delivered to your door. You never buy through a third-party marketplace.',
         tag: 'Practitioner-grade partners',
       },
       {
@@ -229,7 +229,7 @@ export const SERVICES = [
         name: '4-Week Re-Panel & Adjustment',
         booked: 'End of every protocol cycle \u2014 repeat labs, reassessment, dose and product adjustment',
         price: '$395 per cycle \u00b7 $695 booked separately',
-        copy: 'At the end of each 4-week cycle: an at-home repeat blood panel delivered to Labcorp, Nurse Practitioner interpretation, and a reassessment that adjusts your protocol for the next cycle. Labcorp bills your insurance directly for the repeat lab work.',
+        copy: 'At the end of each 4-week cycle: an at-home repeat blood panel delivered to Labcorp, provider interpretation, and a reassessment that adjusts your protocol for the next cycle. Labcorp bills your insurance directly for the repeat lab work.',
         tag: 'Every 4 weeks',
       },
       {
@@ -243,7 +243,7 @@ export const SERVICES = [
     steps: [
       ['Consult', 'Share your goals, history, and any recent labs.'],
       ['Receive your protocol', 'A written plan with named, third-party-tested products, doses, and a schedule — usually within a few days.'],
-      ['Re-panel at week 4', 'A repeat blood panel, a Nurse Practitioner reassessment, and an adjusted protocol for the next cycle.'],
+      ['Re-panel at week 4', 'A repeat blood panel, a provider reassessment, and an adjusted protocol for the next cycle.'],
     ],
     disclaimer:
       'Supplement protocols are educational and wellness-focused and are not intended to diagnose, treat, cure, or prevent any disease.',

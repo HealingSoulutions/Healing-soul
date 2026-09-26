@@ -12,10 +12,10 @@ import { GOOGLE_REVIEWS } from '../lib/reviews';
 // through the same points (viewBox units = % × 10 desktop, % × 3.9 / × 9.2 phone).
 // One calm row on desktop; a straight vertical column on phones.
 const DESKTOP = [
-  { x: 12, y: 50 },
+  { x: 16, y: 50 },
   { x: 37.5, y: 50 },
   { x: 62.5, y: 50 },
-  { x: 88, y: 50 },
+  { x: 84, y: 50 },
 ];
 const PHONE = [
   { x: 50, y: 10 },
@@ -146,16 +146,22 @@ export default function ServiceJourney() {
 
   return (
     <section className="hs-journey-section" aria-label="Healing Soulutions care journey">
-      <p className="intro">
-        Establish your baseline. Build your protocol. Replenish and optimize. Ongoing clinical oversight &amp;
-        monitoring &mdash; by an experienced wellness nursing team, tailored to your own body&rsquo;s unique
-        needs and goals, without ever leaving your home or office.
+      <h1 className="intro">
+        Establish your baseline. Build your protocol. Replenish and optimize.
+      </h1>
+      <p className="intro-sub">
+        Ongoing oversight from an experienced wellness nursing team, tailored to your body and goals.
+        At your home or office.
       </p>
       <p className="pathway">
-        For best results, follow the full Healing Soulutions Pathway to Wellness (steps 1&ndash;4) &mdash; or book any service on its own.
+        Follow the full Pathway to Wellness (steps 1&ndash;4), or book any service on its own.
       </p>
+      <div className="cta-row">
+        <Link href="/book" className="cta-primary">Book a Visit</Link>
+        <a href="#pathway" className="cta-secondary">Explore the pathway</a>
+      </div>
 
-      <div className="stage" role="list" aria-label="Service categories">
+      <div className="stage" id="pathway" role="list" aria-label="Service categories">
         {[
           ['flow-d', '0 0 1000 240', DESKTOP_SEGS],
           ['flow-p', '0 0 390 740', PHONE_SEGS],
@@ -204,11 +210,11 @@ export default function ServiceJourney() {
         </span>
         <span className="badge">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/><path d="m9 14.5-1.5 7 4.5-2.5 4.5 2.5-1.5-7" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/><path d="m9.6 9 1.6 1.6 3.2-3.2" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          <span><strong>Board Certified</strong><em>NP &amp; RN</em></span>
+          <span><strong>Board Certified</strong><em>Providers &amp; nurses</em></span>
         </span>
         <span className="badge">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11z" fill="none" stroke="currentColor" strokeWidth="1.5"/><circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5"/></svg>
-          <span><strong>Licensed RNs &amp; NP</strong><em>Manhattan &amp; the NY metro area</em></span>
+          <span><strong>Licensed nurses &amp; providers</strong><em>Manhattan &amp; the NY metro area</em></span>
         </span>
         {GOOGLE_REVIEWS.url && GOOGLE_REVIEWS.rating && GOOGLE_REVIEWS.count ? (
           <a className="badge reviews" href={GOOGLE_REVIEWS.url} target="_blank" rel="noopener noreferrer">
@@ -271,15 +277,15 @@ export default function ServiceJourney() {
 
       <style jsx global>{`
         .hs-journey-section {
-          --emerald: #013c1c;
-          --emerald-deep: #012512;
-          --emerald-glow: #02532a;
-          --gold: #d4a24c;
-          --gold-light: #ebcb8a;
-          --ivory: #f7f1e5;
-          --sage: #8ab5a3;
-          --serif: 'Cormorant Garamond', Georgia, serif;
-          --round: 'Varela Round', system-ui, sans-serif;
+          --emerald: #fbfaf9;
+          --emerald-deep: #251f21;
+          --emerald-glow: #f4efec;
+          --gold: #73a89a;
+          --gold-light: #251f21;
+          --ivory: #251f21;
+          --sage: #73a89a;
+          --serif: 'Aime', Georgia, serif;
+          --round: 'KMR Melange Grotesk', system-ui, sans-serif;
           max-width: 1040px;
           margin: 0 auto;
           background: var(--emerald);
@@ -288,17 +294,56 @@ export default function ServiceJourney() {
           font-family: var(--serif);
         }
         .hs-journey-section .intro {
-          max-width: 620px;
-          margin: 0 auto 18px;
-          color: rgba(247, 241, 229, 0.82);
+          max-width: 15em;
+          margin: 0 auto 16px;
+          color: #251f21;
           text-align: center;
-          font-size: 19px;
-          line-height: 1.55;
-          font-style: italic;
+          font-family: var(--serif);
+          font-weight: 300;
+          font-size: clamp(30px, 4.4vw, 46px);
+          line-height: 1.16;
+          letter-spacing: -0.01em;
+        }
+        .hs-journey-section .intro-sub {
+          max-width: 560px;
+          margin: 0 auto 20px;
+          color: rgba(37, 31, 33, 0.72);
+          text-align: center;
+          font: 350 16.5px/1.6 var(--round);
+        }
+        .hs-journey-section .cta-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: center;
+          margin: 26px auto 8px;
+        }
+        .hs-journey-section .cta-primary,
+        .hs-journey-section .cta-secondary {
+          display: inline-block;
+          border-radius: 999px;
+          padding: 14px 28px;
+          font: 500 13.5px/1 var(--round);
+          letter-spacing: 0.04em;
+          text-decoration: none;
+        }
+        .hs-journey-section .cta-primary {
+          background: #251f21;
+          color: #ffffff;
+        }
+        .hs-journey-section .cta-primary:hover {
+          background: #1a1517;
+        }
+        .hs-journey-section .cta-secondary {
+          color: #251f21;
+          border: 1px solid #c0bebf;
+        }
+        .hs-journey-section .cta-secondary:hover {
+          background: rgba(37, 31, 33, 0.05);
         }
         .hs-journey-section .pathway {
           max-width: 620px;
-          margin: 0 auto 56px;
+          margin: 0 auto 10px;
           color: var(--gold);
           text-align: center;
           font: 500 12px/1.6 var(--round);
@@ -310,7 +355,7 @@ export default function ServiceJourney() {
           position: relative;
           max-width: 920px;
           height: 240px;
-          margin: auto;
+          margin: 48px auto auto;
         }
         .hs-journey-section .flow {
           position: absolute;
@@ -364,7 +409,7 @@ export default function ServiceJourney() {
         .hs-journey-section .number {
           display: block;
           margin-bottom: 12px;
-          color: rgba(235, 203, 138, 0.7);
+          color: rgba(150, 147, 148, 0.9);
           font: 500 11px/1 var(--round);
           letter-spacing: 0.18em;
         }
@@ -380,7 +425,7 @@ export default function ServiceJourney() {
         .hs-journey-section .sub {
           display: block;
           margin-top: 5px;
-          color: rgba(247, 241, 229, 0.62);
+          color: rgba(37, 31, 33, 0.62);
           font: 400 11px/1.4 var(--round);
           letter-spacing: 0.06em;
         }
@@ -389,7 +434,7 @@ export default function ServiceJourney() {
         .hs-journey-section .band {
           margin: 96px auto 0;
           padding-top: 44px;
-          border-top: 1px solid rgba(212, 162, 76, 0.22);
+          border-top: 1px solid rgba(115, 168, 154, 0.22);
           max-width: 920px;
         }
         .hs-journey-section .trust {
@@ -419,10 +464,10 @@ export default function ServiceJourney() {
           align-items: center;
           gap: 10px;
           padding: 9px 16px 9px 12px;
-          border: 1px solid rgba(212, 162, 76, 0.45);
+          border: 1px solid rgba(115, 168, 154, 0.45);
           border-radius: 999px;
           color: var(--gold-light);
-          background: rgba(255, 255, 255, 0.025);
+          background: #ffffff;
         }
         .hs-journey-section .badge.reviews {
           text-decoration: none;
@@ -431,7 +476,7 @@ export default function ServiceJourney() {
         .hs-journey-section .badge.reviews:hover,
         .hs-journey-section .badge.reviews:focus-visible {
           border-color: var(--gold);
-          background: rgba(212, 162, 76, 0.08);
+          background: rgba(115, 168, 154, 0.08);
           outline: none;
         }
         .hs-journey-section .badge svg {
@@ -448,7 +493,7 @@ export default function ServiceJourney() {
         .hs-journey-section .badge em {
           display: block;
           margin-top: 2px;
-          color: rgba(247, 241, 229, 0.66);
+          color: rgba(37, 31, 33, 0.66);
           font: 400 10.5px/1.3 var(--round);
           font-style: normal;
           letter-spacing: 0.03em;
@@ -458,21 +503,21 @@ export default function ServiceJourney() {
           animation: hs-cue 2.2s ease-out infinite;
         }
         @keyframes hs-cue {
-          0% { box-shadow: 0 0 0 0 rgba(212, 162, 76, 0.55); }
-          70% { box-shadow: 0 0 0 18px rgba(212, 162, 76, 0); }
-          100% { box-shadow: 0 0 0 0 rgba(212, 162, 76, 0); }
+          0% { box-shadow: 0 0 0 0 rgba(115, 168, 154, 0.3); }
+          70% { box-shadow: 0 0 0 10px rgba(115, 168, 154, 0); }
+          100% { box-shadow: 0 0 0 0 rgba(115, 168, 154, 0); }
         }
         @media (prefers-reduced-motion: reduce) {
           .hs-journey-section .slot.cue .wrap {
             animation: none;
-            box-shadow: 0 0 0 4px rgba(212, 162, 76, 0.45);
+            box-shadow: 0 0 0 3px rgba(115, 168, 154, 0.3);
           }
         }
         .hs-journey-section .price {
           display: inline-block;
           margin-top: 8px;
           padding: 4px 10px;
-          border: 1px solid rgba(212, 162, 76, 0.5);
+          border: 1px solid rgba(115, 168, 154, 0.5);
           border-radius: 999px;
           color: var(--gold-light);
           font: 500 11px/1 var(--round);
@@ -502,7 +547,7 @@ export default function ServiceJourney() {
           border-radius: 50%;
           object-fit: cover;
           border: 2px solid var(--gold);
-          box-shadow: 0 0 0 4px rgba(212, 162, 76, 0.15);
+          box-shadow: 0 0 0 4px rgba(115, 168, 154, 0.15);
           flex: none;
         }
         .hs-journey-section .person strong {
@@ -513,7 +558,7 @@ export default function ServiceJourney() {
         .hs-journey-section .person em {
           display: block;
           margin-top: 3px;
-          color: rgba(247, 241, 229, 0.65);
+          color: rgba(37, 31, 33, 0.65);
           font: 400 11px/1.4 var(--round);
           font-style: normal;
           letter-spacing: 0.04em;
@@ -533,7 +578,7 @@ export default function ServiceJourney() {
           align-items: center;
           justify-content: center;
           padding: 20px;
-          background: rgba(1, 20, 10, 0.72);
+          background: rgba(46, 39, 41, 0.45);
           backdrop-filter: blur(6px);
           -webkit-backdrop-filter: blur(6px);
         }
@@ -543,11 +588,11 @@ export default function ServiceJourney() {
           max-height: calc(100vh - 40px);
           overflow: auto;
           padding: 34px 36px 30px;
-          border: 1px solid rgba(212, 162, 76, 0.5);
+          border: 1px solid #eae9ea;
           border-radius: 20px;
-          background: var(--emerald);
+          background: #ffffff;
           color: var(--ivory);
-          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+          box-shadow: 0 30px 70px rgba(46, 39, 41, 0.28);
           font-family: var(--round);
         }
         .hs-journey-section .close {
@@ -557,17 +602,17 @@ export default function ServiceJourney() {
           margin: -14px -16px 0 0;
           width: 44px;
           height: 44px;
-          border: 1px solid rgba(212, 162, 76, 0.7);
+          border: 1px solid rgba(115, 168, 154, 0.7);
           border-radius: 50%;
-          background: var(--emerald);
+          background: #ffffff;
           color: var(--gold-light);
           font: 400 28px/1 var(--serif);
           cursor: pointer;
           z-index: 2;
         }
         .hs-journey-section .close:hover {
-          background: var(--gold);
-          color: var(--emerald-deep);
+          background: #251f21;
+          color: #ffffff;
         }
         .hs-journey-section .modal-head {
           display: flex;
@@ -596,12 +641,12 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .lede {
           margin: 0 0 6px;
-          color: rgba(247, 241, 229, 0.88);
-          font: italic 400 18px/1.5 var(--serif);
+          color: rgba(37, 31, 33, 0.88);
+          font: 400 18px/1.5 var(--serif);
         }
         .hs-journey-section .modal-sub {
           margin: 0 0 16px;
-          color: rgba(247, 241, 229, 0.65);
+          color: rgba(37, 31, 33, 0.65);
           font-size: 13px;
         }
         .hs-journey-section .included {
@@ -614,15 +659,15 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .included li {
           padding: 12px 14px;
-          border: 1px solid rgba(212, 162, 76, 0.28);
+          border: 1px solid rgba(115, 168, 154, 0.28);
           border-radius: 12px;
-          background: rgba(255, 255, 255, 0.03);
+          background: rgba(37, 31, 33, 0.03);
         }
         .hs-journey-section .included strong {
           display: block;
           margin-bottom: 4px;
           color: var(--gold-light);
-          font: 600 17px/1.2 var(--serif);
+          font: 500 17px/1.2 var(--serif);
         }
         .hs-journey-section .included li:has(.bullets) {
           grid-column: 1 / -1;
@@ -635,7 +680,7 @@ export default function ServiceJourney() {
           grid-template-columns: 1fr 1fr;
           column-gap: 22px;
           row-gap: 5px;
-          color: rgba(247, 241, 229, 0.8);
+          color: rgba(37, 31, 33, 0.8);
           font-size: 12px;
           line-height: 1.45;
         }
@@ -653,7 +698,7 @@ export default function ServiceJourney() {
           display: block;
           margin-top: 6px;
           font: 400 11.5px/1.5 var(--round);
-          color: rgba(247, 241, 229, 0.7);
+          color: rgba(37, 31, 33, 0.7);
         }
         .hs-journey-section .booked b {
           color: var(--gold);
@@ -684,7 +729,7 @@ export default function ServiceJourney() {
           grid-template-columns: 1fr 1fr;
           column-gap: 22px;
           row-gap: 10px;
-          color: rgba(247, 241, 229, 0.86);
+          color: rgba(37, 31, 33, 0.86);
           font-size: 12.5px;
           line-height: 1.45;
         }
@@ -706,7 +751,7 @@ export default function ServiceJourney() {
         .hs-journey-section .brands i {
           display: block;
           margin-top: 1px;
-          color: rgba(247, 241, 229, 0.7);
+          color: rgba(37, 31, 33, 0.7);
           font-style: normal;
           font-size: 11.5px;
           line-height: 1.45;
@@ -719,14 +764,14 @@ export default function ServiceJourney() {
         .hs-journey-section .included span,
         .hs-journey-section .steps span {
           display: block;
-          color: rgba(247, 241, 229, 0.74);
+          color: rgba(37, 31, 33, 0.74);
           font-size: 12.5px;
           line-height: 1.5;
         }
         .hs-journey-section .steps {
           margin: 22px 0 0;
           padding: 18px 0 0 0;
-          border-top: 1px solid rgba(212, 162, 76, 0.3);
+          border-top: 1px solid rgba(115, 168, 154, 0.3);
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
           gap: 14px;
@@ -747,23 +792,23 @@ export default function ServiceJourney() {
           display: block;
           margin-bottom: 3px;
           color: var(--ivory);
-          font: 600 16px/1.2 var(--serif);
+          font: 500 16px/1.2 var(--serif);
         }
         .hs-journey-section .disclaimer {
           margin: 18px 0 0;
-          color: rgba(247, 241, 229, 0.5);
+          color: rgba(37, 31, 33, 0.5);
           font-size: 11.5px;
         }
         .hs-journey-section .quick-line {
           margin: 4px 0 14px;
           font: 400 14.5px/1.5 var(--round);
-          color: rgba(247, 241, 229, 0.85);
+          color: rgba(37, 31, 33, 0.85);
         }
         .hs-journey-section .quick {
           list-style: none;
           margin: 0;
           padding: 0;
-          border-top: 1px solid rgba(212, 162, 76, 0.28);
+          border-top: 1px solid rgba(115, 168, 154, 0.28);
         }
         .hs-journey-section .quick li {
           display: flex;
@@ -771,27 +816,27 @@ export default function ServiceJourney() {
           align-items: baseline;
           gap: 12px;
           padding: 11px 0;
-          border-bottom: 1px solid rgba(212, 162, 76, 0.28);
+          border-bottom: 1px solid rgba(115, 168, 154, 0.28);
         }
         .hs-journey-section .q-name {
-          font: 600 17px/1.25 var(--serif);
+          font: 500 17px/1.25 var(--serif);
           color: var(--gold-light);
         }
         .hs-journey-section .q-name small {
           display: block;
           font: 400 12px/1.4 var(--round);
-          color: rgba(247, 241, 229, 0.65);
+          color: rgba(37, 31, 33, 0.65);
           margin-top: 2px;
         }
         .hs-journey-section .q-price {
-          font: 600 16px/1.2 var(--serif);
+          font: 500 16px/1.2 var(--serif);
           color: var(--gold);
           white-space: nowrap;
         }
         .hs-journey-section .quick-note {
           margin: 12px 0 0;
           font: 400 12.5px/1.5 var(--round);
-          color: rgba(247, 241, 229, 0.65);
+          color: rgba(37, 31, 33, 0.65);
         }
         .hs-journey-section .modal-actions {
           display: flex;
@@ -810,15 +855,15 @@ export default function ServiceJourney() {
           text-decoration: none;
         }
         .hs-journey-section .gold-btn {
-          background: var(--gold);
-          color: var(--emerald-deep);
+          background: #251f21;
+          color: #ffffff;
         }
         .hs-journey-section .ghost-btn {
           color: var(--gold-light);
-          border: 1px solid rgba(212, 162, 76, 0.5);
+          border: 1px solid rgba(115, 168, 154, 0.5);
         }
         .hs-journey-section .ghost-btn:hover {
-          background: rgba(212, 162, 76, 0.12);
+          background: rgba(115, 168, 154, 0.12);
         }
 
         @media (max-width: 680px) {

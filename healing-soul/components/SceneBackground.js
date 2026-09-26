@@ -16,7 +16,7 @@ export default function SceneBackground() {
           <rect x="28" y="97" width="84" height="5" fill="rgba(16,66,44,0.82)" />
           <path d="M26 102L14 118H126L114 102H26Z" fill="rgba(16,66,44,0.82)" />
           <rect x="30" y="121" width="80" height="79" fill="rgba(16,66,44,0.82)" />
-          <path d="M58 155H82V200H58V155Z" fill="rgba(1,60,28,0.7)" />
+          <path d="M58 155H82V200H58V155Z" fill="rgba(255,255,255,0.7)" />
         </svg>
       </div>
       <div className="hue-pagoda hue-pagoda-2">
@@ -28,16 +28,16 @@ export default function SceneBackground() {
           <path d="M44 38L36 50H104L96 38H44Z" fill="rgba(16,66,44,0.82)" />
           <rect x="40" y="53" width="60" height="5" fill="rgba(16,66,44,0.82)" />
           <rect x="30" y="58" width="80" height="142" fill="rgba(16,66,44,0.82)" />
-          <path d="M55 100H85V200H55V100Z" fill="rgba(1,60,28,0.7)" />
+          <path d="M55 100H85V200H55V100Z" fill="rgba(255,255,255,0.7)" />
         </svg>
       </div>
       {/* Bridge */}
       <div className="hue-bridge">
         <svg width="300" height="80" viewBox="0 0 300 80" fill="none">
           <path d="M0 60 Q30 20 60 40 Q90 10 120 35 Q150 5 180 35 Q210 10 240 40 Q270 20 300 60" stroke="rgba(16,66,44,0.82)" strokeWidth="3" fill="none" />
-          <path d="M0 60 Q30 20 60 40 Q90 10 120 35 Q150 5 180 35 Q210 10 240 40 Q270 20 300 60 V80 H0Z" fill="rgba(1,60,28,0.3)" />
+          <path d="M0 60 Q30 20 60 40 Q90 10 120 35 Q150 5 180 35 Q210 10 240 40 Q270 20 300 60 V80 H0Z" fill="rgba(255,255,255,0.3)" />
           {[30, 60, 90, 120, 150, 180, 210, 240, 270].map((x) => (
-            <line key={x} x1={x} y1="25" x2={x} y2="80" stroke="rgba(1,60,28,0.5)" strokeWidth="1.5" />
+            <line key={x} x1={x} y1="25" x2={x} y2="80" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" />
           ))}
         </svg>
       </div>

@@ -90,15 +90,15 @@ export default function ServiceCategoryPage({ service }) {
 
       <style jsx>{`
         .cat {
-          --emerald: #013c1c;
-          --emerald-deep: #012512;
-          --emerald-glow: #02532a;
-          --gold: #d4a24c;
-          --gold-light: #ebcb8a;
-          --gold-dark: #8a6520;
-          --ivory: #f7f1e5;
-          --serif: 'Cormorant Garamond', Georgia, serif;
-          --round: 'Varela Round', system-ui, sans-serif;
+          --emerald: #251f21;
+          --emerald-deep: #251f21;
+          --emerald-glow: #f4efec;
+          --gold: #73a89a;
+          --gold-light: #251f21;
+          --gold-dark: #4f7f73;
+          --ivory: #fbfaf9;
+          --serif: 'Aime', Georgia, serif;
+          --round: 'KMR Melange Grotesk', system-ui, sans-serif;
           background: var(--ivory);
           color: var(--emerald);
           font-family: var(--round);
@@ -112,29 +112,29 @@ export default function ServiceCategoryPage({ service }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1px solid rgba(212, 162, 76, 0.6);
+          border: 1px solid rgba(115, 168, 154, 0.6);
           border-radius: 50%;
           color: var(--gold-light);
-          background: rgba(1, 60, 28, 0.85);
+          background: rgba(255, 255, 255, 0.85);
           font: 400 28px/1 var(--serif);
           text-decoration: none;
           z-index: 5;
         }
         .cat :global(.cat-close:hover) {
-          background: var(--gold);
-          color: var(--emerald-deep);
+          background: #251f21;
+          color: #ffffff;
         }
         .cat-hero {
           position: relative;
           display: block;
-          background: var(--emerald);
-          color: var(--ivory);
+          background: transparent;
+          color: #251f21;
           padding: 128px 42px 56px;
           text-align: center;
         }
         .kicker {
           margin-top: 26px;
-          color: var(--gold-light);
+          color: var(--gold);
           letter-spacing: 0.19em;
           font: 500 11px/1.4 var(--round);
           text-transform: uppercase;
@@ -149,9 +149,9 @@ export default function ServiceCategoryPage({ service }) {
         .cat-hero p {
           max-width: 600px;
           margin: 14px auto 0;
-          color: rgba(247, 241, 229, 0.8);
+          color: rgba(37, 31, 33, 0.8);
           font-family: var(--serif);
-          font-style: italic;
+          font-style: normal;
           font-size: 19px;
         }
         .body {
@@ -167,7 +167,7 @@ export default function ServiceCategoryPage({ service }) {
           margin: 0 0 10px;
         }
         .lede {
-          color: #4d5f55;
+          color: #585254;
           margin: 0 0 26px;
           max-width: 640px;
         }
@@ -181,20 +181,20 @@ export default function ServiceCategoryPage({ service }) {
         }
         .card {
           background: #fff;
-          border: 1px solid rgba(1, 60, 28, 0.1);
+          border: 1px solid rgba(37, 31, 33, 0.1);
           border-radius: 16px;
           padding: 22px 20px;
         }
         .card h3 {
           font-family: var(--serif);
           font-size: 21px;
-          font-weight: 600;
+          font-weight: 500;
           margin: 0 0 6px;
         }
         .card p {
           margin: 0;
           font-size: 13.5px;
-          color: #4d5f55;
+          color: #585254;
           line-height: 1.55;
         }
         .card.wide {
@@ -209,7 +209,7 @@ export default function ServiceCategoryPage({ service }) {
           column-gap: 28px;
           row-gap: 12px;
           font-size: 13.5px;
-          color: #2f4038;
+          color: #251f21;
           line-height: 1.5;
         }
         .brands li::marker {
@@ -223,7 +223,7 @@ export default function ServiceCategoryPage({ service }) {
         .brands i {
           display: block;
           margin-top: 1px;
-          color: #4d5f55;
+          color: #585254;
           font-style: normal;
           font-size: 12.5px;
           line-height: 1.5;
@@ -237,16 +237,16 @@ export default function ServiceCategoryPage({ service }) {
           margin: 8px 0 0;
           font-size: 12.5px;
           line-height: 1.55;
-          color: var(--muted, #4d5f55);
+          color: var(--muted, #585254);
         }
         .booked b {
-          color: var(--emerald, #013c1c);
+          color: var(--emerald, #fbfaf9);
           font-weight: 500;
         }
         .price {
           display: block;
           margin: 2px 0 8px;
-          font: 600 18px/1.2 var(--serif, 'Cormorant Garamond', Georgia, serif);
+          font: 500 18px/1.2 var(--serif, 'Aime', Georgia, serif);
           color: var(--gold-dark);
         }
         .tag {
@@ -263,7 +263,7 @@ export default function ServiceCategoryPage({ service }) {
           gap: 18px;
           margin-top: 44px;
           padding-top: 34px;
-          border-top: 1px solid rgba(212, 162, 76, 0.4);
+          border-top: 1px solid rgba(115, 168, 154, 0.4);
         }
         .n {
           font-family: var(--serif);
@@ -274,25 +274,25 @@ export default function ServiceCategoryPage({ service }) {
         .steps h3 {
           font-family: var(--serif);
           font-size: 20px;
-          font-weight: 600;
+          font-weight: 500;
           margin: 8px 0 4px;
         }
         .steps p {
           margin: 0;
           font-size: 13.5px;
-          color: #4d5f55;
+          color: #585254;
           line-height: 1.55;
         }
         .disclaimer {
           margin: 28px 0 0;
           font-size: 12px;
-          color: #5f6e66;
+          color: #585254;
           max-width: 640px;
         }
         .cta {
           margin-top: 44px;
-          background: var(--emerald);
-          color: var(--ivory);
+          background: #f4efec;
+          color: #251f21;
           border-radius: 18px;
           padding: 30px 28px;
           display: flex;
@@ -311,11 +311,11 @@ export default function ServiceCategoryPage({ service }) {
         .cta p {
           margin: 4px 0 0;
           font-size: 13.5px;
-          color: rgba(247, 241, 229, 0.75);
+          color: rgba(37, 31, 33, 0.75);
         }
         .cat :global(.gold) {
-          background: var(--gold);
-          color: var(--emerald-deep);
+          background: #251f21;
+          color: #ffffff;
           border-radius: 999px;
           padding: 14px 26px;
           font: 400 12px/1 var(--round);
@@ -332,7 +332,7 @@ export default function ServiceCategoryPage({ service }) {
         }
         .cat :global(.ghost) {
           color: var(--emerald);
-          border: 1px solid rgba(1, 60, 28, 0.35);
+          border: 1px solid rgba(37, 31, 33, 0.2);
           border-radius: 999px;
           padding: 12px 20px;
           font: 400 12px/1 var(--round);
@@ -341,7 +341,7 @@ export default function ServiceCategoryPage({ service }) {
           text-decoration: none;
         }
         .cat :global(.ghost:hover) {
-          background: rgba(1, 60, 28, 0.06);
+          background: rgba(37, 31, 33, 0.05);
         }
         @media (max-width: 680px) {
           .cat-hero,

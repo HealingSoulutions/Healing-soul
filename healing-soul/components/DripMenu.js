@@ -157,20 +157,20 @@ export default function DripMenu() {
 
       <style jsx>{`
         .dm {
-          --gold: #d4a24c;
-          --gold-dark: #8a6520;
-          --emerald: #013c1c;
-          --ink: #1f2e26;
-          --muted: #4d5f55;
-          --serif: 'Cormorant Garamond', Georgia, serif;
-          --round: 'Varela Round', system-ui, sans-serif;
+          --gold: #73a89a;
+          --gold-dark: #4f7f73;
+          --emerald: #251f21;
+          --ink: #251f21;
+          --muted: #585254;
+          --serif: 'Aime', Georgia, serif;
+          --round: 'KMR Melange Grotesk', system-ui, sans-serif;
           font-family: var(--round);
           color: var(--ink);
         }
         .dm-h2 {
           margin: 44px 0 10px;
           padding-bottom: 8px;
-          border-bottom: 1px solid rgba(212, 162, 76, 0.45);
+          border-bottom: 1px solid rgba(115, 168, 154, 0.45);
           font: 500 12.5px/1.2 var(--round);
           letter-spacing: 0.2em;
           text-transform: uppercase;
@@ -187,7 +187,7 @@ export default function DripMenu() {
           gap: 8px 16px;
           padding: 14px 20px;
           margin: 14px 0 8px;
-          border: 1px solid rgba(212, 162, 76, 0.5);
+          border: 1px solid rgba(115, 168, 154, 0.5);
           border-radius: 12px;
           background: #fff;
         }
@@ -198,11 +198,11 @@ export default function DripMenu() {
           color: var(--emerald);
         }
         .dm-banner-price {
-          font: 600 28px/1 var(--serif);
+          font: 500 28px/1 var(--serif);
           color: var(--gold-dark);
         }
         .dm-banner-note {
-          font: italic 400 14px/1 var(--serif);
+          font: 400 14px/1 var(--serif);
           color: var(--muted);
         }
         .dm-pathway {
@@ -210,7 +210,7 @@ export default function DripMenu() {
           padding: 20px 22px 16px;
           border: 1.5px solid var(--gold);
           border-radius: 14px;
-          background: #fffaf0;
+          background: #ffffff;
         }
         .dm-pathway-head {
           display: flex;
@@ -219,17 +219,17 @@ export default function DripMenu() {
           gap: 6px 16px;
         }
         .dm-pathway-price {
-          font: 600 34px/1 var(--serif);
+          font: 500 34px/1 var(--serif);
           color: var(--gold-dark);
         }
         .dm-pathway-compare {
-          font: italic 400 14px/1 var(--serif);
+          font: 400 14px/1 var(--serif);
           color: var(--muted);
           text-decoration: line-through;
         }
         .dm-pathway-lede {
           margin: 8px 0 10px;
-          font: italic 400 15px/1.5 var(--serif);
+          font: 400 15px/1.5 var(--serif);
           color: var(--ink);
         }
         .dm-pathway-list {
@@ -256,12 +256,12 @@ export default function DripMenu() {
         .dm-fine {
           margin: 0 0 16px;
           text-align: center;
-          font: italic 400 14px/1.5 var(--serif);
+          font: 400 14px/1.5 var(--serif);
           color: var(--muted);
         }
         .dm-lede {
           margin: 0 0 16px;
-          font: italic 400 16px/1.5 var(--serif);
+          font: 400 16px/1.5 var(--serif);
           color: var(--muted);
         }
         .dm-lede b {
@@ -277,17 +277,17 @@ export default function DripMenu() {
         }
         .dm-card {
           background: #fff;
-          border: 1px solid rgba(1, 60, 28, 0.1);
+          border: 1px solid rgba(37, 31, 33, 0.1);
           border-radius: 14px;
           padding: 18px 18px 16px;
         }
         .dm-card.special {
-          border-color: rgba(212, 162, 76, 0.6);
-          background: #fffaf0;
+          border-color: rgba(115, 168, 154, 0.6);
+          background: #ffffff;
         }
         .dm-card h3 {
           margin: 0 0 4px;
-          font: 600 20px/1.2 var(--serif);
+          font: 500 20px/1.2 var(--serif);
           color: var(--emerald);
           display: flex;
           flex-wrap: wrap;
@@ -305,26 +305,26 @@ export default function DripMenu() {
           color: var(--gold-dark);
         }
         .dm-badge.warn {
-          background: var(--gold);
-          color: var(--emerald);
-          border-color: var(--gold);
+          background: #251f21;
+          color: #ffffff;
+          border-color: #251f21;
         }
         .dm-badge.gold {
-          background: var(--gold);
-          color: var(--emerald);
-          border-color: var(--gold);
+          background: #251f21;
+          color: #ffffff;
+          border-color: #251f21;
           align-self: flex-start;
           margin-bottom: 8px;
         }
         .dm-card-price {
           display: inline-block;
           margin: 2px 0 6px;
-          font: 600 20px/1 var(--serif);
+          font: 500 20px/1 var(--serif);
           color: var(--gold-dark);
         }
         .dm-tagline {
           margin: 0 0 6px;
-          font: italic 400 14.5px/1.45 var(--serif);
+          font: 400 14.5px/1.45 var(--serif);
           color: var(--ink);
         }
         .dm-contents {
@@ -361,7 +361,7 @@ export default function DripMenu() {
         .dm-special {
           margin: 8px 0 0;
           padding-top: 8px;
-          border-top: 1px dashed rgba(212, 162, 76, 0.5);
+          border-top: 1px dashed rgba(115, 168, 154, 0.5);
           font-size: 12px;
           line-height: 1.5;
           color: var(--emerald);
@@ -375,7 +375,7 @@ export default function DripMenu() {
           display: flex;
           flex-direction: column;
           background: #fff;
-          border: 1px solid rgba(1, 60, 28, 0.1);
+          border: 1px solid rgba(37, 31, 33, 0.1);
           border-radius: 14px;
           padding: 20px 20px 18px;
         }
@@ -384,7 +384,7 @@ export default function DripMenu() {
         }
         .dm-long-card h3 {
           margin: 0 0 2px;
-          font: 600 24px/1.15 var(--serif);
+          font: 500 24px/1.15 var(--serif);
           color: var(--emerald);
         }
         .dm-dose {
@@ -396,7 +396,7 @@ export default function DripMenu() {
         .dm-price {
           display: block;
           margin: 10px 0 8px;
-          font: 600 34px/1 var(--serif);
+          font: 500 34px/1 var(--serif);
           color: var(--gold-dark);
         }
         .dm-long-card p {
@@ -413,8 +413,8 @@ export default function DripMenu() {
           gap: 8px 22px;
           margin: 0 0 8px;
           padding: 12px 16px;
-          border-top: 1px solid rgba(212, 162, 76, 0.3);
-          border-bottom: 1px solid rgba(212, 162, 76, 0.3);
+          border-top: 1px solid rgba(115, 168, 154, 0.3);
+          border-bottom: 1px solid rgba(115, 168, 154, 0.3);
         }
         .dm-ladder-label {
           font-size: 12px;
@@ -445,7 +445,7 @@ export default function DripMenu() {
           color: var(--gold-dark);
         }
         .dm-eyebrow.light {
-          color: #ebcb8a;
+          color: #251f21;
           margin-bottom: 10px;
         }
         .dm-boost p {
@@ -457,7 +457,7 @@ export default function DripMenu() {
         .dm-upgrades {
           margin: 16px 0 0;
           padding: 10px 14px;
-          border-top: 1px solid rgba(212, 162, 76, 0.3);
+          border-top: 1px solid rgba(115, 168, 154, 0.3);
           text-align: center;
           font-size: 12.5px;
           color: var(--ink);
@@ -482,7 +482,7 @@ export default function DripMenu() {
           justify-content: space-between;
           gap: 12px;
           padding: 8px 0;
-          border-bottom: 1px dashed rgba(1, 60, 28, 0.15);
+          border-bottom: 1px dashed rgba(37, 31, 33, 0.15);
           font-size: 13.5px;
         }
         .dm-inj b {
@@ -493,8 +493,8 @@ export default function DripMenu() {
           margin-top: 36px;
           padding: 22px 24px;
           border-radius: 14px;
-          background: var(--emerald);
-          color: #f7f1e5;
+          background: #f4efec;
+          color: #251f21;
         }
         .dm-concierge ul {
           list-style: none;
@@ -507,14 +507,14 @@ export default function DripMenu() {
           line-height: 1.5;
         }
         .dm-concierge b {
-          color: #ebcb8a;
+          color: #251f21;
           font-weight: 600;
         }
         .dm-disclaimer {
           margin: 18px 0 0;
           font-size: 11px;
           line-height: 1.55;
-          color: #5f6e66;
+          color: #585254;
         }
         @media (max-width: 480px) {
           .dm-banner-price {

@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import ServiceJourney from "../components/ServiceJourney";
 
 const TITLE = "Healing Soulutions — Concierge & Mobile Nursing | New York Metro";
@@ -53,27 +54,108 @@ export default function Home() {
       </Head>
 
       <main id="main-content" className="home">
-        <img
-          className="wordmark"
-          src="/wordmark-gold.png"
-          alt="Healing Soulutions — Concierge Nursing"
-          width={900}
-          height={378}
-        />
+        <div className="brandband">
+          <img
+            className="wordmark"
+            src="/wordmark-gold.png"
+            alt="Healing Soulutions — Concierge Nursing"
+            width={900}
+            height={378}
+          />
+        </div>
         <ServiceJourney />
+        <section className="starter" aria-label="Your first visit">
+          <span className="eyebrow">Start here</span>
+          <h2>Your first visit: establish your baseline.</h2>
+          <p>
+            Most clients start here. A licensed nurse draws your labs at home, and a provider reviews
+            the results with you to build your protocol.
+          </p>
+          <div className="cta-row">
+            <Link href="/book" className="cta-primary">Book a Visit</Link>
+            <Link href="/services/at-home-testing" className="cta-secondary">See At-Home Testing</Link>
+          </div>
+          <p className="owner-note">
+            Preview note for Berit (replace or remove before publishing): if you offer a named starter bundle - e.g.
+            a lab draw plus NP review at one price - tell me the name, what it includes, and the price.
+          </p>
+        </section>
       </main>
 
       <style jsx>{`
         .home {
           min-height: 100vh;
+          background: #fbfaf9;
+          padding: 0 0 72px;
+        }
+        .brandband {
           background: #013c1c;
-          padding: 72px 20px 72px;
+          text-align: center;
+          padding: 68px 20px 36px;
         }
         .wordmark {
-          display: block;
-          width: min(337px, 69%);
+          display: inline-block;
+          width: min(300px, 66%);
           height: auto;
-          margin: 0 auto 8px;
+        }
+        .starter {
+          max-width: 760px;
+          margin: 0 auto;
+          padding: 64px 20px 8px;
+          text-align: center;
+        }
+        .eyebrow {
+          display: block;
+          margin: 0 0 16px;
+          color: #73a89a;
+          font: 500 11px/1 'KMR Melange Grotesk', system-ui, sans-serif;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+        }
+        .starter h2 {
+          margin: 0 auto 16px;
+          max-width: 560px;
+          color: #251f21;
+          font: 500 30px/1.2 'Aime', Georgia, serif;
+        }
+        .starter p {
+          margin: 0 auto;
+          max-width: 560px;
+          color: rgba(37, 31, 33, 0.78);
+          font: 400 14px/1.75 'KMR Melange Grotesk', system-ui, sans-serif;
+        }
+        .cta-row {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          flex-wrap: wrap;
+          margin-top: 26px;
+        }
+        .starter :global(.cta-primary) {
+          display: inline-block;
+          padding: 12px 26px;
+          border-radius: 999px;
+          background: #251f21;
+          color: #fbfaf9;
+          text-decoration: none;
+          font: 500 15px/1 'KMR Melange Grotesk', system-ui, sans-serif;
+        }
+        .starter :global(.cta-secondary) {
+          display: inline-block;
+          padding: 12px 26px;
+          border: 1px solid rgba(115, 168, 154, 0.6);
+          border-radius: 999px;
+          color: #251f21;
+          text-decoration: none;
+          font: 500 15px/1 'KMR Melange Grotesk', system-ui, sans-serif;
+        }
+        .owner-note {
+          margin: 28px auto 0 !important;
+          padding: 12px 16px;
+          border: 1px dashed rgba(115, 168, 154, 0.7);
+          border-radius: 12px;
+          color: rgba(37, 31, 33, 0.55) !important;
+          font: 400 11.5px/1.6 'KMR Melange Grotesk', system-ui, sans-serif !important;
         }
       `}</style>
     </>

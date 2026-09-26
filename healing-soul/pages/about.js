@@ -5,36 +5,36 @@ import Link from 'next/link';
 // detail text, gold hairlines. No cards, no scene background, no header block — opens on the team.
 
 const FAQS = [
-  ['What areas do you serve?', 'Healing Soulutions primarily serves Manhattan, with concierge and mobile nursing also available across the greater New York metropolitan area on request. Contact us to confirm availability at your location.'],
-  ['Who provides my care?', 'Care is delivered by licensed Registered Nurses (RNs) and Nurse Practitioners (NPs). Registered Nurses provide care under the order or standing order of a Nurse Practitioner or physician, consistent with New York scope-of-practice law.'],
-  ['Do you offer telehealth?', 'Yes. Virtual consultations with a Nurse Practitioner are available where clinically appropriate, for clients located in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
-  ['How does payment work? Do you take insurance?', 'Healing Soulutions is an out-of-network provider; payment is due at the time of service. We accept major cards through a secure, PCI-compliant processor and, as required by the No Surprises Act, we provide a Good Faith Estimate of expected charges before your scheduled visit. For lab work, share your insurance card when you book; Labcorp bills your insurance directly for the lab processing.'],
-  ['What should I expect when booking?', 'You choose your services, share a brief health history, review the financial agreement, secure your visit with a card on file, and select a date and time. Our team follows up within 24 hours to confirm the details. Treatment consent and our privacy acknowledgment are reviewed and signed with your nurse at the appointment, before care begins.'],
+  ['What areas do you serve?', 'We primarily serve Manhattan, with concierge and mobile nursing across the greater New York metro area on request. Contact us to confirm availability at your location.'],
+  ['Who provides my care?', 'Licensed Registered Nurses (RNs) and Nurse Practitioners (NPs). RNs provide care under the order or standing order of an NP or physician, consistent with New York scope-of-practice law.'],
+  ['Do you offer telehealth?', 'Yes, where clinically appropriate, for clients in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
+  ['How does payment work? Do you take insurance?', 'We are an out-of-network provider; payment is due at the time of service by major card through a secure, PCI-compliant processor. As required by the No Surprises Act, you receive a Good Faith Estimate before your visit. For lab work, share your insurance card when you book - Labcorp bills your insurance directly for lab processing.'],
+  ['What should I expect when booking?', 'Choose your services, share a brief health history, review the financial agreement, secure your visit with a card on file, and pick a date and time. We confirm within 24 hours. Treatment consent and our privacy acknowledgment are signed with your nurse at the appointment, before care begins.'],
   ['What is your cancellation policy?', 'We ask for at least 24 hours notice to cancel or reschedule. Full details are in the Financial Agreement presented during booking.'],
 ];
 
 const TEAM = [
   {
-    img: '/kristina.jpg',
-    alt: 'Kristina Castro, Nurse Practitioner at Healing Soulutions',
-    name: 'Kristina Castro, MSN, APRN, FNP-BC',
-    role: 'Nurse Practitioner',
-    bio: 'Kristina is a board-certified Family Nurse Practitioner with more than a decade at the bedside in New York ICUs and emergency departments — the settings where clinical judgment matters most. Today she pairs that acute-care foundation with functional medicine and peptide therapy, with a scope that spans the full lifespan — children, adults, and older adults alike. With experience caring for patients both in New York and abroad, she assesses, diagnoses, prescribes, and oversees every plan personally, delivered privately at home.',
-    creds: 'MSN / FNP — College of Mount Saint Vincent · ANCC Board Certified (FNP-BC) · Licensed NP (NY & CT) · RN (NY, NJ & CT) · TNCC · ENPC · ACLS · PALS · BLS',
-  },
-  {
     img: '/berit.jpg',
     alt: 'Berit Tran, Registered Nurse and founder of Healing Soulutions',
     name: 'Berit Tran, BSN, RN',
     role: 'Clinician & Wellness Nurse Consultant',
-    bio: 'Berit is a registered nurse with over fifteen years in New York hospitals across the emergency department, ICU, med-surg, and post-surgical and anesthesia recovery care — the full arc of acute nursing. Her experience also includes fertility optimization and IVF support, with a special interest and focus in supplementation for hormone health, autoimmune support, metabolic health, brain health and sleep architecture optimization. She has cared for patients across New York State and abroad, and now serves the New York metropolitan area. Through Healing Soulutions, she brings that depth into the home with discretion, privacy, and attentiveness.',
+    bio: 'Berit is a registered nurse with over fifteen years in New York hospitals - emergency, ICU, med-surg, and post-surgical and anesthesia recovery. Her focus is supplementation for hormone health, autoimmune support, metabolic health, brain health, and sleep, with experience in fertility optimization and IVF support. She has cared for patients across New York and abroad, and now brings that depth into the home with discretion, privacy, and attentiveness.',
     creds: 'BSN · Licensed RN · ACLS · PALS · BLS',
+  },
+  {
+    img: '/kristina.jpg',
+    alt: 'Kristina Castro, Nurse Practitioner at Healing Soulutions',
+    name: 'Kristina Castro, MSN, APRN, FNP-BC',
+    role: 'Nurse Practitioner',
+    bio: 'Kristina is a board-certified Family Nurse Practitioner with more than a decade at the bedside in New York ICUs and emergency departments. She pairs that acute-care foundation with functional medicine and peptide therapy, across the full lifespan - children, adults, and older adults. She has cared for patients in New York and abroad, and she assesses, diagnoses, prescribes, and oversees every plan personally, delivered privately at home.',
+    creds: 'MSN / FNP — College of Mount Saint Vincent · ANCC Board Certified (FNP-BC) · Licensed NP (NY & CT) · RN (NY, NJ & CT) · TNCC · ENPC · ACLS · PALS · BLS',
   },
 ];
 
 const STEPS = [
-  ['Book', 'Choose your services and a preferred date and time, share a brief health history, review the financial agreement, and secure your visit online.'],
-  ['Confirm', 'Our team reaches out within 24 hours to confirm the details and answer any questions.'],
+  ['Book', 'Choose your services, date, and time, share a brief health history, review the financial agreement, and secure your visit online.'],
+  ['Confirm', 'We confirm the details and answer questions within 24 hours.'],
   ['We come to you', 'A licensed clinician arrives at your location, reviews and signs consent with you, and provides your care.'],
 ];
 
@@ -101,16 +101,6 @@ export default function About() {
 
           <div className="rule" />
 
-          <blockquote className="quote">
-            <p>
-              <span className="mark">&ldquo;</span>
-              Their medical expertise, preparation, and human compassion were exceptional &mdash; Healing Soulutions
-              made a significant difference in my recovery, and the whole team is top-notch.
-              <span className="mark">&rdquo;</span>
-            </p>
-            <cite>&mdash; Healing Soulutions client</cite>
-          </blockquote>
-
           <p className="fine">
             Questions? Call <a href="tel:+15857472215">(585) 747-2215</a> or email{' '}
             <a href="mailto:info@healingsoulutions.care">info@healingsoulutions.care</a>.
@@ -120,12 +110,12 @@ export default function About() {
 
       <style jsx>{`
         .about {
-          --emerald: #013c1c;
-          --gold: #d4a24c;
-          --gold-light: #ebcb8a;
-          --ivory: #f7f1e5;
-          --serif: 'Cormorant Garamond', Georgia, serif;
-          --round: 'Varela Round', system-ui, sans-serif;
+          --emerald: #fbfaf9;
+          --gold: #73a89a;
+          --gold-light: #251f21;
+          --ivory: #251f21;
+          --serif: 'Aime', Georgia, serif;
+          --round: 'KMR Melange Grotesk', system-ui, sans-serif;
           min-height: 100vh;
           background: var(--emerald);
           color: var(--ivory);
@@ -140,7 +130,7 @@ export default function About() {
         .rule {
           height: 1px;
           margin: 52px auto 44px;
-          background: rgba(212, 162, 76, 0.22);
+          background: rgba(115, 168, 154, 0.22);
         }
         .label {
           display: block;
@@ -157,8 +147,8 @@ export default function About() {
         .title {
           margin: 0 auto 36px;
           max-width: 560px;
-          color: var(--gold-light, #ebcb8a);
-          font: 500 28px/1.2 var(--serif, 'Cormorant Garamond', Georgia, serif);
+          color: var(--gold-light, #251f21);
+          font: 500 28px/1.2 var(--serif, 'Aime', Georgia, serif);
           letter-spacing: 0.01em;
         }
         .label.section {
@@ -169,19 +159,21 @@ export default function About() {
         }
         .team {
           display: grid;
-          gap: 44px;
+          grid-template-columns: 1fr 1fr;
+          gap: 44px 36px;
+          align-items: start;
         }
         .member {
-          max-width: 580px;
-          margin: 0 auto;
+          max-width: none;
+          margin: 0;
         }
         .portrait {
           width: 140px;
           height: 140px;
           border-radius: 50%;
           object-fit: cover;
-          border: 1px solid rgba(212, 162, 76, 0.7);
-          box-shadow: 0 0 0 6px rgba(212, 162, 76, 0.1);
+          border: 1px solid rgba(115, 168, 154, 0.7);
+          box-shadow: 0 0 0 6px rgba(115, 168, 154, 0.1);
         }
         .member h2 {
           margin: 18px 0 8px;
@@ -190,12 +182,12 @@ export default function About() {
         }
         .bio {
           margin: 14px 0 10px;
-          color: rgba(247, 241, 229, 0.8);
+          color: rgba(37, 31, 33, 0.8);
           font: 400 13px/1.7 var(--round);
         }
         .creds {
           margin: 0;
-          color: rgba(247, 241, 229, 0.55);
+          color: rgba(37, 31, 33, 0.55);
           font: 400 11px/1.6 var(--round);
         }
         .steps {
@@ -209,9 +201,9 @@ export default function About() {
         }
         .steps li {
           padding: 24px 18px 22px;
-          border: 1px solid rgba(212, 162, 76, 0.45);
+          border: 1px solid rgba(115, 168, 154, 0.45);
           border-radius: 16px;
-          background: rgba(255, 255, 255, 0.025);
+          background: rgba(37, 31, 33, 0.025);
         }
         .num {
           display: inline-block;
@@ -231,7 +223,7 @@ export default function About() {
         }
         .steps p {
           margin: 0;
-          color: rgba(247, 241, 229, 0.78);
+          color: rgba(37, 31, 33, 0.78);
           font: 400 12.5px/1.65 var(--round);
         }
         .about :global(.cta) {
@@ -247,7 +239,7 @@ export default function About() {
         }
         .about :global(.cta:hover),
         .about :global(.cta:focus-visible) {
-          background: rgba(212, 162, 76, 0.12);
+          background: rgba(115, 168, 154, 0.12);
           outline: none;
         }
         .faq {
@@ -256,7 +248,7 @@ export default function About() {
         }
         .qa {
           padding: 18px 0;
-          border-top: 1px solid rgba(212, 162, 76, 0.16);
+          border-top: 1px solid rgba(115, 168, 154, 0.16);
         }
         .qa:first-child {
           border-top: none;
@@ -272,7 +264,7 @@ export default function About() {
         }
         dd {
           margin: 0;
-          color: rgba(247, 241, 229, 0.78);
+          color: rgba(37, 31, 33, 0.78);
           font: 400 13px/1.7 var(--round);
         }
         .quote {
@@ -281,8 +273,8 @@ export default function About() {
         }
         .quote p {
           margin: 0;
-          color: rgba(247, 241, 229, 0.85);
-          font: italic 400 20px/1.5 var(--serif);
+          color: rgba(37, 31, 33, 0.85);
+          font: 400 20px/1.5 var(--serif);
         }
         .mark {
           color: var(--gold);
@@ -302,13 +294,20 @@ export default function About() {
         .fine {
           margin: 56px auto 0;
           max-width: 560px;
-          color: rgba(247, 241, 229, 0.5);
+          color: rgba(37, 31, 33, 0.5);
           font: 400 11.5px/1.55 var(--round);
         }
         .fine a {
           color: var(--gold-light);
         }
         @media (max-width: 680px) {
+          .team {
+            grid-template-columns: 1fr;
+          }
+          .member {
+            max-width: 580px;
+            margin: 0 auto;
+          }
           .about {
             padding: 104px 16px 72px;
           }
