@@ -254,7 +254,7 @@ export const TESTING = [
 ];
 export const PROTOCOLS = [
   ['Protocol Consult', 250, 'virtual or in-home · no labs required'],
-  ['Labs-Based Protocol', 350, 'includes provider lab interpretation & written plan · $200 with an At-Home Lab Visit'],
+  ['Labs-Based Protocol', 350, 'includes provider lab interpretation & written plan · $350 on its own · $200 when added to an At-Home Lab Visit'],
   ['Fertility Optimization Protocol', 450, 'cycle-timed · coordinated with your clinic'],
   ['Brain Health & Focus Protocol', 450, 'labs-informed · cognitive support'],
   ['Sleep Architecture Protocol', 450, 'timing, nutrients & habits · with follow-up'],
