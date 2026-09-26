@@ -193,7 +193,7 @@ export const LONGEVITY = {
       copy: 'Our premium longevity infusion featuring patented NIAGEN® (nicotinamide riboside) — a next-generation NAD+ precursor prized for smoother, gentler tolerance and efficient cellular uptake.',
     },
   ],
-  includes: 'Every NAD+ & Niagen Soulution includes a $150 nutrient base at no charge — Vitamin C • B-Complex • B12 • Glutathione 1,000 mg — in 500 mL–1,000 mL LR or NS.',
+  includes: 'Every NAD+ & Niagen Soulution is infused in 500 mL–1,000 mL LR or NS. Optional nutrient base +$150: Vitamin C • B-Complex • B12 • Glutathione 1,000 mg.',
   ladder: [
     ['250 mg', 395, 595],
     ['500 mg', 695, 795],
