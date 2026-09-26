@@ -1,8 +1,53 @@
+import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import Seo from './Seo';
 import Medallion from './Medallion';
 import DripMenu from './DripMenu';
 import { SERVICES } from '../lib/services';
+
+function CollapsibleCard({ item }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`card collapsible${item.brands ? ' wide' : ''}${open ? ' open' : ''}`}>
+      <button
+        type="button"
+        className="collapsible-head"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
+        <h3>{item.name}</h3>
+        {!open && <span className="reveal-hint">Tap to reveal +</span>}
+      </button>
+      {open && (
+        <>
+          <button
+            type="button"
+            className="collapsible-close"
+            aria-label={`Close ${item.name}`}
+            onClick={() => setOpen(false)}
+          >
+            ×
+          </button>
+          <div className="collapsible-body">
+            <p>{item.copy}</p>
+            {item.brands && (
+              <ul className="brands">
+                {item.brands.map(([name, note]) => (
+                  <li key={name}>
+                    <b>{name}</b>
+                    <i>{note}</i>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {item.after && <p>{item.after}</p>}
+            <span className="tag">{item.tag}</span>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 // Shared template for /services/<slug>. Pass one entry from lib/services SERVICES.
 // Nav, Footer and the floating BookCta are rendered globally by pages/_app.js.
@@ -31,28 +76,41 @@ export default function ServiceCategoryPage({ service }) {
           {service.menu && <DripMenu />}
           <div className="grid" hidden={!!service.menu}>
             {service.included.map((item) => (
-              <article className={`card${item.brands ? ' wide' : ''}`} key={item.name}>
-                <h3>{item.name}</h3>
-                {item.price && <span className="price">{item.price}</span>}
-                <p>{item.copy}</p>
-                {item.booked && (
-                  <p className="booked">
-                    <b>Commonly booked for:</b> {item.booked}
-                  </p>
+              <Fragment key={item.name}>
+                {item.collapsible ? (
+                  <CollapsibleCard item={item} />
+                ) : (
+                  <article className={`card${item.brands ? ' wide' : ''}`}>
+                    <h3>{item.name}</h3>
+                    {item.price && <span className="price">{item.price}</span>}
+                    <p>{item.copy}</p>
+                    {item.booked && (
+                      <p className="booked">
+                        <b>Commonly booked for:</b> {item.booked}
+                      </p>
+                    )}
+                    {item.brands && (
+                      <ul className="brands">
+                        {item.brands.map(([name, note]) => (
+                          <li key={name}>
+                            <b>{name}</b>
+                            <i>{note}</i>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                    {item.after && <p>{item.after}</p>}
+                    <span className="tag">{item.tag}</span>
+                  </article>
                 )}
-                {item.brands && (
-                  <ul className="brands">
-                    {item.brands.map(([name, note]) => (
-                      <li key={name}>
-                        <b>{name}</b>
-                        <i>{note}</i>
-                      </li>
-                    ))}
-                  </ul>
+                {item.divider && (
+                  <div className="section-divider" aria-hidden="true">
+                    <hr />
+                    <span>{item.divider}</span>
+                    <hr />
+                  </div>
                 )}
-                {item.after && <p>{item.after}</p>}
-                <span className="tag">{item.tag}</span>
-              </article>
+              </Fragment>
             ))}
           </div>
 
@@ -232,6 +290,79 @@ export default function ServiceCategoryPage({ service }) {
           .brands {
             grid-template-columns: 1fr;
           }
+        }
+        .section-divider {
+          grid-column: 1 / -1;
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          margin: 30px 0 4px;
+        }
+        .section-divider hr {
+          flex: 1;
+          border: 0;
+          height: 1px;
+          background: linear-gradient(90deg, rgba(115, 169, 154, 0), rgba(115, 169, 154, 0.65), rgba(115, 169, 154, 0));
+        }
+        .section-divider span {
+          font: 350 13px/1 var(--serif);
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: #4f7f73;
+          white-space: nowrap;
+        }
+        .card.collapsible {
+          position: relative;
+          padding: 0;
+        }
+        .collapsible-head {
+          display: flex;
+          width: 100%;
+          align-items: baseline;
+          justify-content: space-between;
+          gap: 14px;
+          padding: 22px 20px;
+          background: none;
+          border: 0;
+          font: inherit;
+          text-align: left;
+          cursor: pointer;
+        }
+        .collapsible-head h3 {
+          margin: 0;
+        }
+        .card.collapsible.open .collapsible-head {
+          padding: 22px 56px 6px 20px;
+        }
+        .reveal-hint {
+          flex-shrink: 0;
+          font: 500 10.5px/1 var(--round, sans-serif);
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #73a89a;
+        }
+        .collapsible-close {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          width: 30px;
+          height: 30px;
+          border-radius: 999px;
+          border: 1px solid rgba(37, 31, 33, 0.16);
+          background: #fff;
+          color: #585254;
+          font-size: 17px;
+          line-height: 1;
+          cursor: pointer;
+          transition: background 0.15s ease, color 0.15s ease;
+        }
+        .collapsible-close:hover {
+          background: #4f7f73;
+          border-color: #4f7f73;
+          color: #fff;
+        }
+        .collapsible-body {
+          padding: 0 20px 22px;
         }
         .booked {
           margin: 8px 0 0;
