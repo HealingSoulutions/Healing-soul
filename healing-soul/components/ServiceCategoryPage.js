@@ -197,7 +197,9 @@ export default function ServiceCategoryPage({ service }) {
 
         <section className="body">
           <h2>{service.menu ? 'The Drip Menu' : "What's included"}</h2>
-          <p className="lede">{service.includedLede}</p>
+          {String(service.includedLede).split('\n\n').map((para) => (
+            <p className="lede" key={para.slice(0, 24)}>{para}</p>
+          ))}
           {service.menu && <DripMenu />}
           <div className="grid" hidden={!!service.menu}>
             {service.included.filter((i) => !i.collapsible).map((item) => (

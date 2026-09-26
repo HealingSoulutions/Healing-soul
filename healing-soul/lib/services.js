@@ -107,7 +107,8 @@ export const SERVICES = [
       "A personalized supplement plan built from your labs - or from a consult - with named products and a follow-up schedule.",
     heroLede:
       'A plan around your labs, goals, and life - certified, third-party-tested brands, delivered to your door.',
-    includedLede: 'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products we source directly from the manufacturer and deliver to you, then a repeat panel at week 4 with provider reassessment and adjustment. We set up your monthly pill organizer with you, so the plan is easy to follow from day one. Cycles repeat until your goals are met.',
+    includedLede:
+      'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer and delivered to you, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles repeat until your goals are met.\n\nEvery product is curated from the highest-quality supplement brands around your goals and biomarkers \u2014 the right delivery system, the right dosage, the right order and timing, so each nutrient actually does its job. And every pick is checked against your medications and lifestyle for the interactions our practitioners are trained to catch.',
     included: [
       {
         name: 'Protocol Consult',
@@ -123,6 +124,13 @@ export const SERVICES = [
         copy:
           'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages. Booked with our At-Home Lab Visit, provider interpretation is already included, so the protocol is $200.',
         tag: 'Built from your results',
+      },
+      {
+        name: 'Pill Organizer Setup',
+        price: '$199 with any visit \u00b7 $249 stand-alone',
+        copy:
+          'We organize your monthly pill organizer with you, dose by dose, in a dedicated sit-down \u2014 done together, as compliance requires \u2014 so your plan is easy to follow from day one.',
+        tag: 'Add-on service',
       },
       {
         name: 'How We Vet Every Brand',
