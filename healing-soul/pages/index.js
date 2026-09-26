@@ -83,6 +83,7 @@ export default function Home() {
           min-height: 100vh;
           background: #fbfaf9;
           padding: 0 0 72px;
+          overflow-x: clip;
         }
         .brandband {
           background: #013c1c;

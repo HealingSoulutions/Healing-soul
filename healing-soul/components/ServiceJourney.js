@@ -342,8 +342,8 @@ export default function ServiceJourney() {
         /* ---- emerald hero panel ---- */
         .hs-journey-section .hero-emerald {
           background: #013c1c;
-          margin: -24px -42px 0;
-          padding: 30px 42px 44px;
+          margin: -24px calc(50% - 50vw) 0;
+          padding: 30px 20px 44px;
         }
         .hs-journey-section .hero-emerald .intro {
           color: #f6f3ec;
@@ -896,7 +896,7 @@ export default function ServiceJourney() {
             padding: 12px 16px 28px;
           }
           .hs-journey-section .hero-emerald {
-            margin: -12px -16px 0;
+            margin-top: -12px;
             padding: 22px 16px 34px;
           }
           .hs-journey-section .stage {

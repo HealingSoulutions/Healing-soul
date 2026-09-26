@@ -62,8 +62,8 @@ h1, h2, h3, h4, h5 { font-family: 'Aime', Georgia, serif; }
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   padding: 0.9rem 3rem; display: flex; justify-content: center; align-items: center; gap: 2.25rem;
-  background: rgba(251,250,249,0.92); backdrop-filter: blur(28px);
-  border-bottom: 1px solid #eae9ea; transition: all 0.5s;
+  background: rgba(1,60,28,0.94); backdrop-filter: blur(28px);
+  border-bottom: 1px solid rgba(246,243,236,0.14); transition: all 0.5s;
 }
 .logo {
   font-family: 'Aime', Georgia, serif; font-size: 1.65rem;
@@ -77,12 +77,12 @@ nav {
 .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; }
 .nav-links a,
 .nav-links button.nav-btn {
-  text-decoration: none; color: rgba(37,31,33,0.6); font-size: 0.7rem;
+  text-decoration: none; color: rgba(246,243,236,0.78); font-size: 0.7rem;
   font-weight: 500; transition: all 0.3s; background: none; border: none;
   cursor: pointer; font-family: 'KMR Melange Grotesk', sans-serif; letter-spacing: 0.04em;
 }
 .nav-links a:hover,
-.nav-links button.nav-btn:hover { color: rgba(37,31,33,1); }
+.nav-links button.nav-btn:hover { color: #f6f3ec; }
 .btn-nav {
   padding: 0.5rem 1.4rem; background: #251f21;
   color: #ffffff !important; border: 1px solid #251f21 !important;
@@ -90,16 +90,16 @@ nav {
 }
 .btn-nav:hover { background: #1a1517; }
 .nav-links a.nav-cta {
-  background: #251f21; color: #ffffff !important;
+  background: #f6f3ec; color: #013c1c !important;
   padding: 0.5rem 1.4rem; border-radius: 999px;
 }
-.nav-links a.nav-cta:hover { background: #1a1517; color: #ffffff; }
+.nav-links a.nav-cta:hover { background: #ffffff; color: #013c1c; }
 .hamburger {
   display: none; cursor: pointer; flex-direction: column; gap: 4px;
   background: none; border: none; padding: 4px;
 }
 .hamburger span {
-  width: 20px; height: 1.5px; background: rgba(37,31,33,0.7);
+  width: 20px; height: 1.5px; background: rgba(246,243,236,0.85);
   display: block; transition: all 0.3s;
 }
 
@@ -311,7 +311,7 @@ footer { background: #fbfaf9; padding: 1rem 3rem; color: rgba(37,31,33,0.7); bor
   .nav-links { display: none; }
   .nav-links.active {
     display: flex; flex-direction: column; position: absolute;
-    top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98);
+    top: 100%; left: 0; right: 0; background: rgba(1,60,28,0.98);
     padding: 1rem; gap: 1rem;
   }
   .hamburger { display: flex; }
