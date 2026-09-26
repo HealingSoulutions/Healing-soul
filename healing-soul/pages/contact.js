@@ -1,5 +1,6 @@
 import Seo from '../components/Seo';
 import Link from 'next/link';
+import FaqAccordion from '../components/FaqAccordion';
 
 const CONTACT_FAQS = [
   ['Who provides my care?', 'Licensed Registered Nurses (RNs) and Nurse Practitioners (NPs). RNs provide care under the order or standing order of an NP or physician, consistent with New York scope-of-practice law.'],
@@ -61,9 +62,8 @@ export default function Contact() {
           <div className="faqs">
             <span className="label">Common questions</span>
             {CONTACT_FAQS.map(([q, a]) => (
-              <div key={q}>
-                <h3>{q}</h3>
-                <p>{a}</p>
+              <div className="qa" key={q}>
+                <FaqAccordion q={q} a={a} size={18} />
               </div>
             ))}
             <p className="more">
@@ -179,19 +179,15 @@ export default function Contact() {
           font: 400 13px/1.65 var(--round);
         }
         .faqs {
-          display: grid;
-          gap: 22px;
           text-align: left;
         }
-        .faqs h3 {
-          margin: 0 0 4px;
-          color: var(--gold-light);
-          font: 500 18px/1.3 var(--serif);
+        .faqs .qa {
+          padding: 16px 0;
+          border-top: 1px solid rgba(115, 168, 154, 0.16);
         }
-        .faqs p {
-          margin: 0;
-          color: rgba(37, 31, 33, 0.78);
-          font: 400 13px/1.65 var(--round);
+        .faqs .qa:first-of-type {
+          border-top: none;
+          padding-top: 8px;
         }
         .faqs .more {
           font-size: 12.5px;

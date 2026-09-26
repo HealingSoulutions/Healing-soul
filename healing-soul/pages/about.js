@@ -1,4 +1,5 @@
 import Seo from '../components/Seo';
+import FaqAccordion from '../components/FaqAccordion';
 import Link from 'next/link';
 
 // About page in the homepage's language: flat emerald, Cormorant headings, Varela Round
@@ -90,14 +91,13 @@ export default function About() {
           <div className="rule" />
 
           <span className="label section">FAQ</span>
-          <dl className="faq">
+          <div className="faq">
             {FAQS.map(([q, a]) => (
               <div className="qa" key={q}>
-                <dt>{q}</dt>
-                <dd>{a}</dd>
+                <FaqAccordion q={q} a={a} />
               </div>
             ))}
-          </dl>
+          </div>
 
           <div className="rule" />
 

@@ -1,4 +1,5 @@
 import Seo from '../components/Seo';
+import FaqAccordion from '../components/FaqAccordion';
 
 // The booking + intake + card-on-file flow is handled entirely inside
 // a HIPAA-enabled JotForm (restyled clone, form id 262678284868175 on hipaa-submit.jotform.com).
@@ -56,14 +57,13 @@ function BookContent() {
       <section id="faq" className="wrap faq-wrap" aria-label="Booking questions">
         <div className="rule" />
         <span className="eyebrow">Before you book</span>
-        <dl className="faq">
+        <div className="faq">
           {BOOK_FAQS.map(([q, a]) => (
             <div className="qa" key={q}>
-              <dt>{q}</dt>
-              <dd>{a}</dd>
+              <FaqAccordion q={q} a={a} />
             </div>
           ))}
-        </dl>
+        </div>
         <p className="fine">
           Still have a question? Call or text <a href="tel:+15857472215">(585) 747-2215</a> or email{' '}
           <a href="mailto:info@healingsoulutions.care">info@healingsoulutions.care</a>.
