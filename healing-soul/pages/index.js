@@ -67,6 +67,15 @@ export default function Home() {
             <Link href="/services/at-home-testing" className="cta-secondary">See At-Home Testing</Link>
           </div>
         </section>
+        <div className="brandband">
+          <img
+            className="wordmark"
+            src="/wordmark-metallic.png"
+            alt="Healing Soulutions — Concierge Nursing"
+            width={900}
+            height={378}
+          />
+        </div>
       </main>
 
       <style jsx>{`
@@ -126,6 +135,17 @@ export default function Home() {
           color: #251f21;
           text-decoration: none;
           font: 500 15px/1 'KMR Melange Grotesk', system-ui, sans-serif;
+        }
+        .brandband {
+          background: #013c1c;
+          text-align: center;
+          padding: 48px 20px 60px;
+          margin-top: 56px;
+        }
+        .wordmark {
+          display: inline-block;
+          width: min(300px, 66%);
+          height: auto;
         }
         .owner-note {
           margin: 28px auto 0 !important;
