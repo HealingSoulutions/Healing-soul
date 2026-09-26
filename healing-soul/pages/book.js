@@ -72,6 +72,7 @@ function BookContent() {
 
       <style jsx>{`
         .book {
+          overflow-x: clip;
           --emerald: #fbfaf9;
           --gold: #73a89a;
           --gold-light: #251f21;
@@ -123,6 +124,7 @@ function BookContent() {
           border-radius: 16px;
           background: #fff;
           overflow: auto;
+          overflow-x: hidden;
           -webkit-overflow-scrolling: touch;
         }
         @media (max-width: 680px) {
