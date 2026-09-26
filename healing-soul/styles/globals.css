@@ -296,7 +296,7 @@ nav[aria-label="Main navigation"] {
 .StripeElement--complete { border-color: #7FD4A0 !important; }
 
 /* ── Footer ── */
-footer { background: #fbfaf9; padding: 1rem 3rem; color: rgba(37,31,33,0.7); border-top: 1px solid #eae9ea; }
+footer { background: #fbfaf9; padding: 1rem 3rem 5.5rem; color: rgba(37,31,33,0.7); border-top: 1px solid #eae9ea; }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-compact { display: flex; justify-content: space-between; align-items: center; }
 .footer-compact .logo { font-size: 0.85rem; }
