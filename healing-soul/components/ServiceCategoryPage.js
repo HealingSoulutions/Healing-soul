@@ -52,11 +52,12 @@ function CollapsibleCard({ item }) {
           border-radius: 16px;
         }
         .wide {
-          grid-column: 1 / -1;
+          width: 100%;
         }
         .collapsible {
           position: relative;
           padding: 0;
+          margin: 18px 0 8px;
         }
         .collapsible-head {
           display: flex;
@@ -119,12 +120,12 @@ function CollapsibleCard({ item }) {
         }
         .brands {
           list-style: disc;
-          margin: 10px 0;
+          margin: 14px 0;
           padding: 0 0 0 20px;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          column-gap: 28px;
-          row-gap: 12px;
+          grid-template-columns: 1fr 1fr 1fr;
+          column-gap: 32px;
+          row-gap: 18px;
           font-size: 13.5px;
           color: #251f21;
           line-height: 1.5;
@@ -145,9 +146,19 @@ function CollapsibleCard({ item }) {
           font-size: 12.5px;
           line-height: 1.5;
         }
+        @media (max-width: 700px) {
+          .brands {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
         @media (max-width: 420px) {
           .brands {
             grid-template-columns: 1fr;
+          }
+        }
+        @media (min-width: 701px) {
+          .collapsible-body {
+            padding: 0 28px 26px;
           }
         }
         .tag {
@@ -189,11 +200,9 @@ export default function ServiceCategoryPage({ service }) {
           <p className="lede">{service.includedLede}</p>
           {service.menu && <DripMenu />}
           <div className="grid" hidden={!!service.menu}>
-            {service.included.map((item) => (
+            {service.included.filter((i) => !i.collapsible).map((item) => (
               <Fragment key={item.name}>
-                {item.collapsible ? (
-                  <CollapsibleCard item={item} />
-                ) : (
+                {
                   <article className={`card${item.brands ? ' wide' : ''}`}>
                     <h3>{item.name}</h3>
                     {item.price && <span className="price">{item.price}</span>}
@@ -216,7 +225,7 @@ export default function ServiceCategoryPage({ service }) {
                     {item.after && <p>{item.after}</p>}
                     <span className="tag">{item.tag}</span>
                   </article>
-                )}
+                }
                 {item.divider && (
                   <div className="section-divider" aria-hidden="true">
                     <hr />
@@ -227,6 +236,10 @@ export default function ServiceCategoryPage({ service }) {
               </Fragment>
             ))}
           </div>
+
+          {service.included
+            .filter((i) => i.collapsible)
+            .map((item) => <CollapsibleCard key={item.name} item={item} />)}
 
           <div className="steps">
             {service.steps.map(([name, copy], i) => (
@@ -374,12 +387,12 @@ export default function ServiceCategoryPage({ service }) {
         }
         .brands {
           list-style: disc;
-          margin: 10px 0;
+          margin: 14px 0;
           padding: 0 0 0 20px;
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          column-gap: 28px;
-          row-gap: 12px;
+          grid-template-columns: 1fr 1fr 1fr;
+          column-gap: 32px;
+          row-gap: 18px;
           font-size: 13.5px;
           color: #251f21;
           line-height: 1.5;
@@ -400,9 +413,19 @@ export default function ServiceCategoryPage({ service }) {
           font-size: 12.5px;
           line-height: 1.5;
         }
+        @media (max-width: 700px) {
+          .brands {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
         @media (max-width: 420px) {
           .brands {
             grid-template-columns: 1fr;
+          }
+        }
+        @media (min-width: 701px) {
+          .collapsible-body {
+            padding: 0 28px 26px;
           }
         }
         .section-divider {
