@@ -30,7 +30,7 @@ export const SERVICES = [
     summary:
       'Blood work, urine testing, and respiratory swabs collected privately at home, with results reviewed and explained by a provider.',
     heroLede:
-      'Nurses draw your labs at home and hand-deliver them to Labcorp the same day. A provider reviews every result with you - and if you want to act on them, we build your supplement protocol, deliver the supplements, and set up your pill organizer.',
+      'A nurse draws your labs at home, and a provider reviews every result with you. Want to act on them? We build your supplement protocol and deliver it.',
     includedLede: 'Your path begins here. Everything below can be done in a single visit, at your home, office, or hotel.',
     included: [
       {
