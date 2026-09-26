@@ -147,11 +147,10 @@ export default function ServiceJourney() {
   return (
     <section className="hs-journey-section" aria-label="Healing Soulutions care journey">
       <h1 className="intro">
-        Establish your baseline. Build your protocol. Replenish and optimize.
+        Never leave your home, office, or hotel.
       </h1>
       <p className="intro-sub">
-        Ongoing oversight from an experienced wellness nursing team, tailored to your body and goals.
-        At your home or office.
+        IVs, lab tests, and nursing care brought to you.
       </p>
       <p className="pathway">
         Follow the full Pathway to Wellness (steps 1&ndash;4), or book any service on its own.
@@ -300,7 +299,7 @@ export default function ServiceJourney() {
           text-align: center;
           font-family: var(--serif);
           font-weight: 300;
-          font-size: clamp(30px, 4.4vw, 46px);
+          font-size: clamp(25px, 4vw, 40px);
           line-height: 1.16;
           letter-spacing: -0.01em;
         }
