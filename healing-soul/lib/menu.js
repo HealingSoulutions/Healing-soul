@@ -35,14 +35,14 @@ export const SIGNATURE = [
     name: 'The Hangover Soulution',
     pair: ['B12 Energy Shot', 'Labs-Based Protocol'],
     for: 'Hangover, alcohol-related dehydration, nausea, headache',
-    tagline: 'Bounce back fast — clears headache, nausea, dehydration & fatigue.',
+    tagline: 'Bounce back after a long night — deep rehydration for headache, nausea & fatigue.',
     contents: 'B-Complex • B12 • Glutathione • Magnesium • anti-nausea • anti-inflammatory • antacid',
   },
   {
     name: 'The Migraine Soulution',
     pair: ['B12 + Full B-Complex', 'Brain Health & Focus Protocol'],
     for: 'Migraine, tension headache, cluster-headache episodes',
-    tagline: 'Targeted relief for migraines & tension headaches, with light-sensitive comfort.',
+    tagline: 'Comfort on migraine and headache days — quiet, lights-down, and brought to you.',
     contents: 'Magnesium • B-Complex • anti-inflammatory • anti-nausea • optional antihistamine',
   },
   {
@@ -87,7 +87,7 @@ export const SIGNATURE = [
     name: 'The Immunity Soulution',
     pair: ['Immunity Shot (Tri-Immune)', 'Immunity Defense Protocol'],
     for: 'Cold & flu, early viral symptoms, frequent infections, pre-travel immune prep, post-surgical immune support',
-    tagline: 'Cold & flu defense — fight illness off early and recover faster.',
+    tagline: 'Cold & flu season support — immune-focused nutrients and hydration when you feel one coming on.',
     contents: 'B-Complex • Vitamin C • Glutathione • Zinc',
   },
   {

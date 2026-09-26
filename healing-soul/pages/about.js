@@ -27,7 +27,7 @@ const TEAM = [
     alt: 'Kristina Castro, Nurse Practitioner at Healing Soulutions',
     name: 'Kristina Castro, MSN, APRN, FNP-BC',
     role: 'Nurse Practitioner',
-    bio: 'Kristina is a board-certified Family Nurse Practitioner with more than a decade at the bedside in New York ICUs and emergency departments. She pairs that acute-care foundation with functional medicine and peptide therapy, across the full lifespan — children, adults, and older adults. She has cared for patients in New York and abroad, and she assesses, diagnoses, prescribes, and oversees every plan personally, delivered privately at home.',
+    bio: 'Kristina is a board-certified Family Nurse Practitioner with more than a decade at the bedside in New York ICUs and emergency departments. She pairs that acute-care foundation with functional and longevity medicine, across the full lifespan — children, adults, and older adults. She has cared for patients in New York and abroad, and she assesses, diagnoses, prescribes, and oversees every plan personally, delivered privately at home.',
     creds: 'MSN / FNP — College of Mount Saint Vincent · ANCC Board Certified (FNP-BC) · Licensed NP (NY & CT) · RN (NY, NJ & CT) · TNCC · ENPC · ACLS · PALS · BLS',
   },
 ];
