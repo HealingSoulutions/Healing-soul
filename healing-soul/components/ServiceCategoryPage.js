@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Seo from './Seo';
 import Medallion from './Medallion';
 import DripMenu from './DripMenu';
+import PackagesSection from './PackagesSection';
 import { SERVICES } from '../lib/services';
 
 function CollapsibleCard({ item }) {
@@ -252,6 +253,8 @@ export default function ServiceCategoryPage({ service }) {
           </div>
 
           {service.disclaimer && <p className="disclaimer">{service.disclaimer}</p>}
+
+          {service.slug === 'iv-injections' && <PackagesSection />}
 
           <div className="cta">
             <div>
