@@ -54,15 +54,6 @@ export default function Home() {
       </Head>
 
       <main id="main-content" className="home">
-        <div className="brandband">
-          <img
-            className="wordmark"
-            src="/wordmark-metallic.png"
-            alt="Healing Soulutions — Concierge Nursing"
-            width={900}
-            height={378}
-          />
-        </div>
         <ServiceJourney />
         <section className="starter" aria-label="Your first visit">
           <span className="eyebrow">Start here</span>
@@ -84,16 +75,6 @@ export default function Home() {
           background: #fbfaf9;
           padding: 0 0 72px;
           overflow-x: clip;
-        }
-        .brandband {
-          background: #013c1c;
-          text-align: center;
-          padding: 68px 20px 36px;
-        }
-        .wordmark {
-          display: inline-block;
-          width: min(300px, 66%);
-          height: auto;
         }
         .starter {
           max-width: 760px;

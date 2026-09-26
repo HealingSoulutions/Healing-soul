@@ -157,6 +157,7 @@ export default function ServiceJourney() {
           <Link href="/book" className="cta-primary">Book a Visit</Link>
           <a href="#pathway" className="cta-secondary">Explore the pathway</a>
         </div>
+        <img className="hero-wordmark" src="/wordmark-metallic.png" alt="Healing Soulutions — Concierge Nursing" />
       </div>
 
       <div className="stage" id="pathway" role="list" aria-label="Service categories">
@@ -342,8 +343,14 @@ export default function ServiceJourney() {
         /* ---- emerald hero panel ---- */
         .hs-journey-section .hero-emerald {
           background: #013c1c;
-          margin: -24px calc(50% - 50vw) 0;
-          padding: 30px 20px 44px;
+          margin: 0 calc(50% - 50vw) 0;
+          padding: 60px 20px 40px;
+        }
+        .hs-journey-section .hero-wordmark {
+          display: block;
+          width: min(168px, 46%);
+          height: auto;
+          margin: 30px auto 0;
         }
         .hs-journey-section .hero-emerald .intro {
           color: #f6f3ec;
