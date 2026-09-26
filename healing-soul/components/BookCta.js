@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 
 const GOLD = '#73a89a';
 const INK = '#251f21';
@@ -10,7 +11,30 @@ const PHONE = '+15857472215';
 // so it appears once the entry experience clears.
 export default function BookCta() {
   const router = useRouter();
-  if (router.pathname.startsWith('/book')) return null;
+  const onBookPage = router.pathname.startsWith('/book');
+  // Slide out of the way while the user scrolls down (reading), return on any scroll up,
+  // near the top, or near the bottom where the footer clearance lives.
+  const [hidden, setHidden] = useState(false);
+  useEffect(() => {
+    if (onBookPage) return undefined;
+    let lastY = window.scrollY;
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        const y = window.scrollY;
+        const nearBottom = window.innerHeight + y >= document.documentElement.scrollHeight - 120;
+        if (nearBottom || y < 120 || y < lastY - 4) setHidden(false);
+        else if (y > lastY + 4) setHidden(true);
+        lastY = y;
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [onBookPage]);
+  if (onBookPage) return null;
 
   const iconBtn = {
     width: 40, height: 40, borderRadius: '50%',
@@ -22,7 +46,7 @@ export default function BookCta() {
   };
 
   return (
-    <div style={{ position: 'fixed', right: '18px', bottom: '18px', zIndex: 99989, display: 'flex', alignItems: 'center', gap: '0.5rem', transform: 'scale(0.88)', transformOrigin: 'bottom right' }}>
+    <div style={{ position: 'fixed', right: '18px', bottom: '18px', zIndex: 99989, display: 'flex', alignItems: 'center', gap: '0.5rem', transform: hidden ? 'scale(0.88) translateY(160%)' : 'scale(0.88)', transformOrigin: 'bottom right', opacity: hidden ? 0 : 1, pointerEvents: hidden ? 'none' : 'auto', transition: 'transform 0.35s ease, opacity 0.35s ease' }}>
       <Link
         href="/book"
         style={{

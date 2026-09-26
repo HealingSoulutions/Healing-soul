@@ -18,16 +18,16 @@ export default function Contact() {
             Questions, availability, or a visit: reach us directly. We follow up within 24 hours.
           </p>
 
-          <div className="ways" role="list">
-            <a className="way" href="tel:+15857472215" role="listitem">
+          <div className="ways">
+            <a className="way" href="tel:+15857472215">
               <span className="label">Call or text</span>
               <span className="value">(585) 747-2215</span>
             </a>
-            <a className="way" href="mailto:info@healingsoulutions.care" role="listitem">
+            <a className="way" href="mailto:info@healingsoulutions.care">
               <span className="label">Email</span>
               <span className="value email">info@healingsoulutions.care</span>
             </a>
-            <Link className="way" href="/book" role="listitem">
+            <Link className="way" href="/book">
               <span className="label">Book online</span>
               <span className="value">Choose a time &rarr;</span>
             </Link>

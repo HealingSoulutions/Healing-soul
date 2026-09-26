@@ -185,7 +185,7 @@ export default function ServiceCategoryPage({ service }) {
       <div className="cat">
         <div className="cat-hero">
           <Link href="/" className="cat-close" aria-label="Back to home">
-            ×
+            &larr; Home
           </Link>
           <Medallion icon={service.icon} size={128} />
           <div className="kicker">
@@ -290,18 +290,17 @@ export default function ServiceCategoryPage({ service }) {
         }
         .cat :global(.cat-close) {
           position: absolute;
-          top: 118px;
+          top: 122px;
           right: 22px;
-          width: 44px;
-          height: 44px;
-          display: flex;
+          padding: 0.55rem 1rem;
+          display: inline-flex;
           align-items: center;
-          justify-content: center;
           border: 1px solid rgba(115, 168, 154, 0.6);
-          border-radius: 50%;
+          border-radius: 999px;
           color: var(--gold-light);
           background: rgba(255, 255, 255, 0.85);
-          font: 400 28px/1 var(--serif);
+          font: 500 12.5px/1 var(--round);
+          letter-spacing: 0.06em;
           text-decoration: none;
           z-index: 5;
         }

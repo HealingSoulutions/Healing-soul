@@ -30,7 +30,7 @@ export const SERVICES = [
     summary:
       'Blood work, urine testing, and respiratory swabs collected privately at home, with results reviewed and explained by a provider.',
     heroLede:
-      'A nurse draws your labs at home, and a provider reviews every result with you. Share your insurance card when you book - Labcorp bills your insurance for the lab work. Supplement protocols are priced separately.',
+      'A nurse draws your labs at home, and a provider reviews every result with you. Share your insurance card when you book — Labcorp bills your insurance for the lab work. Supplement protocols are priced separately.',
     includedLede: 'Your path begins here. Everything below can be done in a single visit, at your home, office, or hotel.',
     included: [
       {

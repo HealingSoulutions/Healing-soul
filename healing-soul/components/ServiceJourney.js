@@ -53,7 +53,7 @@ function segments(points, pxW, pxH, vbW, vbH, gaps, endGap) {
   return out;
 }
 // Small caption under each label, matching the four steps of the intro line.
-const CAPTIONS = ['Your baseline', 'Your protocol', 'Replenish & optimize', 'Clinician oversight'];
+const CAPTIONS = ['Your baseline', 'Your protocol', 'Replenish & optimize', 'Your next step'];
 const DESKTOP_SEGS = segments(DESKTOP, 920, 240, 1000, 240, [66, 66, 66, 66]);
 const PHONE_SEGS = segments(PHONE, 358, 740, 390, 740, [104, 104, 104, 104], 66);
 
@@ -456,6 +456,12 @@ export default function ServiceJourney() {
         }
 
         /* ---- trust line + tap cue ---- */
+        @media (min-width: 681px) {
+          .hs-journey-section .band {
+            margin-top: 40px;
+            padding-top: 36px;
+          }
+        }
         .hs-journey-section .band {
           margin: 96px auto 0;
           padding-top: 44px;
