@@ -30,13 +30,13 @@ export const SERVICES = [
     summary:
       'Blood work, urine testing, and respiratory swabs collected privately at home, with results reviewed and explained by a provider.',
     heroLede:
-      'A nurse draws your labs at home, and a provider reviews every result with you. Want to act on them? We build your supplement protocol and deliver it.',
+      'A nurse draws your labs at home, and a provider reviews every result with you. Share your insurance card when you book - Labcorp bills your insurance for the lab work. Supplement protocols are priced separately.',
     includedLede: 'Your path begins here. Everything below can be done in a single visit, at your home, office, or hotel.',
     included: [
       {
         name: 'At-Home Lab Visit',
         price: '$695 · includes provider interpretation',
-        copy: 'Labs drawn at home by a nurse, delivered to Labcorp same-day, and reviewed with you by a provider on a results call. Standard and specialty panels. Commonly booked for: inflammatory markers, hormone panels, basic labs, metabolic health, and cardiac profiles.',
+        copy: 'Book lab work at home: a nurse draws your labs, we hand-deliver them to Labcorp the same day, and a provider reviews your results with you on a call. Provide your insurance card when you book and Labcorp bills your insurance for the lab work. Supplement protocols are priced separately. Commonly booked for: inflammatory markers, hormone panels, basic labs, metabolic health, and cardiac profiles.',
         tag: 'Phlebotomy',
       },
       {
