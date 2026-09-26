@@ -150,7 +150,7 @@ export default function ServiceJourney() {
         Never leave your home, office, or hotel.
       </h1>
       <p className="intro-sub">
-        IVs, lab tests, and nursing care brought to you.
+        IV therapy, lab tests, and supplement protocols, brought to you.
       </p>
       <p className="pathway">
         Follow the full Pathway to Wellness (steps 1&ndash;4), or book any service on its own.
