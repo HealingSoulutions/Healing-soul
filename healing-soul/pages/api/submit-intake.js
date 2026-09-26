@@ -1,6 +1,6 @@
 import https from 'https';
 
-var CODE_VERSION = 'v4-debug-2026-03-05';
+var CODE_VERSION = 'v5-hipaa-email-2026-09-26';
 var lastBooking = { status: 'No bookings yet' };
 
 function intakeqRequest(endpoint, method, body) {
@@ -211,11 +211,7 @@ function buildBusinessEmailHtml(data) {
       var pa = formatAddress(pt);
       if (pa && pa !== 'Not specified') h += ptSection('Address', pa);
       h += ptSection('Services', pt.services && pt.services.length > 0 ? pt.services.join(', ') : 'Same as primary');
-      h += ptSection('Medical/Surgical History', pt.medicalSurgicalHistory);
-      h += ptSection('Medications', pt.medications);
-      h += ptSection('Allergies', pt.allergies);
-      h += ptSection('Previous IV Reactions', pt.ivReactions);
-      h += ptSection('Clinician Notes', pt.clinicianNotes);
+      h += '<p style="margin:0;font-size:13px;">Intake and health information on file in our secure system.</p>';
       h += '</div>';
     });
     h += '</div>';
@@ -244,12 +240,8 @@ function buildPatientEmailHtml(data) {
   if (data.notes) h += ptSection('Notes', data.notes);
   h += '</div>';
   h += '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;margin-bottom:16px;">';
-  h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Medical Information on File</h2>';
-  h += ptSection('Medical/Surgical History', data.medicalSurgicalHistory);
-  h += ptSection('Medications', data.medications);
-  h += ptSection('Allergies', data.allergies);
-  h += ptSection('Previous IV Reactions', data.ivReactions);
-  h += ptSection('Clinician Notes', data.clinicianNotes);
+  h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Medical Information</h2>';
+  h += '<p style="margin:0;font-size:13px;">Your intake and health information are on file in our secure system and will be reviewed by your care team. For your privacy, medical details are never included in email.</p>';
   h += '</div>';
   h += '<div style="background:rgba(255,255,255,0.08);border-radius:8px;padding:16px;margin-bottom:16px;">';
   h += '<h2 style="color:#D4BC82;font-size:16px;margin:0 0 12px;">Consent Forms</h2>';
@@ -288,7 +280,7 @@ function buildPatientEmailHtml(data) {
   h += '<div style="text-align:center;padding:16px;">';
   h += '<p style="color:#D4BC82;font-size:14px;">Our team will contact you within 24 hours to confirm.</p>';
   h += '<p style="color:rgba(255,255,255,0.5);font-size:12px;">Healing Soulutions — info@healingsoulutions.care — (585) 747-2215</p>';
-  h += '<p style="color:rgba(255,255,255,0.4);font-size:11px;">Your data is stored securely per HIPAA regulations.</p>';
+  h += '<p style="color:rgba(255,255,255,0.4);font-size:11px;">Your information was submitted through our HIPAA-compliant intake form.</p>';
   h += '</div></div>';
   return h;
 }
@@ -445,7 +437,7 @@ export default async function handler(req, res) {
       version: CODE_VERSION,
       clientId: clientId || null,
       errors: errors,
-      message: 'Intake submitted successfully to HIPAA-secure server.',
+      message: 'Intake submitted successfully through our HIPAA-compliant intake form.',
     });
   } catch (error) {
     debug.steps.push('FATAL: ' + error.message);
