@@ -152,9 +152,6 @@ export default function ServiceJourney() {
       <p className="intro-sub">
         IV therapy, lab tests, and supplement protocols, brought to you.
       </p>
-      <p className="pathway">
-        Follow the full Pathway to Wellness (steps 1&ndash;4), or book any service on its own.
-      </p>
       <div className="cta-row">
         <Link href="/book" className="cta-primary">Book a Visit</Link>
         <a href="#pathway" className="cta-secondary">Explore the pathway</a>
