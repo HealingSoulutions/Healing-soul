@@ -36,7 +36,7 @@ export const SERVICES = [
       {
         name: 'At-Home Lab Visit',
         price: '$695 · includes provider interpretation',
-        copy: 'Labs drawn at home by a nurse, delivered to Labcorp same-day, and reviewed with you by a provider on a results call. Standard and specialty panels.',
+        copy: 'Labs drawn at home by a nurse, delivered to Labcorp same-day, and reviewed with you by a provider on a results call. Standard and specialty panels. Commonly booked for: inflammatory markers, hormone panels, basic labs, metabolic health, and cardiac profiles.',
         tag: 'Phlebotomy',
       },
       {
