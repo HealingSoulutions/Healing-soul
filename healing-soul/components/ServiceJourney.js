@@ -146,15 +146,17 @@ export default function ServiceJourney() {
 
   return (
     <section className="hs-journey-section" aria-label="Healing Soulutions care journey">
-      <h1 className="intro">
-        Never leave your home, office, or hotel.
-      </h1>
-      <p className="intro-sub">
-        IV therapy, lab tests, and supplement protocols, brought to you.
-      </p>
-      <div className="cta-row">
-        <Link href="/book" className="cta-primary">Book a Visit</Link>
-        <a href="#pathway" className="cta-secondary">Explore the pathway</a>
+      <div className="hero-emerald">
+        <h1 className="intro">
+          Never leave your home, office, or hotel.
+        </h1>
+        <p className="intro-sub">
+          IV therapy, lab tests, and supplement protocols, brought to you.
+        </p>
+        <div className="cta-row">
+          <Link href="/book" className="cta-primary">Book a Visit</Link>
+          <a href="#pathway" className="cta-secondary">Explore the pathway</a>
+        </div>
       </div>
 
       <div className="stage" id="pathway" role="list" aria-label="Service categories">
@@ -337,6 +339,33 @@ export default function ServiceJourney() {
         .hs-journey-section .cta-secondary:hover {
           background: rgba(37, 31, 33, 0.05);
         }
+        /* ---- emerald hero panel ---- */
+        .hs-journey-section .hero-emerald {
+          background: #013c1c;
+          margin: -24px -42px 0;
+          padding: 30px 42px 44px;
+        }
+        .hs-journey-section .hero-emerald .intro {
+          color: #f6f3ec;
+        }
+        .hs-journey-section .hero-emerald .intro-sub {
+          color: rgba(246, 243, 236, 0.82);
+        }
+        .hs-journey-section .hero-emerald .cta-primary {
+          background: #f6f3ec;
+          color: #013c1c;
+        }
+        .hs-journey-section .hero-emerald .cta-primary:hover {
+          background: #ffffff;
+        }
+        .hs-journey-section .hero-emerald .cta-secondary {
+          color: #f6f3ec;
+          border-color: rgba(246, 243, 236, 0.55);
+        }
+        .hs-journey-section .hero-emerald .cta-secondary:hover {
+          background: rgba(246, 243, 236, 0.12);
+        }
+
         .hs-journey-section .pathway {
           max-width: 620px;
           margin: 0 auto 10px;
@@ -865,6 +894,10 @@ export default function ServiceJourney() {
         @media (max-width: 680px) {
           .hs-journey-section {
             padding: 12px 16px 28px;
+          }
+          .hs-journey-section .hero-emerald {
+            margin: -12px -16px 0;
+            padding: 22px 16px 34px;
           }
           .hs-journey-section .stage {
             height: 740px;

@@ -57,7 +57,7 @@ export default function Home() {
         <div className="brandband">
           <img
             className="wordmark"
-            src="/wordmark-gold.png"
+            src="/wordmark-metallic.png"
             alt="Healing Soulutions — Concierge Nursing"
             width={900}
             height={378}
@@ -93,6 +93,7 @@ export default function Home() {
           display: inline-block;
           width: min(300px, 66%);
           height: auto;
+          filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45));
         }
         .starter {
           max-width: 760px;

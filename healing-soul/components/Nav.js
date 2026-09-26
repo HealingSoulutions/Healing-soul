@@ -9,7 +9,7 @@ export default function Nav() {
       <a href="#main-content" className="skip-link">Skip to main content</a>
       <nav aria-label="Main navigation" style={{ justifyContent: 'space-between' }}>
         <Link href="/" className="nav-logo" aria-label="Healing Soulutions — Home" style={{ display: 'inline-flex', alignItems: 'center' }}>
-          <img src="/emblem.png" alt="Healing Soulutions" className="nav-emblem" style={{ height: 34, width: 'auto' }} />
+          <img src="/emblem-metallic.png" alt="Healing Soulutions" className="nav-emblem" style={{ height: 34, width: 'auto' }} />
         </Link>
         <ul className={'nav-links' + (mo ? ' active' : '')} id="nav-menu">
           {links.map(([label, href]) => {
