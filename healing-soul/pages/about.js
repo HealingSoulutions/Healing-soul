@@ -19,7 +19,7 @@ const TEAM = [
     alt: 'Berit Tran, Registered Nurse and founder of Healing Soulutions',
     name: 'Berit Tran, BSN, RN',
     role: 'Clinician & Wellness Nurse Consultant',
-    bio: 'Berit is a registered nurse with over fifteen years in New York hospitals - emergency, ICU, med-surg, and post-surgical and anesthesia recovery. Her focus is supplementation for hormone health, autoimmune support, metabolic health, brain health, and sleep, with experience in fertility optimization and IVF support. She has cared for patients across New York and abroad, and now brings that depth into the home with discretion, privacy, and attentiveness.',
+    bio: 'Berit is a registered nurse with over fifteen years in New York hospitals — emergency, ICU, med-surg, and post-surgical and anesthesia recovery. Her focus is supplementation for hormone health, autoimmune support, metabolic health, brain health, and sleep, with experience in fertility optimization and IVF support. She has cared for patients across New York and abroad, and now brings that depth into the home with discretion, privacy, and attentiveness.',
     creds: 'BSN · Licensed RN · ACLS · PALS · BLS',
   },
   {
@@ -27,7 +27,7 @@ const TEAM = [
     alt: 'Kristina Castro, Nurse Practitioner at Healing Soulutions',
     name: 'Kristina Castro, MSN, APRN, FNP-BC',
     role: 'Nurse Practitioner',
-    bio: 'Kristina is a board-certified Family Nurse Practitioner with more than a decade at the bedside in New York ICUs and emergency departments. She pairs that acute-care foundation with functional medicine and peptide therapy, across the full lifespan - children, adults, and older adults. She has cared for patients in New York and abroad, and she assesses, diagnoses, prescribes, and oversees every plan personally, delivered privately at home.',
+    bio: 'Kristina is a board-certified Family Nurse Practitioner with more than a decade at the bedside in New York ICUs and emergency departments. She pairs that acute-care foundation with functional medicine and peptide therapy, across the full lifespan — children, adults, and older adults. She has cared for patients in New York and abroad, and she assesses, diagnoses, prescribes, and oversees every plan personally, delivered privately at home.',
     creds: 'MSN / FNP — College of Mount Saint Vincent · ANCC Board Certified (FNP-BC) · Licensed NP (NY & CT) · RN (NY, NJ & CT) · TNCC · ENPC · ACLS · PALS · BLS',
   },
 ];
@@ -134,7 +134,7 @@ export default function About() {
         }
         .label {
           display: block;
-          color: var(--gold);
+          color: #3f6f64;
           font: 500 10.5px/1 var(--round);
           letter-spacing: 0.18em;
           text-transform: uppercase;
@@ -277,7 +277,7 @@ export default function About() {
           font: 400 20px/1.5 var(--serif);
         }
         .mark {
-          color: var(--gold);
+          color: #3f6f64;
           font-size: 1.5em;
           line-height: 0;
           vertical-align: -0.35em;
@@ -285,7 +285,7 @@ export default function About() {
         .quote cite {
           display: block;
           margin-top: 14px;
-          color: var(--gold);
+          color: #3f6f64;
           font: 500 10.5px/1 var(--round);
           letter-spacing: 0.18em;
           text-transform: uppercase;

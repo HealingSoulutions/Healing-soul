@@ -433,8 +433,8 @@ export default function Terms() {
             <br />
             <a href="tel:+15857472215">(585) 747-2215</a>
             <br />
-            <a href="mailto:hello@healingsoulutions.care">
-              hello@healingsoulutions.care
+            <a href="mailto:info@healingsoulutions.care">
+              info@healingsoulutions.care
             </a>
           </p>
           </div>
@@ -468,7 +468,7 @@ export default function Terms() {
           letter-spacing: 0.22em;
           text-transform: uppercase;
           font-size: 0.7rem;
-          color: #73a89a;
+          color: #3f6f64;
           margin: 0 0 0.75rem;
         }
         h1 {
@@ -541,7 +541,7 @@ export default function Terms() {
           font-size: 0.72rem;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: #4f7f73;
+          color: #3f6f64;
           margin: 0.4rem 0 0;
         }
         section {
@@ -567,7 +567,7 @@ export default function Terms() {
           margin-bottom: 0.6rem;
         }
         a {
-          color: #4f7f73;
+          color: #3f6f64;
         }
         .foot {
           margin-top: 3.5rem;

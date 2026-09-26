@@ -369,7 +369,7 @@ export default function ServiceJourney() {
         .hs-journey-section .pathway {
           max-width: 620px;
           margin: 0 auto 10px;
-          color: var(--gold);
+          color: #3f6f64;
           text-align: center;
           font: 500 12px/1.6 var(--round);
           letter-spacing: 0.06em;
@@ -657,7 +657,7 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .eyebrow {
           display: block;
-          color: var(--gold);
+          color: #3f6f64;
           font: 500 10px/1 var(--round);
           letter-spacing: 0.18em;
           text-transform: uppercase;
@@ -732,7 +732,7 @@ export default function ServiceJourney() {
           color: rgba(37, 31, 33, 0.7);
         }
         .hs-journey-section .booked b {
-          color: var(--gold);
+          color: #3f6f64;
           font-weight: 500;
         }
         .hs-journey-section .ptag {
@@ -742,7 +742,7 @@ export default function ServiceJourney() {
           font: 500 10px/1 var(--round);
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          color: var(--gold);
+          color: #3f6f64;
         }
         @media (max-width: 420px) {
           .hs-journey-section .bullets {
@@ -815,7 +815,7 @@ export default function ServiceJourney() {
         .hs-journey-section .steps li::before {
           content: counter(step);
           display: block;
-          color: var(--gold);
+          color: #3f6f64;
           font: 400 26px/1 var(--serif);
           margin-bottom: 4px;
         }
@@ -861,7 +861,7 @@ export default function ServiceJourney() {
         }
         .hs-journey-section .q-price {
           font: 500 16px/1.2 var(--serif);
-          color: var(--gold);
+          color: #3f6f64;
           white-space: nowrap;
         }
         .hs-journey-section .quick-note {

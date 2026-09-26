@@ -58,7 +58,7 @@ export const SERVICES = [
       },
       {
         name: 'Direct to the Lab',
-        copy: 'Collected by our nurses and delivered directly to Labcorp by our team - no third-party couriers.',
+        copy: 'Collected by our nurses and delivered directly to Labcorp by our team — no third-party couriers.',
         tag: 'Labcorp',
       },
       {
@@ -71,7 +71,7 @@ export const SERVICES = [
     steps: [
       ['Book', "Choose a time, tell us what you'd like tested, and share your insurance card for lab processing. We'll confirm any fasting or prep instructions."],
       ['We come to you', 'Your nurse arrives with everything needed and collects your specimens. Most visits take under 30 minutes.'],
-      ['Straight to the lab', 'We deliver your specimens to Labcorp the same day - no third-party couriers. Labcorp bills your insurance directly for the lab work.'],
+      ['Straight to the lab', 'We deliver your specimens to Labcorp the same day — no third-party couriers. Labcorp bills your insurance directly for the lab work.'],
       [
         'Understand your results',
         'Results arrive securely and are reviewed with you by a provider, with next steps if needed.',
@@ -104,9 +104,9 @@ export const SERVICES = [
     eyebrow: 'Guided by your goals',
     title: 'A protocol made for you',
     summary:
-      "A personalized supplement plan built from your labs - or from a consult - with named products and a follow-up schedule.",
+      "A personalized supplement plan built from your labs — or from a consult — with named products and a follow-up schedule.",
     heroLede:
-      'A plan around your labs, goals, and life - certified, third-party-tested brands, delivered to your door.',
+      'A plan around your labs, goals, and life — certified, third-party-tested brands, delivered to your door.',
     includedLede:
       'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer and delivered to you, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles repeat until your goals are met.\n\nEvery product is curated from the highest-quality supplement brands around your goals and biomarkers \u2014 the right delivery system, the right dosage, the right order and timing, so each nutrient actually does its job. And every pick is checked against your medications and lifestyle for the interactions our practitioners are trained to catch.',
     included: [

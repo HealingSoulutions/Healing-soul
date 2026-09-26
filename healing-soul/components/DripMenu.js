@@ -176,12 +176,12 @@ function DripRow({ d }) {
           font-weight: 500;
         }
         .dr-pair {
-          color: #4f7f73;
+          color: #3f6f64;
         }
         .dr-extra {
           margin: 6px 0 0;
           font-size: 12px;
-          color: #4f7f73;
+          color: #3f6f64;
         }
         .dr-special {
           margin: 8px 0 0;
@@ -347,7 +347,7 @@ export default function DripMenu() {
       <style jsx>{`
         .dm {
           --gold: #73a89a;
-          --gold-dark: #4f7f73;
+          --gold-dark: #3f6f64;
           --emerald: #251f21;
           --ink: #251f21;
           --muted: #585254;
@@ -649,7 +649,7 @@ export default function DripMenu() {
           margin-bottom: 10px;
           border-radius: 50%;
           background: rgba(115, 168, 154, 0.14);
-          color: #4f7f73;
+          color: #3f6f64;
         }
         .dm-rows {
           border-top: 1px solid rgba(115, 168, 154, 0.35);

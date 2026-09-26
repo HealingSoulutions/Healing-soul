@@ -8,7 +8,7 @@ import Seo from '../components/Seo';
 
 const BOOK_FAQS = [
   ['What areas do you serve?', 'Healing Soulutions primarily serves Manhattan, with concierge and mobile nursing also available across the greater New York metropolitan area on request. Contact us to confirm availability at your location.'],
-  ['Do you take insurance? Can I use an HSA or FSA?', 'Healing Soulutions is an out-of-network, private-pay provider; payment is due at the time of service, and we do not bill insurance. We can provide an itemized receipt for your own submission to an insurer, HSA, or FSA - we make no representation that any amount will be reimbursed. For lab work, share your insurance card when you book; Labcorp bills your insurance directly for the lab processing. As required by the No Surprises Act, you receive a Good Faith Estimate of expected charges before your scheduled visit.'],
+  ['Do you take insurance? Can I use an HSA or FSA?', 'Healing Soulutions is an out-of-network, private-pay provider; payment is due at the time of service, and we do not bill insurance. We can provide an itemized receipt for your own submission to an insurer, HSA, or FSA — we make no representation that any amount will be reimbursed. For lab work, share your insurance card when you book; Labcorp bills your insurance directly for the lab processing. As required by the No Surprises Act, you receive a Good Faith Estimate of expected charges before your scheduled visit.'],
   ['Do you offer telehealth?', 'Yes. Virtual consultations with a provider are available where clinically appropriate, for clients located in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
   ['What happens after I book?', 'Our team follows up within 24 hours to confirm the details and answer any questions. Treatment consent and our privacy acknowledgment are reviewed and signed with your nurse at the appointment, before care begins.'],
 ];
@@ -93,7 +93,7 @@ function BookContent() {
         .eyebrow {
           display: block;
           margin: 0 0 18px;
-          color: var(--gold);
+          color: #3f6f64;
           font: 500 11px/1 var(--round);
           letter-spacing: 0.22em;
           text-transform: uppercase;
@@ -118,8 +118,8 @@ function BookContent() {
         .form :global(.jf) {
           display: block;
           width: 100%;
-          height: calc(100vh - 150px);
-          min-height: 640px;
+          height: calc(100vh - 120px);
+          min-height: 760px;
           border: 1px solid rgba(115, 168, 154, 0.35);
           border-radius: 16px;
           background: #fff;

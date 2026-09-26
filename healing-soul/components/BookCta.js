@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 
-const GOLD = '#73a89a';
+const GOLD = '#3f6f64';
 const INK = '#251f21';
 const PHONE = '+15857472215';
 
@@ -14,7 +14,7 @@ export default function BookCta() {
   const onBookPage = router.pathname.startsWith('/book');
   // Slide out of the way while the user scrolls down (reading), return on any scroll up,
   // near the top, or near the bottom where the footer clearance lives.
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(true);
   useEffect(() => {
     if (onBookPage) return undefined;
     let lastY = window.scrollY;
@@ -25,7 +25,9 @@ export default function BookCta() {
       window.requestAnimationFrame(() => {
         const y = window.scrollY;
         const nearBottom = window.innerHeight + y >= document.documentElement.scrollHeight - 120;
-        if (nearBottom || y < 120 || y < lastY - 4) setHidden(false);
+        if (nearBottom) setHidden(false);
+        else if (y < 240) setHidden(true);
+        else if (y < lastY - 4) setHidden(false);
         else if (y > lastY + 4) setHidden(true);
         lastY = y;
         ticking = false;

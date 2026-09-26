@@ -87,7 +87,7 @@ function CollapsibleCard({ item }) {
           font: 500 10.5px/1 var(--round, sans-serif);
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #73a89a;
+          color: #3f6f64;
         }
         .collapsible-close {
           position: absolute;
@@ -105,8 +105,8 @@ function CollapsibleCard({ item }) {
           transition: background 0.15s ease, color 0.15s ease;
         }
         .collapsible-close:hover {
-          background: #4f7f73;
-          border-color: #4f7f73;
+          background: #3f6f64;
+          border-color: #3f6f64;
           color: #fff;
         }
         .collapsible-body {
@@ -231,12 +231,12 @@ function ProtocolRow({ item, first }) {
         }
         .pr-price {
           font: 500 14px/1.4 var(--serif);
-          color: #4f7f73;
+          color: #3f6f64;
           white-space: nowrap;
         }
         .pr-chev {
           display: inline-flex;
-          color: #4f7f73;
+          color: #3f6f64;
           transition: transform 0.2s ease;
         }
         .pr.open .pr-chev {
@@ -266,7 +266,7 @@ function ProtocolRow({ item, first }) {
           font-size: 10.5px;
           letter-spacing: 0.14em;
           text-transform: uppercase;
-          color: #4f7f73;
+          color: #3f6f64;
         }
       `}</style>
     </div>
@@ -406,7 +406,7 @@ export default function ServiceCategoryPage({ service }) {
           --emerald-glow: #f4efec;
           --gold: #73a89a;
           --gold-light: #251f21;
-          --gold-dark: #4f7f73;
+          --gold-dark: #3f6f64;
           --ivory: #fbfaf9;
           --serif: 'Aime', Georgia, serif;
           --round: 'KMR Melange Grotesk', system-ui, sans-serif;
@@ -444,7 +444,7 @@ export default function ServiceCategoryPage({ service }) {
         }
         .kicker {
           margin-top: 26px;
-          color: var(--gold);
+          color: var(--gold-dark);
           letter-spacing: 0.19em;
           font: 500 11px/1.4 var(--round);
           text-transform: uppercase;
@@ -570,7 +570,7 @@ export default function ServiceCategoryPage({ service }) {
           font: 350 13px/1 var(--serif);
           letter-spacing: 0.22em;
           text-transform: uppercase;
-          color: #4f7f73;
+          color: #3f6f64;
           white-space: nowrap;
         }
         .booked {
@@ -608,7 +608,7 @@ export default function ServiceCategoryPage({ service }) {
         .n {
           font-family: var(--serif);
           font-size: 34px;
-          color: var(--gold);
+          color: var(--gold-dark);
           line-height: 1;
         }
         .steps h3 {
@@ -689,7 +689,7 @@ export default function ServiceCategoryPage({ service }) {
           font: 500 10.5px/1 var(--round);
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          color: #4f7f73;
+          color: #3f6f64;
         }
         .proto-label.more {
           margin-top: 22px;

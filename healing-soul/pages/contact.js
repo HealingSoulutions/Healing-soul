@@ -1,6 +1,13 @@
 import Seo from '../components/Seo';
 import Link from 'next/link';
 
+const CONTACT_FAQS = [
+  ['Who provides my care?', 'Licensed Registered Nurses (RNs) and Nurse Practitioners (NPs). RNs provide care under the order or standing order of an NP or physician, consistent with New York scope-of-practice law.'],
+  ['How does payment work? Do you take insurance?', 'We are an out-of-network provider; payment is due at the time of service by major card through a secure, PCI-compliant processor. As required by the No Surprises Act, you receive a Good Faith Estimate before your visit. For lab work, share your insurance card when you book \u2014 Labcorp bills your insurance directly for lab processing.'],
+  ['Do you offer telehealth?', 'Yes, where clinically appropriate, for clients in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
+  ['What is your cancellation policy?', 'We ask for at least 24 hours notice to cancel or reschedule. Full details are in the Financial Agreement presented during booking.'],
+];
+
 // Contact page in the homepage's language: flat emerald, Cormorant headings, Varela Round
 // detail text, gold hairlines. No cards, no scene background.
 export default function Contact() {
@@ -49,6 +56,21 @@ export default function Contact() {
             </div>
           </div>
 
+          <div className="rule" />
+
+          <div className="faqs">
+            <span className="label">Common questions</span>
+            {CONTACT_FAQS.map(([q, a]) => (
+              <div key={q}>
+                <h3>{q}</h3>
+                <p>{a}</p>
+              </div>
+            ))}
+            <p className="more">
+              More questions answered on the <Link href="/about">About page</Link>.
+            </p>
+          </div>
+
           <p className="fine">
             For a medical emergency, call 911. This site is informational and not a substitute for emergency or primary care.
           </p>
@@ -77,7 +99,7 @@ export default function Contact() {
         .eyebrow {
           display: block;
           margin: 0 0 18px;
-          color: var(--gold);
+          color: #3f6f64;
           font: 500 11px/1 var(--round);
           letter-spacing: 0.22em;
           text-transform: uppercase;
@@ -121,7 +143,7 @@ export default function Contact() {
         .label {
           display: block;
           margin-bottom: 8px;
-          color: var(--gold);
+          color: #3f6f64;
           font: 500 10.5px/1 var(--round);
           letter-spacing: 0.18em;
           text-transform: uppercase;
@@ -156,6 +178,27 @@ export default function Contact() {
           color: rgba(37, 31, 33, 0.78);
           font: 400 13px/1.65 var(--round);
         }
+        .faqs {
+          display: grid;
+          gap: 22px;
+          text-align: left;
+        }
+        .faqs h3 {
+          margin: 0 0 4px;
+          color: var(--gold-light);
+          font: 500 18px/1.3 var(--serif);
+        }
+        .faqs p {
+          margin: 0;
+          color: rgba(37, 31, 33, 0.78);
+          font: 400 13px/1.65 var(--round);
+        }
+        .faqs .more {
+          font-size: 12.5px;
+        }
+        .faqs .more :global(a) {
+          color: #3f6f64;
+        }
         .fine {
           margin: 56px auto 0;
           max-width: 560px;
@@ -166,7 +209,8 @@ export default function Contact() {
           .contact {
             padding: 104px 16px 72px;
           }
-          .facts {
+          .facts,
+          .faqs {
             text-align: center;
           }
         }
