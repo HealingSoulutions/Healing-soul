@@ -140,6 +140,7 @@ export const SERVICES = [
       },
       {
         name: 'Fertility Optimization',
+        accordion: true,
         booked: 'Preconception planning, IVF or IUI cycles, egg-quality support, recurrent-cycle fatigue',
         price: '$450',
         copy: 'Nutrition and supplement support for natural conception or alongside IVF — built from your labs, timed to your cycle, and coordinated with your fertility clinic\u2019s plan. Led by nurses with hands-on IVF experience.',
@@ -147,6 +148,7 @@ export const SERVICES = [
       },
       {
         name: 'Brain Health & Focus Protocol',
+        accordion: true,
         booked: 'Brain fog, focus & memory concerns, ADHD-related fatigue, cognitive longevity',
         price: '$450',
         copy: 'A labs-informed supplement plan for concentration, memory, mental stamina, and long-term brain health — built around your goals and paired with the Brain & Focus Soulution when appropriate.',
@@ -154,6 +156,7 @@ export const SERVICES = [
       },
       {
         name: 'Sleep Architecture Protocol',
+        featured: true,
         booked: 'Trouble falling or staying asleep, unrefreshing sleep, shift work, jet-lag recovery',
         price: '$450',
         copy: 'A structured plan for deeper, more consistent sleep — timing, nutrients, and habits built from your history and labs, with a follow-up to adjust as your sleep changes.',
@@ -161,6 +164,7 @@ export const SERVICES = [
       },
       {
         name: 'Seasonal Allergy Protocol',
+        accordion: true,
         booked: 'Spring & fall allergies, histamine sensitivity, sinus congestion season',
         price: '$350',
         copy: 'A seasonal plan to support histamine balance and airway comfort before and during allergy season — nutrients, timing, and lifestyle, adjusted as the season changes.',
@@ -168,6 +172,7 @@ export const SERVICES = [
       },
       {
         name: 'Iron Deficiency Protocol',
+        accordion: true,
         booked: 'Low ferritin, iron-deficiency anemia, heavy periods, endurance athletes, post-partum iron loss',
         price: '$450',
         copy: 'A labs-based plan for low iron and ferritin — the right form and dose, absorption pairing, and a re-test schedule, coordinated with your physician where treatment is already underway.',
@@ -175,6 +180,7 @@ export const SERVICES = [
       },
       {
         name: 'Thyroid Health Protocol',
+        accordion: true,
         booked: 'Hypothyroidism nutrient support, Hashimoto\u2019s-related fatigue, borderline TSH, thyroid medication support',
         price: '$450',
         copy: 'Labs-informed nutritional support for thyroid health — built from a full thyroid panel and designed to complement, never replace, care from your endocrinologist or physician.',
@@ -182,6 +188,7 @@ export const SERVICES = [
       },
       {
         name: 'Immunity Defense Protocol',
+        accordion: true,
         booked: 'Frequent colds, travel-heavy schedules, parents of young children, post-illness rebuilding',
         price: '$350',
         copy: 'A year-round immune-support plan for frequent travelers, parents, and anyone who gets run down — daily foundations plus a short-course plan for the first sign of illness.',
@@ -189,6 +196,7 @@ export const SERVICES = [
       },
       {
         name: 'Post-Natal Protocol',
+        accordion: true,
         booked: 'Postpartum recovery, breastfeeding depletion, post-partum hair loss, fatigue after birth',
         price: '$450',
         copy: 'Recovery and replenishment after birth — iron, vitamin D, omega-3s, and the nutrients depleted by pregnancy and breastfeeding, built from your postpartum labs and safe for nursing. Led by nurses with hands-on maternity and IVF experience.',
@@ -196,6 +204,7 @@ export const SERVICES = [
       },
       {
         name: 'Gut Health Protocol',
+        featured: true,
         booked: 'IBS symptoms, bloating, post-antibiotic recovery, food sensitivities, reflux',
         price: '$450',
         copy: 'A structured plan for digestive comfort and a resilient microbiome — targeted probiotics, gut-lining support, and food timing, built from your history and labs, with a follow-up to adjust. Pairs with the Gut Health Soulution.',
@@ -203,6 +212,7 @@ export const SERVICES = [
       },
       {
         name: 'Hormonal Health Protocol',
+        featured: true,
         booked: 'Perimenopause & menopause, PCOS, low testosterone support, stress-related cycle changes',
         price: '$450',
         copy: 'For men and women — labs-informed nutritional support for hormone balance across perimenopause, menopause, andropause, and stress-related shifts, coordinated with any hormone therapy you are already on.',
@@ -210,6 +220,7 @@ export const SERVICES = [
       },
       {
         name: 'Athletic Optimization & Recovery Protocol',
+        accordion: true,
         booked: 'Marathon & triathlon training, strength blocks, recovery from injury, tested athletes',
         price: '$450',
         copy: 'Performance nutrition for training blocks, race prep, and recovery — NSF Certified for Sport and Informed Sport products only, timed to your training calendar. Pairs with the Athletic Performance Support and Recovery Soulutions.',

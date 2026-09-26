@@ -174,10 +174,111 @@ function CollapsibleCard({ item }) {
   );
 }
 
+
+function ProtocolRow({ item, first }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className={`pr${open ? ' open' : ''}${first ? ' first' : ''}`}>
+      <button
+        type="button"
+        className="pr-head"
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+      >
+        <span className="pr-name">{item.name}</span>
+        {item.price && <span className="pr-price">{item.price}</span>}
+        <span className="pr-chev" aria-hidden="true">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </span>
+      </button>
+      {open && (
+        <div className="pr-body">
+          <p>{item.copy}</p>
+          {item.booked && (
+            <p className="pr-booked">
+              <b>Commonly booked for:</b> {item.booked}
+            </p>
+          )}
+          {item.tag && <span className="pr-tag">{item.tag}</span>}
+        </div>
+      )}
+      <style jsx>{`
+        .pr {
+          grid-column: 1 / -1;
+          border-bottom: 1px solid rgba(115, 168, 154, 0.35);
+        }
+        .pr.first {
+          border-top: 1px solid rgba(115, 168, 154, 0.35);
+        }
+        .pr-head {
+          display: flex;
+          align-items: baseline;
+          gap: 12px;
+          width: 100%;
+          padding: 14px 2px;
+          background: none;
+          border: 0;
+          cursor: pointer;
+          text-align: left;
+          font: inherit;
+        }
+        .pr-name {
+          flex: 1;
+          font: 500 16px/1.4 var(--serif);
+          color: #251f21;
+        }
+        .pr-price {
+          font: 500 14px/1.4 var(--serif);
+          color: #4f7f73;
+          white-space: nowrap;
+        }
+        .pr-chev {
+          display: inline-flex;
+          color: #4f7f73;
+          transition: transform 0.2s ease;
+        }
+        .pr.open .pr-chev {
+          transform: rotate(180deg);
+        }
+        .pr-body {
+          padding: 2px 2px 18px;
+        }
+        .pr-body p {
+          margin: 0;
+          font-size: 13.5px;
+          color: #585254;
+          line-height: 1.55;
+        }
+        .pr-body .pr-booked {
+          margin-top: 8px;
+          font-size: 12.5px;
+          line-height: 1.55;
+        }
+        .pr-booked b {
+          color: #251f21;
+          font-weight: 500;
+        }
+        .pr-tag {
+          display: inline-block;
+          margin-top: 10px;
+          font-size: 10.5px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #4f7f73;
+        }
+      `}</style>
+    </div>
+  );
+}
+
 // Shared template for /services/<slug>. Pass one entry from lib/services SERVICES.
 // Nav, Footer and the floating BookCta are rendered globally by pages/_app.js.
 export default function ServiceCategoryPage({ service }) {
   const others = SERVICES.filter((s) => s.slug !== service.slug);
+  const featured = service.included.filter((i) => i.featured);
+  const firstAccordion = (service.included.find((i) => i.accordion) || {}).name;
 
   return (
     <>
@@ -202,9 +303,11 @@ export default function ServiceCategoryPage({ service }) {
           ))}
           {service.menu && <DripMenu />}
           <div className="grid" hidden={!!service.menu}>
-            {service.included.filter((i) => !i.collapsible).map((item) => (
+            {service.included.filter((i) => !i.collapsible && !i.featured).map((item) => (
               <Fragment key={item.name}>
-                {
+                {item.accordion ? (
+                  <ProtocolRow item={item} first={item.name === firstAccordion} />
+                ) : (
                   <article className={`card${item.brands ? ' wide' : ''}`}>
                     <h3>{item.name}</h3>
                     {item.price && <span className="price">{item.price}</span>}
@@ -227,13 +330,34 @@ export default function ServiceCategoryPage({ service }) {
                     {item.after && <p>{item.after}</p>}
                     <span className="tag">{item.tag}</span>
                   </article>
-                }
+                )}
                 {item.divider && (
                   <div className="section-divider" aria-hidden="true">
                     <hr />
                     <span>{item.divider}</span>
                     <hr />
                   </div>
+                )}
+                {item.divider && featured.length > 0 && (
+                  <>
+                    <p className="proto-label">Most booked</p>
+                    <div className="proto-featured">
+                      {featured.map((f) => (
+                        <article className="card proto-fcard" key={f.name}>
+                          <h3>{f.name}</h3>
+                          {f.price && <span className="price">{f.price}</span>}
+                          <p>{f.copy}</p>
+                          {f.booked && (
+                            <p className="booked">
+                              <b>Commonly booked for:</b> {f.booked}
+                            </p>
+                          )}
+                          <span className="tag">{f.tag}</span>
+                        </article>
+                      ))}
+                    </div>
+                    <p className="proto-label more">More protocols &middot; tap to reveal</p>
+                  </>
                 )}
               </Fragment>
             ))}
@@ -558,6 +682,27 @@ export default function ServiceCategoryPage({ service }) {
         }
         .cat :global(.ghost:hover) {
           background: rgba(37, 31, 33, 0.05);
+        }
+        .proto-label {
+          grid-column: 1 / -1;
+          margin: 2px 0 0;
+          font: 500 10.5px/1 var(--round);
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #4f7f73;
+        }
+        .proto-label.more {
+          margin-top: 22px;
+        }
+        .proto-featured {
+          grid-column: 1 / -1;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 16px;
+        }
+        .proto-fcard {
+          border: 1px solid rgba(115, 168, 154, 0.55);
+          background: rgba(115, 168, 154, 0.07);
         }
         @media (max-width: 680px) {
           .cat-hero,
