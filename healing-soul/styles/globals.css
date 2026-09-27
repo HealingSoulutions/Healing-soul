@@ -314,12 +314,12 @@ nav[aria-label="Main navigation"] {
 .StripeElement--complete { border-color: #7FD4A0 !important; }
 
 /* ── Footer ── */
-footer { background: #fbfaf9; padding: 1rem 3rem 5.5rem; color: rgba(37,31,33,0.7); border-top: 1px solid #eae9ea; }
+footer { background: #013c1c; padding: 1rem 3rem 5.5rem; color: rgba(246,243,236,0.72); border-top: none; }
 .footer-inner { max-width: 1200px; margin: 0 auto; }
 .footer-compact { display: flex; justify-content: space-between; align-items: center; }
 .footer-compact .logo { font-size: 0.85rem; }
 .footer-legal {
-  text-align: center; font-size: 0.68rem; color: rgba(37,31,33,0.72);
+  text-align: center; font-size: 0.68rem; color: rgba(246,243,236,0.55);
   letter-spacing: 0.1em; margin-top: 0.5rem;
 }
 
@@ -348,9 +348,9 @@ footer { background: #fbfaf9; padding: 1rem 3rem 5.5rem; color: rgba(37,31,33,0.
   .footer-compact { flex-direction: column; gap: 0.75rem; text-align: center; }
 }
 
-.footer-link { color: rgba(37,31,33,0.85); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.04em; font-family: 'KMR Melange Grotesk', sans-serif; transition: color 0.3s; }
+.footer-link { color: rgba(246,243,236,0.88); font-size: 0.72rem; text-decoration: none; letter-spacing: 0.04em; font-family: 'KMR Melange Grotesk', sans-serif; transition: color 0.3s; }
 .footer-link:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
-.footer-link:hover { color: var(--gold-soft); }
+.footer-link:hover { color: #c9a227; }
 
 /* === Home hero GIF background (home page only) === */
 .hero-gif {
