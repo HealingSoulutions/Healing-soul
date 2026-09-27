@@ -82,7 +82,7 @@ export default function Home() {
         .home {
           min-height: 100vh;
           background: #fbfaf9;
-          padding: 0 0 72px;
+          padding: 0;
           overflow-x: clip;
         }
         .starter {
