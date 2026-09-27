@@ -277,11 +277,11 @@ export const SERVICES = [
         ['Signature Soulutions', 'from $279', 'most drips $349'],
         ['NAD+ & Niagen', 'from $450', 'longevity drips'],
         ['Injections', '$85', 'B12, D3, glutathione & more'],
-        ['Pathway to Wellness', '$1,795', 'labs, protocol, 2 IVs, re-panel'],
+        ['Pathway to Wellness', '$2,095', 'labs, protocol, 2 IVs, re-panel'],
       ],
     },
     priceFrom: 279,
-    priceLabel: 'Signature drips from $279 · Pathway bundle $1,795',
+    priceLabel: 'Signature drips from $279 · Pathway bundle $2,095',
     menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
