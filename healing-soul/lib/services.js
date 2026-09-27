@@ -103,7 +103,7 @@ export const SERVICES = [
     heroLede:
       'A plan around your labs, goals, and life — certified, third-party-tested brands, delivered to your door.',
     includedLede:
-      'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles repeat until your goals are met.\n\nEvery product is curated from the highest-quality supplement brands around your goals and biomarkers \u2014 the right delivery system, the right dosage, the right order and timing, so each nutrient actually does its job. And every pick is checked against your medications and lifestyle for the interactions our practitioners are trained to catch.\n\nEvery supplement on your protocol, sourced for you - the first three with our compliments. Additional supplements and refills are available at standard retail.',
+      'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles repeat until your goals are met.\n\nEvery product is curated from the highest-quality supplement brands around your goals and biomarkers \u2014 the right delivery system, the right dosage, the right order and timing, so each nutrient actually does its job. And every pick is checked against your medications and lifestyle for the interactions our practitioners are trained to catch.\n\nEvery supplement on your protocol, sourced for you (complimentary up to 4 supplements, retail for any additional).',
     included: [
       {
         name: 'Protocol Consult',
