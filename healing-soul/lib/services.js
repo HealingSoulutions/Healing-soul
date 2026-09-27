@@ -274,14 +274,14 @@ export const SERVICES = [
     quick: {
       line: 'IV drips and injections given by your nurse at home, hotel, or office.',
       items: [
-        ['Signature Soulutions', 'from $279', 'most drips $425'],
+        ['Signature Soulutions', 'from $325', 'most drips $425'],
         ['NAD+ & Niagen', 'from $450', 'longevity drips'],
         ['Injections', '$85', 'B12, D3, glutathione & more'],
         ['Pathway to Wellness', '$2,095', 'labs, protocol, 2 IVs, re-panel'],
       ],
     },
-    priceFrom: 279,
-    priceLabel: 'Signature drips from $279 · Pathway bundle $2,095',
+    priceFrom: 325,
+    priceLabel: 'Signature drips from $325 · Pathway bundle $2,095',
     menu: true, // renders the full Drip Menu on the category page
     number: '03',
     icon: 'iv',
@@ -295,7 +295,7 @@ export const SERVICES = [
       'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — the third step of your plan.',
     heroLede:
       'Hydration, nutrients, and targeted injections — administered by a registered nurse in your home, hotel, or office.',
-    includedLede: 'Signature Soulutions are $425; the fluids-only Dehydration Soulution is $279. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
+    includedLede: 'Signature Soulutions are $425; the fluids-only Dehydration Soulution is $325. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
     included: asCards('infusion'),
     steps: [
       ['Book', 'Choose a drip or injection and a time. A short intake follows.'],

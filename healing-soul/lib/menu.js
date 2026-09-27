@@ -11,7 +11,7 @@ export const SIGNATURE = [
     name: 'The Dehydration Soulution',
     pair: ['B12 Energy Shot', 'Protocol Consult'],
     for: 'Heat exhaustion, travel dehydration, stomach-flu recovery, post-flight fatigue',
-    price: 279,
+    price: 325,
     badge: 'Entry drip',
     tagline: 'Pure IV fluids, nothing added — fast rehydration for heat, travel, illness, or a long night.',
     contents: '500 mL–1,000 mL Lactated Ringer’s or Normal Saline only • no additives',
