@@ -195,7 +195,7 @@ export const LONGEVITY = {
   ],
   includes: 'Every NAD+ & Niagen Soulution is infused in 500 mL–1,000 mL LR or NS. Optional nutrient base +$150: Vitamin C • B-Complex • B12 • Glutathione 1,000 mg.',
   ladder: [
-    ['250 mg', 395, 595],
+    ['250 mg', 450, 595],
     ['500 mg', 695, 795],
     ['750 mg', 895, 995],
     ['1,000 mg', 1095, 1295],
@@ -254,7 +254,7 @@ export const TESTING = [
 ];
 export const PROTOCOLS = [
   ['Protocol Consult', 250, 'virtual or in-home · no labs required'],
-  ['Labs-Based Protocol', 350, 'includes provider lab interpretation & written plan · $350 on its own · $200 when added to an At-Home Lab Visit'],
+  ['Labs-Based Protocol', 395, 'includes provider lab interpretation & written plan · $395 on its own · $200 when added to an At-Home Lab Visit'],
   ['Fertility Optimization Protocol', 450, 'cycle-timed · coordinated with your clinic'],
   ['Brain Health & Focus Protocol', 450, 'labs-informed · cognitive support'],
   ['Sleep Architecture Protocol', 450, 'timing, nutrients & habits · with follow-up'],
@@ -275,7 +275,7 @@ export const LAB_FEE_NOTE = 'Prices cover the visit, collection, same-day delive
 
 export const CONCIERGE = [
   ['Travel included', 'within our service area'],
-  ['Same-day rush', 'requests within 4 hours, +$79'],
+  ['Same-day rush', 'requests within 4 hours, +$99'],
   ['Group bookings (3+)', 'save 10% — perfect for events, bridal parties & recovery days'],
   ['Multi-session packages', 'ask about packages for longevity & wellness regulars'],
   ['Good-faith wellness evaluation', 'included with every visit, by our medical team'],

@@ -84,7 +84,7 @@ export const SERVICES = [
       line: 'A 4-week supplement plan built for you, with the supplements brought to your door.',
       items: [
         ['Protocol Consult', '$250', 'no labs needed'],
-        ['Labs-Based Protocol', '$350 on its own', '$200 when added to an At-Home Lab Visit'],
+        ['Labs-Based Protocol', '$395 on its own', '$200 when added to an At-Home Lab Visit'],
         ['Targeted protocols', '$350–$450', 'fertility, sleep, gut, hormones & more'],
         ['4-Week Re-Panel', '$395', 'repeat labs + adjustment'],
       ],
@@ -115,7 +115,7 @@ export const SERVICES = [
       {
         name: 'Labs-Based Protocol',
         booked: 'Low vitamin D or B12, borderline labs, fatigue with normal-range results, optimizing after a physical',
-        price: '$350 on its own · $200 when added to an At-Home Lab Visit',
+        price: '$395 on its own · $200 when added to an At-Home Lab Visit',
         copy:
           'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages. Booked with our At-Home Lab Visit, provider interpretation is already included, so the protocol is $200.',
         tag: 'Built from your results',
@@ -275,7 +275,7 @@ export const SERVICES = [
       line: 'IV drips and injections given by your nurse at home, hotel, or office.',
       items: [
         ['Signature Soulutions', 'from $279', 'most drips $349'],
-        ['NAD+ & Niagen', 'from $395', 'longevity drips'],
+        ['NAD+ & Niagen', 'from $450', 'longevity drips'],
         ['Injections', '$85', 'B12, D3, glutathione & more'],
         ['Pathway to Wellness', '$1,795', 'labs, protocol, 2 IVs, re-panel'],
       ],
