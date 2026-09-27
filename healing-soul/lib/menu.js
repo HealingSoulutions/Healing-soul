@@ -152,7 +152,7 @@ export const SIGNATURE = [
     name: 'The Antioxidant Soulution',
     pair: ['CoQ-10 Shot', 'Labs-Based Protocol'],
     for: 'Oxidative stress, inflammation-related fatigue, autoimmune-related fatigue, post-surgical healing support, healthy-aging support',
-    price: 479,
+    price: 549,
     tagline: 'Cellular defense & detox support — for recovery, resilience, and healthy aging.',
     contents: 'NAC • Vitamin C • Glutathione',
     extra: 'Add Alpha Lipoic Acid +$79 (infused separately, light-protected)',
