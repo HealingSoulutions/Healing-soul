@@ -94,6 +94,24 @@ nav[aria-label="Main navigation"] {
   padding: 0.5rem 1.4rem; border-radius: 999px;
 }
 .nav-links a.nav-cta:hover { background: #ffffff; color: #013c1c; }
+
+/* ── Services dropdown ── */
+.nav-drop { position: relative; }
+.nav-drop-menu {
+  display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  min-width: 210px; padding: 0.5rem 0; margin: 0; list-style: none;
+  background: rgba(1,60,28,0.98); border: 1px solid rgba(246,243,236,0.14); border-radius: 10px;
+}
+.nav-drop-menu a {
+  display: block; padding: 0.55rem 1.1rem; white-space: nowrap;
+  text-decoration: none; color: rgba(246,243,236,0.78); font-size: 0.8rem;
+  font-weight: 500; font-family: 'KMR Melange Grotesk', sans-serif; letter-spacing: 0.04em;
+  transition: all 0.3s;
+}
+.nav-drop-menu a:hover { color: #f6f3ec; background: rgba(246,243,236,0.08); }
+.nav-drop:hover .nav-drop-menu,
+.nav-drop:focus-within .nav-drop-menu,
+.nav-drop.open .nav-drop-menu { display: block; }
 .hamburger {
   display: none; cursor: pointer; flex-direction: column; gap: 4px;
   background: none; border: none; padding: 4px;
@@ -315,6 +333,15 @@ footer { background: #fbfaf9; padding: 1rem 3rem 5.5rem; color: rgba(37,31,33,0.
     padding: 1rem; gap: 1rem;
   }
   .hamburger { display: flex; }
+  .nav-drop { width: 100%; text-align: center; }
+  .nav-drop-menu {
+    position: static; transform: none; border: none; background: transparent;
+    padding: 0.25rem 0 0; min-width: 0;
+  }
+  .nav-drop:hover .nav-drop-menu,
+  .nav-drop:focus-within .nav-drop-menu { display: none; }
+  .nav-drop.open .nav-drop-menu { display: block; }
+  .nav-drop-menu a { padding: 0.45rem 0; text-align: center; }
   .hero-content { padding: 3rem 1.5rem; }
   .form-row { grid-template-columns: 1fr; }
   .time-slots { grid-template-columns: repeat(3, minmax(0, 1fr)); }

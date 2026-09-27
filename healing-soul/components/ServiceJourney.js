@@ -5,8 +5,8 @@ import { SERVICES, BOOK_STEP } from '../lib/services';
 import { GOOGLE_REVIEWS } from '../lib/reviews';
 
 // Homepage section: three service-category medallions + Book on a zig-zag path, with
-// subtle 01→02→03→04 connectors between them. Clicking a medallion opens a pop-up with the
-// category's details. Drop into pages/index.js:  <ServiceJourney />
+// subtle 01→02→03→04 connectors between them. Each medallion links to its /services/<slug> page.
+// Drop into pages/index.js:  <ServiceJourney />
 
 // Medallion centres as % of the stage, desktop and phone. The SVG paths below pass
 // through the same points (viewBox units = % × 10 desktop, % × 3.9 / × 9.2 phone).
@@ -58,29 +58,12 @@ const DESKTOP_SEGS = segments(DESKTOP, 920, 240, 1000, 240, [66, 66, 66, 66]);
 const PHONE_SEGS = segments(PHONE, 358, 740, 390, 740, [104, 104, 104, 104], 66);
 
 export default function ServiceJourney() {
-  const [open, setOpen] = useState(null); // index of the service whose pop-up is open
   const [turns, setTurns] = useState([0, 0, 0, 0]);
   const [touched, setTouched] = useState(false); // first interaction dismisses the tap cue
-  const current = open == null ? null : SERVICES[open];
 
-  useEffect(() => {
-    if (open == null) return undefined;
-    const onKey = (e) => e.key === 'Escape' && setOpen(null);
-    document.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
-    const prevFocus = document.activeElement;
-    document.body.style.overflow = 'hidden';
-    // Move keyboard focus into the dialog, and return it to the medallion on close.
-    document.querySelector('.hs-journey-section .close')?.focus();
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prev;
-      if (prevFocus && prevFocus.focus) prevFocus.focus();
-    };
-  }, [open]);
 
-  // Touch screens have no hover: swivel each medallion once as it scrolls into view, and on tap
-  // swivel first, then open the pop-up so the motion is seen.
+  // Touch screens have no hover: swivel each medallion once as it scrolls into view; a tap
+  // follows the link to the service page.
   const [touch, setTouch] = useState(false);
   useEffect(() => {
     const coarse = window.matchMedia('(hover: none), (pointer: coarse)').matches;
@@ -103,15 +86,6 @@ export default function ServiceJourney() {
     document.querySelectorAll('.hs-journey-section .slot').forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, []);
-  const openStep = (i) => {
-    setTouched(true);
-    if (touch) {
-      setTurns((t) => t.map((v, k) => (k === i ? v + 1 : v)));
-      setTimeout(() => setOpen(i), 700);
-    } else {
-      setOpen(i);
-    }
-  };
 
   // Hover in: swivel half a turn and land on the back. Hover out: swivel on and land on the front.
   const swivel = (i) => {
@@ -181,16 +155,14 @@ export default function ServiceJourney() {
             data-i={i}
             key={s.slug}
           >
-            <button
-              type="button"
+            <Link
+              href={`/services/${s.slug}`}
               className="step"
-              aria-haspopup="dialog"
-              aria-expanded={open === i}
-              onClick={() => openStep(i)}
+              aria-label={`${s.label} - full details`}
               {...hoverProps(i)}
             >
               {inner(s, i)}
-            </button>
+            </Link>
           </div>
         ))}
         <div className="slot" role="listitem" style={place(3)} data-i={3}>
@@ -223,55 +195,6 @@ export default function ServiceJourney() {
       </div>
       </div>
 
-      {current && (
-        <div className="backdrop" onClick={() => setOpen(null)}>
-          <div
-            className="modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="hs-modal-title"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button type="button" className="close" aria-label="Close" onClick={() => setOpen(null)}>
-              ×
-            </button>
-            <div className="modal-head">
-              <Medallion icon={current.icon} size={56} />
-              <div>
-                <span className="eyebrow">{current.number}</span>
-                <h3 id="hs-modal-title">{current.label}</h3>
-              </div>
-            </div>
-            {current.quick ? (
-              <>
-                <p className="quick-line">{current.quick.line}</p>
-                <ul className="quick">
-                  {current.quick.items.map(([name, price, note]) => (
-                    <li key={name}>
-                      <span className="q-name">
-                        {name}
-                        {note && <small>{note}</small>}
-                      </span>
-                      <span className="q-price">{price}</span>
-                    </li>
-                  ))}
-                </ul>
-                {current.quick.note && <p className="quick-note">{current.quick.note}</p>}
-              </>
-            ) : (
-              <p className="lede">{current.heroLede}</p>
-            )}
-            <div className="modal-actions">
-              <Link href="/book" className="gold-btn">
-                Book a visit
-              </Link>
-              <Link href={`/services/${current.slug}`} className="ghost-btn">
-                Full details →
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
 
       <style jsx global>{`
         .hs-journey-section {

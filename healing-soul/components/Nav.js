@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import Link from 'next/link';
 
+const SERVICES = [
+  ['At-Home Testing', '/services/at-home-testing'],
+  ['Supplement Protocols', '/services/supplement-protocols'],
+  ['IV Injections', '/services/iv-injections'],
+];
+
 export default function Nav() {
   const [mo, setMo] = useState(false);
+  const [svc, setSvc] = useState(false);
   const links = [['Home', '/'], ['About', '/about'], ['Contact', '/contact'], ['Book a Visit', '/book']];
   return (
     <>
@@ -12,16 +19,40 @@ export default function Nav() {
           <img src="/emblem-metallic.png" alt="Healing Soulutions" className="nav-emblem" style={{ height: 34, width: 'auto' }} />
         </Link>
         <ul className={'nav-links' + (mo ? ' active' : '')} id="nav-menu">
-          {links.map(([label, href]) => {
-            const external = /^(mailto:|tel:|https?:)/.test(href);
-            return (
-              <li key={label}>
-                {external
-                  ? <a href={href} className={'nav-btn' + (label === 'Book a Visit' ? ' nav-cta' : '')} onClick={() => setMo(false)}>{label}</a>
-                  : <Link href={href} className={'nav-btn' + (label === 'Book a Visit' ? ' nav-cta' : '')} onClick={() => setMo(false)}>{label}</Link>}
-              </li>
-            );
-          })}
+          {links.slice(0, 1).map(([label, href]) => (
+            <li key={label}>
+              <Link href={href} className="nav-btn" onClick={() => setMo(false)}>{label}</Link>
+            </li>
+          ))}
+          <li
+            className={'nav-drop' + (svc ? ' open' : '')}
+            onMouseEnter={() => setSvc(true)}
+            onMouseLeave={() => setSvc(false)}
+          >
+            <button
+              type="button"
+              className="nav-btn"
+              aria-expanded={svc}
+              aria-haspopup="true"
+              onClick={() => setSvc(!svc)}
+              onFocus={() => setSvc(true)}
+              onBlur={(e) => { if (!e.currentTarget.parentElement.contains(e.relatedTarget)) setSvc(false); }}
+            >
+              Services
+            </button>
+            <ul className="nav-drop-menu">
+              {SERVICES.map(([label, href]) => (
+                <li key={href}>
+                  <Link href={href} onClick={() => { setSvc(false); setMo(false); }}>{label}</Link>
+                </li>
+              ))}
+            </ul>
+          </li>
+          {links.slice(1).map(([label, href]) => (
+            <li key={label}>
+              <Link href={href} className={'nav-btn' + (label === 'Book a Visit' ? ' nav-cta' : '')} onClick={() => setMo(false)}>{label}</Link>
+            </li>
+          ))}
         </ul>
         <button className="hamburger" onClick={() => setMo(!mo)} aria-expanded={mo} aria-controls="nav-menu" aria-label="Toggle menu">
           <span /><span /><span />
