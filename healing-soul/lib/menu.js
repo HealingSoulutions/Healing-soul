@@ -242,7 +242,7 @@ export const PATHWAY = {
     'Two Signature Soulution IVs',
     'Week-4 repeat blood panel, provider reassessment & adjusted protocol',
   ],
-  note: 'Labcorp bills your insurance directly for the lab work. Your protocol is built around up to four products, sourced by us directly from the manufacturer and delivered to you.',
+  note: 'Labcorp bills your insurance directly for the lab work. Your protocol is built around up to four products, sourced by us directly from the manufacturer.',
 };
 
 // Steps 1 & 2 — testing and protocols.
@@ -270,7 +270,7 @@ export const PROTOCOLS = [
   ['Check-In (no labs)', 125, 'between cycles · as needed'],
   ['Telehealth Provider Consult', 150, '30 minutes · NY & CT'],
 ];
-export const PROTOCOL_NOTE = 'Every protocol runs as a 4-week cycle: consult and written protocol built around up to four products we source directly from the manufacturer and deliver to you, then a repeat blood panel at week 4 with reassessment and adjustment.';
+export const PROTOCOL_NOTE = 'Every protocol runs as a 4-week cycle: consult and written protocol built around up to four products we source directly from the manufacturer, then a repeat blood panel at week 4 with reassessment and adjustment.';
 export const LAB_FEE_NOTE = 'Prices cover the visit, collection, same-day delivery to Labcorp, and provider interpretation. Labcorp bills your insurance directly for the lab work, using the insurance card you share when you book.';
 
 export const CONCIERGE = [
