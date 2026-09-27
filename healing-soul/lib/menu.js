@@ -1,7 +1,7 @@
 // The Drip Menu — single source of truth for IV & injection pricing.
 // Mirrors the printed Healing Soulutions Drip Menu (PDF). Edit prices here only.
 
-export const SIGNATURE_PRICE = 349;
+export const SIGNATURE_PRICE = 425;
 export const BOOSTER_PRICE = 49;
 export const GLUTATHIONE_PRICE = 49; // per 600 mg, up to 3,000 mg
 export const INJECTION_PRICE = 85;
@@ -233,7 +233,7 @@ export const INJECTIONS = [
 export const PATHWAY = {
   name: 'The Pathway to Wellness',
   price: 2095,
-  compare: 2288,
+  compare: 2440,
   lede: 'Steps 1–4 in one booking — four home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
   includes: [
     'At-home lab visit: blood draw, hand-delivered to Labcorp by our team',

@@ -274,7 +274,7 @@ export const SERVICES = [
     quick: {
       line: 'IV drips and injections given by your nurse at home, hotel, or office.',
       items: [
-        ['Signature Soulutions', 'from $279', 'most drips $349'],
+        ['Signature Soulutions', 'from $279', 'most drips $425'],
         ['NAD+ & Niagen', 'from $450', 'longevity drips'],
         ['Injections', '$85', 'B12, D3, glutathione & more'],
         ['Pathway to Wellness', '$2,095', 'labs, protocol, 2 IVs, re-panel'],
@@ -295,7 +295,7 @@ export const SERVICES = [
       'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — the third step of your plan.',
     heroLede:
       'Hydration, nutrients, and targeted injections — administered by a registered nurse in your home, hotel, or office.',
-    includedLede: 'Signature Soulutions are $349; the fluids-only Dehydration Soulution is $279. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
+    includedLede: 'Signature Soulutions are $425; the fluids-only Dehydration Soulution is $279. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
     included: asCards('infusion'),
     steps: [
       ['Book', 'Choose a drip or injection and a time. A short intake follows.'],
