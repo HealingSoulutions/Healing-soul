@@ -113,9 +113,14 @@ export default function Terms() {
             completely, and to tell us about any change before your visit begins.
           </p>
           <p>
-            If you are under 18, a parent or legal guardian must complete the
-            booking, be present for the visit, and accept these Terms on your
-            behalf.
+            Our services are intended for adults 18 and over. Clients under 18
+            may be accepted at the discretion of our practitioners, based on
+            health, weight, and medical history, with a parent or legal
+            guardian's consent and present during the visit.
+          </p>
+          <p>
+            A parent or legal guardian must complete the booking and accept
+            these Terms on your behalf.
           </p>
           </div>
         </section>
