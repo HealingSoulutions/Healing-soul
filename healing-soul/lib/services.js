@@ -101,9 +101,9 @@ export const SERVICES = [
     summary:
       "A personalized supplement plan built from your labs — or from a consult — with named products and a follow-up schedule.",
     heroLede:
-      'A plan around your labs, goals, and life — certified, third-party-tested brands, delivered to your door.',
+      'A plan around your labs, goals, and life — every brand vetted for independent third-party testing, delivered to your door.',
     includedLede:
-      'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles repeat until your goals are met.\n\nEvery product is curated from the highest-quality supplement brands around your goals and biomarkers \u2014 the right delivery system, the right dosage, the right order and timing, so each nutrient actually does its job. And every pick is checked against your medications and lifestyle for the interactions our practitioners are trained to catch.\n\nEvery supplement on your protocol, sourced for you (complimentary up to 4 supplements, retail for any additional).',
+      'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles continue for as long as they are useful to you, with your provider reassessing each round.\n\nEvery product is curated from the highest-quality supplement brands around your goals and biomarkers \u2014 the right delivery system, the right dosage, the right order and timing, so each nutrient actually does its job. And every pick is checked against your medications and lifestyle for the interactions our practitioners are trained to catch.\n\nEvery supplement on your protocol, sourced for you (complimentary up to 4 supplements, retail for any additional).',
     included: [
       {
         name: 'Protocol Consult',
@@ -184,9 +184,9 @@ export const SERVICES = [
       {
         name: 'Immunity Defense Protocol',
         accordion: true,
-        booked: 'Frequent colds, travel-heavy schedules, parents of young children, post-illness rebuilding',
+        booked: 'Travel-heavy schedules, parents of young children, seasonal wellness, times you feel run down',
         price: '$350',
-        copy: 'A year-round immune-support plan for frequent travelers, parents, and anyone who gets run down — daily foundations plus a short-course plan for the first sign of illness.',
+        copy: 'A year-round immune-support plan for frequent travelers, parents, and anyone who gets run down — daily foundations plus a short-course plan for when you feel worn down.',
         tag: 'Immune support',
       },
       {
@@ -200,7 +200,7 @@ export const SERVICES = [
       {
         name: 'Gut Health Protocol',
         featured: true,
-        booked: 'IBS symptoms, bloating, post-antibiotic recovery, food sensitivities, reflux',
+        booked: 'Bloating, post-antibiotic recovery, food-sensitivity flare-ups, digestive discomfort',
         price: '$450',
         copy: 'A structured plan for digestive comfort and a resilient microbiome — targeted probiotics, gut-lining support, and food timing, built from your history and labs, with a follow-up to adjust. Pairs with the Gut Health Soulution.',
         tag: 'Microbiome · digestive support',

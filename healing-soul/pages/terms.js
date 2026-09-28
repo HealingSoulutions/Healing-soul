@@ -21,8 +21,10 @@ export default function Terms() {
           <p className="lede">
             These Terms govern your use of this site and any services you book
             with us. Booking an appointment means you have read and accepted
-            every section below, including the Financial Agreement and the
-            Consent to Treatment. Please read them in full.
+            every section below, including the Financial Agreement. Please read
+            them in full. Consent to treatment itself is reviewed and signed
+            with your nurse at your appointment, before care begins
+            (see Section 4).
           </p>
         </header>
 
@@ -121,7 +123,12 @@ export default function Terms() {
         <section id="consent">
           <h2>4. Consent to Treatment</h2>
           <div className="box" tabIndex={0} role="region">
-          <p>By booking and by accepting these Terms, you consent to the following.</p>
+          <p>
+            Your informed consent to treatment is reviewed and signed with your
+            nurse at your appointment, before care begins. By booking, you
+            acknowledge that the services you selected may involve the
+            following.
+          </p>
           <ul>
             <li>
               Evaluation, treatment, and nursing care by our clinicians for the
@@ -156,9 +163,9 @@ export default function Terms() {
             remain chargeable.
           </p>
           <p>
-            Some services require a separate, service-specific written consent
-            signed at or before the visit. That consent supplements these Terms
-            and controls where the two differ.
+            The consent you sign at your visit supplements these Terms and
+            controls where the two differ. Some services require an additional,
+            service-specific written consent signed at or before the visit.
           </p>
           </div>
         </section>

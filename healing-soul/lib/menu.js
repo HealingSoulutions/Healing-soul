@@ -10,10 +10,10 @@ export const SIGNATURE = [
   {
     name: 'The Dehydration Soulution',
     pair: ['B12 Energy Shot', 'Protocol Consult'],
-    for: 'Heat exhaustion, travel dehydration, stomach-flu recovery, post-flight fatigue',
+    for: 'Heat, travel, post-flight fatigue, or any day you feel depleted',
     price: 325,
     badge: 'Entry drip',
-    tagline: 'Pure IV fluids, nothing added — fast rehydration for heat, travel, illness, or a long night.',
+    tagline: 'Pure IV fluids, nothing added — straightforward rehydration after heat, travel, or a long night.',
     contents: '500 mL–1,000 mL Lactated Ringer’s or Normal Saline only • no additives',
   },
   {
@@ -48,8 +48,8 @@ export const SIGNATURE = [
   {
     name: 'The Stomach Bug Soulution',
     pair: ['B12 Energy Shot', 'Gut Health Protocol'],
-    for: 'Stomach flu, food poisoning, norovirus recovery, traveler\u2019s diarrhea, nausea & vomiting',
-    tagline: 'Stomach flu, food poisoning & vomiting — deep rehydration plus a gut reset.',
+    for: 'Nausea & vomiting, rough stomach days, post-travel tummy trouble, keeping fluids down',
+    tagline: 'When your stomach has been through it — deep rehydration plus gut-comfort support.',
     contents: 'B-Complex • Magnesium • anti-nausea • antacid • Glutathione',
   },
   {
@@ -86,8 +86,8 @@ export const SIGNATURE = [
   {
     name: 'The Immunity Soulution',
     pair: ['Immunity Shot (Tri-Immune)', 'Immunity Defense Protocol'],
-    for: 'Cold & flu, early viral symptoms, frequent infections, pre-travel immune prep, post-surgical immune support',
-    tagline: 'Cold & flu season support — immune-focused nutrients and hydration when you feel one coming on.',
+    for: 'Seasonal wellness, pre-travel prep, times you feel run down, post-surgical wellness support',
+    tagline: 'Immune-focused nutrients and hydration for the season when everyone around you is sniffling.',
     contents: 'B-Complex • Vitamin C • Glutathione • Zinc',
   },
   {
@@ -177,13 +177,13 @@ export const SIGNATURE = [
 ];
 
 export const LONGEVITY = {
-  lede: 'The gold standard in cellular renewal — supporting brain health, energy, focus, and healthy aging at the cellular level. Infused slowly for comfort.',
+  lede: 'Our longevity infusions, built around NAD+ — the coenzyme behind cellular energy. Popular with clients focused on brain health, energy, focus, and healthy aging. Infused slowly for comfort.',
   items: [
     {
       name: 'The NAD+ Soulution',
       dose: '500 mg • standard dose',
       price: 695,
-      copy: 'Pure NAD+ coenzyme infused directly into the bloodstream for cellular repair, mental clarity, sustained energy, and healthy aging.',
+      copy: 'Pure NAD+ — the coenzyme your cells use for energy metabolism — infused slowly over a relaxed visit. Chosen by clients focused on clarity, energy, and healthy aging.',
     },
     {
       name: 'The Niagen Soulution',
