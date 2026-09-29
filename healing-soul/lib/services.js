@@ -218,8 +218,8 @@ export const SERVICES = [
         accordion: true,
         booked: 'Marathon & triathlon training, strength blocks, recovery from injury, tested athletes',
         price: '$450',
-        copy: 'Performance nutrition for training blocks, race prep, and recovery — NSF Certified for Sport and Informed Sport products only, timed to your training calendar. Pairs with the Athletic Performance Support and Recovery Soulutions.',
-        tag: 'Certified-for-sport products',
+        copy: 'Performance nutrition for training blocks, race prep, and recovery. Ask your provider which products have sport-specific certification and fit your needs. Pairs with the Athletic Performance Support and Recovery Soulutions.',
+        tag: 'Training and recovery support',
       },
       {
         name: '4-Week Re-Panel & Adjustment',
@@ -266,7 +266,7 @@ export const SERVICES = [
     seo: {
       title: 'Personalized Supplement Protocols in NYC | Healing Soulutions',
       description:
-        'Nurse-built supplement protocols from your labs or a consult, including fertility optimization and IVF support, using only cGMP, NSF, USP, or Informed Sport certified, third-party-tested brands such as Thorne, Momentous, and Pure Encapsulations. Manhattan and the New York metro area.',
+        'Provider-guided supplement protocols from your labs or a consult, with plans for fertility, sleep, gut health, and more. Available in Manhattan and the New York metro area.',
     },
   },
   {

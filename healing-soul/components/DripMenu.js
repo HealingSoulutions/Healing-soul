@@ -207,6 +207,11 @@ export default function DripMenu() {
           <span className="dm-pathway-price">{usd(PATHWAY.price)}</span>
           <span className="dm-pathway-compare">{usd(PATHWAY.compare)} booked separately</span>
         </div>
+        <div className="dm-pathway-breakdown">
+          <b>What $2,440 booked separately includes</b>
+          <span>At-home lab visit $695 + labs-based protocol $200 with that visit + two Signature IVs at $425 each + stand-alone week-4 re-panel $695.</span>
+          <span>Bundle price $2,095 saves $345. The week-4 re-panel is $395 within the Pathway; booked on its own, it is $695.</span>
+        </div>
         <p className="dm-pathway-lede">{PATHWAY.lede}</p>
         <ul className="dm-pathway-list">
           {PATHWAY.includes.map((x) => (
@@ -265,18 +270,7 @@ export default function DripMenu() {
       {/* ---- Longevity ---- */}
       <h2 className="dm-h2">Longevity Soulutions</h2>
       <p className="dm-lede">{LONGEVITY.lede}</p>
-      <div className="dm-long">
-        {LONGEVITY.items.map((l) => (
-          <article className={`dm-long-card${l.badge ? ' premium' : ''}`} key={l.name}>
-            {l.badge && <span className="dm-badge gold">{l.badge}</span>}
-            <h3>{l.name}</h3>
-            <span className="dm-dose">{l.dose}</span>
-            <span className="dm-price">{usd(l.price)}</span>
-            <p>{l.copy}</p>
-          </article>
-        ))}
-      </div>
-      <p className="dm-fine">{LONGEVITY.includes}</p>
+      <p className="dm-fine longevity-note">NAD+ and NIAGEN® infusions are given at the selected dose. Prices below show NAD+ / NIAGEN® for each dose. {LONGEVITY.includes}</p>
       <div className="dm-ladder" role="group" aria-label="NAD+ and Niagen dose pricing">
         <span className="dm-ladder-label">Choose your dose — NAD+ / Niagen</span>
         {LONGEVITY.ladder.map(([dose, a, b]) => (
@@ -415,6 +409,27 @@ export default function DripMenu() {
           font: 400 14px/1 var(--serif);
           color: var(--muted);
           text-decoration: line-through;
+        }
+        .dm-pathway-breakdown {
+          margin: 12px 0 10px;
+          padding: 10px 12px;
+          border-radius: 8px;
+          background: #f4efec;
+          font: 400 12.5px/1.5 var(--round);
+          color: var(--ink);
+        }
+        .dm-pathway-breakdown b, .dm-pathway-breakdown span {
+          display: block;
+        }
+        .dm-pathway-breakdown b {
+          margin-bottom: 5px;
+          color: var(--emerald);
+        }
+        .dm-pathway-breakdown span + span {
+          margin-top: 5px;
+        }
+        .longevity-note {
+          text-align: left;
         }
         .dm-pathway-lede {
           margin: 8px 0 10px;
