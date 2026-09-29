@@ -6,7 +6,7 @@ const CONTACT_FAQS = [
   ['Who provides my care?', 'Licensed Registered Nurses (RNs) and Nurse Practitioners (NPs). RNs provide care under the order or standing order of an NP or physician, consistent with New York scope-of-practice law.'],
   ['How does payment work? Do you take insurance?', 'We are an out-of-network provider; payment is due at the time of service by major card through a secure, PCI-compliant processor. As required by the No Surprises Act, you receive a Good Faith Estimate before your visit. For lab work, share your insurance card when you book \u2014 Labcorp bills your insurance directly for lab processing.'],
   ['Do you offer telehealth?', 'Yes, where clinically appropriate, for clients in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
-  ['What is your cancellation policy?', 'We ask for at least 24 hours notice to cancel or reschedule. Full details are in the Financial Agreement presented during booking.'],
+  ['What is your cancellation policy?', 'Reschedule at no charge up to 12 hours before your visit ($100 within 12 hours). Cancellations within 24 hours: $125. No-show (after a 30-minute grace period): up to $175. Full details are in the Financial Agreement presented during booking.'],
 ];
 
 // Contact page in the homepage's language: flat emerald, Cormorant headings, Varela Round

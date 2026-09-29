@@ -156,7 +156,7 @@ DURATION AND REVOCATION: This authorization shall remain in effect for the durat
 ACKNOWLEDGMENT: By signing below, I certify that I am at least 18 years of age (or the legal guardian of the patient), that I have read and fully understand this Medical History and Release Authorization, and that I voluntarily authorize the uses and disclosures described herein.`;
 
 export const CONSENT_FINANCIAL = `FINANCIAL AGREEMENT - BT RPN PLLC & Kristina Castro, Nurse Practitioner in Family Health, PLLC, providing services under the licensed name Healing Soulutions
-Effective Date: August 1, 2026
+Effective Date: September 29, 2026
 
 PAYMENT TERMS: Payment is due in full at the time of service unless other arrangements have been made in writing in advance. The Practice accepts major credit cards, debit cards, and other approved payment methods. A detailed invoice will be provided upon request.
 
@@ -168,7 +168,7 @@ CREDIT CARD ON FILE & PAYMENT AUTHORIZATION: I authorize BT RPN PLLC and Kristin
 
 PRICING AND FEES: Service pricing is subject to change with 30 days advance notice. Prescription medications, compounded medications, injectable therapies, specialty supplies, and additional materials may incur separate charges beyond the base service fee. Travel fees may apply for locations outside the standard service area. Emergency or after-hours service requests may be subject to additional surcharges.
 
-CANCELLATION AND NO-SHOW POLICY: A minimum of 24 hours advance notice is required for appointment cancellations or rescheduling. Cancellations made less than 24 hours before the scheduled appointment are subject to a late cancellation fee of up to the full cost of the scheduled service. Failure to be present and available at the scheduled appointment time (no-show) is subject to a fee of up to the full cost of the scheduled service. Repeated late cancellations or no-shows (three or more within a 12-month period) may result in a required prepayment for future appointments or termination of the patient relationship.
+CANCELLATION AND NO-SHOW POLICY: Reschedule at no charge up to 12 hours before your visit ($100 within 12 hours). Cancellations within 24 hours: $125. No-show (after a 30-minute grace period): up to $175. Repeated late cancellations or no-shows (three or more within a 12-month period) may result in a required prepayment for future appointments or termination of the patient relationship.
 
 PAST DUE ACCOUNTS AND COLLECTIONS: Balances remaining unpaid for 60 or more days may be referred to a third-party collections agency. In the event of collections action, the patient shall be responsible for all collection costs, including but not limited to collection agency fees, court costs, and reasonable attorneys' fees. Past due accounts may accrue interest at the maximum rate permitted by New York State law. The Practice reserves the right to decline future services until all outstanding balances are paid in full.
 

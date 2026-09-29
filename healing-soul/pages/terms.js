@@ -1,7 +1,7 @@
 import Seo from "../components/Seo";
 
-const EFFECTIVE = "September 23, 2026";
-const VERSION = "v1.0";
+const EFFECTIVE = "September 29, 2026";
+const VERSION = "v1.1";
 
 export default function Terms() {
   return (
@@ -233,18 +233,11 @@ export default function Terms() {
           </p>
           <ul>
             <li>
-              Cancellations or reschedules made at least 24 hours before your
-              appointment are free of charge.
+              Reschedule at no charge up to 12 hours before your visit ($100
+              within 12 hours).
             </li>
-            <li>
-              Cancellations or reschedules made within 24 hours are charged 50%
-              of the scheduled service.
-            </li>
-            <li>
-              A missed appointment, or a visit our clinician cannot begin within
-              15 minutes of the scheduled start because you are unavailable or
-              access cannot be obtained, is charged in full as a no-show.
-            </li>
+            <li>Cancellations within 24 hours: $125.</li>
+            <li>No-show (after a 30-minute grace period): up to $175.</li>
             <li>
               If we cancel, reschedule, or decline a service for clinical or
               operational reasons, you are not charged.
