@@ -11,7 +11,7 @@ const FAQS = [
   ['Do you offer telehealth?', 'Yes, where clinically appropriate, for clients in states where our clinicians are licensed (currently New York and Connecticut). Some concerns require an in-person visit, and telehealth is never a substitute for emergency care.'],
   ['How does payment work? Do you take insurance?', 'We are an out-of-network provider; payment is due at the time of service by major card through a secure, PCI-compliant processor. As required by the No Surprises Act, you receive a Good Faith Estimate before your visit. For lab work, share your insurance card when you book — Labcorp bills your insurance directly for lab processing.'],
   ['What should I expect when booking?', 'Choose your services, share a brief health history, review the financial agreement, secure your visit with a card on file, and pick a date and time. We confirm within 24 hours. Treatment consent and our privacy acknowledgment are signed with your nurse at the appointment, before care begins.'],
-  ['What is your cancellation policy?', 'Reschedule at no charge up to 12 hours before your visit ($100 within 12 hours). Cancellations within 24 hours: $125. No-show (after a 30-minute grace period): up to $175. Full details are in the Financial Agreement presented during booking.'],
+  ['What is your cancellation policy?', 'Reschedule free with 12+ hours\' notice; inside 12 hours a $100 fee applies. Cancellations within 24 hours incur a $125 fee. No-shows after a 30-minute grace period may incur up to $175. Full details are in the Financial Agreement presented during booking.'],
 ];
 
 const TEAM = [

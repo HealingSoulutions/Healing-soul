@@ -233,11 +233,13 @@ export default function Terms() {
           </p>
           <ul>
             <li>
-              Reschedule at no charge up to 12 hours before your visit ($100
-              within 12 hours).
+              Reschedule free with 12+ hours&apos; notice; inside 12 hours a
+              $100 fee applies.
             </li>
-            <li>Cancellations within 24 hours: $125.</li>
-            <li>No-show (after a 30-minute grace period): up to $175.</li>
+            <li>Cancellations within 24 hours incur a $125 fee.</li>
+            <li>
+              No-shows after a 30-minute grace period may incur up to $175.
+            </li>
             <li>
               If we cancel, reschedule, or decline a service for clinical or
               operational reasons, you are not charged.
