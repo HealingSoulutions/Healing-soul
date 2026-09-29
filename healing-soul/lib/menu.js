@@ -234,7 +234,7 @@ export const PATHWAY = {
   name: 'The Pathway to Wellness',
   price: 2095,
   compare: 2440,
-  lede: 'Steps 1–4 in one booking — four home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. For best results, this is where we recommend every new client begins.',
+  lede: 'Steps 1–4 in one booking — four home visits, your labs delivered and interpreted, a protocol built for you, and a repeat panel at week 4 to adjust it. Your provider can help decide whether this bundle fits your needs.',
   includes: [
     'At-home lab visit: blood draw, hand-delivered to Labcorp by our team',
     'Provider lab interpretation & results call',

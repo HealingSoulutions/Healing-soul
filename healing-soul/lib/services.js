@@ -101,9 +101,9 @@ export const SERVICES = [
     summary:
       "A personalized supplement plan built from your labs — or from a consult — with named products and a follow-up schedule.",
     heroLede:
-      'A plan around your labs, goals, and life — every brand vetted for independent third-party testing, delivered to your door.',
+      'A plan built around your labs, goals, and life, with products selected by your provider and brought to your door.',
     includedLede:
-      'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles continue for as long as they are useful to you, with your provider reassessing each round.\n\nEvery product is curated from the highest-quality supplement brands around your goals and biomarkers \u2014 the right delivery system, the right dosage, the right order and timing, so each nutrient actually does its job. And every pick is checked against your medications and lifestyle for the interactions our practitioners are trained to catch.\n\nEvery supplement on your protocol, sourced for you (complimentary up to 4 supplements, retail for any additional).',
+      'Every protocol runs as a 4-week cycle: a consult, a written plan of up to four products sourced directly from the manufacturer, then a repeat panel at week 4 with provider reassessment and adjustment. Cycles continue for as long as they are useful to you, with your provider reassessing each round.\n\nYour provider selects products and doses based on your goals, lab results when available, and the medications and supplements you report. Your plan explains what to take, when, and when to check in. Results vary, and your provider may adjust the plan.\n\nEvery supplement on your protocol, sourced for you (complimentary up to 4 supplements, retail for any additional).',
     included: [
       {
         name: 'Protocol Consult',
@@ -128,10 +128,10 @@ export const SERVICES = [
         tag: 'Add-on service',
       },
       {
-        name: 'How We Vet Every Brand',
+        name: 'How We Select Products',
         divider: 'Targeted Protocols',
-        copy: 'Before a product goes on your protocol it has to clear our quality bar: made in a cGMP-compliant facility (FDA 21 CFR Part 111), NSF/ANSI 173 or USP Verified where available, NSF Certified for Sport or Informed Sport for any performance product, and lot-specific third-party testing for identity, potency, heavy metals, microbes, and contaminants. No proprietary blends that hide doses.',
-        tag: 'cGMP · NSF · USP · Informed Sport',
+        copy: 'We consider the manufacturer, ingredient list, dose, available quality information, and fit with your health history and medications before recommending a product. Third-party certifications and lot-level testing vary by product; ask your provider about the evidence for a specific recommendation.',
+        tag: 'Provider-selected products',
       },
       {
         name: 'Fertility Optimization',
