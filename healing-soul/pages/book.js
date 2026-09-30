@@ -14,7 +14,7 @@ const BOOK_FAQS = [
   ['What happens after I book?', 'Our team follows up within 24 hours to confirm the details and answer any questions. Treatment consent and our privacy acknowledgment are reviewed and signed with your nurse at the appointment, before care begins.'],
 ];
 
-const JF_FORM_ID = '262714289945167';
+const JF_FORM_ID = '262718031172148';
 const JF_ORIGIN = 'https://hipaa-submit.jotform.com';
 const JF_SRC = JF_ORIGIN + '/' + JF_FORM_ID;
 
