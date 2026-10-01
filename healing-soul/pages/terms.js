@@ -197,6 +197,11 @@ export default function Terms() {
               owed under Section 6.
             </li>
             <li>
+              You authorize us to keep this card on file and charge it for this
+              and future appointments, until you revoke this authorization in
+              writing.
+            </li>
+            <li>
               Prices are quoted before your visit. If the clinician adjusts your
               plan at the visit, the revised price is confirmed with you before
               the service proceeds.
