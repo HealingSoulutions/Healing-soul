@@ -1,7 +1,7 @@
 import Seo from "../components/Seo";
 
-const EFFECTIVE = "September 29, 2026";
-const VERSION = "v1.1";
+const EFFECTIVE = "October 1, 2026";
+const VERSION = "v1.2";
 
 export default function Terms() {
   return (
