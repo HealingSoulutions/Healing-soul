@@ -197,9 +197,10 @@ export default function Terms() {
               owed under Section 6.
             </li>
             <li>
-              You authorize us to keep this card on file and charge it for this
-              and future appointments, until you revoke this authorization in
-              writing.
+              By booking, you authorize Healing Soulutions to securely retain
+              your card on file and charge it for services rendered, applicable
+              fees, and future appointments, until you revoke this
+              authorization in writing.
             </li>
             <li>
               Prices are quoted before your visit. If the clinician adjusts your
