@@ -1,7 +1,7 @@
 import Seo from "../components/Seo";
 
 const EFFECTIVE = "October 1, 2026";
-const VERSION = "v1.2";
+const VERSION = "v1.3";
 
 export default function Terms() {
   return (
@@ -351,7 +351,10 @@ export default function Terms() {
           <p>
             Email and text are not fully secure. You agree that we may
             communicate with you by these channels, and you may ask us to use
-            phone or secure portal instead.
+            phone or secure portal instead. These messages may include limited
+            health information, such as the service you booked. You may
+            withdraw this consent at any time by telling us in writing or by
+            replying STOP to a text message.
           </p>
           </div>
         </section>
@@ -423,7 +426,16 @@ export default function Terms() {
           <div className="box" tabIndex={0} role="region">
           <p>
             These Terms are governed by the laws of the State of New York,
-            without regard to conflict-of-laws rules. Any dispute is subject to
+            without regard to conflict-of-laws rules. Disputes about the
+            services we provide follow the Dispute Resolution section of the
+            Informed Consent for Treatment you sign at your visit: good faith
+            mediation first, then binding arbitration unless you opt out in
+            writing within 30 days of signing. That section does not cover
+            claims for personal injury or wrongful death arising from
+            professional negligence in clinical care, and your right to treatment
+            does not depend on agreeing to arbitrate. Any other dispute,
+            including a dispute about these Terms or your use of this website,
+            or any dispute for which you opted out of arbitration, is subject to
             the exclusive jurisdiction of the state and federal courts located in
             New York County, New York. If any provision is found unenforceable,
             the remaining provisions stay in effect.
