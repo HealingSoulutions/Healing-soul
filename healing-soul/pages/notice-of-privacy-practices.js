@@ -9,7 +9,7 @@ export default function NoticeOfPrivacyPractices() {
   return (
     <LegalLayout
       title="Notice of Privacy Practices"
-      effective="August 1, 2026"
+      effective="October 1, 2026"
       description="Healing Soulutions HIPAA Notice of Privacy Practices — how your health information may be used and disclosed, and your rights regarding that information."
     >
       <ConsentDoc text={CONSENT_HIPAA} />
