@@ -172,6 +172,10 @@ export default function Terms() {
             controls where the two differ. Some services require an additional,
             service-specific written consent signed at or before the visit.
           </p>
+          <p>
+            The full text of the consent documents is available on the{' '}
+            <a href="/consents">Patient Consent Documents</a> page.
+          </p>
           </div>
         </section>
 
