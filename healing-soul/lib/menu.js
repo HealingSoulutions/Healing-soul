@@ -3,7 +3,10 @@
 
 export const SIGNATURE_PRICE = 425;
 export const BOOSTER_PRICE = 49;
-export const GLUTATHIONE_PRICE = 49; // per 600 mg, up to 3,000 mg
+export const GLUTATHIONE_PRICE = 79; // first 600 mg; each additional 600 mg is GLUTATHIONE_STEP, up to 3,000 mg
+export const GLUTATHIONE_STEP = 69;
+export const VITC_PRICE = 79; // first 4 g; each additional 4 g is VITC_STEP
+export const VITC_STEP = 69;
 export const INJECTION_PRICE = 85;
 
 export const SIGNATURE = [
@@ -81,7 +84,7 @@ export const SIGNATURE = [
     for: 'Liver-health support, post-medication or alcohol recovery, environmental-exposure support',
     tagline: 'Support your body’s natural detox pathways — after travel, indulgence, medication courses, or a heavy season.',
     contents: 'Glutathione 600 mg • Vitamin C • B-Complex • Magnesium • Taurine • Alpha Lipoic Acid',
-    extra: 'Add NAC +$49 · increase glutathione up to 3,000 mg at $49 per 600 mg',
+    extra: 'Add NAC +$49 · increase glutathione up to 3,000 mg at +$69 per additional 600 mg',
   },
   {
     name: 'The Immunity Soulution',
@@ -172,7 +175,7 @@ export const SIGNATURE = [
     name: 'The Custom Soulution',
     tagline: 'Build your own — choose your nutrients with our clinician for a fully personalized infusion.',
     contents: 'Base: your choice of fluid plus any two nutrients',
-    extra: 'Each additional booster +$49 · premium upgrades as listed below',
+    extra: 'Each additional booster +$49 (vitamin C and glutathione: $79 for the first step, +$69 per additional step) · premium upgrades as listed below',
   },
 ];
 
@@ -204,7 +207,7 @@ export const LONGEVITY = {
 
 export const BOOSTERS = [
   ['Energy & Metabolism', 'B-Complex · B12 · Thiamine (B1) · Taurine · Amino Blend · L-Carnitine · MICC lipotropic'],
-  ['Immunity & Antioxidant', 'Vitamin C · Glutathione ($49 per 600 mg, up to 3,000 mg) · Zinc · Vitamin D · Alpha Lipoic Acid'],
+  ['Immunity & Antioxidant', 'Vitamin C ($79 for 4 g, +$69 per additional 4 g) · Glutathione ($79 for 600 mg, +$69 per additional 600 mg, up to 3,000 mg) · Zinc · Vitamin D · Alpha Lipoic Acid'],
   ['Recovery & Beauty', 'Magnesium · Mineral Blend · L-Glutamine · Lysine · Biotin'],
   ['Comfort Medications', 'Anti-Nausea · Anti-Inflammatory · Antacid · Antihistamine · Steroid'],
 ];

@@ -5,6 +5,10 @@ import {
   LONGEVITY,
   BOOSTERS,
   BOOSTER_PRICE,
+  GLUTATHIONE_PRICE,
+  GLUTATHIONE_STEP,
+  VITC_PRICE,
+  VITC_STEP,
   UPGRADES,
   INJECTIONS,
   INJECTION_PRICE,
@@ -286,7 +290,7 @@ export default function DripMenu() {
       {/* ---- Boosters ---- */}
       <h2 className="dm-h2">Boost Your Drip</h2>
       <p className="dm-lede">
-        Add any nutrient to any Soulution — <b>{usd(BOOSTER_PRICE)} each</b>. Glutathione {usd(BOOSTER_PRICE)} per 600 mg, up to 3,000 mg.
+        Add any nutrient to any Soulution — <b>{usd(BOOSTER_PRICE)} each</b>. Vitamin C is {usd(VITC_PRICE)} for 4 g, then +{usd(VITC_STEP)} per additional 4 g. Glutathione is {usd(GLUTATHIONE_PRICE)} for 600 mg, then +{usd(GLUTATHIONE_STEP)} per additional 600 mg, up to 3,000 mg.
       </p>
       <div className="dm-boost">
         {BOOSTERS.map(([group, list]) => (
