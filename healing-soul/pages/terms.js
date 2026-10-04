@@ -215,8 +215,8 @@ export default function Terms() {
               All services are private pay. We do not bill insurance, and we are
               not a participating provider with any insurance plan, Medicare, or
               Medicaid. You are responsible for the full amount regardless of any
-              reimbursement you may later seek. On request we can provide an
-              itemized receipt for your own submission to an insurer, HSA, or
+              reimbursement you may later seek. On request we provide a
+              superbill for your own submission to an insurer, HSA, or
               FSA; we make no representation that any amount will be reimbursed.
             </li>
             <li>

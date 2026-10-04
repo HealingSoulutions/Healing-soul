@@ -279,7 +279,7 @@ export const CONCIERGE = [
   ['Group bookings (3+)', 'save 10% — perfect for events, bridal parties & recovery days'],
   ['Multi-session packages', 'ask about packages for longevity & wellness regulars'],
   ['Good-faith wellness evaluation', 'included with every visit, by our medical team'],
-  ['HSA / FSA', 'welcome'],
+  ['HSA / FSA', 'superbill provided for your own reimbursement'],
 ];
 
 export const MENU_DISCLAIMER =
