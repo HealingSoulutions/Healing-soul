@@ -67,6 +67,25 @@ export default function Home() {
             <Link href="/services/at-home-testing" className="cta-secondary">See At-Home Testing</Link>
           </div>
         </section>
+        <section className="proof" aria-label="Your clinicians">
+          <span className="eyebrow">Your clinicians</span>
+          <h2>Licensed nurses and a board-certified NP.</h2>
+          <div className="proof-grid">
+            <div className="proof-card">
+              <img src="/berit.jpg" alt="Berit Tran, Registered Nurse and founder of Healing Soulutions" width={96} height={96} loading="lazy" />
+              <strong>Berit Tran, BSN, RN</strong>
+              <span>15+ years in New York hospitals: ER, ICU, med-surg, post-surgical recovery</span>
+              <em>Licensed RN · ACLS · PALS · BLS</em>
+            </div>
+            <div className="proof-card">
+              <img src="/kristina.jpg" alt="Kristina Castro, Nurse Practitioner at Healing Soulutions" width={96} height={96} loading="lazy" />
+              <strong>Kristina Castro, MSN, APRN, FNP-BC</strong>
+              <span>10+ years in New York ICUs and emergency departments</span>
+              <em>ANCC Board Certified · Licensed NP (NY &amp; CT)</em>
+            </div>
+          </div>
+          <Link href="/about" className="proof-link">Meet the team</Link>
+        </section>
         <div className="brandband">
           <img
             className="wordmark"
@@ -136,6 +155,16 @@ export default function Home() {
           text-decoration: none;
           font: 500 15px/1 'KMR Melange Grotesk', system-ui, sans-serif;
         }
+        .proof { max-width: 760px; margin: 0 auto; padding: 56px 20px 8px; text-align: center; }
+        .proof h2 { margin: 0 auto 24px; max-width: 520px; color: #251f21; font: 500 26px/1.25 'Aime', Georgia, serif; }
+        .proof-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+        @media (min-width: 640px) { .proof-grid { grid-template-columns: 1fr 1fr; } }
+        .proof-card { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 20px 16px; border: 1px solid rgba(115,168,154,0.4); border-radius: 14px; background: #fff; }
+        .proof-card img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+        .proof-card strong { color: #251f21; font: 500 16px/1.3 'KMR Melange Grotesk', system-ui, sans-serif; }
+        .proof-card span { color: rgba(37,31,33,0.78); font: 400 13px/1.55 'KMR Melange Grotesk', system-ui, sans-serif; }
+        .proof-card em { color: #3f6f62; font: 500 12px/1.5 'KMR Melange Grotesk', system-ui, sans-serif; font-style: normal; }
+        .proof :global(.proof-link) { display: inline-block; margin-top: 18px; padding: 12px 8px; color: #251f21; font: 500 14px/1 'KMR Melange Grotesk', system-ui, sans-serif; }
         .brandband {
           background: #013c1c;
           text-align: center;
