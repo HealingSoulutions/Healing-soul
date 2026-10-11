@@ -187,10 +187,10 @@ export const LONGEVITY = {
     },
     {
       name: 'The Niagen Soulution',
-      badge: 'Premium',
+      badge: 'Premium · Most popular',
       dose: '500 mg • standard dose',
       price: 795,
-      copy: 'Our premium longevity infusion featuring patented NIAGEN® (nicotinamide riboside) — a next-generation NAD+ precursor prized for smoother, gentler tolerance and efficient cellular uptake.',
+      copy: 'Our premium and most popular longevity infusion featuring patented NIAGEN® (nicotinamide riboside) — a next-generation NAD+ precursor prized for smoother, gentler tolerance and efficient cellular uptake.',
     },
   ],
   includes: 'Every NAD+ & Niagen Soulution is infused in 500 mL–1,000 mL LR or NS. Optional nutrient base +$150: your choice of the Immunity, Myers\' or Beauty Glow Soulution base.',

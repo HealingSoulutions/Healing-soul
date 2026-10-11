@@ -270,6 +270,7 @@ export default function DripMenu() {
       {/* ---- Longevity ---- */}
       <h2 className="dm-h2">Longevity Soulutions</h2>
       <p className="dm-lede">{LONGEVITY.lede}</p>
+      <p className="dm-niagen-flag"><b>NIAGEN®</b> is our premium longevity infusion and our most popular.</p>
       <p className="dm-fine longevity-note">NAD+ and NIAGEN® infusions are given at the selected dose. Prices below show NAD+ / NIAGEN® for each dose. {LONGEVITY.includes}</p>
       <div className="dm-ladder" role="group" aria-label="NAD+ and Niagen dose pricing">
         <span className="dm-ladder-label">Choose your dose — NAD+ / Niagen</span>
@@ -497,6 +498,16 @@ export default function DripMenu() {
           flex-wrap: wrap;
           align-items: center;
           gap: 8px;
+        }
+        .dm-niagen-flag {
+          display: inline-block;
+          margin: 0 0 12px;
+          padding: 8px 14px;
+          border: 1px solid var(--gold);
+          border-radius: 999px;
+          background: #fff;
+          color: var(--gold-dark);
+          font: 500 13px/1.4 var(--round);
         }
         .dm-badge {
           display: inline-block;
