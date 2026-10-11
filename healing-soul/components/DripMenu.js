@@ -26,8 +26,6 @@ const BASES = [
 const POPULAR = [
   'The Myers’ Soulution',
   'The Dehydration Soulution',
-  'The Immunity Soulution',
-  'The Hangover Soulution',
 ];
 const FEATURED = POPULAR.map((n) => SIGNATURE.find((d) => d.name === n)).filter(Boolean);
 const MORE_DRIPS = SIGNATURE.filter((d) => !POPULAR.includes(d.name));
@@ -206,6 +204,18 @@ function DripRow({ d }) {
 export default function DripMenu() {
   return (
     <div className="dm">
+      {/* ---- Featured: Niagen ---- */}
+      <section className="dm-hero" aria-label="Most popular Soulution">
+        <span className="dm-hero-badge">Premium &middot; Most popular</span>
+        <h2>The Niagen Soulution</h2>
+        <span className="dm-hero-price">from {usd(595)}</span>
+        <p>{LONGEVITY.items[1].copy}</p>
+        <div className="dm-hero-cta">
+          <a className="dm-hero-book" href="/book">Book Niagen</a>
+          <a className="dm-hero-doses" href="#longevity">See doses</a>
+        </div>
+      </section>
+
       {/* ---- Pathway bundle ---- */}
       <h2 className="dm-h2">The Pathway to Wellness</h2>
       <div className="dm-pathway">
@@ -274,7 +284,7 @@ export default function DripMenu() {
       <p className="dm-fine">Formulas may be adjusted by your clinician based on your evaluation.</p>
 
       {/* ---- Longevity ---- */}
-      <h2 className="dm-h2">Longevity Soulutions</h2>
+      <h2 className="dm-h2" id="longevity">Longevity Soulutions</h2>
       <p className="dm-lede">{LONGEVITY.lede}</p>
       <p className="dm-niagen-flag"><b>NIAGEN®</b> is our premium longevity infusion and our most popular.</p>
       <p className="dm-fine longevity-note">NAD+ and NIAGEN® infusions are given at the selected dose. Prices below show NAD+ / NIAGEN® for each dose. {LONGEVITY.includes}</p>
@@ -529,6 +539,14 @@ export default function DripMenu() {
         .dm-base { border: 1px solid var(--gold); border-radius: 14px; background: #fff; padding: 0 14px; }
         .dm-base summary { cursor: pointer; padding: 12px 0; min-height: 24px; font: 500 14px/1.3 var(--round); color: var(--emerald); }
         .dm-base p { margin: 0; padding: 0 0 12px; font: 400 13.5px/1.55 var(--round); color: #251f21; }
+        .dm-hero { margin: 0 0 28px; padding: 26px 22px; border-radius: 18px; background: #013c1c; color: #fbfaf9; text-align: center; }
+        .dm-hero h2 { margin: 10px 0 4px; font: 500 30px/1.15 var(--serif); color: #fbfaf9; }
+        .dm-hero-badge { display: inline-block; padding: 5px 12px; border: 1px solid var(--gold); border-radius: 999px; font: 500 10px/1.2 var(--round); letter-spacing: 0.16em; text-transform: uppercase; color: #e9d9a8; }
+        .dm-hero-price { display: block; margin: 0 0 12px; font: 500 20px/1.2 var(--serif); color: #e9d9a8; }
+        .dm-hero p { margin: 0 auto 18px; max-width: 520px; font: 400 14px/1.65 var(--round); color: rgba(251,250,249,0.88); }
+        .dm-hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+        .dm-hero-book { padding: 13px 24px; border-radius: 999px; background: #fbfaf9; color: #013c1c; text-decoration: none; font: 500 14px/1 var(--round); }
+        .dm-hero-doses { padding: 13px 24px; border: 1px solid rgba(251,250,249,0.6); border-radius: 999px; color: #fbfaf9; text-decoration: none; font: 500 14px/1 var(--round); }
         .dm-badge {
           display: inline-block;
           padding: 3px 9px;
