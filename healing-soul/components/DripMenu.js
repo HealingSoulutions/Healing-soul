@@ -246,7 +246,7 @@ export default function DripMenu() {
           </h3>
           <span className="dm-card-price">from {usd(595)}</span>
           <p className="dm-tagline">{LONGEVITY.items[1].copy}</p>
-          <p className="dm-niagen-for"><b>Commonly booked for:</b> Healthy aging &middot; Energy &middot; Immune support &middot; Sleep support</p>
+          <p className="dm-niagen-for"><b>Commonly booked for:</b> Healthy aging &middot; Longevity &middot; Energy &middot; Focus &middot; Sleep support &middot; Immune support &middot; Cellular health</p>
           <p className="dm-pair"><a href="#longevity">See doses</a> &middot; <a href="/book">Book</a></p>
         </article>
         {FEATURED.map((d) => (
