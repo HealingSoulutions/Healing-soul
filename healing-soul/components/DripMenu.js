@@ -246,6 +246,7 @@ export default function DripMenu() {
           </h3>
           <span className="dm-card-price">from {usd(595)}</span>
           <p className="dm-tagline">{LONGEVITY.items[1].copy}</p>
+          <p className="dm-niagen-for"><b>Commonly booked for:</b> Healthy aging &middot; Energy &middot; Immune support &middot; Sleep support</p>
           <p className="dm-pair"><a href="#longevity">See doses</a> &middot; <a href="/book">Book</a></p>
         </article>
         {FEATURED.map((d) => (
@@ -539,6 +540,8 @@ export default function DripMenu() {
         .dm-base p { margin: 0; padding: 0 0 12px; font: 400 13.5px/1.55 var(--round); color: #251f21; }
         .dm-card-niagen { background: #013c1c; border-color: #013c1c; }
         .dm-card-niagen h3, .dm-card-niagen .dm-card-price { color: #fbfaf9; }
+        .dm-card-niagen .dm-niagen-for { margin: 0 0 8px; font: 400 13px/1.5 var(--round); color: rgba(251,250,249,0.9); }
+        .dm-card-niagen .dm-niagen-for b { color: #fbfaf9; font-weight: 600; }
         .dm-card-niagen .dm-tagline { color: rgba(251,250,249,0.88); }
         .dm-card-niagen .dm-drip-icon { background: rgba(251,250,249,0.12); color: #e9d9a8; }
         .dm-card-niagen .dm-pair, .dm-card-niagen .dm-pair a { color: #e9d9a8; }
