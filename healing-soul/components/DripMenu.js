@@ -17,6 +17,12 @@ import {
 } from '../lib/menu';
 
 
+const BASES = [
+  ['Immunity base', 'Vitamin C, B complex, B12, zinc, glutathione'],
+  ['Myers\u2019 base', 'Vitamin C, B complex, B12, magnesium'],
+  ['Beauty Glow base', 'Vitamin C, B complex, B12, biotin, glutathione'],
+];
+
 const POPULAR = [
   'The Myers’ Soulution',
   'The Dehydration Soulution',
@@ -272,6 +278,15 @@ export default function DripMenu() {
       <p className="dm-lede">{LONGEVITY.lede}</p>
       <p className="dm-niagen-flag"><b>NIAGEN®</b> is our premium longevity infusion and our most popular.</p>
       <p className="dm-fine longevity-note">NAD+ and NIAGEN® infusions are given at the selected dose. Prices below show NAD+ / NIAGEN® for each dose. {LONGEVITY.includes}</p>
+      <div className="dm-bases" aria-label="Nutrient base ingredients">
+        <span className="dm-bases-label">Optional nutrient base +$150. Tap to see what is in it.</span>
+        {BASES.map(([name, items]) => (
+          <details className="dm-base" key={name}>
+            <summary>{name}</summary>
+            <p>{items}</p>
+          </details>
+        ))}
+      </div>
       <div className="dm-ladder" role="group" aria-label="NAD+ and Niagen dose pricing">
         <span className="dm-ladder-label">Choose your dose — NAD+ / Niagen</span>
         {LONGEVITY.ladder.map(([dose, a, b]) => (
@@ -509,6 +524,11 @@ export default function DripMenu() {
           color: var(--gold-dark);
           font: 500 13px/1.4 var(--round);
         }
+        .dm-bases { margin: 0 0 16px; display: flex; flex-direction: column; gap: 8px; }
+        .dm-bases-label { color: var(--gold-dark); font: 500 12px/1.4 var(--round); letter-spacing: 0.04em; }
+        .dm-base { border: 1px solid var(--gold); border-radius: 14px; background: #fff; padding: 0 14px; }
+        .dm-base summary { cursor: pointer; padding: 12px 0; min-height: 24px; font: 500 14px/1.3 var(--round); color: var(--emerald); }
+        .dm-base p { margin: 0; padding: 0 0 12px; font: 400 13.5px/1.55 var(--round); color: #251f21; }
         .dm-badge {
           display: inline-block;
           padding: 3px 9px;
