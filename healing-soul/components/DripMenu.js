@@ -25,7 +25,8 @@ const BASES = [
 
 const POPULAR = [
   'The Myers’ Soulution',
-  'The Dehydration Soulution',
+  'The Hangover Soulution',
+  'The Immunity Soulution',
 ];
 const FEATURED = POPULAR.map((n) => SIGNATURE.find((d) => d.name === n)).filter(Boolean);
 const MORE_DRIPS = SIGNATURE.filter((d) => !POPULAR.includes(d.name));
