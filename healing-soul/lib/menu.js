@@ -275,7 +275,7 @@ export const LAB_FEE_NOTE = 'Prices cover the visit, collection, same-day delive
 
 export const CONCIERGE = [
   ['Travel included', 'within our service area'],
-  ['Same-day rush', 'requests within 4 hours, +$99'],
+  ['Same-day rush', 'requests within 4 hours, ask when booking'],
   ['Group bookings (3+)', 'save 10% — perfect for events, bridal parties & recovery days'],
   ['Multi-session packages', 'ask about packages for longevity & wellness regulars'],
   ['Good-faith wellness evaluation', 'included with every visit, by our medical team'],

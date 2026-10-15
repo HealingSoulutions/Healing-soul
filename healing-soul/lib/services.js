@@ -258,7 +258,7 @@ export const SERVICES = [
       items: [
         ['Signature Soulutions', 'from $325', 'most drips $425'],
         ['NAD+ & Niagen', 'from $450', 'longevity drips'],
-        ['Injections', '$85', 'B12, D3, glutathione & more'],
+        ['Injections', '', 'B12, D3, glutathione & more'],
       ],
     },
     priceFrom: 325,
@@ -276,7 +276,7 @@ export const SERVICES = [
       'Signature IV Soulutions, custom drips, and prescribed injections administered by your nurse — the third step of your plan.',
     heroLede:
       'Hydration, nutrients, and targeted injections — administered by a registered nurse in your home, hotel, or office.',
-    includedLede: 'Signature Soulutions are $425; the fluids-only Dehydration Soulution is $325. Longevity drips, boosters, and injections are priced below — travel included within our service area.',
+    includedLede: 'Signature Soulutions are $425; the fluids-only Dehydration Soulution is $325. Longevity drips and boosters are priced below — travel included within our service area.',
     included: asCards('infusion'),
     steps: [
       ['Book', 'Choose a drip or injection and a time. A short intake follows.'],

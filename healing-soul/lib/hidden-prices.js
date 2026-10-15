@@ -13,3 +13,14 @@ export const HIDDEN_PRICES = {
     copySentence: 'Booked with our At-Home Lab Visit, provider interpretation is already included, so the protocol is $200.',
   },
 };
+
+// Added Oct 15, 2026: standalone injection and same-day rush prices hidden (originals).
+export const HIDDEN_INJECTION_PRICES = {
+  INJECTION_PRICE: 85, INJECTION_VISIT_MIN: 249,
+  INJECTION_PACK: ['4-Shot Package (any $85 shot, used within 60 days)', 299],
+  INJECTION_NOTE: 'Shot prices apply when added to an IV visit. Stand-alone injection visits are $249 minimum (one shot included); additional shots at the listed price.',
+  INJECTIONS: [['B12 Energy Shot',85],['Beauty Shot (Glutathione)',85],['Vitamin D3 Shot',85],['Immunity Shot (Tri-Immune)',85],['Skinny Shot (MIC + B12)',85],['CoQ-10 Shot',85],['B12 + Full B-Complex (B1-B6) - anti-aging & immunity',129]],
+  dataJsCard: "price 'from $85'; bullets listed with $85/$129/$299/$249 amounts (see git history a3dfce4 lib/data.js)",
+  sameDayRush: ['Same-day rush', 'requests within 4 hours, +$99'],
+  servicesQuick: ['Injections', '$85', 'B12, D3, glutathione & more'],
+};

@@ -313,21 +313,19 @@ export default function DripMenu() {
       {/* ---- Injections ---- */}
       <h2 className="dm-h2">Intramuscular Injections</h2>
       <p className="dm-lede">
-        Each intramuscular injection — <b>{usd(INJECTION_PRICE)}</b> unless noted.
+        Quick, targeted shots, most under 15 minutes. Ask us about pricing when you book.
       </p>
       <ul className="dm-inj">
-        {INJECTIONS.map(([n, p]) => (
+        {INJECTIONS.map(([n]) => (
           <li key={n}>
             <span>{n}</span>
-            <b>{usd(p)}</b>
           </li>
         ))}
         <li>
-          <span>{INJECTION_PACK[0]}</span>
-          <b>{usd(INJECTION_PACK[1])}</b>
+          <span>4-Shot Package (any shot, used within 60 days)</span>
         </li>
       </ul>
-      <p className="dm-fine">{INJECTION_NOTE}</p>
+      
 
       {/* ---- Concierge ---- */}
       <div className="dm-concierge">
