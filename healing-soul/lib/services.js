@@ -12,14 +12,14 @@ export const SERVICES = [
     quick: {
       line: 'Labs drawn at home, delivered to Labcorp the same day, and explained by a provider.',
       items: [
-        ['At-Home Lab Visit', '$695', 'draw + provider results review'],
+        ['At-Home Lab Visit', '', 'draw + provider results review'],
         ['Urine collection', '$295', '+$95 with a lab visit'],
         ['Respiratory PCR swab', '$349', 'COVID · RSV · Flu'],
       ],
       note: 'Share your insurance card when you book. Labcorp bills your insurance for the lab work.',
     },
-    priceFrom: 695,
-    priceLabel: 'At-home lab visit $695 · includes provider interpretation',
+    priceFrom: null,
+    priceLabel: 'At-home lab visit · includes provider interpretation',
     number: '01',
     icon: 'house',
     back: ['AT', 'HOME'],
@@ -35,7 +35,7 @@ export const SERVICES = [
     included: [
       {
         name: 'At-Home Lab Visit',
-        price: '$695 · includes provider interpretation',
+        price: 'Includes provider interpretation',
         copy: 'Book lab work at home: a nurse draws your labs, we hand-deliver them to Labcorp the same day, and a provider reviews your results with you on a call. Provide your insurance card when you book and Labcorp bills your insurance for the lab work. Supplement protocols are priced separately. Commonly booked for: inflammatory markers, hormone panels, basic labs, metabolic health, and cardiac profiles.',
         tag: 'Phlebotomy',
       },
@@ -84,7 +84,7 @@ export const SERVICES = [
       line: 'A 4-week supplement plan built for you, with the supplements brought to your door.',
       items: [
         ['Protocol Consult', '$250', 'no labs needed'],
-        ['Labs-Based Protocol', '$395 on its own', '$200 when added to an At-Home Lab Visit'],
+        ['Labs-Based Protocol', '', 'built from your lab results'],
         ['Targeted protocols', '$350–$450', 'fertility, sleep, gut, hormones & more'],
         ['4-Week Re-Panel', '$395', 'repeat labs + adjustment'],
       ],
@@ -115,9 +115,9 @@ export const SERVICES = [
       {
         name: 'Labs-Based Protocol',
         booked: 'Low vitamin D or B12, borderline labs, fatigue with normal-range results, optimizing after a physical',
-        price: '$395 on its own · $200 when added to an At-Home Lab Visit',
+        price: '',
         copy:
-          'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages. Booked with our At-Home Lab Visit, provider interpretation is already included, so the protocol is $200.',
+          'When you have recent blood work — ours or your own — your protocol is matched to your actual values, not averages. Booked with our At-Home Lab Visit, provider interpretation is already included.',
         tag: 'Built from your results',
       },
       {
