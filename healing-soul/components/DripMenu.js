@@ -10,7 +10,6 @@ import {
   INJECTION_PRICE,
   INJECTION_PACK,
   INJECTION_NOTE,
-  PATHWAY,
   CONCIERGE,
   MENU_DISCLAIMER,
   usd,
@@ -205,27 +204,6 @@ function DripRow({ d }) {
 export default function DripMenu() {
   return (
     <div className="dm">
-      {/* ---- Pathway bundle ---- */}
-      <h2 className="dm-h2">The Pathway to Wellness</h2>
-      <div className="dm-pathway">
-        <div className="dm-pathway-head">
-          <span className="dm-pathway-price">{usd(PATHWAY.price)}</span>
-          <span className="dm-pathway-compare">{usd(PATHWAY.compare)} booked separately</span>
-        </div>
-        <div className="dm-pathway-breakdown">
-          <b>What $2,440 booked separately includes</b>
-          <span>At-home lab visit $695 + labs-based protocol $200 with that visit + two Signature IVs at $425 each + stand-alone week-4 re-panel $695.</span>
-          <span>Bundle price $2,095 saves $345. The week-4 re-panel is $395 within the Pathway; booked on its own, it is $695.</span>
-        </div>
-        <p className="dm-pathway-lede">{PATHWAY.lede}</p>
-        <ul className="dm-pathway-list">
-          {PATHWAY.includes.map((x) => (
-            <li key={x}>{x}</li>
-          ))}
-        </ul>
-        <p className="dm-pathway-note">{PATHWAY.note}</p>
-      </div>
-
       {/* ---- Signature ---- */}
       <h2 className="dm-h2">Signature Soulutions</h2>
       <div className="dm-banner">
